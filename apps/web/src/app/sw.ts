@@ -54,7 +54,7 @@ const serwist = new Serwist({
     {
       matcher: ({ url, request }) =>
         !isParentRoute({ url }) &&
-        request.destination === 'audio' || /\/audio\//.test(url.pathname),
+        (request.destination === 'audio' || /\/audio\//.test(url.pathname)),
       handler: new CacheFirst({
         cacheName: 'e4k-audio-v1',
         plugins: [

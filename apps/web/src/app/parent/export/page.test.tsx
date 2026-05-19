@@ -52,9 +52,12 @@ let capturedMime: string | null = null;
 const originalCreateObjectURL = global.URL.createObjectURL;
 const originalRevokeObjectURL = global.URL.revokeObjectURL;
 
-import DataExportPage, { buildExportFilename, buildExportPayload } from './page';
+// Expose React on globalThis so JSX in the SUT (compiled to React.createElement
+// by esbuild's classic transform) resolves at runtime. Sibling test files
+// follow the same pattern.
+(globalThis as { React?: typeof React }).React = React;
 
-void React;
+import DataExportPage, { buildExportFilename, buildExportPayload } from './page';
 
 describe('DataExportPage', () => {
   beforeEach(() => {

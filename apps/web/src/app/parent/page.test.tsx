@@ -65,11 +65,12 @@ vi.mock('@/components/streak/StreakPlant', () => ({
   ),
 }));
 
-import ParentDashboardPage from './page';
+// Expose React on globalThis so JSX in the SUT (compiled to React.createElement
+// by esbuild's classic transform) resolves at runtime. Sibling test files
+// follow the same pattern.
+(globalThis as { React?: typeof React }).React = React;
 
-// React is referenced implicitly via JSX runtime in the tsconfig that ships
-// with vitest. Keep the import live for parity with sibling test files.
-void React;
+import ParentDashboardPage from './page';
 
 describe('ParentDashboardPage', () => {
   beforeEach(() => {

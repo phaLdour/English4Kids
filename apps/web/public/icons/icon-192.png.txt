@@ -1,0 +1,21 @@
+REPLACE WITH 192x192 PWA icon (PNG).
+
+Specs:
+- 192 x 192 pixels.
+- Format: PNG with alpha channel.
+- Background: solid cream (#FFF8EE) — fills the canvas to the edge so older
+  Android launchers that don't honour the "maskable" purpose don't crop into
+  a transparent corner.
+- Foreground: Milo's face, large and centred. Eyes and smile MUST stay inside
+  the inner 80% safe area so an Android launcher's circular mask can crop
+  the outer ring without losing the character.
+- Colour: faithful to design-tokens.md — Milo's primary tone is the same hue
+  as `--color-milo`.
+- No text. No drop shadow. No gradient. The shape must read clearly at the
+  install-prompt size (about 56 dp on Android).
+
+Where this goes:
+  apps/web/public/icons/icon-192.png
+
+Once the real PNG lands, delete this .txt file and remove the TODO note in
+docs/devops/pwa.md.

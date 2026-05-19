@@ -51,6 +51,12 @@ Tracked in `package.json` and audited via `pnpm licenses ls`. Any dep with a non
 | content/songs/song-hello-friend.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original lyrics |
 | content/songs/song-colors-all-around.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original lyrics |
 | content/songs/song-count-with-me.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original lyrics; counting song |
+| content/units/02-home-and-food/manifest.json | English4Kids team | Content Engineer (agent, Sprint 3) | MIT (own) | 2026-05-19 | Unit 2: rooms, furniture, fruit, meals |
+| content/vocab/unit-02.json | English4Kids team | Content Engineer (agent, Sprint 3) | MIT (own) | 2026-05-19 | 25 vocab entries with CMU phonemes |
+| content/stories/story-house-tour.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original story; Bea Bunny's house tour |
+| content/stories/story-bea-tries-pear.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original story; gentle "new food" theme, no food shaming |
+| content/stories/story-three-meals.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original story; daily meal routine |
+| content/songs/song-fruit-salad-friends.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original lyrics; fruit + I-like song |
 
 ## Audit Trail
 

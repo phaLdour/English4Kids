@@ -59,3 +59,28 @@ The marketing surface (`apps/web/src/app/(marketing)/**`) may carry a privacy-re
 - Quarterly review of this document and `PROVENANCE.md` by the Safety Officer.
 - Any new third-party library that ships network calls requires a Safety Officer sign-off in the PR.
 - Suspected breach: immediately disable Supabase RLS-write keys, push a hotfix, notify parents via in-app banner.
+
+## Known Sprint 3 compromises
+
+### Sentry SDK ships site-wide, gated only by DSN
+
+Sprint 3 wires the Sentry browser SDK (`apps/web/src/lib/sentry-init.ts`)
+behind `NEXT_PUBLIC_SENTRY_DSN`. The dynamic import means the SDK JS is
+**not** delivered to clients when the DSN is absent, but the
+`sentry-init.ts` module itself loads on every route, including
+`/play/*` and `/onboarding`. We accept this compromise for Sprint 3 to
+keep error monitoring available on parent routes without standing up
+route-segmented init plumbing.
+
+Mitigations already in place:
+
+- `beforeSend` strips `event.user.ip_address` and forwarding headers.
+- A regex-based scrubber redacts `nickname`, `child_nickname`, and
+  `childName` tokens from event messages and breadcrumb bodies.
+- `sendDefaultPii: false`.
+- `tracesSampleRate: 0.1`.
+- DSN MUST NOT be set in any child-only deployment.
+
+Follow-up (Phase 2): move Sentry init under a `/parent` route segment so
+the SDK is not loaded at all on child-facing pages, and remove this note.
+

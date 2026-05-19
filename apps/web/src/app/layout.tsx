@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { MicIndicator } from '@/components/MicIndicator';
 import { Providers } from './providers';
@@ -27,6 +28,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
           <MicIndicator />
         </Providers>
+        {/* Privacy link is rendered globally below the app shell. Full-screen
+            game layouts cover this footer, so it does not interrupt the
+            lesson player. */}
+        <footer className="px-[var(--space-4)] py-[var(--space-3)] text-center text-xs text-[var(--color-ink)]">
+          <Link href="/privacy" className="underline">
+            Privacy
+          </Link>
+        </footer>
       </body>
     </html>
   );

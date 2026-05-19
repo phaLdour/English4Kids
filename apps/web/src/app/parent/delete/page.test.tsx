@@ -26,9 +26,12 @@ vi.mock('next/navigation', () => ({
   useRouter: () => ({ push: vi.fn(), back: vi.fn(), replace: vi.fn() }),
 }));
 
-import DeleteAllDataPage from './page';
+// Expose React on globalThis so JSX in the SUT (compiled to React.createElement
+// by esbuild's classic transform) resolves at runtime. Sibling test files
+// follow the same pattern.
+(globalThis as { React?: typeof React }).React = React;
 
-void React;
+import DeleteAllDataPage from './page';
 
 const TYPING_TARGET = 'DELETE';
 

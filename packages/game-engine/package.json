@@ -1,0 +1,52 @@
+{
+  "name": "@e4k/game-engine",
+  "version": "0.1.0",
+  "description": "English4Kids game engine: Leitner 5-box spaced repetition, stars, streak, word garden. Pure TypeScript, no DOM.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./index": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./leitner": {
+      "types": "./dist/leitner.d.ts",
+      "import": "./dist/leitner.js"
+    },
+    "./stars": {
+      "types": "./dist/stars.d.ts",
+      "import": "./dist/stars.js"
+    },
+    "./streak": {
+      "types": "./dist/streak.d.ts",
+      "import": "./dist/streak.js"
+    },
+    "./garden": {
+      "types": "./dist/garden.d.ts",
+      "import": "./dist/garden.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  },
+  "peerDependencies": {},
+  "sideEffects": false,
+  "license": "MIT"
+}

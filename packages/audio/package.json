@@ -1,0 +1,59 @@
+{
+  "name": "@e4k/audio",
+  "version": "0.1.0",
+  "description": "English4Kids audio package: Howler wrapper, TTS/STT adapters, pronunciation scoring, iOS unlock.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./index": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./howler": {
+      "types": "./dist/howler.d.ts",
+      "import": "./dist/howler.js"
+    },
+    "./tts": {
+      "types": "./dist/tts.d.ts",
+      "import": "./dist/tts.js"
+    },
+    "./stt": {
+      "types": "./dist/stt.d.ts",
+      "import": "./dist/stt.js"
+    },
+    "./pronunciation": {
+      "types": "./dist/pronunciation.d.ts",
+      "import": "./dist/pronunciation.js"
+    },
+    "./unlock": {
+      "types": "./dist/unlock.d.ts",
+      "import": "./dist/unlock.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "howler": "^2.2.4"
+  },
+  "devDependencies": {
+    "@types/howler": "^2.2.11",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  },
+  "peerDependencies": {},
+  "sideEffects": false,
+  "license": "MIT"
+}

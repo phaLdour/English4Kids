@@ -1,0 +1,184 @@
+{
+  "vocab.hello": [
+    "HH",
+    "AH",
+    "L",
+    "OW"
+  ],
+  "vocab.hi": [
+    "HH",
+    "AY"
+  ],
+  "vocab.bye": [
+    "B",
+    "AY"
+  ],
+  "vocab.good-morning": [
+    "G",
+    "UH",
+    "D",
+    "M",
+    "AO",
+    "R",
+    "N",
+    "IH",
+    "NG"
+  ],
+  "vocab.how-are-you": [
+    "HH",
+    "AW",
+    "AA",
+    "R",
+    "Y",
+    "UW"
+  ],
+  "vocab.im-fine": [
+    "AY",
+    "M",
+    "F",
+    "AY",
+    "N"
+  ],
+  "vocab.mommy": [
+    "M",
+    "AA",
+    "M",
+    "IY"
+  ],
+  "vocab.daddy": [
+    "D",
+    "AE",
+    "D",
+    "IY"
+  ],
+  "vocab.sister": [
+    "S",
+    "IH",
+    "S",
+    "T",
+    "ER"
+  ],
+  "vocab.brother": [
+    "B",
+    "R",
+    "AH",
+    "DH",
+    "ER"
+  ],
+  "vocab.grandma": [
+    "G",
+    "R",
+    "AE",
+    "N",
+    "D",
+    "M",
+    "AA"
+  ],
+  "vocab.grandpa": [
+    "G",
+    "R",
+    "AE",
+    "N",
+    "D",
+    "P",
+    "AA"
+  ],
+  "vocab.red": [
+    "R",
+    "EH",
+    "D"
+  ],
+  "vocab.blue": [
+    "B",
+    "L",
+    "UW"
+  ],
+  "vocab.yellow": [
+    "Y",
+    "EH",
+    "L",
+    "OW"
+  ],
+  "vocab.green": [
+    "G",
+    "R",
+    "IY",
+    "N"
+  ],
+  "vocab.orange-color": [
+    "AO",
+    "R",
+    "AH",
+    "N",
+    "JH"
+  ],
+  "vocab.purple": [
+    "P",
+    "ER",
+    "P",
+    "AH",
+    "L"
+  ],
+  "vocab.black": [
+    "B",
+    "L",
+    "AE",
+    "K"
+  ],
+  "vocab.white": [
+    "W",
+    "AY",
+    "T"
+  ],
+  "vocab.one": [
+    "W",
+    "AH",
+    "N"
+  ],
+  "vocab.two": [
+    "T",
+    "UW"
+  ],
+  "vocab.three": [
+    "TH",
+    "R",
+    "IY"
+  ],
+  "vocab.four": [
+    "F",
+    "AO",
+    "R"
+  ],
+  "vocab.five": [
+    "F",
+    "AY",
+    "V"
+  ],
+  "vocab.six": [
+    "S",
+    "IH",
+    "K",
+    "S"
+  ],
+  "vocab.seven": [
+    "S",
+    "EH",
+    "V",
+    "AH",
+    "N"
+  ],
+  "vocab.eight": [
+    "EY",
+    "T"
+  ],
+  "vocab.nine": [
+    "N",
+    "AY",
+    "N"
+  ],
+  "vocab.ten": [
+    "T",
+    "EH",
+    "N"
+  ]
+}

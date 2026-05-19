@@ -240,7 +240,7 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
 
   const clearSlot = (slotIdx: number) => {
     const tileIdx = placed[slotIdx];
-    if (tileIdx === null) return;
+    if (tileIdx === null || tileIdx === undefined) return;
     const newPlaced = [...placed];
     newPlaced[slotIdx] = null;
     setPlaced(newPlaced);

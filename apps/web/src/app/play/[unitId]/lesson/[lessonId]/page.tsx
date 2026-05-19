@@ -122,7 +122,9 @@ export default function LessonPlayerPage() {
         },
       ]);
       if (result.firstAttemptCorrect) {
-        setBanner(activityMessages.encouragement[Math.floor(Math.random() * activityMessages.encouragement.length)]);
+        const messages = activityMessages.encouragement;
+        const choice = messages[Math.floor(Math.random() * messages.length)] ?? messages[0];
+        setBanner(choice);
       }
     },
     [],
@@ -180,10 +182,9 @@ export default function LessonPlayerPage() {
   }, []);
 
   useEffect(() => {
-    if (banner) {
-      const t = setTimeout(() => setBanner(null), 1500);
-      return () => clearTimeout(t);
-    }
+    if (!banner) return;
+    const t = setTimeout(() => setBanner(null), 1500);
+    return () => clearTimeout(t);
   }, [banner]);
 
   if (state.kind === 'loading') {

@@ -27,9 +27,10 @@ import {
 } from '@e4k/game-engine';
 import { getSetting, setSetting } from '@e4k/db';
 import { useParams, useRouter } from 'next/navigation';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ListenAndTap } from '@/components/activities/ListenAndTap';
 import { SingAlong } from '@/components/activities/SingAlong';
+import { SpeakIt } from '@/components/activities/SpeakIt';
 import { StoryTime } from '@/components/activities/StoryTime';
 import { TprBreak } from '@/components/activities/TprBreak';
 import { WordBuilder } from '@/components/activities/WordBuilder';
@@ -38,13 +39,24 @@ import { resolveImage } from '@/lib/image-resolver';
 import {
   getOrCreateGuestChild,
   loadAudioMap,
+  loadProgress,
   saveProgress,
 } from '@/lib/lesson-player';
+import { isShineReplay } from '@/lib/replay-detection';
+import { useVocabState } from '@/lib/use-vocab-state';
+
+type PhonemeMap = Record<string, string[]>;
 
 type LoadState =
   | { kind: 'loading' }
   | { kind: 'error'; message: string }
-  | { kind: 'ready'; unit: Unit; lesson: Lesson; audioMap: AudioAssetMap };
+  | {
+      kind: 'ready';
+      unit: Unit;
+      lesson: Lesson;
+      audioMap: AudioAssetMap;
+      phonemeMap: PhonemeMap;
+    };
 
 type PlayerPhase = 'activity' | 'tpr_break' | 'complete';
 
@@ -67,14 +79,26 @@ export default function LessonPlayerPage() {
   const [mascotReaction, setMascotReaction] = useState<MascotReaction>('idle');
   const [banner, setBanner] = useState<string | null>(null);
   const [childId, setChildId] = useState<string | null>(null);
+  const [priorStars, setPriorStars] = useState<number>(0);
+  const [wasReplay, setWasReplay] = useState<boolean>(false);
+  const { recordOutcome } = useVocabState(childId);
+  const recordOutcomeRef = useRef(recordOutcome);
+  const itemCounterRef = useRef<number>(0);
+
+  useEffect(() => {
+    recordOutcomeRef.current = recordOutcome;
+  }, [recordOutcome]);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
-        const [unitRes, audioMap, band, child] = await Promise.all([
+        const [unitRes, audioMap, phonemeRes, band, child] = await Promise.all([
           fetch(`/api/content/${encodeURIComponent(unitId)}`),
           loadAudioMap(unitId),
+          fetch(`/api/content/${encodeURIComponent(unitId)}/phonemes`).catch(
+            () => null,
+          ),
           getSetting<'6-8' | '9-12'>('age.band', '6-8'),
           getOrCreateGuestChild(),
         ]);
@@ -89,9 +113,23 @@ export default function LessonPlayerPage() {
           setState({ kind: 'error', message: 'Lesson not found.' });
           return;
         }
+        let phonemeMap: PhonemeMap = {};
+        if (phonemeRes && phonemeRes.ok) {
+          try {
+            phonemeMap = (await phonemeRes.json()) as PhonemeMap;
+          } catch {
+            phonemeMap = {};
+          }
+        }
         setAgeBand(band);
         setChildId(child.id);
-        setState({ kind: 'ready', unit, lesson, audioMap });
+        try {
+          const prev = await loadProgress(child.id, lesson.id);
+          if (prev && !cancelled) setPriorStars(prev.stars ?? 0);
+        } catch {
+          // ignore — fresh learner
+        }
+        setState({ kind: 'ready', unit, lesson, audioMap, phonemeMap });
       } catch {
         if (!cancelled) setState({ kind: 'error', message: 'Could not load lesson.' });
       }
@@ -103,6 +141,7 @@ export default function LessonPlayerPage() {
 
   const lesson = state.kind === 'ready' ? state.lesson : null;
   const audioMap = state.kind === 'ready' ? state.audioMap : ({} as AudioAssetMap);
+  const phonemeMap: PhonemeMap = state.kind === 'ready' ? state.phonemeMap : {};
   const activities: Activity[] = lesson?.activities ?? [];
   const currentActivity = activities[activityIndex];
 
@@ -112,7 +151,11 @@ export default function LessonPlayerPage() {
   }, [currentActivity]);
 
   const handleItemComplete = useCallback(
-    (activityType: ActivityKind, result: { firstAttemptCorrect: boolean }) => {
+    (
+      activityType: ActivityKind,
+      result: { firstAttemptCorrect: boolean },
+      word?: string,
+    ) => {
       setAttempts((prev) => [
         ...prev,
         {
@@ -126,6 +169,16 @@ export default function LessonPlayerPage() {
         const choice = messages[Math.floor(Math.random() * messages.length)] ?? messages[0];
         setBanner(choice);
       }
+      // Record vocab outcome for items that map cleanly to a single word.
+      if (
+        word &&
+        (activityType === 'listen_tap' || activityType === 'word_builder')
+      ) {
+        void recordOutcomeRef.current(
+          word,
+          result.firstAttemptCorrect ? 'correct' : 'incorrect',
+        );
+      }
     },
     [],
   );
@@ -134,6 +187,8 @@ export default function LessonPlayerPage() {
     async (finalAttempts: AttemptResult[]) => {
       const computed: EngineStarCount = calculateStars(finalAttempts);
       const finalStars = (computed === 0 ? 1 : computed) as StarCount;
+      const replay = isShineReplay(priorStars, finalStars);
+      setWasReplay(replay.isReplay);
       setStars(finalStars);
       setPhase('complete');
       if (childId && lesson) {
@@ -154,7 +209,7 @@ export default function LessonPlayerPage() {
         }
       }
     },
-    [childId, lesson],
+    [childId, lesson, priorStars],
   );
 
   const handleActivityComplete = useCallback(() => {
@@ -238,21 +293,38 @@ export default function LessonPlayerPage() {
             items={itemsByType}
             ageBand={ageBand}
             audioMap={audioMap}
-            onItemComplete={(result) => handleItemComplete(currentActivity.type as ActivityKind, result)}
-            onActivityComplete={handleActivityComplete}
+            phonemeMap={phonemeMap}
+            childId={childId ?? 'guest-child'}
+            onItemComplete={(result) => {
+              const activityKind = currentActivity.type as ActivityKind;
+              const word = inferWordForItem(
+                currentActivity,
+                itemCounterRef.current,
+                lesson?.vocabRefs ?? [],
+              );
+              itemCounterRef.current += 1;
+              handleItemComplete(activityKind, result, word);
+            }}
+            onActivityComplete={() => {
+              itemCounterRef.current = 0;
+              handleActivityComplete();
+            }}
             onMascotChange={setMascotReaction}
           />
         ) : null}
         {phase === 'complete' && stars !== null ? (
           <div className="flex flex-col items-center gap-[var(--space-6)]">
-            <StarReveal count={stars as 1 | 2 | 3} />
+            <StarReveal count={stars as 1 | 2 | 3} wasReplay={wasReplay} />
             <div className="flex flex-wrap items-center justify-center gap-[var(--space-3)]">
               <ActionButton
                 label="Replay"
                 onClick={() => {
+                  setPriorStars(stars ?? priorStars);
+                  setWasReplay(false);
                   setAttempts([]);
                   setStars(null);
                   setActivityIndex(0);
+                  itemCounterRef.current = 0;
                   setPhase('activity');
                 }}
               />
@@ -282,6 +354,8 @@ interface ActivityRendererProps {
   items: ReturnType<typeof groupItemsByType>;
   ageBand: '6-8' | '9-12';
   audioMap: AudioAssetMap;
+  phonemeMap: PhonemeMap;
+  childId: string;
   onItemComplete: (result: { firstAttemptCorrect: boolean }) => void;
   onActivityComplete: () => void;
   onMascotChange: (reaction: MascotReaction) => void;
@@ -292,6 +366,8 @@ function ActivityRenderer({
   items,
   ageBand,
   audioMap,
+  phonemeMap,
+  childId,
   onItemComplete,
   onActivityComplete,
   onMascotChange,
@@ -347,12 +423,23 @@ function ActivityRenderer({
       />
     );
   }
-  if (activity.type === 'speak_it') {
+  if (activity.type === 'speak_it' && items.speak_it.length > 0) {
     return (
-      <div className="flex flex-col items-center gap-[var(--space-4)]">
-        <p className="text-lg text-[var(--color-mist)]">Speak It! arrives in Sprint 3.</p>
-        <ActionButton label="Skip for now" onClick={onActivityComplete} />
-      </div>
+      <SpeakIt
+        activity={{
+          id: activity.id,
+          type: 'speak_it',
+          title: activity.title,
+          items: items.speak_it,
+        }}
+        ageBand={ageBand}
+        audioMap={audioMap}
+        phonemeMap={phonemeMap}
+        childId={childId}
+        onItemComplete={onItemComplete}
+        onActivityComplete={onActivityComplete}
+        onMascotChange={onMascotChange}
+      />
     );
   }
   return (
@@ -408,4 +495,31 @@ function nextLessonId(unit: Unit, currentLessonId: string): string | null {
   if (idx === -1) return null;
   const next = unit.lessons[idx + 1];
   return next?.id ?? null;
+}
+
+/**
+ * Best-effort mapping from a completed item back to a single vocab word.
+ *
+ * - `word_builder`: read `targetWord` directly from the item at the matching index.
+ * - `listen_tap`: fall back to `lesson.vocabRefs[index]` (matching authoring
+ *   convention that items are ordered by vocab).
+ * - Other activity types do not carry a clean per-item word and return `undefined`.
+ */
+function inferWordForItem(
+  activity: Activity,
+  itemIndex: number,
+  vocabRefs: string[],
+): string | undefined {
+  const item = activity.items[itemIndex];
+  if (!item) return undefined;
+  if (item.type === 'word_builder') {
+    return item.targetWord;
+  }
+  if (item.type === 'listen_tap') {
+    const ref = vocabRefs[itemIndex];
+    if (!ref) return undefined;
+    // ref looks like "vocab.hello" — strip the "vocab." prefix.
+    return ref.replace(/^vocab\./, '');
+  }
+  return undefined;
 }

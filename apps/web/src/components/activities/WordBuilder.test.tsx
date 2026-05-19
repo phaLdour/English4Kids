@@ -1,17 +1,22 @@
+import React from 'react';
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { AudioAssetMap } from '@e4k/content-schema';
 import { WordBuilder } from './WordBuilder';
 
+(globalThis as { React?: typeof React }).React = React;
+
 const playPromptMock = vi.fn();
 const stopAllMock = vi.fn();
+const stablePlayer = { stopAll: stopAllMock } as unknown;
+const stableAudioReturn = {
+  player: stablePlayer,
+  ready: true,
+  playPrompt: playPromptMock,
+};
 
 vi.mock('@/lib/audio-client', () => ({
-  useAudio: () => ({
-    player: { stopAll: stopAllMock } as unknown,
-    ready: true,
-    playPrompt: playPromptMock,
-  }),
+  useAudio: () => stableAudioReturn,
 }));
 
 const audioMap: AudioAssetMap = {

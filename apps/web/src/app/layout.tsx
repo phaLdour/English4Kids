@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
+import { MicIndicator } from '@/components/MicIndicator';
 import { Providers } from './providers';
 import './globals.css';
 
@@ -22,7 +23,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" data-theme="default">
       <body className="bg-[var(--color-surface)] text-[var(--color-ink)] antialiased">
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <MicIndicator />
+        </Providers>
       </body>
     </html>
   );

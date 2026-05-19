@@ -7,6 +7,10 @@ import { useRouter } from 'next/navigation';
 import { type ReactNode, useCallback, useEffect, useId, useState } from 'react';
 import { getAudioClient } from '@/lib/audio-client';
 import { applySettingsToDom } from '@/lib/settings-effects';
+import {
+  loadWhisper,
+  type WhisperLoadProgress,
+} from '@/lib/whisper-loader';
 
 /** Best-effort volume update — silent if audio isn't available. */
 async function applyVolume(
@@ -375,6 +379,57 @@ export default function SettingsPage() {
     setParentGateOpen(true);
   }, []);
 
+  // Whisper offline engine: lazy-load on opt-in. The model artifact may not
+  // be bundled (Sprint 3); we report 'error' / 'model-not-bundled' so the
+  // hook can fall back to Web Speech transparently.
+  const [whisperProgress, setWhisperProgress] = useState<WhisperLoadProgress>({
+    status: 'idle',
+    bytesLoaded: 0,
+    bytesTotal: 0,
+    error: null,
+  });
+
+  const handleMicEngineToggle = useCallback(
+    async (next: boolean) => {
+      const engine = next ? 'whisper-offline' : 'web-speech';
+      await persist(
+        'micEngine',
+        engine,
+        'mic.engine',
+        next ? 'Offline engine selected' : 'Default engine selected',
+      );
+      if (next) {
+        // Kick the loader. We don't await — the UI streams progress via the
+        // callback. If the model is not bundled, the loader will surface
+        // `model-not-bundled` and the activity will quietly fall back to
+        // Web Speech at runtime.
+        try {
+          await loadWhisper((p) => setWhisperProgress(p));
+        } catch {
+          // Already surfaced via the progress callback.
+        }
+      }
+    },
+    [persist],
+  );
+
+  const engineStatusLabel: string = (() => {
+    if (!state.micEnabled) return 'Microphone is off';
+    if (state.micEngine === 'web-speech') return 'Engine: Web Speech (built-in)';
+    if (whisperProgress.status === 'ready') return 'Engine: Offline (ready)';
+    if (whisperProgress.status === 'downloading') {
+      const pct =
+        whisperProgress.bytesTotal > 0
+          ? Math.round((whisperProgress.bytesLoaded / whisperProgress.bytesTotal) * 100)
+          : 0;
+      return `Engine: Offline (downloading ${pct}%)`;
+    }
+    if (whisperProgress.status === 'error') {
+      return 'Engine: Offline not yet available — using Web Speech for now';
+    }
+    return 'Engine: Offline (preparing)';
+  })();
+
   return (
     <main className="flex min-h-dvh flex-col bg-[var(--color-surface)]">
       <TopBar title="Settings" onBack={() => router.back()} />
@@ -581,47 +636,55 @@ export default function SettingsPage() {
               </button>
             </div>
             <ToggleRow
-              label="Use offline speech engine"
-              description="Higher accuracy. 30 MB one-time download."
+              label="Offline speech engine"
+              description="Extra-private speech check on Chrome. One-time 30 MB download."
               checked={state.micEngine === 'whisper-offline'}
               disabled={!state.micEnabled}
-              onCheckedChange={(v) =>
-                void persist(
-                  'micEngine',
-                  v ? 'whisper-offline' : 'web-speech',
-                  'mic.engine',
-                  v ? 'Offline engine selected' : 'Default engine selected',
-                )
-              }
+              onCheckedChange={(v) => void handleMicEngineToggle(v)}
             />
-            <div
-              className="flex w-full items-center justify-between gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]"
-              style={{ minHeight: 'var(--tap-min-young)' }}
-            >
-              <div className="flex flex-col">
-                <span
-                  className="text-base text-[var(--color-ink)]"
-                  style={{ fontFamily: 'var(--font-display)' }}
-                >
-                  HQ voice download
-                </span>
-                <span className="text-sm text-[var(--color-mist)]">
-                  Available in the next update.
-                </span>
-              </div>
-              <button
-                type="button"
-                disabled
-                aria-disabled="true"
-                className="flex items-center justify-center rounded-[var(--radius-pill)] bg-[var(--color-muted)] px-[var(--space-6)] text-[var(--color-mist)] opacity-60"
-                style={{
-                  minHeight: 'var(--tap-min-young)',
-                  fontFamily: 'var(--font-display)',
-                }}
+            {state.micEnabled && state.micEngine === 'whisper-offline' &&
+            whisperProgress.status === 'downloading' ? (
+              <div
+                role="progressbar"
+                aria-valuemin={0}
+                aria-valuemax={whisperProgress.bytesTotal || 1}
+                aria-valuenow={whisperProgress.bytesLoaded}
+                aria-label="Downloading offline speech model"
+                className="flex w-full flex-col gap-[var(--space-2)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-3)] shadow-[var(--shadow-card)]"
               >
-                Download
-              </button>
-            </div>
+                <span className="text-sm text-[var(--color-ink)]">
+                  Getting the offline engine ready...
+                </span>
+                <div className="h-2 w-full overflow-hidden rounded-[var(--radius-pill)] bg-[var(--color-surface)]">
+                  <div
+                    className="h-full bg-[var(--color-primary)]"
+                    style={{
+                      width:
+                        whisperProgress.bytesTotal > 0
+                          ? `${Math.min(
+                              100,
+                              Math.round(
+                                (whisperProgress.bytesLoaded /
+                                  whisperProgress.bytesTotal) *
+                                  100,
+                              ),
+                            )}%`
+                          : '5%',
+                    }}
+                  />
+                </div>
+              </div>
+            ) : null}
+            <p
+              role="status"
+              aria-live="polite"
+              className="px-[var(--space-2)] text-sm text-[var(--color-mist)]"
+            >
+              {engineStatusLabel}
+            </p>
+            <p className="px-[var(--space-2)] text-sm text-[var(--color-mist)]">
+              We use your device's built-in speech recognition (Web Speech). Your voice never leaves your device. Want extra privacy on Chrome? Enable the offline engine — a one-time 30 MB download.
+            </p>
           </Section>
 
           <Section title="Reading Help">

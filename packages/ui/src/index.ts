@@ -18,4 +18,5 @@ export { MicButton } from './components/MicButton';
 export type { MicButtonProps, MicButtonState, MicButtonSize } from './components/MicButton';
 export { ParentGate } from './components/ParentGate';
 export type { ParentGateProps } from './components/ParentGate';
+export { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 export { cn } from './utils/cn';

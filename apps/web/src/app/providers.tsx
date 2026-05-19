@@ -4,6 +4,7 @@ import { getAllSettings } from '@e4k/db';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { type ReactNode, useEffect, useState } from 'react';
 import { applySettingsToDom } from '@/lib/settings-effects';
+import { ServiceWorkerRegister } from './serwist-register';
 
 export function Providers({ children }: { children: ReactNode }) {
   const [client] = useState(
@@ -36,5 +37,10 @@ export function Providers({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
+  return (
+    <QueryClientProvider client={client}>
+      <ServiceWorkerRegister />
+      {children}
+    </QueryClientProvider>
+  );
 }

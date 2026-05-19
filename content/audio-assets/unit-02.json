@@ -1,0 +1,547 @@
+{
+  "vo.milo.u2.l1.tapKitchen": {
+    "src": "/audio/vo/u2/l1/tapKitchen.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap the kitchen!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l1.tapBedroom": {
+    "src": "/audio/vo/u2/l1/tapBedroom.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.6,
+    "transcript": "Tap the bedroom!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l1.tapBathroom": {
+    "src": "/audio/vo/u2/l1/tapBathroom.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.6,
+    "transcript": "Tap the bathroom!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l1.tapLivingRoom": {
+    "src": "/audio/vo/u2/l1/tapLivingRoom.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Tap the living room!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l1.tapInTheKitchen": {
+    "src": "/audio/vo/u2/l1/tapInTheKitchen.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.9,
+    "transcript": "Tap: in the kitchen!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l1.tapInTheBedroom": {
+    "src": "/audio/vo/u2/l1/tapInTheBedroom.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2.0,
+    "transcript": "Tap: in the bedroom!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.houseTour.p1": {
+    "src": "/audio/vo/story/houseTour/p1.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 4.5,
+    "transcript": "Bea Bunny opens the door. Welcome to her house!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.houseTour.p2": {
+    "src": "/audio/vo/story/houseTour/p2.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.0,
+    "transcript": "Here is the kitchen. A big table and four chairs.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.houseTour.p3": {
+    "src": "/audio/vo/story/houseTour/p3.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.0,
+    "transcript": "This is the bedroom. A soft bed and a sunny window.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.houseTour.p4": {
+    "src": "/audio/vo/story/houseTour/p4.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.0,
+    "transcript": "And the living room. A lamp shines on the rug. Come in!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.houseTour.q1": {
+    "src": "/audio/vo/story/houseTour/q1.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2.2,
+    "transcript": "Where are the table and chairs?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.tapBed": {
+    "src": "/audio/vo/u2/l2/tapBed.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap the bed!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.tapChair": {
+    "src": "/audio/vo/u2/l2/tapChair.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap the chair!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.tapTable": {
+    "src": "/audio/vo/u2/l2/tapTable.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap the table!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.tapLamp": {
+    "src": "/audio/vo/u2/l2/tapLamp.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap the lamp!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.tapDoor": {
+    "src": "/audio/vo/u2/l2/tapDoor.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap the door!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.tapWindow": {
+    "src": "/audio/vo/u2/l2/tapWindow.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Tap the window!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.spellBed": {
+    "src": "/audio/vo/u2/l2/spellBed.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Spell 'bed'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.spellChair": {
+    "src": "/audio/vo/u2/l2/spellChair.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'chair'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.spellTable": {
+    "src": "/audio/vo/u2/l2/spellTable.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'table'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.spellLamp": {
+    "src": "/audio/vo/u2/l2/spellLamp.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Spell 'lamp'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.spellDoor": {
+    "src": "/audio/vo/u2/l2/spellDoor.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Spell 'door'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.spellWindow": {
+    "src": "/audio/vo/u2/l2/spellWindow.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.6,
+    "transcript": "Spell 'window'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.sayBed": {
+    "src": "/audio/vo/u2/l2/sayBed.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Your turn! Say 'bed'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.sayChair": {
+    "src": "/audio/vo/u2/l2/sayChair.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.9,
+    "transcript": "Your turn! Say 'chair'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l2.sayWindow": {
+    "src": "/audio/vo/u2/l2/sayWindow.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2.0,
+    "transcript": "Your turn! Say 'window'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l3.tapApple": {
+    "src": "/audio/vo/u2/l3/tapApple.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap the apple!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l3.tapBanana": {
+    "src": "/audio/vo/u2/l3/tapBanana.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap the banana!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l3.tapOrangeFruit": {
+    "src": "/audio/vo/u2/l3/tapOrangeFruit.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap the orange!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l3.tapGrape": {
+    "src": "/audio/vo/u2/l3/tapGrape.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Tap the grape!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l3.tapStrawberry": {
+    "src": "/audio/vo/u2/l3/tapStrawberry.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.7,
+    "transcript": "Tap the strawberry!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l3.tapPear": {
+    "src": "/audio/vo/u2/l3/tapPear.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap the pear!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l3.tapILikeApples": {
+    "src": "/audio/vo/u2/l3/tapILikeApples.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.9,
+    "transcript": "Tap: I like apples.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l3.tapIDontLikeOnions": {
+    "src": "/audio/vo/u2/l3/tapIDontLikeOnions.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2.2,
+    "transcript": "Tap: I don't like onions.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l3.tapILikePears": {
+    "src": "/audio/vo/u2/l3/tapILikePears.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.9,
+    "transcript": "Tap: I like pears.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.beaTriesPear.p1": {
+    "src": "/audio/vo/story/beaTriesPear/p1.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 4.0,
+    "transcript": "Bea looks at the fruit bowl. So many colors!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.beaTriesPear.p2": {
+    "src": "/audio/vo/story/beaTriesPear/p2.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 4.5,
+    "transcript": "She picks an apple. I like apples, says Bea.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.beaTriesPear.p3": {
+    "src": "/audio/vo/story/beaTriesPear/p3.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 4.5,
+    "transcript": "Then Bea sees a green pear. A new fruit for her.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.beaTriesPear.p4": {
+    "src": "/audio/vo/story/beaTriesPear/p4.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.0,
+    "transcript": "Bea takes a small bite. Soft and sweet. She smiles.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.beaTriesPear.p5": {
+    "src": "/audio/vo/story/beaTriesPear/p5.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.0,
+    "transcript": "I like pears too, says Bea. New fruit, new friend.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.beaTriesPear.q1": {
+    "src": "/audio/vo/story/beaTriesPear/q1.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2.0,
+    "transcript": "What fruit was new for Bea?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.beaTriesPear.q2": {
+    "src": "/audio/vo/story/beaTriesPear/q2.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2.0,
+    "transcript": "How did the pear taste?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.beaTriesPear.q3": {
+    "src": "/audio/vo/story/beaTriesPear/q3.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2.4,
+    "transcript": "Put the fruit story in order.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l4.tapWater": {
+    "src": "/audio/vo/u2/l4/tapWater.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap water!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l4.tapMilk": {
+    "src": "/audio/vo/u2/l4/tapMilk.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap milk!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l4.tapJuice": {
+    "src": "/audio/vo/u2/l4/tapJuice.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap juice!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l4.tapBreakfast": {
+    "src": "/audio/vo/u2/l4/tapBreakfast.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Tap breakfast!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l4.tapLunch": {
+    "src": "/audio/vo/u2/l4/tapLunch.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap lunch!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l4.tapDinner": {
+    "src": "/audio/vo/u2/l4/tapDinner.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap dinner!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l4.tapApple": {
+    "src": "/audio/vo/u2/l4/tapApple.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap apple!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.u2.l4.tapKitchen": {
+    "src": "/audio/vo/u2/l4/tapKitchen.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap the kitchen!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.threeMeals.p1": {
+    "src": "/audio/vo/story/threeMeals/p1.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.0,
+    "transcript": "Good morning! Bea eats breakfast. Milk and bread.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.threeMeals.p2": {
+    "src": "/audio/vo/story/threeMeals/p2.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 4.5,
+    "transcript": "At noon, Bea eats lunch. Soup and water.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.threeMeals.p3": {
+    "src": "/audio/vo/story/threeMeals/p3.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.0,
+    "transcript": "In the evening, Bea eats dinner. Rice and juice.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.threeMeals.p4": {
+    "src": "/audio/vo/story/threeMeals/p4.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 4.5,
+    "transcript": "Three meals, three smiles. Good night, Bea.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.threeMeals.q1": {
+    "src": "/audio/vo/story/threeMeals/q1.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2.0,
+    "transcript": "What does Bea eat first?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "mus.fruitSaladFriends": {
+    "src": "/audio/mus/fruitSaladFriends.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium) + original instrumental",
+    "lang": "en-US",
+    "durationSec": 64.0,
+    "transcript": "Apple, banana, orange, grape, Strawberry, pear — what a shape! Toss them all in a great big bowl, Fruit salad friends — that's the goal! I like apples, I like pears, Sweet little fruits everywhere! Banana yellow, grape so blue, I like fruit and so do you! Strawberry red, orange round, Juicy flavors all around! Mix them up and share a plate, Fruit salad friends taste so great! I like apples, I like pears, Sweet little fruits everywhere! Apple, banana, orange, grape, Strawberry, pear — fruit-salad shape!",
+    "type": "song",
+    "license": "Original-MIT"
+  },
+  "fx.correctBell": {
+    "src": "/audio/fx/correctBell.mp3",
+    "lang": "en-US",
+    "durationSec": 0.6,
+    "transcript": "(soft chime)",
+    "type": "sfx",
+    "license": "Original-MIT"
+  },
+  "fx.gentleHmm": {
+    "src": "/audio/fx/gentleHmm.mp3",
+    "lang": "en-US",
+    "durationSec": 0.8,
+    "transcript": "(gentle hmm prompt)",
+    "type": "sfx",
+    "license": "Original-MIT"
+  },
+  "fx.tap": {
+    "src": "/audio/fx/tap.mp3",
+    "lang": "en-US",
+    "durationSec": 0.2,
+    "transcript": "(soft tap)",
+    "type": "sfx",
+    "license": "Original-MIT"
+  },
+  "fx.starJingle": {
+    "src": "/audio/fx/starJingle.mp3",
+    "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "(celebratory star jingle)",
+    "type": "sfx",
+    "license": "Original-MIT"
+  }
+}

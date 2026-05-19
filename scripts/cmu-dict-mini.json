@@ -134,5 +134,12 @@
   "sky": ["S", "K", "AY"],
   "leaf": ["L", "IY", "F"],
   "cloud": ["K", "L", "AW", "D"],
-  "apples": ["AE", "P", "AH", "L", "Z"]
+  "apples": ["AE", "P", "AH", "L", "Z"],
+  "strawberry": ["S", "T", "R", "AO", "B", "EH", "R", "IY"],
+  "like": ["L", "AY", "K"],
+  "don't": ["D", "OW", "N", "T"],
+  "i like": ["AY", "L", "AY", "K"],
+  "i don't like": ["AY", "D", "OW", "N", "T", "L", "AY", "K"],
+  "in the kitchen": ["IH", "N", "DH", "AH", "K", "IH", "CH", "AH", "N"],
+  "in the bedroom": ["IH", "N", "DH", "AH", "B", "EH", "D", "R", "UW", "M"]
 }

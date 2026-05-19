@@ -1,5 +1,11 @@
 import type { MetadataRoute } from 'next';
 
+/**
+ * PWA manifest. PNG icons are placeholders — see
+ * `apps/web/public/icons/icon-*.png.txt` for the spec the Design team needs
+ * to produce. Without real PNGs the "Install" prompt will be rejected by
+ * Chromium; the rest of the PWA (offline cache) still works.
+ */
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'English4Kids',
@@ -23,7 +29,13 @@ export default function manifest(): MetadataRoute.Manifest {
         src: '/icons/icon-512.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'any maskable',
+        purpose: 'any',
+      },
+      {
+        src: '/icons/icon-maskable-512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
       },
     ],
   };

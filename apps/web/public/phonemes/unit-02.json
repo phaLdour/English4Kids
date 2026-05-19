@@ -1,0 +1,178 @@
+{
+  "vocab.kitchen": [
+    "K",
+    "IH",
+    "CH",
+    "AH",
+    "N"
+  ],
+  "vocab.bedroom": [
+    "B",
+    "EH",
+    "D",
+    "R",
+    "UW",
+    "M"
+  ],
+  "vocab.bathroom": [
+    "B",
+    "AE",
+    "TH",
+    "R",
+    "UW",
+    "M"
+  ],
+  "vocab.living-room": [
+    "L",
+    "IH",
+    "V",
+    "IH",
+    "NG",
+    "R",
+    "UW",
+    "M"
+  ],
+  "vocab.in-the-room": [
+    "IH",
+    "N",
+    "DH",
+    "AH",
+    "K",
+    "IH",
+    "CH",
+    "AH",
+    "N"
+  ],
+  "vocab.bed": [
+    "B",
+    "EH",
+    "D"
+  ],
+  "vocab.chair": [
+    "CH",
+    "EH",
+    "R"
+  ],
+  "vocab.table": [
+    "T",
+    "EY",
+    "B",
+    "AH",
+    "L"
+  ],
+  "vocab.lamp": [
+    "L",
+    "AE",
+    "M",
+    "P"
+  ],
+  "vocab.door": [
+    "D",
+    "AO",
+    "R"
+  ],
+  "vocab.window": [
+    "W",
+    "IH",
+    "N",
+    "D",
+    "OW"
+  ],
+  "vocab.apple": [
+    "AE",
+    "P",
+    "AH",
+    "L"
+  ],
+  "vocab.banana": [
+    "B",
+    "AH",
+    "N",
+    "AE",
+    "N",
+    "AH"
+  ],
+  "vocab.orange-fruit": [
+    "AO",
+    "R",
+    "AH",
+    "N",
+    "JH"
+  ],
+  "vocab.grape": [
+    "G",
+    "R",
+    "EY",
+    "P"
+  ],
+  "vocab.strawberry": [
+    "S",
+    "T",
+    "R",
+    "AO",
+    "B",
+    "EH",
+    "R",
+    "IY"
+  ],
+  "vocab.pear": [
+    "P",
+    "EH",
+    "R"
+  ],
+  "vocab.i-like": [
+    "AY",
+    "L",
+    "AY",
+    "K"
+  ],
+  "vocab.i-dont-like": [
+    "AY",
+    "D",
+    "OW",
+    "N",
+    "T",
+    "L",
+    "AY",
+    "K"
+  ],
+  "vocab.water": [
+    "W",
+    "AO",
+    "T",
+    "ER"
+  ],
+  "vocab.milk": [
+    "M",
+    "IH",
+    "L",
+    "K"
+  ],
+  "vocab.juice": [
+    "JH",
+    "UW",
+    "S"
+  ],
+  "vocab.breakfast": [
+    "B",
+    "R",
+    "EH",
+    "K",
+    "F",
+    "AH",
+    "S",
+    "T"
+  ],
+  "vocab.lunch": [
+    "L",
+    "AH",
+    "N",
+    "CH"
+  ],
+  "vocab.dinner": [
+    "D",
+    "IH",
+    "N",
+    "ER"
+  ]
+}

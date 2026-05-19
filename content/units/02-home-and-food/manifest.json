@@ -1,0 +1,1096 @@
+{
+  "id": "02-home-and-food",
+  "title": "Home & Food",
+  "theme": "rooms, furniture, fruit, meals",
+  "cefr": "Pre-A1",
+  "orderIndex": 2,
+  "lessons": [
+    {
+      "id": "u2.l1",
+      "title": "Rooms",
+      "miniTheme": "Where in the house?",
+      "orderIndex": 1,
+      "vocabRefs": [
+        "vocab.kitchen",
+        "vocab.bedroom",
+        "vocab.bathroom",
+        "vocab.living-room",
+        "vocab.in-the-room"
+      ],
+      "storyRef": "story.houseTour",
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 25,
+        "promptText": "Point to your kitchen! Point to your bedroom!"
+      },
+      "activities": [
+        {
+          "id": "u2.l1.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Rooms",
+          "items": [
+            {
+              "id": "u2.l1.a1.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l1.tapKitchen",
+              "promptTranscript": "Tap the kitchen!",
+              "options": [
+                { "imageConcept": "img.room.kitchen", "isCorrect": true },
+                { "imageConcept": "img.room.bedroom", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (rooms in a house)."
+            },
+            {
+              "id": "u2.l1.a1.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l1.tapBedroom",
+              "promptTranscript": "Tap the bedroom!",
+              "options": [
+                { "imageConcept": "img.room.bedroom", "isCorrect": true },
+                { "imageConcept": "img.room.bathroom", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (rooms in a house)."
+            },
+            {
+              "id": "u2.l1.a1.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l1.tapBathroom",
+              "promptTranscript": "Tap the bathroom!",
+              "options": [
+                { "imageConcept": "img.room.bathroom", "isCorrect": true },
+                { "imageConcept": "img.room.kitchen", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (rooms in a house)."
+            },
+            {
+              "id": "u2.l1.a1.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l1.tapLivingRoom",
+              "promptTranscript": "Tap the living room!",
+              "options": [
+                { "imageConcept": "img.room.livingRoom", "isCorrect": true },
+                { "imageConcept": "img.room.bedroom", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (rooms in a house)."
+            },
+            {
+              "id": "u2.l1.a1.i5b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u2.l1.tapKitchen",
+              "promptTranscript": "Tap the kitchen!",
+              "options": [
+                { "imageConcept": "img.room.kitchen", "isCorrect": true },
+                { "imageConcept": "img.room.bedroom", "isCorrect": false },
+                { "imageConcept": "img.room.bathroom", "isCorrect": false },
+                { "imageConcept": "img.room.livingRoom", "isCorrect": false }
+              ],
+              "distractorRationale": "All four rooms shown; harder discrimination set."
+            },
+            {
+              "id": "u2.l1.a1.i6b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u2.l1.tapLivingRoom",
+              "promptTranscript": "Tap the living room!",
+              "options": [
+                { "imageConcept": "img.room.livingRoom", "isCorrect": true },
+                { "imageConcept": "img.room.kitchen", "isCorrect": false },
+                { "imageConcept": "img.room.bedroom", "isCorrect": false },
+                { "imageConcept": "img.room.bathroom", "isCorrect": false }
+              ],
+              "distractorRationale": "All four rooms shown; harder discrimination set."
+            }
+          ]
+        },
+        {
+          "id": "u2.l1.a2",
+          "type": "listen_tap",
+          "title": "Listen and Tap: In the room",
+          "items": [
+            {
+              "id": "u2.l1.a2.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l1.tapInTheKitchen",
+              "promptTranscript": "Tap: in the kitchen!",
+              "options": [
+                { "imageConcept": "img.room.kitchen", "isCorrect": true },
+                { "imageConcept": "img.room.bathroom", "isCorrect": false }
+              ],
+              "distractorRationale": "Practices the location chunk with the matching room."
+            },
+            {
+              "id": "u2.l1.a2.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l1.tapInTheBedroom",
+              "promptTranscript": "Tap: in the bedroom!",
+              "options": [
+                { "imageConcept": "img.room.bedroom", "isCorrect": true },
+                { "imageConcept": "img.room.livingRoom", "isCorrect": false }
+              ],
+              "distractorRationale": "Practices the location chunk with the matching room."
+            }
+          ]
+        },
+        {
+          "id": "u2.l1.a3",
+          "type": "story_time",
+          "title": "Story: Bea's House Tour",
+          "items": [
+            {
+              "id": "u2.l1.a3.i1",
+              "type": "story_time",
+              "ageBand": "6-8",
+              "storyId": "story.houseTour",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.houseTour.p1",
+                  "narrationAudio": "vo.milo.story.houseTour.p1",
+                  "narrationText": "Bea Bunny opens the door. Welcome to her house!",
+                  "karaokeHighlights": [
+                    { "wordStart": 18, "wordEnd": 22, "vocabRef": "vocab.door" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.houseTour.p2",
+                  "narrationAudio": "vo.milo.story.houseTour.p2",
+                  "narrationText": "Here is the kitchen. A big table and four chairs.",
+                  "karaokeHighlights": [
+                    { "wordStart": 11, "wordEnd": 18, "vocabRef": "vocab.kitchen" }
+                  ],
+                  "duration": 5.0
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.houseTour.p3",
+                  "narrationAudio": "vo.milo.story.houseTour.p3",
+                  "narrationText": "This is the bedroom. A soft bed and a sunny window.",
+                  "karaokeHighlights": [
+                    { "wordStart": 12, "wordEnd": 19, "vocabRef": "vocab.bedroom" }
+                  ],
+                  "duration": 5.0
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.houseTour.p4",
+                  "narrationAudio": "vo.milo.story.houseTour.p4",
+                  "narrationText": "And the living room. A lamp shines on the rug. Come in!",
+                  "karaokeHighlights": [
+                    { "wordStart": 8, "wordEnd": 19, "vocabRef": "vocab.living-room" }
+                  ],
+                  "duration": 5.0
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.houseTour.q1",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "6-8",
+                  "promptAudio": "vo.milo.story.houseTour.q1",
+                  "promptTranscript": "Where are the table and chairs?",
+                  "items": ["the kitchen", "the bedroom"],
+                  "correctIndex": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u2.l2",
+      "title": "Furniture",
+      "miniTheme": "Things in the room",
+      "orderIndex": 2,
+      "vocabRefs": [
+        "vocab.bed",
+        "vocab.chair",
+        "vocab.table",
+        "vocab.lamp",
+        "vocab.door",
+        "vocab.window"
+      ],
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 30,
+        "promptText": "Touch a chair. Touch a window. Touch a door!"
+      },
+      "activities": [
+        {
+          "id": "u2.l2.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Furniture",
+          "items": [
+            {
+              "id": "u2.l2.a1.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l2.tapBed",
+              "promptTranscript": "Tap the bed!",
+              "options": [
+                { "imageConcept": "img.furniture.bed", "isCorrect": true },
+                { "imageConcept": "img.furniture.chair", "isCorrect": false },
+                { "imageConcept": "img.furniture.table", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (furniture)."
+            },
+            {
+              "id": "u2.l2.a1.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l2.tapChair",
+              "promptTranscript": "Tap the chair!",
+              "options": [
+                { "imageConcept": "img.furniture.chair", "isCorrect": true },
+                { "imageConcept": "img.furniture.table", "isCorrect": false },
+                { "imageConcept": "img.furniture.bed", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (furniture)."
+            },
+            {
+              "id": "u2.l2.a1.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l2.tapTable",
+              "promptTranscript": "Tap the table!",
+              "options": [
+                { "imageConcept": "img.furniture.table", "isCorrect": true },
+                { "imageConcept": "img.furniture.chair", "isCorrect": false },
+                { "imageConcept": "img.furniture.lamp", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (furniture)."
+            },
+            {
+              "id": "u2.l2.a1.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l2.tapLamp",
+              "promptTranscript": "Tap the lamp!",
+              "options": [
+                { "imageConcept": "img.furniture.lamp", "isCorrect": true },
+                { "imageConcept": "img.furniture.window", "isCorrect": false },
+                { "imageConcept": "img.furniture.table", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (furniture / light sources)."
+            },
+            {
+              "id": "u2.l2.a1.i5",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l2.tapDoor",
+              "promptTranscript": "Tap the door!",
+              "options": [
+                { "imageConcept": "img.furniture.door", "isCorrect": true },
+                { "imageConcept": "img.furniture.window", "isCorrect": false }
+              ],
+              "distractorRationale": "Minimal-pair openings (door / window)."
+            },
+            {
+              "id": "u2.l2.a1.i6",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l2.tapWindow",
+              "promptTranscript": "Tap the window!",
+              "options": [
+                { "imageConcept": "img.furniture.window", "isCorrect": true },
+                { "imageConcept": "img.furniture.door", "isCorrect": false }
+              ],
+              "distractorRationale": "Minimal-pair openings (door / window)."
+            }
+          ]
+        },
+        {
+          "id": "u2.l2.a2",
+          "type": "word_builder",
+          "title": "Word Builder: Furniture",
+          "items": [
+            {
+              "id": "u2.l2.a2.i1a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "bed",
+              "targetImage": "img.furniture.bed",
+              "options": ["bed", "chair"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u2.l2.spellBed",
+              "promptTranscript": "Spell 'bed'."
+            },
+            {
+              "id": "u2.l2.a2.i1b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "bed",
+              "targetImage": "img.furniture.bed",
+              "letterPool": ["b", "e", "d", "a", "i"],
+              "promptAudio": "vo.milo.u2.l2.spellBed",
+              "promptTranscript": "Spell 'bed'."
+            },
+            {
+              "id": "u2.l2.a2.i2a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "chair",
+              "targetImage": "img.furniture.chair",
+              "options": ["chair", "table"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u2.l2.spellChair",
+              "promptTranscript": "Spell 'chair'."
+            },
+            {
+              "id": "u2.l2.a2.i2b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "chair",
+              "targetImage": "img.furniture.chair",
+              "letterPool": ["c", "h", "a", "i", "r", "o", "e"],
+              "promptAudio": "vo.milo.u2.l2.spellChair",
+              "promptTranscript": "Spell 'chair'."
+            },
+            {
+              "id": "u2.l2.a2.i3a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "table",
+              "targetImage": "img.furniture.table",
+              "options": ["table", "lamp"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u2.l2.spellTable",
+              "promptTranscript": "Spell 'table'."
+            },
+            {
+              "id": "u2.l2.a2.i3b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "table",
+              "targetImage": "img.furniture.table",
+              "letterPool": ["t", "a", "b", "l", "e", "o", "i"],
+              "promptAudio": "vo.milo.u2.l2.spellTable",
+              "promptTranscript": "Spell 'table'."
+            },
+            {
+              "id": "u2.l2.a2.i4a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "lamp",
+              "targetImage": "img.furniture.lamp",
+              "options": ["lamp", "door"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u2.l2.spellLamp",
+              "promptTranscript": "Spell 'lamp'."
+            },
+            {
+              "id": "u2.l2.a2.i4b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "lamp",
+              "targetImage": "img.furniture.lamp",
+              "letterPool": ["l", "a", "m", "p", "o", "i"],
+              "promptAudio": "vo.milo.u2.l2.spellLamp",
+              "promptTranscript": "Spell 'lamp'."
+            },
+            {
+              "id": "u2.l2.a2.i5a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "door",
+              "targetImage": "img.furniture.door",
+              "options": ["door", "window"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u2.l2.spellDoor",
+              "promptTranscript": "Spell 'door'."
+            },
+            {
+              "id": "u2.l2.a2.i5b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "door",
+              "targetImage": "img.furniture.door",
+              "letterPool": ["d", "o", "o", "r", "a", "i"],
+              "promptAudio": "vo.milo.u2.l2.spellDoor",
+              "promptTranscript": "Spell 'door'."
+            },
+            {
+              "id": "u2.l2.a2.i6a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "window",
+              "targetImage": "img.furniture.window",
+              "options": ["window", "door"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u2.l2.spellWindow",
+              "promptTranscript": "Spell 'window'."
+            },
+            {
+              "id": "u2.l2.a2.i6b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "window",
+              "targetImage": "img.furniture.window",
+              "letterPool": ["w", "i", "n", "d", "o", "w", "a", "e"],
+              "promptAudio": "vo.milo.u2.l2.spellWindow",
+              "promptTranscript": "Spell 'window'."
+            }
+          ]
+        },
+        {
+          "id": "u2.l2.a3",
+          "type": "speak_it",
+          "title": "Speak It: Furniture",
+          "items": [
+            {
+              "id": "u2.l2.a3.i1",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "bed",
+              "promptAudio": "vo.milo.u2.l2.sayBed",
+              "promptTranscript": "Your turn! Say 'bed'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u2.l2.a3.i2",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "chair",
+              "promptAudio": "vo.milo.u2.l2.sayChair",
+              "promptTranscript": "Your turn! Say 'chair'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u2.l2.a3.i3",
+              "type": "speak_it",
+              "ageBand": "9-12",
+              "targetUtterance": "window",
+              "promptAudio": "vo.milo.u2.l2.sayWindow",
+              "promptTranscript": "Your turn! Say 'window'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "Nice clear sound!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u2.l3",
+      "title": "Fruit & Likes",
+      "miniTheme": "Fruit we eat and share",
+      "orderIndex": 3,
+      "vocabRefs": [
+        "vocab.apple",
+        "vocab.banana",
+        "vocab.orange-fruit",
+        "vocab.grape",
+        "vocab.strawberry",
+        "vocab.pear",
+        "vocab.i-like",
+        "vocab.i-dont-like"
+      ],
+      "songRef": "song.fruitSaladFriends",
+      "storyRef": "story.beaTriesPear",
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 30,
+        "promptText": "Pretend to eat an apple! Pretend to eat a banana!"
+      },
+      "activities": [
+        {
+          "id": "u2.l3.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Fruit",
+          "items": [
+            {
+              "id": "u2.l3.a1.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l3.tapApple",
+              "promptTranscript": "Tap the apple!",
+              "options": [
+                { "imageConcept": "img.fruit.apple", "isCorrect": true },
+                { "imageConcept": "img.fruit.banana", "isCorrect": false },
+                { "imageConcept": "img.fruit.grape", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (fruit)."
+            },
+            {
+              "id": "u2.l3.a1.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l3.tapBanana",
+              "promptTranscript": "Tap the banana!",
+              "options": [
+                { "imageConcept": "img.fruit.banana", "isCorrect": true },
+                { "imageConcept": "img.fruit.pear", "isCorrect": false },
+                { "imageConcept": "img.fruit.apple", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (fruit)."
+            },
+            {
+              "id": "u2.l3.a1.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l3.tapOrangeFruit",
+              "promptTranscript": "Tap the orange!",
+              "options": [
+                { "imageConcept": "img.fruit.orange", "isCorrect": true },
+                { "imageConcept": "img.fruit.apple", "isCorrect": false },
+                { "imageConcept": "img.fruit.strawberry", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (fruit)."
+            },
+            {
+              "id": "u2.l3.a1.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l3.tapGrape",
+              "promptTranscript": "Tap the grape!",
+              "options": [
+                { "imageConcept": "img.fruit.grape", "isCorrect": true },
+                { "imageConcept": "img.fruit.strawberry", "isCorrect": false },
+                { "imageConcept": "img.fruit.apple", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (fruit)."
+            },
+            {
+              "id": "u2.l3.a1.i5",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l3.tapStrawberry",
+              "promptTranscript": "Tap the strawberry!",
+              "options": [
+                { "imageConcept": "img.fruit.strawberry", "isCorrect": true },
+                { "imageConcept": "img.fruit.grape", "isCorrect": false },
+                { "imageConcept": "img.fruit.pear", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (fruit)."
+            },
+            {
+              "id": "u2.l3.a1.i6",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l3.tapPear",
+              "promptTranscript": "Tap the pear!",
+              "options": [
+                { "imageConcept": "img.fruit.pear", "isCorrect": true },
+                { "imageConcept": "img.fruit.apple", "isCorrect": false },
+                { "imageConcept": "img.fruit.banana", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (fruit)."
+            },
+            {
+              "id": "u2.l3.a1.i7b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u2.l3.tapPear",
+              "promptTranscript": "Tap the pear!",
+              "options": [
+                { "imageConcept": "img.fruit.pear", "isCorrect": true },
+                { "imageConcept": "img.fruit.apple", "isCorrect": false },
+                { "imageConcept": "img.fruit.banana", "isCorrect": false },
+                { "imageConcept": "img.color.bearBrown", "isCorrect": false }
+              ],
+              "distractorRationale": "Fruit set plus minimal-pair (pear/bear) phonetic distractor."
+            }
+          ]
+        },
+        {
+          "id": "u2.l3.a2",
+          "type": "listen_tap",
+          "title": "Listen and Tap: I like / I don't like",
+          "items": [
+            {
+              "id": "u2.l3.a2.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l3.tapILikeApples",
+              "promptTranscript": "Tap: I like apples.",
+              "options": [
+                { "imageConcept": "img.expression.thumbsUpApple", "isCorrect": true },
+                { "imageConcept": "img.expression.gentleShakeApple", "isCorrect": false }
+              ],
+              "distractorRationale": "Preference pair: thumbs-up vs gentle shake of head."
+            },
+            {
+              "id": "u2.l3.a2.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l3.tapIDontLikeOnions",
+              "promptTranscript": "Tap: I don't like onions.",
+              "options": [
+                { "imageConcept": "img.expression.gentleShakeOnion", "isCorrect": true },
+                { "imageConcept": "img.expression.thumbsUpOnion", "isCorrect": false }
+              ],
+              "distractorRationale": "Preference pair; models polite decline (no food shaming)."
+            },
+            {
+              "id": "u2.l3.a2.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l3.tapILikePears",
+              "promptTranscript": "Tap: I like pears.",
+              "options": [
+                { "imageConcept": "img.expression.thumbsUpPear", "isCorrect": true },
+                { "imageConcept": "img.expression.gentleShakePear", "isCorrect": false }
+              ],
+              "distractorRationale": "Preference pair with the new vocabulary word."
+            }
+          ]
+        },
+        {
+          "id": "u2.l3.a3",
+          "type": "story_time",
+          "title": "Story: Bea Tries a Pear",
+          "items": [
+            {
+              "id": "u2.l3.a3.i1",
+              "type": "story_time",
+              "ageBand": "6-8",
+              "storyId": "story.beaTriesPear",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.beaTriesPear.p1",
+                  "narrationAudio": "vo.milo.story.beaTriesPear.p1",
+                  "narrationText": "Bea looks at the fruit bowl. So many colors!",
+                  "karaokeHighlights": [],
+                  "duration": 4.0
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.beaTriesPear.p2",
+                  "narrationAudio": "vo.milo.story.beaTriesPear.p2",
+                  "narrationText": "She picks an apple. I like apples, says Bea.",
+                  "karaokeHighlights": [
+                    { "wordStart": 16, "wordEnd": 21, "vocabRef": "vocab.apple" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.beaTriesPear.p3",
+                  "narrationAudio": "vo.milo.story.beaTriesPear.p3",
+                  "narrationText": "Then Bea sees a green pear. A new fruit for her.",
+                  "karaokeHighlights": [
+                    { "wordStart": 22, "wordEnd": 26, "vocabRef": "vocab.pear" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.beaTriesPear.p4",
+                  "narrationAudio": "vo.milo.story.beaTriesPear.p4",
+                  "narrationText": "Bea takes a small bite. Soft and sweet. She smiles.",
+                  "karaokeHighlights": [],
+                  "duration": 5.0
+                },
+                {
+                  "panelId": "p5",
+                  "imageConcept": "img.story.beaTriesPear.p5",
+                  "narrationAudio": "vo.milo.story.beaTriesPear.p5",
+                  "narrationText": "I like pears too, says Bea. New fruit, new friend.",
+                  "karaokeHighlights": [
+                    { "wordStart": 7, "wordEnd": 12, "vocabRef": "vocab.pear" }
+                  ],
+                  "duration": 5.0
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.beaTriesPear.q1",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "6-8",
+                  "promptAudio": "vo.milo.story.beaTriesPear.q1",
+                  "promptTranscript": "What fruit was new for Bea?",
+                  "items": ["a pear", "an apple"],
+                  "correctIndex": 0
+                }
+              ]
+            },
+            {
+              "id": "u2.l3.a3.i2",
+              "type": "story_time",
+              "ageBand": "9-12",
+              "storyId": "story.beaTriesPear",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.beaTriesPear.p1",
+                  "narrationAudio": "vo.milo.story.beaTriesPear.p1",
+                  "narrationText": "Bea looks at the fruit bowl. So many colors!",
+                  "karaokeHighlights": [],
+                  "duration": 4.0
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.beaTriesPear.p2",
+                  "narrationAudio": "vo.milo.story.beaTriesPear.p2",
+                  "narrationText": "She picks an apple. I like apples, says Bea.",
+                  "karaokeHighlights": [
+                    { "wordStart": 16, "wordEnd": 21, "vocabRef": "vocab.apple" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.beaTriesPear.p3",
+                  "narrationAudio": "vo.milo.story.beaTriesPear.p3",
+                  "narrationText": "Then Bea sees a green pear. A new fruit for her.",
+                  "karaokeHighlights": [
+                    { "wordStart": 22, "wordEnd": 26, "vocabRef": "vocab.pear" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.beaTriesPear.p4",
+                  "narrationAudio": "vo.milo.story.beaTriesPear.p4",
+                  "narrationText": "Bea takes a small bite. Soft and sweet. She smiles.",
+                  "karaokeHighlights": [],
+                  "duration": 5.0
+                },
+                {
+                  "panelId": "p5",
+                  "imageConcept": "img.story.beaTriesPear.p5",
+                  "narrationAudio": "vo.milo.story.beaTriesPear.p5",
+                  "narrationText": "I like pears too, says Bea. New fruit, new friend.",
+                  "karaokeHighlights": [
+                    { "wordStart": 7, "wordEnd": 12, "vocabRef": "vocab.pear" }
+                  ],
+                  "duration": 5.0
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.beaTriesPear.q1.912",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.beaTriesPear.q1",
+                  "promptTranscript": "What fruit was new for Bea?",
+                  "items": ["a pear", "an apple", "a banana"],
+                  "correctIndex": 0
+                },
+                {
+                  "id": "story.beaTriesPear.q2.912",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.beaTriesPear.q2",
+                  "promptTranscript": "How did the pear taste?",
+                  "items": ["soft and sweet", "hard and sour", "salty"],
+                  "correctIndex": 0
+                },
+                {
+                  "id": "story.beaTriesPear.q3.912",
+                  "type": "story_question",
+                  "questionType": "sequencing",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.beaTriesPear.q3",
+                  "promptTranscript": "Put the fruit story in order.",
+                  "items": [
+                    "Bea looks at the fruit bowl.",
+                    "Bea picks an apple.",
+                    "Bea sees a new pear.",
+                    "Bea takes a bite and smiles."
+                  ],
+                  "correctOrder": [0, 1, 2, 3]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "u2.l3.a4",
+          "type": "sing_along",
+          "title": "Sing Along: Fruit Salad Friends",
+          "items": [
+            {
+              "id": "u2.l3.a4.i1",
+              "type": "sing_along",
+              "ageBand": "6-8",
+              "songId": "song.fruitSaladFriends"
+            },
+            {
+              "id": "u2.l3.a4.i2",
+              "type": "sing_along",
+              "ageBand": "9-12",
+              "songId": "song.fruitSaladFriends"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u2.l4",
+      "title": "Drinks & Meals",
+      "miniTheme": "Three meals a day",
+      "orderIndex": 4,
+      "vocabRefs": [
+        "vocab.water",
+        "vocab.milk",
+        "vocab.juice",
+        "vocab.breakfast",
+        "vocab.lunch",
+        "vocab.dinner"
+      ],
+      "storyRef": "story.threeMeals",
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 25,
+        "promptText": "Pretend to sip water. Pretend to eat breakfast!"
+      },
+      "activities": [
+        {
+          "id": "u2.l4.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Drinks",
+          "items": [
+            {
+              "id": "u2.l4.a1.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l4.tapWater",
+              "promptTranscript": "Tap water!",
+              "options": [
+                { "imageConcept": "img.drink.water", "isCorrect": true },
+                { "imageConcept": "img.drink.milk", "isCorrect": false },
+                { "imageConcept": "img.drink.juice", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (drinks)."
+            },
+            {
+              "id": "u2.l4.a1.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l4.tapMilk",
+              "promptTranscript": "Tap milk!",
+              "options": [
+                { "imageConcept": "img.drink.milk", "isCorrect": true },
+                { "imageConcept": "img.drink.water", "isCorrect": false },
+                { "imageConcept": "img.drink.juice", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (drinks)."
+            },
+            {
+              "id": "u2.l4.a1.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l4.tapJuice",
+              "promptTranscript": "Tap juice!",
+              "options": [
+                { "imageConcept": "img.drink.juice", "isCorrect": true },
+                { "imageConcept": "img.drink.water", "isCorrect": false },
+                { "imageConcept": "img.drink.milk", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (drinks)."
+            }
+          ]
+        },
+        {
+          "id": "u2.l4.a2",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Meals",
+          "items": [
+            {
+              "id": "u2.l4.a2.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l4.tapBreakfast",
+              "promptTranscript": "Tap breakfast!",
+              "options": [
+                { "imageConcept": "img.meal.breakfast", "isCorrect": true },
+                { "imageConcept": "img.meal.lunch", "isCorrect": false },
+                { "imageConcept": "img.meal.dinner", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (daily meals)."
+            },
+            {
+              "id": "u2.l4.a2.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l4.tapLunch",
+              "promptTranscript": "Tap lunch!",
+              "options": [
+                { "imageConcept": "img.meal.lunch", "isCorrect": true },
+                { "imageConcept": "img.meal.breakfast", "isCorrect": false },
+                { "imageConcept": "img.meal.dinner", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (daily meals)."
+            },
+            {
+              "id": "u2.l4.a2.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l4.tapDinner",
+              "promptTranscript": "Tap dinner!",
+              "options": [
+                { "imageConcept": "img.meal.dinner", "isCorrect": true },
+                { "imageConcept": "img.meal.lunch", "isCorrect": false },
+                { "imageConcept": "img.meal.breakfast", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (daily meals)."
+            }
+          ]
+        },
+        {
+          "id": "u2.l4.a3",
+          "type": "story_time",
+          "title": "Story: Bea's Three Meals",
+          "items": [
+            {
+              "id": "u2.l4.a3.i1",
+              "type": "story_time",
+              "ageBand": "6-8",
+              "storyId": "story.threeMeals",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.threeMeals.p1",
+                  "narrationAudio": "vo.milo.story.threeMeals.p1",
+                  "narrationText": "Good morning! Bea eats breakfast. Milk and bread.",
+                  "karaokeHighlights": [
+                    { "wordStart": 19, "wordEnd": 28, "vocabRef": "vocab.breakfast" }
+                  ],
+                  "duration": 5.0
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.threeMeals.p2",
+                  "narrationAudio": "vo.milo.story.threeMeals.p2",
+                  "narrationText": "At noon, Bea eats lunch. Soup and water.",
+                  "karaokeHighlights": [
+                    { "wordStart": 18, "wordEnd": 23, "vocabRef": "vocab.lunch" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.threeMeals.p3",
+                  "narrationAudio": "vo.milo.story.threeMeals.p3",
+                  "narrationText": "In the evening, Bea eats dinner. Rice and juice.",
+                  "karaokeHighlights": [
+                    { "wordStart": 25, "wordEnd": 31, "vocabRef": "vocab.dinner" }
+                  ],
+                  "duration": 5.0
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.threeMeals.p4",
+                  "narrationAudio": "vo.milo.story.threeMeals.p4",
+                  "narrationText": "Three meals, three smiles. Good night, Bea.",
+                  "karaokeHighlights": [],
+                  "duration": 4.5
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.threeMeals.q1",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "6-8",
+                  "promptAudio": "vo.milo.story.threeMeals.q1",
+                  "promptTranscript": "What does Bea eat first?",
+                  "items": ["breakfast", "dinner"],
+                  "correctIndex": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "u2.l4.a4",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Mixed Review",
+          "items": [
+            {
+              "id": "u2.l4.a4.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l4.tapWater",
+              "promptTranscript": "Tap water!",
+              "options": [
+                { "imageConcept": "img.drink.water", "isCorrect": true },
+                { "imageConcept": "img.meal.breakfast", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed Unit 2 review."
+            },
+            {
+              "id": "u2.l4.a4.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l4.tapBreakfast",
+              "promptTranscript": "Tap breakfast!",
+              "options": [
+                { "imageConcept": "img.meal.breakfast", "isCorrect": true },
+                { "imageConcept": "img.drink.milk", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed Unit 2 review."
+            },
+            {
+              "id": "u2.l4.a4.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l4.tapApple",
+              "promptTranscript": "Tap apple!",
+              "options": [
+                { "imageConcept": "img.fruit.apple", "isCorrect": true },
+                { "imageConcept": "img.drink.juice", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed Unit 2 review."
+            },
+            {
+              "id": "u2.l4.a4.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u2.l4.tapKitchen",
+              "promptTranscript": "Tap the kitchen!",
+              "options": [
+                { "imageConcept": "img.room.kitchen", "isCorrect": true },
+                { "imageConcept": "img.room.bedroom", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed Unit 2 review."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

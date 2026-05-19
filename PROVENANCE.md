@@ -33,6 +33,25 @@ Every audio, image, font, or code asset shipped with English4Kids is tracked her
 
 Tracked in `package.json` and audited via `pnpm licenses ls`. Any dep with a non-allowed license is rejected in CI.
 
+## Pronunciation Dictionary
+
+| File | Source | Author | License | Date |
+|---|---|---|---|---|
+| scripts/cmu-dict-mini.json | Carnegie Mellon University Pronouncing Dictionary (subset, ~120 words for MVP vocab) | CMU Speech Group | BSD-2 | 2026-05-19 |
+
+## Content (Units / Stories / Songs)
+
+| File | Source | Author | License | Date | Notes |
+|---|---|---|---|---|---|
+| content/units/01-me-and-my-world/manifest.json | English4Kids team | Content Engineer (agent) | MIT (own) | 2026-05-19 | Unit 1: greetings, family, colors, numbers |
+| content/vocab/unit-01.json | English4Kids team | Content Engineer (agent) | MIT (own) | 2026-05-19 | 30 vocab entries with CMU phonemes |
+| content/stories/story-milo-hello.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original story; animal characters only |
+| content/stories/story-family-picnic.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original story; Bea Bunny family |
+| content/stories/story-ten-little-ducks.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original; NOT derived from public-domain "Five Little Ducks" |
+| content/songs/song-hello-friend.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original lyrics |
+| content/songs/song-colors-all-around.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original lyrics |
+| content/songs/song-count-with-me.json | English4Kids team | Content Designer + Content Engineer (agents) | MIT (own) | 2026-05-19 | Original lyrics; counting song |
+
 ## Audit Trail
 
 Quarterly audit by the Safety & Privacy Officer; archived license HTML stored under `LICENSES/` for each CC-BY-attributed source.

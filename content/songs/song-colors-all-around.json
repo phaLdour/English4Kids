@@ -1,0 +1,28 @@
+{
+  "id": "song.colorsAllAround",
+  "title": "Colors All Around",
+  "lrc": "[00:00.00]Red like an apple, blue like the sky,\n[00:04.00]Yellow like the sunshine way up high.\n[00:08.00]Green like a leaf, and orange like a pear,\n[00:12.00]Purple like a grape — colors everywhere!\n[00:16.00]Black like the nighttime, white like a cloud,\n[00:20.00]Sing the colors, sing them loud!\n[00:24.00]Red and blue and yellow, green,\n[00:28.00]Beautiful colors to be seen!\n",
+  "audioRef": "mus.colorsAllAround",
+  "targetVocabRefs": [
+    "vocab.red",
+    "vocab.blue",
+    "vocab.yellow",
+    "vocab.green",
+    "vocab.orange-color",
+    "vocab.purple",
+    "vocab.black",
+    "vocab.white"
+  ],
+  "tprMoves": [
+    { "ageBand": "6-8", "move": "point_red", "cueTime": 0 },
+    { "ageBand": "6-8", "move": "point_blue", "cueTime": 2.0 },
+    { "ageBand": "6-8", "move": "point_yellow", "cueTime": 4.0 },
+    { "ageBand": "6-8", "move": "point_green", "cueTime": 8.0 },
+    { "ageBand": "6-8", "move": "point_orange", "cueTime": 10.0 },
+    { "ageBand": "6-8", "move": "point_purple", "cueTime": 12.0 },
+    { "ageBand": "6-8", "move": "point_black", "cueTime": 16.0 },
+    { "ageBand": "6-8", "move": "point_white", "cueTime": 18.0 },
+    { "ageBand": "9-12", "move": "rainbow_arms", "cueTime": 0 },
+    { "ageBand": "9-12", "move": "rainbow_arms", "cueTime": 24.0 }
+  ]
+}

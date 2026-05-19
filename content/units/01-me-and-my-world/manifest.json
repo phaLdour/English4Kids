@@ -1,0 +1,2047 @@
+{
+  "id": "01-me-and-my-world",
+  "title": "Me & My World",
+  "theme": "greetings, family, colors, numbers",
+  "cefr": "Pre-A1",
+  "orderIndex": 1,
+  "lessons": [
+    {
+      "id": "u1.l1",
+      "title": "Greetings",
+      "miniTheme": "Hello and goodbye",
+      "orderIndex": 1,
+      "vocabRefs": [
+        "vocab.hello",
+        "vocab.hi",
+        "vocab.bye",
+        "vocab.good-morning",
+        "vocab.how-are-you",
+        "vocab.im-fine"
+      ],
+      "songRef": "song.helloFriend",
+      "storyRef": "story.miloHello",
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 20,
+        "promptText": "Wave your hand for hello! Wave goodbye!"
+      },
+      "activities": [
+        {
+          "id": "u1.l1.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Greetings",
+          "items": [
+            {
+              "id": "u1.l1.a1.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l1.tapHello",
+              "promptTranscript": "Tap hello!",
+              "options": [
+                { "imageConcept": "img.greeting.waveSmile", "isCorrect": true },
+                { "imageConcept": "img.greeting.waveGoodbye", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (greetings)."
+            },
+            {
+              "id": "u1.l1.a1.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l1.tapHi",
+              "promptTranscript": "Tap hi!",
+              "options": [
+                { "imageConcept": "img.greeting.waveCasual", "isCorrect": true },
+                { "imageConcept": "img.greeting.waveGoodbye", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (greetings)."
+            },
+            {
+              "id": "u1.l1.a1.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l1.tapBye",
+              "promptTranscript": "Tap bye!",
+              "options": [
+                { "imageConcept": "img.greeting.waveGoodbye", "isCorrect": true },
+                { "imageConcept": "img.greeting.waveSmile", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (greetings)."
+            },
+            {
+              "id": "u1.l1.a1.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l1.tapGoodMorning",
+              "promptTranscript": "Tap good morning!",
+              "options": [
+                { "imageConcept": "img.greeting.sunriseSmile", "isCorrect": true },
+                { "imageConcept": "img.greeting.moonWave", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (time-of-day greetings)."
+            },
+            {
+              "id": "u1.l1.a1.i5",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l1.tapHowAreYou",
+              "promptTranscript": "Tap how are you?",
+              "options": [
+                { "imageConcept": "img.greeting.askQuestion", "isCorrect": true },
+                { "imageConcept": "img.greeting.thumbsUp", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (greetings/replies)."
+            },
+            {
+              "id": "u1.l1.a1.i6",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l1.tapImFine",
+              "promptTranscript": "Tap I'm fine!",
+              "options": [
+                { "imageConcept": "img.greeting.thumbsUp", "isCorrect": true },
+                { "imageConcept": "img.greeting.askQuestion", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (greetings/replies)."
+            }
+          ]
+        },
+        {
+          "id": "u1.l1.a2",
+          "type": "story_time",
+          "title": "Story: Milo Says Hello",
+          "items": [
+            {
+              "id": "u1.l1.a2.i1",
+              "type": "story_time",
+              "ageBand": "6-8",
+              "storyId": "story.miloHello",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.miloHello.p1",
+                  "narrationAudio": "vo.milo.story.miloHello.p1",
+                  "narrationText": "Good morning! Milo wakes up.",
+                  "karaokeHighlights": [],
+                  "duration": 4.0
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.miloHello.p2",
+                  "narrationAudio": "vo.milo.story.miloHello.p2",
+                  "narrationText": "Hello, Bea! Hi!",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 5, "vocabRef": "vocab.hello" },
+                    { "wordStart": 11, "wordEnd": 13, "vocabRef": "vocab.hi" }
+                  ],
+                  "duration": 3.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.miloHello.p3",
+                  "narrationAudio": "vo.milo.story.miloHello.p3",
+                  "narrationText": "How are you? I'm fine, thank you!",
+                  "karaokeHighlights": [],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.miloHello.p4",
+                  "narrationAudio": "vo.milo.story.miloHello.p4",
+                  "narrationText": "Bye, Bea! See you soon!",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 3, "vocabRef": "vocab.bye" }
+                  ],
+                  "duration": 3.5
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.miloHello.q1",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "6-8",
+                  "promptAudio": "vo.milo.story.miloHello.q1",
+                  "promptTranscript": "What did Milo say first?",
+                  "items": ["Good morning", "Bye"],
+                  "correctIndex": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "u1.l1.a3",
+          "type": "speak_it",
+          "title": "Speak It: Greetings",
+          "items": [
+            {
+              "id": "u1.l1.a3.i1",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "hello",
+              "promptAudio": "vo.milo.u1.l1.sayHello",
+              "promptTranscript": "Your turn! Say 'hello'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u1.l1.a3.i2",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "bye",
+              "promptAudio": "vo.milo.u1.l1.sayBye",
+              "promptTranscript": "Your turn! Say 'bye'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "u1.l1.a4",
+          "type": "sing_along",
+          "title": "Sing Along: Hello, Friend!",
+          "items": [
+            {
+              "id": "u1.l1.a4.i1",
+              "type": "sing_along",
+              "ageBand": "6-8",
+              "songId": "song.helloFriend"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u1.l2",
+      "title": "Family",
+      "miniTheme": "My family",
+      "orderIndex": 2,
+      "vocabRefs": [
+        "vocab.mommy",
+        "vocab.daddy",
+        "vocab.sister",
+        "vocab.brother",
+        "vocab.grandma",
+        "vocab.grandpa"
+      ],
+      "storyRef": "story.familyPicnic",
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 30,
+        "promptText": "Show me a hug for Mommy! Wave for Grandpa!"
+      },
+      "activities": [
+        {
+          "id": "u1.l2.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Family",
+          "items": [
+            {
+              "id": "u1.l2.a1.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapMommy",
+              "promptTranscript": "Tap Mommy!",
+              "options": [
+                { "imageConcept": "img.family.mommy", "isCorrect": true },
+                { "imageConcept": "img.family.daddy", "isCorrect": false },
+                { "imageConcept": "img.family.sister", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (family members)."
+            },
+            {
+              "id": "u1.l2.a1.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapDaddy",
+              "promptTranscript": "Tap Daddy!",
+              "options": [
+                { "imageConcept": "img.family.daddy", "isCorrect": true },
+                { "imageConcept": "img.family.mommy", "isCorrect": false },
+                { "imageConcept": "img.family.brother", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (family members)."
+            },
+            {
+              "id": "u1.l2.a1.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapSister",
+              "promptTranscript": "Tap sister!",
+              "options": [
+                { "imageConcept": "img.family.sister", "isCorrect": true },
+                { "imageConcept": "img.family.brother", "isCorrect": false },
+                { "imageConcept": "img.family.mommy", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (family members, sibling pair)."
+            },
+            {
+              "id": "u1.l2.a1.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapBrother",
+              "promptTranscript": "Tap brother!",
+              "options": [
+                { "imageConcept": "img.family.brother", "isCorrect": true },
+                { "imageConcept": "img.family.sister", "isCorrect": false },
+                { "imageConcept": "img.family.daddy", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (family members, sibling pair)."
+            },
+            {
+              "id": "u1.l2.a1.i5",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapGrandma",
+              "promptTranscript": "Tap Grandma!",
+              "options": [
+                { "imageConcept": "img.family.grandma", "isCorrect": true },
+                { "imageConcept": "img.family.grandpa", "isCorrect": false },
+                { "imageConcept": "img.family.mommy", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (family elders)."
+            },
+            {
+              "id": "u1.l2.a1.i6",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapGrandpa",
+              "promptTranscript": "Tap Grandpa!",
+              "options": [
+                { "imageConcept": "img.family.grandpa", "isCorrect": true },
+                { "imageConcept": "img.family.grandma", "isCorrect": false },
+                { "imageConcept": "img.family.daddy", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (family elders)."
+            }
+          ]
+        },
+        {
+          "id": "u1.l2.a2",
+          "type": "word_builder",
+          "title": "Word Builder: Family",
+          "items": [
+            {
+              "id": "u1.l2.a2.i1a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "mommy",
+              "targetImage": "img.family.mommy",
+              "options": ["mommy", "daddy"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l2.spellMommy",
+              "promptTranscript": "Spell 'mommy'."
+            },
+            {
+              "id": "u1.l2.a2.i1b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "mommy",
+              "targetImage": "img.family.mommy",
+              "letterPool": ["m", "o", "m", "m", "y", "a", "e"],
+              "promptAudio": "vo.milo.u1.l2.spellMommy",
+              "promptTranscript": "Spell 'mommy'."
+            },
+            {
+              "id": "u1.l2.a2.i2a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "daddy",
+              "targetImage": "img.family.daddy",
+              "options": ["daddy", "mommy"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l2.spellDaddy",
+              "promptTranscript": "Spell 'daddy'."
+            },
+            {
+              "id": "u1.l2.a2.i2b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "daddy",
+              "targetImage": "img.family.daddy",
+              "letterPool": ["d", "a", "d", "d", "y", "o", "e"],
+              "promptAudio": "vo.milo.u1.l2.spellDaddy",
+              "promptTranscript": "Spell 'daddy'."
+            },
+            {
+              "id": "u1.l2.a2.i3a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "sister",
+              "targetImage": "img.family.sister",
+              "options": ["sister", "brother"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l2.spellSister",
+              "promptTranscript": "Spell 'sister'."
+            },
+            {
+              "id": "u1.l2.a2.i3b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "sister",
+              "targetImage": "img.family.sister",
+              "letterPool": ["s", "i", "s", "t", "e", "r", "a", "o"],
+              "promptAudio": "vo.milo.u1.l2.spellSister",
+              "promptTranscript": "Spell 'sister'."
+            },
+            {
+              "id": "u1.l2.a2.i4a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "brother",
+              "targetImage": "img.family.brother",
+              "options": ["brother", "sister"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l2.spellBrother",
+              "promptTranscript": "Spell 'brother'."
+            },
+            {
+              "id": "u1.l2.a2.i4b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "brother",
+              "targetImage": "img.family.brother",
+              "letterPool": ["b", "r", "o", "t", "h", "e", "r", "a", "i"],
+              "promptAudio": "vo.milo.u1.l2.spellBrother",
+              "promptTranscript": "Spell 'brother'."
+            },
+            {
+              "id": "u1.l2.a2.i5a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "grandma",
+              "targetImage": "img.family.grandma",
+              "options": ["grandma", "grandpa"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l2.spellGrandma",
+              "promptTranscript": "Spell 'grandma'."
+            },
+            {
+              "id": "u1.l2.a2.i5b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "grandma",
+              "targetImage": "img.family.grandma",
+              "letterPool": ["g", "r", "a", "n", "d", "m", "a", "e", "i"],
+              "promptAudio": "vo.milo.u1.l2.spellGrandma",
+              "promptTranscript": "Spell 'grandma'."
+            },
+            {
+              "id": "u1.l2.a2.i6a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "grandpa",
+              "targetImage": "img.family.grandpa",
+              "options": ["grandpa", "grandma"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l2.spellGrandpa",
+              "promptTranscript": "Spell 'grandpa'."
+            },
+            {
+              "id": "u1.l2.a2.i6b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "grandpa",
+              "targetImage": "img.family.grandpa",
+              "letterPool": ["g", "r", "a", "n", "d", "p", "a", "e", "o"],
+              "promptAudio": "vo.milo.u1.l2.spellGrandpa",
+              "promptTranscript": "Spell 'grandpa'."
+            }
+          ]
+        },
+        {
+          "id": "u1.l2.a3",
+          "type": "story_time",
+          "title": "Story: Family Picnic",
+          "items": [
+            {
+              "id": "u1.l2.a3.i1",
+              "type": "story_time",
+              "ageBand": "6-8",
+              "storyId": "story.familyPicnic",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.familyPicnic.p1",
+                  "narrationAudio": "vo.milo.story.familyPicnic.p1",
+                  "narrationText": "Bea Bunny's family goes to the park.",
+                  "karaokeHighlights": [],
+                  "duration": 4.0
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.familyPicnic.p2",
+                  "narrationAudio": "vo.milo.story.familyPicnic.p2",
+                  "narrationText": "Mommy and Daddy carry the blanket.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 5, "vocabRef": "vocab.mommy" },
+                    { "wordStart": 10, "wordEnd": 15, "vocabRef": "vocab.daddy" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.familyPicnic.p3",
+                  "narrationAudio": "vo.milo.story.familyPicnic.p3",
+                  "narrationText": "Grandma brings the apples. Grandpa brings the bread.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 7, "vocabRef": "vocab.grandma" },
+                    { "wordStart": 26, "wordEnd": 33, "vocabRef": "vocab.grandpa" }
+                  ],
+                  "duration": 5.0
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.familyPicnic.p4",
+                  "narrationAudio": "vo.milo.story.familyPicnic.p4",
+                  "narrationText": "Sister and brother share the fruit. Yum!",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 6, "vocabRef": "vocab.sister" },
+                    { "wordStart": 11, "wordEnd": 18, "vocabRef": "vocab.brother" }
+                  ],
+                  "duration": 4.5
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.familyPicnic.q1",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "6-8",
+                  "promptAudio": "vo.milo.story.familyPicnic.q1",
+                  "promptTranscript": "Who brought the apples?",
+                  "items": ["Grandma", "Daddy"],
+                  "correctIndex": 0
+                }
+              ]
+            },
+            {
+              "id": "u1.l2.a3.i2",
+              "type": "story_time",
+              "ageBand": "9-12",
+              "storyId": "story.familyPicnic",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.familyPicnic.p1",
+                  "narrationAudio": "vo.milo.story.familyPicnic.p1",
+                  "narrationText": "Bea Bunny's family goes to the park.",
+                  "karaokeHighlights": [],
+                  "duration": 4.0
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.familyPicnic.p2",
+                  "narrationAudio": "vo.milo.story.familyPicnic.p2",
+                  "narrationText": "Mommy and Daddy carry the blanket.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 5, "vocabRef": "vocab.mommy" },
+                    { "wordStart": 10, "wordEnd": 15, "vocabRef": "vocab.daddy" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.familyPicnic.p3",
+                  "narrationAudio": "vo.milo.story.familyPicnic.p3",
+                  "narrationText": "Grandma brings the apples. Grandpa brings the bread.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 7, "vocabRef": "vocab.grandma" },
+                    { "wordStart": 26, "wordEnd": 33, "vocabRef": "vocab.grandpa" }
+                  ],
+                  "duration": 5.0
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.familyPicnic.p4",
+                  "narrationAudio": "vo.milo.story.familyPicnic.p4",
+                  "narrationText": "Sister and brother share the fruit. Yum!",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 6, "vocabRef": "vocab.sister" },
+                    { "wordStart": 11, "wordEnd": 18, "vocabRef": "vocab.brother" }
+                  ],
+                  "duration": 4.5
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.familyPicnic.q1.912",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.familyPicnic.q1",
+                  "promptTranscript": "Who brought the apples?",
+                  "items": ["Grandma", "Daddy", "Sister"],
+                  "correctIndex": 0
+                },
+                {
+                  "id": "story.familyPicnic.q2.912",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.familyPicnic.q2",
+                  "promptTranscript": "What did Mommy and Daddy carry?",
+                  "items": ["the blanket", "the apples", "the bread"],
+                  "correctIndex": 0
+                },
+                {
+                  "id": "story.familyPicnic.q3.912",
+                  "type": "story_question",
+                  "questionType": "sequencing",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.familyPicnic.q3",
+                  "promptTranscript": "Put the picnic story in order.",
+                  "items": [
+                    "The family goes to the park.",
+                    "Mommy and Daddy carry the blanket.",
+                    "Grandma and Grandpa bring food.",
+                    "Sister and brother share the fruit."
+                  ],
+                  "correctOrder": [0, 1, 2, 3]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "u1.l2.a4",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Mixed Review",
+          "items": [
+            {
+              "id": "u1.l2.a4.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapHello",
+              "promptTranscript": "Tap hello!",
+              "options": [
+                { "imageConcept": "img.greeting.waveSmile", "isCorrect": true },
+                { "imageConcept": "img.family.mommy", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed-unit review."
+            },
+            {
+              "id": "u1.l2.a4.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapBye",
+              "promptTranscript": "Tap bye!",
+              "options": [
+                { "imageConcept": "img.greeting.waveGoodbye", "isCorrect": true },
+                { "imageConcept": "img.family.daddy", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed-unit review."
+            },
+            {
+              "id": "u1.l2.a4.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapGoodMorning",
+              "promptTranscript": "Tap good morning!",
+              "options": [
+                { "imageConcept": "img.greeting.sunriseSmile", "isCorrect": true },
+                { "imageConcept": "img.family.grandma", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed-unit review."
+            },
+            {
+              "id": "u1.l2.a4.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapHowAreYou",
+              "promptTranscript": "Tap how are you?",
+              "options": [
+                { "imageConcept": "img.greeting.askQuestion", "isCorrect": true },
+                { "imageConcept": "img.family.grandpa", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed-unit review."
+            },
+            {
+              "id": "u1.l2.a4.i5",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapMommy",
+              "promptTranscript": "Tap Mommy!",
+              "options": [
+                { "imageConcept": "img.family.mommy", "isCorrect": true },
+                { "imageConcept": "img.greeting.waveSmile", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed-unit review."
+            },
+            {
+              "id": "u1.l2.a4.i6",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapDaddy",
+              "promptTranscript": "Tap Daddy!",
+              "options": [
+                { "imageConcept": "img.family.daddy", "isCorrect": true },
+                { "imageConcept": "img.greeting.waveGoodbye", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed-unit review."
+            },
+            {
+              "id": "u1.l2.a4.i7",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapSister",
+              "promptTranscript": "Tap sister!",
+              "options": [
+                { "imageConcept": "img.family.sister", "isCorrect": true },
+                { "imageConcept": "img.greeting.askQuestion", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed-unit review."
+            },
+            {
+              "id": "u1.l2.a4.i8",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l2.tapBrother",
+              "promptTranscript": "Tap brother!",
+              "options": [
+                { "imageConcept": "img.family.brother", "isCorrect": true },
+                { "imageConcept": "img.greeting.sunriseSmile", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed-unit review."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u1.l3",
+      "title": "Colors",
+      "miniTheme": "Colors of the world",
+      "orderIndex": 3,
+      "vocabRefs": [
+        "vocab.red",
+        "vocab.blue",
+        "vocab.yellow",
+        "vocab.green",
+        "vocab.orange-color",
+        "vocab.purple",
+        "vocab.black",
+        "vocab.white"
+      ],
+      "songRef": "song.colorsAllAround",
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 45,
+        "promptText": "Touch something red in your room! Touch something blue!"
+      },
+      "activities": [
+        {
+          "id": "u1.l3.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Colors",
+          "items": [
+            {
+              "id": "u1.l3.a1.i1a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l3.tapRedApple",
+              "promptTranscript": "Tap the red apple!",
+              "options": [
+                { "imageConcept": "img.color.redApple", "isCorrect": true },
+                { "imageConcept": "img.color.blueApple", "isCorrect": false },
+                { "imageConcept": "img.color.greenApple", "isCorrect": false }
+              ],
+              "distractorRationale": "Same object, different color swatches."
+            },
+            {
+              "id": "u1.l3.a1.i1b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u1.l3.tapRedApple",
+              "promptTranscript": "Tap the red apple!",
+              "options": [
+                { "imageConcept": "img.color.redApple", "isCorrect": true },
+                { "imageConcept": "img.color.blueApple", "isCorrect": false },
+                { "imageConcept": "img.color.greenApple", "isCorrect": false },
+                { "imageConcept": "img.color.redBed", "isCorrect": false }
+              ],
+              "distractorRationale": "Color swatches plus minimal-pair (red/bed) phonetic distractor."
+            },
+            {
+              "id": "u1.l3.a1.i2a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l3.tapBlueSky",
+              "promptTranscript": "Tap the blue sky!",
+              "options": [
+                { "imageConcept": "img.color.blueSky", "isCorrect": true },
+                { "imageConcept": "img.color.graySky", "isCorrect": false },
+                { "imageConcept": "img.color.pinkSky", "isCorrect": false }
+              ],
+              "distractorRationale": "Same object, different color swatches."
+            },
+            {
+              "id": "u1.l3.a1.i2b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u1.l3.tapBlueSky",
+              "promptTranscript": "Tap the blue sky!",
+              "options": [
+                { "imageConcept": "img.color.blueSky", "isCorrect": true },
+                { "imageConcept": "img.color.graySky", "isCorrect": false },
+                { "imageConcept": "img.color.pinkSky", "isCorrect": false },
+                { "imageConcept": "img.color.blueShoe", "isCorrect": false }
+              ],
+              "distractorRationale": "Color swatches plus minimal-pair (sky/shoe) noun distractor."
+            },
+            {
+              "id": "u1.l3.a1.i3a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l3.tapYellowSun",
+              "promptTranscript": "Tap the yellow sun!",
+              "options": [
+                { "imageConcept": "img.color.yellowSun", "isCorrect": true },
+                { "imageConcept": "img.color.orangeSun", "isCorrect": false },
+                { "imageConcept": "img.color.whiteSun", "isCorrect": false }
+              ],
+              "distractorRationale": "Same object, different color swatches."
+            },
+            {
+              "id": "u1.l3.a1.i3b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u1.l3.tapYellowSun",
+              "promptTranscript": "Tap the yellow sun!",
+              "options": [
+                { "imageConcept": "img.color.yellowSun", "isCorrect": true },
+                { "imageConcept": "img.color.orangeSun", "isCorrect": false },
+                { "imageConcept": "img.color.whiteSun", "isCorrect": false },
+                { "imageConcept": "img.color.yellowSon", "isCorrect": false }
+              ],
+              "distractorRationale": "Color swatches plus minimal-pair (sun/son) homophone distractor."
+            },
+            {
+              "id": "u1.l3.a1.i4a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l3.tapGreenLeaf",
+              "promptTranscript": "Tap the green leaf!",
+              "options": [
+                { "imageConcept": "img.color.greenLeaf", "isCorrect": true },
+                { "imageConcept": "img.color.yellowLeaf", "isCorrect": false },
+                { "imageConcept": "img.color.brownLeaf", "isCorrect": false }
+              ],
+              "distractorRationale": "Same object, different color swatches."
+            },
+            {
+              "id": "u1.l3.a1.i4b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u1.l3.tapGreenLeaf",
+              "promptTranscript": "Tap the green leaf!",
+              "options": [
+                { "imageConcept": "img.color.greenLeaf", "isCorrect": true },
+                { "imageConcept": "img.color.yellowLeaf", "isCorrect": false },
+                { "imageConcept": "img.color.brownLeaf", "isCorrect": false },
+                { "imageConcept": "img.color.queenLeaf", "isCorrect": false }
+              ],
+              "distractorRationale": "Color swatches plus minimal-pair (green/queen) phonetic distractor."
+            },
+            {
+              "id": "u1.l3.a1.i5a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l3.tapOrangePear",
+              "promptTranscript": "Tap the orange pear!",
+              "options": [
+                { "imageConcept": "img.color.orangePear", "isCorrect": true },
+                { "imageConcept": "img.color.greenPear", "isCorrect": false },
+                { "imageConcept": "img.color.yellowPear", "isCorrect": false }
+              ],
+              "distractorRationale": "Same object, different color swatches."
+            },
+            {
+              "id": "u1.l3.a1.i5b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u1.l3.tapOrangePear",
+              "promptTranscript": "Tap the orange pear!",
+              "options": [
+                { "imageConcept": "img.color.orangePear", "isCorrect": true },
+                { "imageConcept": "img.color.greenPear", "isCorrect": false },
+                { "imageConcept": "img.color.yellowPear", "isCorrect": false },
+                { "imageConcept": "img.color.orangeBear", "isCorrect": false }
+              ],
+              "distractorRationale": "Color swatches plus minimal-pair (pear/bear) phonetic distractor."
+            },
+            {
+              "id": "u1.l3.a1.i6a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l3.tapPurpleGrape",
+              "promptTranscript": "Tap the purple grape!",
+              "options": [
+                { "imageConcept": "img.color.purpleGrape", "isCorrect": true },
+                { "imageConcept": "img.color.greenGrape", "isCorrect": false },
+                { "imageConcept": "img.color.redGrape", "isCorrect": false }
+              ],
+              "distractorRationale": "Same object, different color swatches."
+            },
+            {
+              "id": "u1.l3.a1.i6b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u1.l3.tapPurpleGrape",
+              "promptTranscript": "Tap the purple grape!",
+              "options": [
+                { "imageConcept": "img.color.purpleGrape", "isCorrect": true },
+                { "imageConcept": "img.color.greenGrape", "isCorrect": false },
+                { "imageConcept": "img.color.redGrape", "isCorrect": false },
+                { "imageConcept": "img.color.purpleTape", "isCorrect": false }
+              ],
+              "distractorRationale": "Color swatches plus minimal-pair (grape/tape) phonetic distractor."
+            },
+            {
+              "id": "u1.l3.a1.i7a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l3.tapBlackCat",
+              "promptTranscript": "Tap the black cat!",
+              "options": [
+                { "imageConcept": "img.color.blackCat", "isCorrect": true },
+                { "imageConcept": "img.color.whiteCat", "isCorrect": false },
+                { "imageConcept": "img.color.orangeCat", "isCorrect": false }
+              ],
+              "distractorRationale": "Same object, different color swatches."
+            },
+            {
+              "id": "u1.l3.a1.i7b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u1.l3.tapBlackCat",
+              "promptTranscript": "Tap the black cat!",
+              "options": [
+                { "imageConcept": "img.color.blackCat", "isCorrect": true },
+                { "imageConcept": "img.color.whiteCat", "isCorrect": false },
+                { "imageConcept": "img.color.orangeCat", "isCorrect": false },
+                { "imageConcept": "img.color.blackHat", "isCorrect": false }
+              ],
+              "distractorRationale": "Color swatches plus minimal-pair (cat/hat) phonetic distractor."
+            },
+            {
+              "id": "u1.l3.a1.i8a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l3.tapWhiteCloud",
+              "promptTranscript": "Tap the white cloud!",
+              "options": [
+                { "imageConcept": "img.color.whiteCloud", "isCorrect": true },
+                { "imageConcept": "img.color.grayCloud", "isCorrect": false },
+                { "imageConcept": "img.color.pinkCloud", "isCorrect": false }
+              ],
+              "distractorRationale": "Same object, different color swatches."
+            },
+            {
+              "id": "u1.l3.a1.i8b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u1.l3.tapWhiteCloud",
+              "promptTranscript": "Tap the white cloud!",
+              "options": [
+                { "imageConcept": "img.color.whiteCloud", "isCorrect": true },
+                { "imageConcept": "img.color.grayCloud", "isCorrect": false },
+                { "imageConcept": "img.color.pinkCloud", "isCorrect": false },
+                { "imageConcept": "img.color.whiteCrowd", "isCorrect": false }
+              ],
+              "distractorRationale": "Color swatches plus minimal-pair (cloud/crowd) phonetic distractor."
+            }
+          ]
+        },
+        {
+          "id": "u1.l3.a2",
+          "type": "word_builder",
+          "title": "Word Builder: Colors",
+          "items": [
+            {
+              "id": "u1.l3.a2.i1a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "red",
+              "targetImage": "img.color.redSwatch",
+              "options": ["red", "blue"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l3.spellRed",
+              "promptTranscript": "Spell 'red'."
+            },
+            {
+              "id": "u1.l3.a2.i1b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "red",
+              "targetImage": "img.color.redSwatch",
+              "letterPool": ["r", "e", "d", "b", "a"],
+              "promptAudio": "vo.milo.u1.l3.spellRed",
+              "promptTranscript": "Spell 'red'."
+            },
+            {
+              "id": "u1.l3.a2.i2a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "blue",
+              "targetImage": "img.color.blueSwatch",
+              "options": ["blue", "red"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l3.spellBlue",
+              "promptTranscript": "Spell 'blue'."
+            },
+            {
+              "id": "u1.l3.a2.i2b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "blue",
+              "targetImage": "img.color.blueSwatch",
+              "letterPool": ["b", "l", "u", "e", "a", "o"],
+              "promptAudio": "vo.milo.u1.l3.spellBlue",
+              "promptTranscript": "Spell 'blue'."
+            },
+            {
+              "id": "u1.l3.a2.i3a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "yellow",
+              "targetImage": "img.color.yellowSwatch",
+              "options": ["yellow", "green"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l3.spellYellow",
+              "promptTranscript": "Spell 'yellow'."
+            },
+            {
+              "id": "u1.l3.a2.i3b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "yellow",
+              "targetImage": "img.color.yellowSwatch",
+              "letterPool": ["y", "e", "l", "l", "o", "w", "a", "i"],
+              "promptAudio": "vo.milo.u1.l3.spellYellow",
+              "promptTranscript": "Spell 'yellow'."
+            },
+            {
+              "id": "u1.l3.a2.i4a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "green",
+              "targetImage": "img.color.greenSwatch",
+              "options": ["green", "yellow"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l3.spellGreen",
+              "promptTranscript": "Spell 'green'."
+            },
+            {
+              "id": "u1.l3.a2.i4b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "green",
+              "targetImage": "img.color.greenSwatch",
+              "letterPool": ["g", "r", "e", "e", "n", "a", "i"],
+              "promptAudio": "vo.milo.u1.l3.spellGreen",
+              "promptTranscript": "Spell 'green'."
+            },
+            {
+              "id": "u1.l3.a2.i5a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "orange",
+              "targetImage": "img.color.orangeSwatch",
+              "options": ["orange", "purple"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l3.spellOrange",
+              "promptTranscript": "Spell 'orange'."
+            },
+            {
+              "id": "u1.l3.a2.i5b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "orange",
+              "targetImage": "img.color.orangeSwatch",
+              "letterPool": ["o", "r", "a", "n", "g", "e", "i", "u"],
+              "promptAudio": "vo.milo.u1.l3.spellOrange",
+              "promptTranscript": "Spell 'orange'."
+            },
+            {
+              "id": "u1.l3.a2.i6a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "purple",
+              "targetImage": "img.color.purpleSwatch",
+              "options": ["purple", "orange"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l3.spellPurple",
+              "promptTranscript": "Spell 'purple'."
+            },
+            {
+              "id": "u1.l3.a2.i6b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "purple",
+              "targetImage": "img.color.purpleSwatch",
+              "letterPool": ["p", "u", "r", "p", "l", "e", "a", "o"],
+              "promptAudio": "vo.milo.u1.l3.spellPurple",
+              "promptTranscript": "Spell 'purple'."
+            },
+            {
+              "id": "u1.l3.a2.i7a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "black",
+              "targetImage": "img.color.blackSwatch",
+              "options": ["black", "white"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l3.spellBlack",
+              "promptTranscript": "Spell 'black'."
+            },
+            {
+              "id": "u1.l3.a2.i7b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "black",
+              "targetImage": "img.color.blackSwatch",
+              "letterPool": ["b", "l", "a", "c", "k", "e", "i"],
+              "promptAudio": "vo.milo.u1.l3.spellBlack",
+              "promptTranscript": "Spell 'black'."
+            },
+            {
+              "id": "u1.l3.a2.i8a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "white",
+              "targetImage": "img.color.whiteSwatch",
+              "options": ["white", "black"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l3.spellWhite",
+              "promptTranscript": "Spell 'white'."
+            },
+            {
+              "id": "u1.l3.a2.i8b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "white",
+              "targetImage": "img.color.whiteSwatch",
+              "letterPool": ["w", "h", "i", "t", "e", "a", "o"],
+              "promptAudio": "vo.milo.u1.l3.spellWhite",
+              "promptTranscript": "Spell 'white'."
+            }
+          ]
+        },
+        {
+          "id": "u1.l3.a3",
+          "type": "sing_along",
+          "title": "Sing Along: Colors All Around",
+          "items": [
+            {
+              "id": "u1.l3.a3.i1",
+              "type": "sing_along",
+              "ageBand": "6-8",
+              "songId": "song.colorsAllAround"
+            }
+          ]
+        },
+        {
+          "id": "u1.l3.a4",
+          "type": "speak_it",
+          "title": "Speak It: Colors",
+          "items": [
+            {
+              "id": "u1.l3.a4.i1",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "red",
+              "promptAudio": "vo.milo.u1.l3.sayRed",
+              "promptTranscript": "Your turn! Say 'red'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u1.l3.a4.i2",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "blue",
+              "promptAudio": "vo.milo.u1.l3.sayBlue",
+              "promptTranscript": "Your turn! Say 'blue'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u1.l3.a4.i3",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "yellow",
+              "promptAudio": "vo.milo.u1.l3.sayYellow",
+              "promptTranscript": "Your turn! Say 'yellow'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u1.l3.a4.i4",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "green",
+              "promptAudio": "vo.milo.u1.l3.sayGreen",
+              "promptTranscript": "Your turn! Say 'green'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u1.l3.a4.i5",
+              "type": "speak_it",
+              "ageBand": "9-12",
+              "targetUtterance": "a red apple",
+              "promptAudio": "vo.milo.u1.l3.sayRedApple",
+              "promptTranscript": "Your turn! Say 'a red apple'.",
+              "attempts": 3,
+              "scoreThreshold": 0.70,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u1.l3.a4.i6",
+              "type": "speak_it",
+              "ageBand": "9-12",
+              "targetUtterance": "the blue sky",
+              "promptAudio": "vo.milo.u1.l3.sayBlueSky",
+              "promptTranscript": "Your turn! Say 'the blue sky'.",
+              "attempts": 3,
+              "scoreThreshold": 0.70,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u1.l3.a4.i7",
+              "type": "speak_it",
+              "ageBand": "9-12",
+              "targetUtterance": "yellow sun",
+              "promptAudio": "vo.milo.u1.l3.sayYellowSun",
+              "promptTranscript": "Your turn! Say 'yellow sun'.",
+              "attempts": 3,
+              "scoreThreshold": 0.70,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u1.l3.a4.i8",
+              "type": "speak_it",
+              "ageBand": "9-12",
+              "targetUtterance": "green leaf",
+              "promptAudio": "vo.milo.u1.l3.sayGreenLeaf",
+              "promptTranscript": "Your turn! Say 'green leaf'.",
+              "attempts": 3,
+              "scoreThreshold": 0.70,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u1.l4",
+      "title": "Numbers",
+      "miniTheme": "Count from 1 to 10",
+      "orderIndex": 4,
+      "vocabRefs": [
+        "vocab.one",
+        "vocab.two",
+        "vocab.three",
+        "vocab.four",
+        "vocab.five",
+        "vocab.six",
+        "vocab.seven",
+        "vocab.eight",
+        "vocab.nine",
+        "vocab.ten"
+      ],
+      "songRef": "song.countWithMe",
+      "storyRef": "story.tenLittleDucks",
+      "tprBreak": {
+        "afterActivityIndex": 2,
+        "durationSec": 60,
+        "promptText": "Jump one time! Now jump three times!"
+      },
+      "activities": [
+        {
+          "id": "u1.l4.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Number Match",
+          "items": [
+            {
+              "id": "u1.l4.a1.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.tapOne",
+              "promptTranscript": "Tap one.",
+              "options": [
+                { "imageConcept": "img.numeral.1", "isCorrect": true },
+                { "imageConcept": "img.numeral.2", "isCorrect": false }
+              ],
+              "distractorRationale": "Adjacent numeral as distractor."
+            },
+            {
+              "id": "u1.l4.a1.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.tapTwo",
+              "promptTranscript": "Tap two.",
+              "options": [
+                { "imageConcept": "img.numeral.2", "isCorrect": true },
+                { "imageConcept": "img.numeral.3", "isCorrect": false }
+              ],
+              "distractorRationale": "Adjacent numeral as distractor."
+            },
+            {
+              "id": "u1.l4.a1.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.tapThree",
+              "promptTranscript": "Tap three.",
+              "options": [
+                { "imageConcept": "img.numeral.3", "isCorrect": true },
+                { "imageConcept": "img.numeral.4", "isCorrect": false }
+              ],
+              "distractorRationale": "Adjacent numeral as distractor."
+            },
+            {
+              "id": "u1.l4.a1.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.tapFour",
+              "promptTranscript": "Tap four.",
+              "options": [
+                { "imageConcept": "img.numeral.4", "isCorrect": true },
+                { "imageConcept": "img.numeral.5", "isCorrect": false }
+              ],
+              "distractorRationale": "Adjacent numeral as distractor."
+            },
+            {
+              "id": "u1.l4.a1.i5",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.tapFive",
+              "promptTranscript": "Tap five.",
+              "options": [
+                { "imageConcept": "img.numeral.5", "isCorrect": true },
+                { "imageConcept": "img.numeral.6", "isCorrect": false }
+              ],
+              "distractorRationale": "Adjacent numeral as distractor."
+            },
+            {
+              "id": "u1.l4.a1.i6",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.tapSix",
+              "promptTranscript": "Tap six.",
+              "options": [
+                { "imageConcept": "img.numeral.6", "isCorrect": true },
+                { "imageConcept": "img.numeral.7", "isCorrect": false }
+              ],
+              "distractorRationale": "Adjacent numeral as distractor."
+            },
+            {
+              "id": "u1.l4.a1.i7",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.tapSeven",
+              "promptTranscript": "Tap seven.",
+              "options": [
+                { "imageConcept": "img.numeral.7", "isCorrect": true },
+                { "imageConcept": "img.numeral.8", "isCorrect": false }
+              ],
+              "distractorRationale": "Adjacent numeral as distractor."
+            },
+            {
+              "id": "u1.l4.a1.i8",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.tapEight",
+              "promptTranscript": "Tap eight.",
+              "options": [
+                { "imageConcept": "img.numeral.8", "isCorrect": true },
+                { "imageConcept": "img.numeral.9", "isCorrect": false }
+              ],
+              "distractorRationale": "Adjacent numeral as distractor."
+            },
+            {
+              "id": "u1.l4.a1.i9",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.tapNine",
+              "promptTranscript": "Tap nine.",
+              "options": [
+                { "imageConcept": "img.numeral.9", "isCorrect": true },
+                { "imageConcept": "img.numeral.10", "isCorrect": false }
+              ],
+              "distractorRationale": "Adjacent numeral as distractor."
+            },
+            {
+              "id": "u1.l4.a1.i10",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.tapTen",
+              "promptTranscript": "Tap ten.",
+              "options": [
+                { "imageConcept": "img.numeral.10", "isCorrect": true },
+                { "imageConcept": "img.numeral.9", "isCorrect": false }
+              ],
+              "distractorRationale": "Adjacent numeral as distractor."
+            }
+          ]
+        },
+        {
+          "id": "u1.l4.a2",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Counting",
+          "items": [
+            {
+              "id": "u1.l4.a2.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.countOne",
+              "promptTranscript": "Tap one duck.",
+              "options": [
+                { "imageConcept": "img.count.ducks.1", "isCorrect": true },
+                { "imageConcept": "img.count.ducks.2", "isCorrect": false }
+              ],
+              "distractorRationale": "Close-by numbers as distractors (1 vs 2) to train counting precision."
+            },
+            {
+              "id": "u1.l4.a2.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.countTwo",
+              "promptTranscript": "Tap two ducks.",
+              "options": [
+                { "imageConcept": "img.count.ducks.2", "isCorrect": true },
+                { "imageConcept": "img.count.ducks.3", "isCorrect": false }
+              ],
+              "distractorRationale": "Close-by numbers as distractors (2 vs 3) to train counting precision."
+            },
+            {
+              "id": "u1.l4.a2.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.countThree",
+              "promptTranscript": "Tap three ducks.",
+              "options": [
+                { "imageConcept": "img.count.ducks.3", "isCorrect": true },
+                { "imageConcept": "img.count.ducks.4", "isCorrect": false }
+              ],
+              "distractorRationale": "Close-by numbers as distractors (3 vs 4) to train counting precision."
+            },
+            {
+              "id": "u1.l4.a2.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.countFour",
+              "promptTranscript": "Tap four ducks.",
+              "options": [
+                { "imageConcept": "img.count.ducks.4", "isCorrect": true },
+                { "imageConcept": "img.count.ducks.5", "isCorrect": false }
+              ],
+              "distractorRationale": "Close-by numbers as distractors (4 vs 5) to train counting precision."
+            },
+            {
+              "id": "u1.l4.a2.i5",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.countFive",
+              "promptTranscript": "Tap five ducks.",
+              "options": [
+                { "imageConcept": "img.count.ducks.5", "isCorrect": true },
+                { "imageConcept": "img.count.ducks.6", "isCorrect": false }
+              ],
+              "distractorRationale": "Close-by numbers as distractors (5 vs 6) to train counting precision."
+            },
+            {
+              "id": "u1.l4.a2.i6",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.countSix",
+              "promptTranscript": "Tap six ducks.",
+              "options": [
+                { "imageConcept": "img.count.ducks.6", "isCorrect": true },
+                { "imageConcept": "img.count.ducks.7", "isCorrect": false }
+              ],
+              "distractorRationale": "Close-by numbers as distractors (6 vs 7) to train counting precision."
+            },
+            {
+              "id": "u1.l4.a2.i7",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.countSeven",
+              "promptTranscript": "Tap seven ducks.",
+              "options": [
+                { "imageConcept": "img.count.ducks.7", "isCorrect": true },
+                { "imageConcept": "img.count.ducks.8", "isCorrect": false }
+              ],
+              "distractorRationale": "Close-by numbers as distractors (7 vs 8) to train counting precision."
+            },
+            {
+              "id": "u1.l4.a2.i8",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.countEight",
+              "promptTranscript": "Tap eight ducks.",
+              "options": [
+                { "imageConcept": "img.count.ducks.8", "isCorrect": true },
+                { "imageConcept": "img.count.ducks.9", "isCorrect": false }
+              ],
+              "distractorRationale": "Close-by numbers as distractors (8 vs 9) to train counting precision."
+            },
+            {
+              "id": "u1.l4.a2.i9",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.countNine",
+              "promptTranscript": "Tap nine ducks.",
+              "options": [
+                { "imageConcept": "img.count.ducks.9", "isCorrect": true },
+                { "imageConcept": "img.count.ducks.10", "isCorrect": false }
+              ],
+              "distractorRationale": "Close-by numbers as distractors (9 vs 10) to train counting precision."
+            },
+            {
+              "id": "u1.l4.a2.i10",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u1.l4.countTen",
+              "promptTranscript": "Tap ten ducks.",
+              "options": [
+                { "imageConcept": "img.count.ducks.10", "isCorrect": true },
+                { "imageConcept": "img.count.ducks.9", "isCorrect": false }
+              ],
+              "distractorRationale": "Close-by numbers as distractors (10 vs 9) to train counting precision."
+            }
+          ]
+        },
+        {
+          "id": "u1.l4.a3",
+          "type": "sing_along",
+          "title": "Sing Along: Count With Me",
+          "items": [
+            {
+              "id": "u1.l4.a3.i1",
+              "type": "sing_along",
+              "ageBand": "6-8",
+              "songId": "song.countWithMe"
+            }
+          ]
+        },
+        {
+          "id": "u1.l4.a4",
+          "type": "word_builder",
+          "title": "Word Builder: Numbers",
+          "items": [
+            {
+              "id": "u1.l4.a4.i1a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "one",
+              "targetImage": "img.numeral.1",
+              "options": ["one", "two"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l4.spellOne",
+              "promptTranscript": "Spell 'one'."
+            },
+            {
+              "id": "u1.l4.a4.i1b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "one",
+              "targetImage": "img.numeral.1",
+              "letterPool": ["o", "n", "e", "a", "i"],
+              "promptAudio": "vo.milo.u1.l4.spellOne",
+              "promptTranscript": "Spell 'one'."
+            },
+            {
+              "id": "u1.l4.a4.i2a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "two",
+              "targetImage": "img.numeral.2",
+              "options": ["two", "three"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l4.spellTwo",
+              "promptTranscript": "Spell 'two'."
+            },
+            {
+              "id": "u1.l4.a4.i2b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "two",
+              "targetImage": "img.numeral.2",
+              "letterPool": ["t", "w", "o", "a", "e"],
+              "promptAudio": "vo.milo.u1.l4.spellTwo",
+              "promptTranscript": "Spell 'two'."
+            },
+            {
+              "id": "u1.l4.a4.i3a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "three",
+              "targetImage": "img.numeral.3",
+              "options": ["three", "four"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l4.spellThree",
+              "promptTranscript": "Spell 'three'."
+            },
+            {
+              "id": "u1.l4.a4.i3b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "three",
+              "targetImage": "img.numeral.3",
+              "letterPool": ["t", "h", "r", "e", "e", "a", "i"],
+              "promptAudio": "vo.milo.u1.l4.spellThree",
+              "promptTranscript": "Spell 'three'."
+            },
+            {
+              "id": "u1.l4.a4.i4a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "four",
+              "targetImage": "img.numeral.4",
+              "options": ["four", "five"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l4.spellFour",
+              "promptTranscript": "Spell 'four'."
+            },
+            {
+              "id": "u1.l4.a4.i4b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "four",
+              "targetImage": "img.numeral.4",
+              "letterPool": ["f", "o", "u", "r", "a", "e"],
+              "promptAudio": "vo.milo.u1.l4.spellFour",
+              "promptTranscript": "Spell 'four'."
+            },
+            {
+              "id": "u1.l4.a4.i5a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "five",
+              "targetImage": "img.numeral.5",
+              "options": ["five", "six"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l4.spellFive",
+              "promptTranscript": "Spell 'five'."
+            },
+            {
+              "id": "u1.l4.a4.i5b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "five",
+              "targetImage": "img.numeral.5",
+              "letterPool": ["f", "i", "v", "e", "a", "o"],
+              "promptAudio": "vo.milo.u1.l4.spellFive",
+              "promptTranscript": "Spell 'five'."
+            },
+            {
+              "id": "u1.l4.a4.i6a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "six",
+              "targetImage": "img.numeral.6",
+              "options": ["six", "seven"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l4.spellSix",
+              "promptTranscript": "Spell 'six'."
+            },
+            {
+              "id": "u1.l4.a4.i6b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "six",
+              "targetImage": "img.numeral.6",
+              "letterPool": ["s", "i", "x", "a", "e"],
+              "promptAudio": "vo.milo.u1.l4.spellSix",
+              "promptTranscript": "Spell 'six'."
+            },
+            {
+              "id": "u1.l4.a4.i7a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "seven",
+              "targetImage": "img.numeral.7",
+              "options": ["seven", "eight"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l4.spellSeven",
+              "promptTranscript": "Spell 'seven'."
+            },
+            {
+              "id": "u1.l4.a4.i7b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "seven",
+              "targetImage": "img.numeral.7",
+              "letterPool": ["s", "e", "v", "e", "n", "a", "i"],
+              "promptAudio": "vo.milo.u1.l4.spellSeven",
+              "promptTranscript": "Spell 'seven'."
+            },
+            {
+              "id": "u1.l4.a4.i8a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "eight",
+              "targetImage": "img.numeral.8",
+              "options": ["eight", "nine"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l4.spellEight",
+              "promptTranscript": "Spell 'eight'."
+            },
+            {
+              "id": "u1.l4.a4.i8b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "eight",
+              "targetImage": "img.numeral.8",
+              "letterPool": ["e", "i", "g", "h", "t", "a", "o"],
+              "promptAudio": "vo.milo.u1.l4.spellEight",
+              "promptTranscript": "Spell 'eight'."
+            },
+            {
+              "id": "u1.l4.a4.i9a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "nine",
+              "targetImage": "img.numeral.9",
+              "options": ["nine", "ten"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l4.spellNine",
+              "promptTranscript": "Spell 'nine'."
+            },
+            {
+              "id": "u1.l4.a4.i9b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "nine",
+              "targetImage": "img.numeral.9",
+              "letterPool": ["n", "i", "n", "e", "a", "o"],
+              "promptAudio": "vo.milo.u1.l4.spellNine",
+              "promptTranscript": "Spell 'nine'."
+            },
+            {
+              "id": "u1.l4.a4.i10a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "ten",
+              "targetImage": "img.numeral.10",
+              "options": ["ten", "one"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u1.l4.spellTen",
+              "promptTranscript": "Spell 'ten'."
+            },
+            {
+              "id": "u1.l4.a4.i10b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "ten",
+              "targetImage": "img.numeral.10",
+              "letterPool": ["t", "e", "n", "a", "o"],
+              "promptAudio": "vo.milo.u1.l4.spellTen",
+              "promptTranscript": "Spell 'ten'."
+            }
+          ]
+        },
+        {
+          "id": "u1.l4.a5",
+          "type": "story_time",
+          "title": "Story: Ten Little Ducks",
+          "items": [
+            {
+              "id": "u1.l4.a5.i1",
+              "type": "story_time",
+              "ageBand": "6-8",
+              "storyId": "story.tenLittleDucks",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.tenLittleDucks.p1",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p1",
+                  "narrationText": "Ten little ducklings live by the pond.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 3, "vocabRef": "vocab.ten" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.tenLittleDucks.p2",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p2",
+                  "narrationText": "One, two, three jump in first.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 3, "vocabRef": "vocab.one" },
+                    { "wordStart": 5, "wordEnd": 8, "vocabRef": "vocab.two" },
+                    { "wordStart": 10, "wordEnd": 15, "vocabRef": "vocab.three" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.tenLittleDucks.p3",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p3",
+                  "narrationText": "Four, five, six paddle along.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 4, "vocabRef": "vocab.four" },
+                    { "wordStart": 6, "wordEnd": 10, "vocabRef": "vocab.five" },
+                    { "wordStart": 12, "wordEnd": 15, "vocabRef": "vocab.six" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.tenLittleDucks.p4",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p4",
+                  "narrationText": "Seven, eight, nine glide so smooth.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 5, "vocabRef": "vocab.seven" },
+                    { "wordStart": 7, "wordEnd": 12, "vocabRef": "vocab.eight" },
+                    { "wordStart": 14, "wordEnd": 18, "vocabRef": "vocab.nine" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p5",
+                  "imageConcept": "img.story.tenLittleDucks.p5",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p5",
+                  "narrationText": "Ten little ducklings swim together.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 3, "vocabRef": "vocab.ten" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p6",
+                  "imageConcept": "img.story.tenLittleDucks.p6",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p6",
+                  "narrationText": "Mommy duck smiles. What a happy pond!",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 5, "vocabRef": "vocab.mommy" }
+                  ],
+                  "duration": 4.5
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.tenLittleDucks.q1",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "6-8",
+                  "promptAudio": "vo.milo.story.tenLittleDucks.q1",
+                  "promptTranscript": "How many ducks?",
+                  "items": ["Ten", "Five"],
+                  "correctIndex": 0
+                }
+              ]
+            },
+            {
+              "id": "u1.l4.a5.i2",
+              "type": "story_time",
+              "ageBand": "9-12",
+              "storyId": "story.tenLittleDucks",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.tenLittleDucks.p1",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p1",
+                  "narrationText": "Ten little ducklings live by the pond.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 3, "vocabRef": "vocab.ten" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.tenLittleDucks.p2",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p2",
+                  "narrationText": "One, two, three jump in first.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 3, "vocabRef": "vocab.one" },
+                    { "wordStart": 5, "wordEnd": 8, "vocabRef": "vocab.two" },
+                    { "wordStart": 10, "wordEnd": 15, "vocabRef": "vocab.three" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.tenLittleDucks.p3",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p3",
+                  "narrationText": "Four, five, six paddle along.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 4, "vocabRef": "vocab.four" },
+                    { "wordStart": 6, "wordEnd": 10, "vocabRef": "vocab.five" },
+                    { "wordStart": 12, "wordEnd": 15, "vocabRef": "vocab.six" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.tenLittleDucks.p4",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p4",
+                  "narrationText": "Seven, eight, nine glide so smooth.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 5, "vocabRef": "vocab.seven" },
+                    { "wordStart": 7, "wordEnd": 12, "vocabRef": "vocab.eight" },
+                    { "wordStart": 14, "wordEnd": 18, "vocabRef": "vocab.nine" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p5",
+                  "imageConcept": "img.story.tenLittleDucks.p5",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p5",
+                  "narrationText": "Ten little ducklings swim together.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 3, "vocabRef": "vocab.ten" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p6",
+                  "imageConcept": "img.story.tenLittleDucks.p6",
+                  "narrationAudio": "vo.milo.story.tenLittleDucks.p6",
+                  "narrationText": "Mommy duck smiles. What a happy pond!",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 5, "vocabRef": "vocab.mommy" }
+                  ],
+                  "duration": 4.5
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.tenLittleDucks.q1.912",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.tenLittleDucks.q1",
+                  "promptTranscript": "How many ducks are in the pond?",
+                  "items": ["Ten", "Five", "Three"],
+                  "correctIndex": 0
+                },
+                {
+                  "id": "story.tenLittleDucks.q2.912",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.tenLittleDucks.q2",
+                  "promptTranscript": "Which ducklings jumped in first?",
+                  "items": ["One, two, three", "Eight, nine, ten", "Four, five, six"],
+                  "correctIndex": 0
+                },
+                {
+                  "id": "story.tenLittleDucks.q3.912",
+                  "type": "story_question",
+                  "questionType": "sequencing",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.tenLittleDucks.q3",
+                  "promptTranscript": "Put the ducklings in the order they joined the swim.",
+                  "items": [
+                    "One, two, three",
+                    "Four, five, six",
+                    "Seven, eight, nine",
+                    "All ten together"
+                  ],
+                  "correctOrder": [0, 1, 2, 3]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

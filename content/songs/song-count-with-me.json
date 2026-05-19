@@ -1,0 +1,31 @@
+{
+  "id": "song.countWithMe",
+  "title": "Count With Me",
+  "lrc": "[00:00.00]One little duckling, two little ducklings,\n[00:04.00]Three little, four little, five little ducklings,\n[00:08.00]Six little, seven little, eight little ducklings,\n[00:12.00]Nine, ten ducklings in the pond!\n[00:16.00]Count with me, one to ten,\n[00:20.00]Count with me, then again!\n[00:24.00]One, two, three, four, five,\n[00:28.00]Six, seven, eight, nine, ten — alive!\n",
+  "audioRef": "mus.countWithMe",
+  "targetVocabRefs": [
+    "vocab.one",
+    "vocab.two",
+    "vocab.three",
+    "vocab.four",
+    "vocab.five",
+    "vocab.six",
+    "vocab.seven",
+    "vocab.eight",
+    "vocab.nine",
+    "vocab.ten"
+  ],
+  "tprMoves": [
+    { "ageBand": "6-8", "move": "show_fingers_1", "cueTime": 0 },
+    { "ageBand": "6-8", "move": "show_fingers_2", "cueTime": 2.0 },
+    { "ageBand": "6-8", "move": "show_fingers_3", "cueTime": 4.0 },
+    { "ageBand": "6-8", "move": "show_fingers_4", "cueTime": 5.5 },
+    { "ageBand": "6-8", "move": "show_fingers_5", "cueTime": 7.0 },
+    { "ageBand": "6-8", "move": "show_fingers_6", "cueTime": 8.0 },
+    { "ageBand": "6-8", "move": "show_fingers_7", "cueTime": 9.5 },
+    { "ageBand": "6-8", "move": "show_fingers_8", "cueTime": 11.0 },
+    { "ageBand": "6-8", "move": "show_fingers_9", "cueTime": 12.0 },
+    { "ageBand": "6-8", "move": "show_fingers_10", "cueTime": 13.5 },
+    { "ageBand": "9-12", "move": "clap_count", "cueTime": 24.0 }
+  ]
+}

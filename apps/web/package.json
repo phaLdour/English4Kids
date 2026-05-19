@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node --import tsx ../../scripts/build-phonemes.ts",
     "build": "next build",
     "start": "next start",
     "lint": "biome lint .",

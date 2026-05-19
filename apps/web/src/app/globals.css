@@ -118,3 +118,17 @@ button {
     scroll-behavior: auto !important;
   }
 }
+
+/* Dyslexia font alt (Reading Help toggle) */
+body.font-dyslexia {
+  --font-body: var(--font-alt);
+  font-family: var(--font-alt), system-ui, sans-serif;
+}
+
+/* Manual reduced motion override */
+body.motion-reduced *,
+body.motion-reduced *::before,
+body.motion-reduced *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}

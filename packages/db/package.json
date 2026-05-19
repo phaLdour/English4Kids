@@ -1,0 +1,52 @@
+{
+  "name": "@e4k/db",
+  "version": "0.1.0",
+  "description": "English4Kids database layer: Supabase row types, Dexie local schema, settings, sync outbox.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./index": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js"
+    },
+    "./dexie": {
+      "types": "./dist/dexie.d.ts",
+      "import": "./dist/dexie.js"
+    },
+    "./supabase-client": {
+      "types": "./dist/supabase-client.d.ts",
+      "import": "./dist/supabase-client.js"
+    },
+    "./settings": {
+      "types": "./dist/settings.d.ts",
+      "import": "./dist/settings.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "dexie": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  },
+  "peerDependencies": {},
+  "sideEffects": false,
+  "license": "MIT"
+}

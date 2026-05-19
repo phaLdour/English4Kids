@@ -117,7 +117,7 @@ ML_TELEMETRY_PATTERNS=(
   'gtag\('
 )
 
-PARENT_EXEMPT_DIR='apps/web/src/app/(parent)'
+PARENT_EXEMPT_DIR='apps/web/src/app/parent'
 
 scan_hard() {
   local label="$1"

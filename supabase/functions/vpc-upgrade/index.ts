@@ -33,6 +33,7 @@
 
 import { createClient, type SupabaseClient } from 'supabase';
 import { z } from 'zod';
+import { renderEmailTemplate } from '../_shared/email-templates.ts';
 
 // ----------------------------------------------------------------------------
 // CORS
@@ -100,11 +101,162 @@ interface HandlerCtx {
   devSkipDelay: boolean;
 }
 
+// ----------------------------------------------------------------------------
+// Sprint 5 S5-4: rate limiter for /start.
+//
+// Policy: max 5 calls per parent_id per rolling 60-minute window. Above that,
+// return 429 with a `retry-after` header. The cap exists so a confused parent
+// or a malicious anonymous user cannot turn our Resend account into an open
+// spam relay against arbitrary inboxes (or, separately, blow through the
+// free tier in a few minutes).
+//
+// The window is per parent_id (Supabase anonymous-uid), not per IP — Edge
+// Functions don't get a stable client IP, and even if they did, NAT'd
+// classrooms would all share one. Per-uid is the right granularity.
+//
+// Returns:
+//   - { allowed: true } if the caller is within budget (count was bumped).
+//   - { allowed: false, retryAfterSec } if they're out of budget.
+// ----------------------------------------------------------------------------
+
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+const RATE_LIMIT_MAX_CALLS = 5;
+
+async function checkAndBumpRateLimit(
+  supabase: SupabaseClient,
+  parentId: string,
+): Promise<{ allowed: true } | { allowed: false; retryAfterSec: number }> {
+  const now = Date.now();
+  const { data: existing } = await supabase
+    .from('vpc_rate_limit')
+    .select('start_count, window_start')
+    .eq('parent_id', parentId)
+    .maybeSingle();
+
+  if (!existing) {
+    // First-ever call from this parent — seed the row with count=1.
+    const { error: insertErr } = await supabase
+      .from('vpc_rate_limit')
+      .insert({ parent_id: parentId, start_count: 1, window_start: new Date(now).toISOString() });
+    if (insertErr) {
+      // If the seed insert raced with another worker, the upsert below will
+      // pick it up on the next call. Treat as allowed to avoid false-429s.
+      return { allowed: true };
+    }
+    return { allowed: true };
+  }
+
+  const windowStartMs = new Date(existing.window_start as string).getTime();
+  const windowAgeMs = now - windowStartMs;
+
+  if (windowAgeMs >= RATE_LIMIT_WINDOW_MS) {
+    // Window expired — reset to a fresh window with count=1.
+    await supabase
+      .from('vpc_rate_limit')
+      .update({ start_count: 1, window_start: new Date(now).toISOString() })
+      .eq('parent_id', parentId);
+    return { allowed: true };
+  }
+
+  const currentCount = (existing.start_count as number) ?? 0;
+  if (currentCount >= RATE_LIMIT_MAX_CALLS) {
+    const retryAfterSec = Math.ceil(
+      (windowStartMs + RATE_LIMIT_WINDOW_MS - now) / 1000,
+    );
+    return { allowed: false, retryAfterSec: Math.max(retryAfterSec, 1) };
+  }
+
+  await supabase
+    .from('vpc_rate_limit')
+    .update({ start_count: currentCount + 1 })
+    .eq('parent_id', parentId);
+  return { allowed: true };
+}
+
+// ----------------------------------------------------------------------------
+// Sprint 5 S5-4: Resend send-or-fall-back-to-dev.
+//
+// Two paths share this function so /start and the (future) reminder cron
+// both render through the same template gate:
+//   - Production: `RESEND_API_KEY` is set and `EMAIL_DEV_MODE !== 'true'`.
+//     We POST to Resend's REST endpoint and surface a typed result.
+//   - Dev: missing key OR `EMAIL_DEV_MODE === 'true'`. We log the rendered
+//     subject + a confirmation link and return `{ delivered: 'dev-log' }`
+//     so the caller can decide whether to expose the token to the client
+//     for copy-paste.
+// ----------------------------------------------------------------------------
+
+type EmailDeliveryResult =
+  | { delivered: 'resend'; id?: string }
+  | { delivered: 'dev-log' }
+  | { delivered: 'error'; status: number; detail: string };
+
+async function sendEmail(
+  to: string,
+  rendered: { subject: string; html: string; text: string },
+): Promise<EmailDeliveryResult> {
+  const resendApiKey = Deno.env.get('RESEND_API_KEY');
+  const emailFrom = Deno.env.get('EMAIL_FROM') ?? 'noreply@english4kids.app';
+  const emailDevMode = Deno.env.get('EMAIL_DEV_MODE') === 'true';
+
+  if (!resendApiKey || emailDevMode) {
+    // Dev fallback — log the subject so engineers tailing the function
+    // can confirm a send was triggered without exposing the body.
+    console.log(`[VPC dev-mode email] to=${to} subject=${rendered.subject}`);
+    return { delivered: 'dev-log' };
+  }
+
+  try {
+    const resp = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: emailFrom,
+        to,
+        subject: rendered.subject,
+        html: rendered.html,
+        text: rendered.text,
+      }),
+    });
+    if (!resp.ok) {
+      const detail = await resp.text().catch(() => '');
+      console.error('[VPC] Resend send failed', resp.status, detail);
+      return { delivered: 'error', status: resp.status, detail };
+    }
+    const parsed = await resp.json().catch(() => ({}));
+    return { delivered: 'resend', id: (parsed as { id?: string }).id };
+  } catch (err) {
+    const detail = err instanceof Error ? err.message : String(err);
+    console.error('[VPC] Resend network error', detail);
+    return { delivered: 'error', status: 0, detail };
+  }
+}
+
 async function handleStart(req: Request, ctx: HandlerCtx): Promise<Response> {
   const body = await req.json().catch(() => null);
   const parsed = StartSchema.safeParse(body);
   if (!parsed.success) {
     return json({ error: 'invalid-body', detail: parsed.error.flatten() }, 400);
+  }
+
+  // Sprint 5 S5-4: rate-limit BEFORE generating a token or writing a pending
+  // row. If we let an attacker burn through tokens we also burn through
+  // their unique constraint and the audit-log noise.
+  const rate = await checkAndBumpRateLimit(ctx.supabase, ctx.callerId);
+  if (!rate.allowed) {
+    return json(
+      {
+        error: 'rate-limited',
+        retryAfterSec: rate.retryAfterSec,
+        message:
+          'Too many confirmation requests recently. Please wait an hour before trying again.',
+      },
+      429,
+      { 'retry-after': String(rate.retryAfterSec) },
+    );
   }
 
   const token = generateToken();
@@ -122,22 +274,51 @@ async function handleStart(req: Request, ctx: HandlerCtx): Promise<Response> {
     return json({ error: 'insert-failed', detail: error?.message }, 500);
   }
 
-  // No email provider is configured in this sandbox. Log the confirmation
-  // link so dev can copy-paste; in production the link goes via Supabase's
-  // built-in transactional email (TODO: wire to `auth.signInWithOtp` once
-  // SMTP is configured).
-  // eslint-disable-next-line no-console
-  console.log(
-    `[VPC] confirmation link: ${ctx.origin}/vpc-confirm/${token}`,
-  );
+  // Render the email and try to send it. The confirmation link points at
+  // the web origin (not the function origin) — the page at
+  // `/vpc-confirm/[token]` is where the parent lands.
+  const confirmLink = `${ctx.origin}/vpc-confirm/${token}`;
+  // Look up the parent's display_name for a friendlier greeting; RLS lets
+  // the caller read their own row. Anonymous profiles often have no name,
+  // so a fallback is essential.
+  const { data: profile } = await ctx.supabase
+    .from('profiles')
+    .select('display_name')
+    .eq('id', ctx.callerId)
+    .maybeSingle();
+  const rendered = renderEmailTemplate('vpc-first-confirmation', {
+    confirmLink,
+    parentNickname: profile?.display_name ?? undefined,
+  });
 
+  const delivery = await sendEmail(parsed.data.email, rendered);
+  // Keep dev-mode behaviour intact: log the link for `supabase functions
+  // serve` tailing, the same way the Sprint 4 implementation did.
+  console.log(`[VPC] confirmation link: ${confirmLink}`);
+
+  if (delivery.delivered === 'error') {
+    // Surface a generic message to the client — never the Resend body, which
+    // can include account-level metadata or rate-limit specifics.
+    return json(
+      {
+        error: 'email-send-failed',
+        message:
+          "We couldn't send the confirmation email. Please try again in a few minutes.",
+      },
+      502,
+    );
+  }
+
+  const emailDevMode = Deno.env.get('EMAIL_DEV_MODE') === 'true';
   return json({
-    status: 'pending',
+    status: 'awaiting-first-confirmation',
+    email: parsed.data.email,
     requestedAt: data.requested_at,
-    // We return the token in dev only — in production this MUST be removed
-    // and the parent must use the link from the email. The client UI keys
-    // off NEXT_PUBLIC_E4K_ENV to decide whether to display it.
-    devToken: token,
+    delivered: delivery.delivered,
+    // devToken is returned ONLY when EMAIL_DEV_MODE === 'true'. Production
+    // deploys must leave that env var unset; the client UI also gates on
+    // NEXT_PUBLIC_E4K_ENV !== 'production' before reading the value.
+    ...(emailDevMode ? { devToken: token } : {}),
   });
 }
 
@@ -240,6 +421,27 @@ async function handleConfirmSecond(req: Request, ctx: HandlerCtx): Promise<Respo
       { error: 'profile-upgrade-failed', detail: upgradeProfile.error.message },
       500,
     );
+  }
+
+  // Best-effort welcome email after the upgrade. A delivery failure here
+  // must NOT block the upgrade response — the profile flip already
+  // succeeded and the client still needs to drive `auth.updateUser`. We
+  // log + continue. The Supabase-side verification email is the source of
+  // truth for "did this email actually reach the parent?"; this one is a
+  // courtesy.
+  try {
+    const { data: profile } = await ctx.supabase
+      .from('profiles')
+      .select('display_name')
+      .eq('id', ctx.callerId)
+      .maybeSingle();
+    const rendered = renderEmailTemplate('vpc-upgrade-complete', {
+      parentNickname: profile?.display_name ?? undefined,
+      verifiedEmail: pending.email,
+    });
+    await sendEmail(pending.email, rendered);
+  } catch (err) {
+    console.warn('[VPC] welcome email failed (non-fatal)', err);
   }
 
   return json({

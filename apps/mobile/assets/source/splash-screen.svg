@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  English4Kids — splash screen master (2732x2732, iPad Pro 12.9").
+
+  Capacitor's SplashScreen plugin scales this down for every smaller form
+  factor. We use a square canvas so iOS + Android both crop from the centre
+  without distortion. No text (per HIG: splash is for brand recognition, not
+  copy — copy renders in the WebView once boot finishes).
+
+  Milo is shown waving — same character family as app-icon.svg, but a
+  bigger pose with one paw raised to communicate "hello".
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2732 2732" width="2732" height="2732">
+  <title>English4Kids splash — Milo waving hello</title>
+
+  <!-- Cream background. -->
+  <rect x="0" y="0" width="2732" height="2732" fill="#FFF8EE" />
+
+  <!--
+    Milo centred at (1366, 1366), scale roughly ~3x the icon.
+    Translate + scale wrapper keeps the icon's coordinate system intact.
+  -->
+  <g transform="translate(854 854) scale(2.65)">
+
+    <!-- Ears -->
+    <path d="M 80 120
+             L 160 -20
+             L 240 160
+             Z"
+          fill="#F08A4B" stroke="#1F2933" stroke-width="13" stroke-linejoin="round" />
+    <path d="M 544 120
+             L 464 -20
+             L 384 160
+             Z"
+          fill="#F08A4B" stroke="#1F2933" stroke-width="13" stroke-linejoin="round" />
+    <path d="M 120 110 L 160 30 L 210 140 Z" fill="#FFB5A7" stroke="none" />
+    <path d="M 504 110 L 464 30 L 414 140 Z" fill="#FFB5A7" stroke="none" />
+
+    <!-- Head -->
+    <path d="M 40 260
+             Q 40 160 160 160
+             Q 260 160 312 180
+             Q 364 160 464 160
+             Q 584 160 584 260
+             Q 584 420 500 520
+             Q 400 620 312 620
+             Q 224 620 124 520
+             Q 40 420 40 260 Z"
+          fill="#F08A4B" stroke="#1F2933" stroke-width="13" stroke-linejoin="round" />
+
+    <!-- White muzzle -->
+    <path d="M 180 400
+             Q 180 360 240 360
+             L 384 360
+             Q 444 360 444 400
+             Q 444 520 312 580
+             Q 180 520 180 400 Z"
+          fill="#FFFFFF" stroke="#1F2933" stroke-width="9" stroke-linejoin="round" />
+
+    <!-- Eyes -->
+    <circle cx="208" cy="300" r="14" fill="#1F2933" />
+    <circle cx="416" cy="300" r="14" fill="#1F2933" />
+    <circle cx="213" cy="295" r="4" fill="#FFFFFF" />
+    <circle cx="421" cy="295" r="4" fill="#FFFFFF" />
+
+    <!-- Nose + smile -->
+    <path d="M 288 400 L 336 400 L 312 432 Z" fill="#1F2933" stroke="#1F2933" stroke-width="6" stroke-linejoin="round" />
+    <path d="M 260 480 Q 312 520 364 480" fill="none" stroke="#1F2933" stroke-width="9" stroke-linecap="round" />
+
+    <!-- Waving paw (right side) -->
+    <g transform="translate(560 280)">
+      <path d="M 0 0
+               Q 30 -60 80 -50
+               Q 130 -40 130 20
+               Q 130 70 90 90
+               Q 40 100 0 70
+               Z"
+            fill="#F08A4B" stroke="#1F2933" stroke-width="13" stroke-linejoin="round" />
+      <!-- Paw pads -->
+      <circle cx="40" cy="40" r="6" fill="#1F2933" />
+      <circle cx="70" cy="20" r="6" fill="#1F2933" />
+      <circle cx="100" cy="40" r="6" fill="#1F2933" />
+    </g>
+
+  </g>
+</svg>

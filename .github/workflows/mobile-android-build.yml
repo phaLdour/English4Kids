@@ -1,0 +1,129 @@
+name: Mobile build (Android)
+
+# Manual dispatch only. Marked continue-on-error because release signing
+# requires a keystore that the user has not yet generated (deferred to
+# end-of-Sprint 5). When the keystore is set up, the user adds these
+# repository secrets and flips continue-on-error to false:
+#
+#   ANDROID_KEYSTORE_BASE64   – base64-encoded keystore.jks file
+#   ANDROID_KEYSTORE_PASSWORD
+#   ANDROID_KEY_ALIAS
+#   ANDROID_KEY_PASSWORD
+#
+# Until then, the job falls through to debug signing so the bundle/apk
+# artifact is still buildable (just not Play-uploadable).
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: "Gradle build type"
+        required: false
+        default: "release"
+        type: choice
+        options:
+          - release
+          - debug
+
+concurrency:
+  group: mobile-android-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "20"
+  PNPM_VERSION: "9.12.0"
+  JAVA_VERSION: "17"
+
+jobs:
+  build-android:
+    name: Build Android .aab + .apk
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build web (static export)
+        run: pnpm --filter @e4k/web build
+        env:
+          E4K_TARGET: mobile
+
+      - name: Verify static export emitted
+        run: |
+          set -e
+          if [ ! -d "apps/web/out/_next/static" ]; then
+            echo "::error::Static export missing"
+            exit 1
+          fi
+
+      - name: Generate icons (placeholder mode in CI)
+        run: node apps/mobile/scripts/generate-icons.mjs
+
+      - name: Add Android platform
+        run: pnpm --filter @e4k/mobile cap:add:android
+
+      - name: Apply post-cap-add template
+        run: bash apps/mobile/templates/android/post-cap-add.sh
+
+      - name: Capacitor sync Android
+        run: pnpm --filter @e4k/mobile exec cap sync android
+
+      - name: Decode signing keystore (if present)
+        if: env.ANDROID_KEYSTORE_BASE64 != ''
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          set -e
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > apps/mobile/android/app/keystore.jks
+          cat > apps/mobile/android/app/signing.properties <<EOF
+          storeFile=keystore.jks
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          EOF
+
+      - name: Build release bundle (.aab) + apk
+        working-directory: apps/mobile/android
+        run: |
+          chmod +x ./gradlew
+          if [ "${{ inputs.build_type }}" = "release" ]; then
+            ./gradlew bundleRelease assembleRelease --no-daemon
+          else
+            ./gradlew bundleDebug assembleDebug --no-daemon
+          fi
+
+      - name: Upload AAB + APK artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: english4kids-android-${{ github.run_number }}
+          path: |
+            apps/mobile/android/app/build/outputs/bundle/**/*.aab
+            apps/mobile/android/app/build/outputs/apk/**/*.apk
+          if-no-files-found: warn
+          retention-days: 14

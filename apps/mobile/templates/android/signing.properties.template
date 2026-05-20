@@ -1,0 +1,31 @@
+# English4Kids — Android signing properties template (Sprint 5, S5-2).
+#
+# Copy this file to `android/app/signing.properties` after `cap add android`
+# and fill in real values. The real `signing.properties` is gitignored (see
+# root .gitignore) and MUST NEVER be committed.
+#
+# How to create a keystore (one-time, before first Play upload):
+#
+#   keytool -genkey -v \
+#     -keystore apps/mobile/android/app/keystore.jks \
+#     -alias english4kids \
+#     -keyalg RSA -keysize 2048 -validity 36500
+#
+# Use a password manager to record the values — losing the keystore means
+# you can never push another update under the same listing.
+#
+# Recommended next step after generating: enable Google Play App Signing in
+# the Play Console so the upload key is separate from the signing key. That
+# way a leaked upload key is recoverable.
+#
+# -- Values --
+#
+# storeFile      Path (relative to the app module) to the keystore .jks file.
+# storePassword  Password for the keystore container.
+# keyAlias       Alias of the key inside the keystore.
+# keyPassword    Password for the key alias.
+
+# storeFile=keystore.jks
+# storePassword=REPLACE_ME
+# keyAlias=english4kids
+# keyPassword=REPLACE_ME

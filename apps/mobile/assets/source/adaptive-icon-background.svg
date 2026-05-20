@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  English4Kids — Android adaptive icon BACKGROUND layer (432x432).
+
+  Solid cream fill. Android composites the foreground on top and applies the
+  themed mask. Keeping this a flat fill (rather than a textured background)
+  makes monochrome / themed-icon rendering crisp on Android 13+.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 432 432" width="432" height="432">
+  <title>English4Kids adaptive icon background</title>
+  <rect x="0" y="0" width="432" height="432" fill="#FFF8EE" />
+</svg>

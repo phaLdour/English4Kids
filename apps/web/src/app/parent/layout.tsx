@@ -9,25 +9,31 @@
  * On every entry to a /parent route, if the flag is missing or expired we
  * re-prompt and bounce the parent back to /play if they dismiss.
  *
- * --- CSP / Analytics coordination note (Safety Officer policy) ---
+ * --- Analytics policy (Sprint 5 S5-5) ---
  * Parent routes are the ONLY routes allowed to load Plausible (cookieless,
- * EU-hosted). Child pages stay tracker-free. The sibling subagent owns the
- * global middleware that adds the Plausible CSP carve-out; for Sprint 3 MVP
- * no analytics ship yet, so we don't load any tracker script here. Do NOT
- * import or inject any tracker code from this layout — that decision lives
- * in middleware so it can be CSP-bounded.
+ * EU-hosted). Child pages stay tracker-free. We mount `<PlausibleScript />`
+ * at the TOP of this layout so it loads on the math gate itself (parent
+ * traffic still gets counted even if they bounce off without solving),
+ * but ONLY for `/parent/*` URLs.
+ *
+ * The script tag is conditional on `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` being set
+ * — until the user creates a Plausible account and wires the domain in
+ * `.env.example`, nothing actually loads. The E2E spec
+ * `tests/e2e/plausible-child-isolation.spec.ts` guarantees that no
+ * `plausible.io` request ever escapes a child-facing route.
  */
 
+import { PlausibleScript } from '@/components/PlausibleScript';
+import {
+  ParentSessionContext,
+  type ParentSessionValue,
+  useParentSessionState,
+} from '@/lib/use-parent-session';
 import { db } from '@e4k/db';
 import { ParentGate } from '@e4k/ui';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { type ReactNode, useCallback, useEffect, useState } from 'react';
-import {
-  ParentSessionContext,
-  useParentSessionState,
-  type ParentSessionValue,
-} from '@/lib/use-parent-session';
 
 interface ParentLayoutProps {
   children: ReactNode;
@@ -111,6 +117,12 @@ export default function ParentLayout({ children }: ParentLayoutProps) {
 
   return (
     <ParentSessionContext.Provider value={ctxValue}>
+      {/*
+        Plausible loads here so the math gate itself is counted as parent
+        traffic. The script only renders when NEXT_PUBLIC_PLAUSIBLE_DOMAIN
+        is set; otherwise PlausibleScript returns null and nothing ships.
+      */}
+      <PlausibleScript />
       <div className="flex min-h-dvh flex-col bg-[var(--color-surface)]">
         <header
           role="banner"

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  English4Kids — Info.plist merge template (Sprint 5, S5-1).
+
+  Capacitor's `cap add ios` generates a baseline Info.plist with the keys it
+  needs to host a WebView. This template documents the *additional* keys we
+  must merge in to ship to the App Store under the Kids category. The
+  `templates/ios/post-cap-add.sh` script applies each key idempotently via
+  `plutil -replace ...` so re-running it (e.g. after `cap update ios`) never
+  produces a corrupted plist.
+
+  Privacy invariants (Safety Officer-owned):
+    - Microphone + speech-recognition strings explain the on-device-only
+      policy in child-safe, parent-readable English.
+    - ITSAppUsesNonExemptEncryption = false. We rely only on TLS over the
+      OS-level stack; no proprietary crypto, no export-controlled code.
+    - No iCloud entitlements, no analytics SDKs, no IDFA.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- Display name shown on the home screen and in Settings. -->
+  <key>CFBundleDisplayName</key>
+  <string>English4Kids</string>
+
+  <!-- Microphone primer string. Apple rejects builds whose mic usage
+       description is vague, generic, or omits why audio is captured. -->
+  <key>NSMicrophoneUsageDescription</key>
+  <string>English4Kids needs the microphone so your child can practice saying words. Audio stays on this device and is never sent over the internet.</string>
+
+  <!-- Speech recognition primer. The community plugin uses SFSpeechRecognizer
+       in on-device mode; Apple still requires this string. -->
+  <key>NSSpeechRecognitionUsageDescription</key>
+  <string>English4Kids uses speech recognition to score pronunciation. All processing happens on this device.</string>
+
+  <!-- Export compliance: no custom cryptography beyond OS-provided TLS. -->
+  <key>ITSAppUsesNonExemptEncryption</key>
+  <false/>
+
+  <!-- Kids app: lock to portrait on phone, allow landscape on iPad so a
+       child holding the tablet sideways doesn't trigger an accidental flip
+       mid-activity. Capacitor's default allows all orientations on phone,
+       which produces a flicker during onboarding cards. -->
+  <key>UISupportedInterfaceOrientations</key>
+  <array>
+    <string>UIInterfaceOrientationPortrait</string>
+  </array>
+  <key>UISupportedInterfaceOrientations~ipad</key>
+  <array>
+    <string>UIInterfaceOrientationPortrait</string>
+    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+    <string>UIInterfaceOrientationLandscapeLeft</string>
+    <string>UIInterfaceOrientationLandscapeRight</string>
+  </array>
+
+  <!-- Force full-screen on iPad too: split-view inside a kids app encourages
+       accidental switching to other apps. -->
+  <key>UIRequiresFullScreen</key>
+  <true/>
+
+  <!-- Status bar matches the cream background (#FFF8EE) so the WebView
+       chrome blends in. Capacitor's StatusBar plugin recolours dynamically
+       at runtime; this is the launch default. -->
+  <key>UIStatusBarStyle</key>
+  <string>UIStatusBarStyleDefault</string>
+  <key>UIViewControllerBasedStatusBarAppearance</key>
+  <false/>
+
+  <!-- Background modes intentionally omitted: we don't run audio in the
+       background, don't fetch in the background, don't use VOIP. Apple's
+       Kids category reviewers reject background audio without strong
+       justification. -->
+
+  <!-- Privacy nutrition is declared in App Store Connect (see
+       apps/mobile/store-listing/README.md); no plist key required. -->
+</dict>
+</plist>

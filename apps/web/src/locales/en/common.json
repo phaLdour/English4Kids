@@ -476,7 +476,26 @@
     "processing": "..."
   },
   "privacy": {
-    "translationPending": "This privacy policy is currently available in English only. A reviewed Turkish translation is coming."
+    "translationPending": "This privacy policy is currently available in English only. A reviewed Turkish translation is coming.",
+    "title": "Privacy Policy",
+    "kidSummary": "English4Kids never sends your voice over the internet. Your nickname stays on your device. Your grown-up can see what you learned, but no one else.",
+    "section": {
+      "dataController": "Data Controller",
+      "dataInventory": "What We Collect",
+      "microphone": "Microphone Policy",
+      "cloudSync": "Cloud Sync & Email Verification",
+      "email": "Email",
+      "sentry": "Error Logging",
+      "plausible": "Parent Dashboard Analytics",
+      "cookies": "Cookies & Storage",
+      "rights": "Your Rights",
+      "retention": "Data Retention",
+      "contact": "Contact",
+      "changeLog": "Change Log"
+    },
+    "banner": {
+      "translationPending": "This privacy policy is currently available in English only. A reviewed Turkish translation is coming."
+    }
   },
   "install": {
     "title": "Want to keep playing offline?",

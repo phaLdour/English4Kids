@@ -1,0 +1,117 @@
+// English4Kids — app/build.gradle merge template (Sprint 5, S5-2).
+//
+// Capacitor scaffolds android/app/build.gradle on `cap add android`. This
+// template documents the override block the post-cap-add.sh script splices
+// in. Keep it minimal: the user should not need to hand-edit this file.
+
+apply plugin: 'com.android.application'
+
+android {
+    namespace "app.english4kids"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "app.english4kids"
+        minSdk 26          // Android 8.0 — covers the kid-tablet long tail.
+        targetSdk 34       // Required by Play Store as of August 2024.
+        versionCode 1      // INCREMENT every Play upload. CI replaces this.
+        versionName "0.1.0"
+
+        // Vector drawables compatibility on minSdk 26+ is fine without
+        // support library; explicitly disable the legacy flag.
+        vectorDrawables.useSupportLibrary = false
+    }
+
+    // -------------------------------------------------------------------
+    // Signing
+    // -------------------------------------------------------------------
+    //
+    // Reads keystore credentials from `signing.properties` (gitignored).
+    // The user creates that file from `signing.properties.template`. If the
+    // file is missing (CI without secrets, local dev without a release key),
+    // we fall through to debug signing and emit a warning instead of failing
+    // the build — this lets the pipeline shape stay valid even before the
+    // user generates a keystore.
+    def signingPropsFile = rootProject.file("app/signing.properties")
+    def signingProps = new Properties()
+    if (signingPropsFile.exists()) {
+        signingProps.load(new FileInputStream(signingPropsFile))
+    }
+
+    signingConfigs {
+        release {
+            if (signingPropsFile.exists() && signingProps["storeFile"]) {
+                storeFile file(signingProps["storeFile"])
+                storePassword signingProps["storePassword"]
+                keyAlias signingProps["keyAlias"]
+                keyPassword signingProps["keyPassword"]
+            } else {
+                println "WARN: signing.properties missing — release build will use debug signing. Create it from templates/android/signing.properties.template before uploading to Play."
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            // Debug builds keep symbols + disable R8 for faster iteration.
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+
+    // Generate an AAB for Play Store + an APK for sideload-test convenience.
+    bundle {
+        language { enableSplit = true }
+        density  { enableSplit = true }
+        abi      { enableSplit = true }
+    }
+
+    packagingOptions {
+        // whisper.wasm ships its own .so files inside the WebView's asset
+        // bundle; tell Gradle not to compress them (faster cold start).
+        jniLibs {
+            useLegacyPackaging = false
+        }
+        resources {
+            excludes += ["META-INF/DEPENDENCIES", "META-INF/LICENSE*", "META-INF/NOTICE*"]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+repositories {
+    flatDir { dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs' }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    // No google-services.json: expected. We don't use Firebase.
+}

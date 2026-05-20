@@ -35,10 +35,11 @@
  * fully local-first per Safety Officer policy.
  */
 
+import { track } from '@/lib/plausible-events';
+import { useVpcUpgrade } from '@/lib/use-vpc-upgrade';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useVpcUpgrade } from '@/lib/use-vpc-upgrade';
 
 type Step =
   | 'email'
@@ -73,6 +74,7 @@ export default function AccountUpgradePage() {
     const r = await vpc.confirmFirst(token);
     if (r.status === 'awaiting-second-confirmation') {
       setSecondAvailableAt(r.secondConfirmAvailableAt ?? null);
+      track('parent_vpc_first_confirm');
       setStep('wait');
     }
   };
@@ -94,6 +96,7 @@ export default function AccountUpgradePage() {
     e.preventDefault();
     const r = await vpc.confirmSecond(token);
     if (r.status === 'upgraded') {
+      track('parent_vpc_complete');
       if (!email) {
         setLinkError('email-state-lost');
         setStep('email');
@@ -149,9 +152,7 @@ export default function AccountUpgradePage() {
         >
           {t('parent.accountTitle')}
         </h1>
-        <p className="text-base text-[var(--color-ink)]">
-          {t('parent.accountIntro')}
-        </p>
+        <p className="text-base text-[var(--color-ink)]">{t('parent.accountIntro')}</p>
 
         <ol
           aria-label={t('parent.accountStepsAria')}
@@ -160,18 +161,10 @@ export default function AccountUpgradePage() {
         >
           <li data-active={step === 'email' || undefined}>{t('parent.accountStep1')}</li>
           <li data-active={step === 'first-confirm' || undefined}>{t('parent.accountStep2')}</li>
-          <li
-            data-active={
-              step === 'wait' || step === 'second-confirm' || undefined
-            }
-          >
+          <li data-active={step === 'wait' || step === 'second-confirm' || undefined}>
             {t('parent.accountStep3')}
           </li>
-          <li
-            data-active={
-              step === 'awaiting-supabase-verify' || step === 'done' || undefined
-            }
-          >
+          <li data-active={step === 'awaiting-supabase-verify' || step === 'done' || undefined}>
             {t('parent.accountStep4')}
           </li>
         </ol>
@@ -194,7 +187,7 @@ export default function AccountUpgradePage() {
             <button
               type="submit"
               disabled={vpc.busy}
-              className="self-start rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-10)] py-[var(--space-4)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] disabled:opacity-60"
+              className="plausible-event-name=parent_vpc_request self-start rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-10)] py-[var(--space-4)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] disabled:opacity-60"
               style={{ minHeight: 'var(--tap-primary-old)', fontFamily: 'var(--font-display)' }}
             >
               {vpc.busy ? t('parent.accountSending') : t('parent.accountSendBtn')}
@@ -204,9 +197,7 @@ export default function AccountUpgradePage() {
 
         {step === 'first-confirm' && (
           <form onSubmit={onConfirmFirst} className="flex flex-col gap-[var(--space-3)]">
-            <p className="text-sm text-[var(--color-ink)]">
-              {t('parent.accountFirstConfirm')}
-            </p>
+            <p className="text-sm text-[var(--color-ink)]">{t('parent.accountFirstConfirm')}</p>
             {devToken && (
               <p className="rounded-[var(--radius-md)] bg-[var(--color-surface)] p-[var(--space-3)] text-xs text-[var(--color-mist)]">
                 {t('parent.accountDevToken', { token: devToken })}
@@ -237,12 +228,12 @@ export default function AccountUpgradePage() {
 
         {step === 'wait' && (
           <div className="flex flex-col gap-[var(--space-3)]">
-            <p className="text-base text-[var(--color-ink)]">
-              {t('parent.accountWaitBody')}
-            </p>
+            <p className="text-base text-[var(--color-ink)]">{t('parent.accountWaitBody')}</p>
             {secondAvailableAt && (
               <p className="text-sm text-[var(--color-mist)]">
-                {t('parent.accountWaitAvailable', { date: new Date(secondAvailableAt).toLocaleString() })}
+                {t('parent.accountWaitAvailable', {
+                  date: new Date(secondAvailableAt).toLocaleString(),
+                })}
               </p>
             )}
             <button
@@ -288,9 +279,7 @@ export default function AccountUpgradePage() {
             data-testid="awaiting-supabase-verify"
             className="flex flex-col gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface)] p-[var(--space-3)] text-[var(--color-ink)]"
           >
-            <p className="text-base">
-              {t('parent.accountAwaitingBody', { email })}
-            </p>
+            <p className="text-base">{t('parent.accountAwaitingBody', { email })}</p>
             <button
               type="button"
               onClick={() => setStep('done')}

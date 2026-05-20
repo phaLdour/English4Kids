@@ -476,7 +476,26 @@
     "processing": "..."
   },
   "privacy": {
-    "translationPending": "Bu gizlilik politikası şu anda yalnızca İngilizce olarak mevcuttur. Onaylı Türkçe çevirisi yakında gelecek."
+    "translationPending": "Bu gizlilik politikası şu anda yalnızca İngilizce olarak mevcuttur. Onaylı Türkçe çevirisi yakında gelecek.",
+    "title": "Gizlilik Politikası",
+    "kidSummary": "English4Kids sesini asla internete göndermez. Takma adın cihazında kalır. Yetişkinin ne öğrendiğini görebilir, ama başka kimse göremez.",
+    "section": {
+      "dataController": "Veri Sorumlusu",
+      "dataInventory": "Topladığımız Veriler",
+      "microphone": "Mikrofon Politikası",
+      "cloudSync": "Bulut Senkronizasyonu ve E-posta Doğrulama",
+      "email": "E-posta",
+      "sentry": "Hata Kaydı",
+      "plausible": "Ebeveyn Paneli Analitiği",
+      "cookies": "Çerezler ve Yerel Depolama",
+      "rights": "Haklarınız",
+      "retention": "Veri Saklama",
+      "contact": "İletişim",
+      "changeLog": "Değişiklik Kaydı"
+    },
+    "banner": {
+      "translationPending": "Bu gizlilik politikası şu anda yalnızca İngilizce olarak mevcuttur. Onaylı Türkçe çevirisi yakında gelecek."
+    }
   },
   "install": {
     "title": "Çevrimdışı oynamaya devam etmek ister misiniz?",

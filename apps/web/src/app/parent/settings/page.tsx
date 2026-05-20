@@ -14,13 +14,14 @@
  * player; we never panic the child.
  */
 
-import { getSetting, setSetting, type MicEngine } from '@e4k/db';
+import { StrictnessControl } from '@/components/parent/StrictnessControl';
+import { track } from '@/lib/plausible-events';
+import { loadWhisper } from '@/lib/whisper-loader';
+import { type MicEngine, getSetting, setSetting } from '@e4k/db';
 import { ToggleRow } from '@e4k/ui';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useId, useState } from 'react';
-import { StrictnessControl } from '@/components/parent/StrictnessControl';
-import { loadWhisper } from '@/lib/whisper-loader';
 
 const DEFAULT_LIMIT_6_8 = 20;
 const DEFAULT_LIMIT_9_12 = 30;
@@ -168,6 +169,8 @@ export default function ParentSettingsPage() {
         'mic.enabled',
         next ? t('parent.settingsMicEnabledAnnounce') : t('parent.settingsMicDisabledAnnounce'),
       );
+      // Only fire on ON — we want to count opt-ins, not opt-outs.
+      if (next) track('parent_mic_enable');
     },
     [persist, t],
   );
@@ -178,7 +181,9 @@ export default function ParentSettingsPage() {
         'micEngine',
         next,
         'mic.engine',
-        next === 'whisper-offline' ? t('settings.announceEngineOffline') : t('settings.announceEngineDefault'),
+        next === 'whisper-offline'
+          ? t('settings.announceEngineOffline')
+          : t('settings.announceEngineDefault'),
       );
       if (next === 'whisper-offline') {
         setWhisperStatus(t('parent.settingsEnginePreparing'));
@@ -187,7 +192,9 @@ export default function ParentSettingsPage() {
             if (p.status === 'loading') {
               setWhisperStatus(
                 p.bytesTotal > 0
-                  ? t('parent.settingsEngineDownloading', { pct: Math.round((p.bytesLoaded / p.bytesTotal) * 100) })
+                  ? t('parent.settingsEngineDownloading', {
+                      pct: Math.round((p.bytesLoaded / p.bytesTotal) * 100),
+                    })
                   : t('parent.settingsEngineDownloadingFallback'),
               );
             } else if (p.status === 'ready') {
@@ -224,11 +231,7 @@ export default function ParentSettingsPage() {
     async (next: boolean): Promise<void> => {
       // We check browser permission only; we do NOT subscribe to a push service
       // in MVP. PushManager.subscribe is deferred until Phase 2.
-      if (
-        next &&
-        typeof window !== 'undefined' &&
-        typeof window.Notification !== 'undefined'
-      ) {
+      if (next && typeof window !== 'undefined' && typeof window.Notification !== 'undefined') {
         try {
           const perm = await window.Notification.requestPermission();
           if (perm !== 'granted') {
@@ -320,11 +323,7 @@ export default function ParentSettingsPage() {
                 />
               </RadioGroup.Root>
               {whisperStatus ? (
-                <p
-                  role="status"
-                  aria-live="polite"
-                  className="text-sm text-[var(--color-mist)]"
-                >
+                <p role="status" aria-live="polite" className="text-sm text-[var(--color-mist)]">
                   {whisperStatus}
                 </p>
               ) : null}
@@ -355,9 +354,7 @@ export default function ParentSettingsPage() {
                 className="rounded-[var(--radius-md)] bg-[var(--color-surface)] px-[var(--space-3)] py-[var(--space-3)] text-base text-[var(--color-ink)]"
                 style={{ minHeight: '48px', fontFamily: 'var(--font-mono)' }}
               />
-              <p className="text-sm text-[var(--color-mist)]">
-                {t('parent.settingsLimitNote')}
-              </p>
+              <p className="text-sm text-[var(--color-mist)]">{t('parent.settingsLimitNote')}</p>
             </div>
           </Section>
 

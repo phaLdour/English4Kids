@@ -48,6 +48,29 @@ CI's `provenance-check` job fails any PR that adds an asset without a row in `PR
 
 The marketing surface (`apps/web/src/app/(marketing)/**`) may carry a privacy-respecting analytics (Plausible, self-hosted) — that decision is deferred and would have its own ADR.
 
+## Plausible — parent-only analytics (Sprint 5 S5-5)
+
+Plausible Analytics is loaded **only** from `apps/web/src/app/parent/layout.tsx` via the `PlausibleScript` component, and only when `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set. The E2E spec `tests/e2e/plausible-child-isolation.spec.ts` asserts that no `plausible.io` script tag or request ever appears on `/play`, `/play/[unitId]`, `/play/[unitId]/lesson/[lessonId]`, `/garden`, or `/onboarding`.
+
+- **Cookieless.** Plausible does not set cookies, so no consent banner is required (still disclosed in `/privacy`).
+- **No PII captured.** Only the parent's URL, referrer, and user agent reach Plausible. Plausible itself hashes IPs and discards them daily.
+- **Routes covered.** `/parent` and every nested parent route. The math gate page itself is included so we can measure parent traffic that bounces before solving.
+- **Custom events.**
+  - `parent_vpc_request` — parent submits the email to start the VPC upgrade (declarative, `plausible-event-name=` className on the Send button).
+  - `parent_vpc_first_confirm` — first email link confirmed (programmatic, `track('parent_vpc_first_confirm')` in `apps/web/src/app/parent/account/page.tsx`).
+  - `parent_vpc_complete` — second confirmation completed, profile flipped to non-anonymous (programmatic).
+  - `parent_export` — parent downloaded the JSON export (declarative).
+  - `parent_delete_request` — parent scheduled the 7-day grace deletion (declarative).
+  - `parent_mic_enable` — parent toggled the microphone ON (programmatic, only on ON, not OFF).
+  - `parent_sync_enable` — reserved for a future explicit sync toggle; not actively fired in Sprint 5 because sync auto-activates after `parent_vpc_complete`.
+- **No cross-site tracking.** Plausible does not share data with other Plausible-using sites.
+- **Data residency.** Plausible Cloud is EU-hosted by default (operated from Germany).
+- **Disclosure.** Plausible is listed in the production privacy policy v1.0 under section 7 "Parent Dashboard Analytics".
+
+### Operator follow-up
+
+The user owns the Plausible account creation and domain configuration. Sprint 5 leaves the codebase ready: set `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` in `.env.example` and Plausible activates on the next build with no further code changes. The sibling middleware subagent owns the CSP carve-out for `script-src https://plausible.io` and `connect-src https://plausible.io` on `/parent/*` headers.
+
 ## EU specifics
 
 - Region-pinned Supabase deployment for EU users (Frankfurt) when sync activates.

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  English4Kids — AndroidManifest merge template (Sprint 5, S5-2).
+
+  Capacitor's `cap add android` writes a baseline AndroidManifest.xml. This
+  template documents the keys that the post-cap-add.sh script merges into
+  that file. Each merge is idempotent (the script greps for existing entries
+  before inserting).
+
+  Designed-for-Families (Google Play) constraints:
+    - INTERNET is required (Capacitor WebView + Supabase optional sync).
+    - RECORD_AUDIO is required and explained at runtime via the in-app primer
+      (MicIndicator + onboarding).
+    - No ACCESS_FINE_LOCATION, no READ_CONTACTS, no READ_PHONE_STATE — Play
+      Console will reject Designed-for-Families apps that request them.
+    - No ad SDKs, no ADVERTISING_ID permission (targetSdk 33+ requires
+      explicit declaration; we explicitly do NOT request it).
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+  <!-- Mic + speech recognition. Audio is on-device only (community
+       SpeechRecognition plugin routes to Android's SpeechRecognizer API). -->
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+  <!-- Network access for the WebView + optional Supabase sync. -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+  <!-- Mic feature flag; `required=true` keeps low-end devices without a mic
+       out of the Play Store listing (rare on tablets, common on emulators). -->
+  <uses-feature android:name="android.hardware.microphone" android:required="true" />
+
+  <!-- Explicit non-requests: declare absence so the Play Console reviewer
+       sees we deliberately chose not to use these surfaces. -->
+  <uses-feature android:name="android.hardware.location" android:required="false" />
+  <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+  <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+  <application
+      android:label="English4Kids"
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:theme="@style/AppTheme"
+      android:largeHeap="true"
+      android:supportsRtl="true"
+      android:allowBackup="false"
+      android:fullBackupContent="false"
+      android:dataExtractionRules="@xml/data_extraction_rules"
+      tools:targetApi="33">
+
+    <!-- largeHeap=true: whisper.wasm runtime needs ~300MB headroom on
+         tablet builds; default heap (~192MB on many devices) OOMs on
+         model load. ADR 0002 covers the rationale.
+         allowBackup=false: prevents Android's auto-backup from copying
+         Dexie storage to Google Drive (we don't want child progress in
+         third-party cloud without explicit parent action). -->
+
+    <activity
+        android:name=".MainActivity"
+        android:exported="true"
+        android:screenOrientation="portrait"
+        android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+        android:launchMode="singleTask"
+        android:label="@string/title_activity_main"
+        android:theme="@style/AppTheme.NoActionBarLaunch">
+
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+
+    <!-- Capacitor FileProvider (file:// URI sharing for downloaded audio). -->
+    <provider
+        android:name="androidx.core.content.FileProvider"
+        android:authorities="${applicationId}.fileprovider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+      <meta-data
+          android:name="android.support.FILE_PROVIDER_PATHS"
+          android:resource="@xml/file_paths" />
+    </provider>
+
+  </application>
+</manifest>

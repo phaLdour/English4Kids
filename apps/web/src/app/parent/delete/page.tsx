@@ -137,12 +137,8 @@ export default function DeleteAllDataPage() {
         >
           {t('parent.deleteTitle')}
         </h1>
-        <p className="text-base text-[var(--color-ink)]">
-          {t('parent.deleteBody')}
-        </p>
-        <p className="text-sm text-[var(--color-mist)]">
-          {t('parent.deleteFinal')}
-        </p>
+        <p className="text-base text-[var(--color-ink)]">{t('parent.deleteBody')}</p>
+        <p className="text-sm text-[var(--color-mist)]">{t('parent.deleteFinal')}</p>
       </section>
 
       {step === 'scheduled' && scheduledFor !== null ? (
@@ -191,18 +187,14 @@ export default function DeleteAllDataPage() {
               className="mt-1 h-6 w-6"
               aria-label={t('parent.deleteUnderstandAria')}
             />
-            <span>
-              {t('parent.deleteUnderstand')}
-            </span>
+            <span>{t('parent.deleteUnderstand')}</span>
           </label>
 
           <label
             htmlFor="delete-confirm-input"
             className="flex flex-col gap-[var(--space-2)] text-base text-[var(--color-ink)]"
           >
-            <span>
-              {t('parent.deleteTypeConfirm', { word: CONFIRM_WORD })}
-            </span>
+            <span>{t('parent.deleteTypeConfirm', { word: CONFIRM_WORD })}</span>
             <input
               id="delete-confirm-input"
               type="text"
@@ -220,7 +212,7 @@ export default function DeleteAllDataPage() {
             type="button"
             onClick={handleProceed}
             disabled={!understood || !typedMatches}
-            className="self-start rounded-[var(--radius-pill)] bg-[var(--color-alert)] px-[var(--space-8)] py-[var(--space-3)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] disabled:opacity-50"
+            className="plausible-event-name=parent_delete_request self-start rounded-[var(--radius-pill)] bg-[var(--color-alert)] px-[var(--space-8)] py-[var(--space-3)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] disabled:opacity-50"
             style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
           >
             {t('parent.deleteSchedule')}

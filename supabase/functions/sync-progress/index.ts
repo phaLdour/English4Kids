@@ -394,6 +394,33 @@ Deno.serve(async (req) => {
   }
   const callerId = userData.user.id;
 
+  // ---- Sprint 5 S5-3: server-side anonymous-first gate ---------------------
+  // Defence-in-edge layer (#2 of 3). Layer #1 is the client `useAutoSync`
+  // gate; layer #3 is the DB trigger in 0005_anonymous_sync_gate.sql. Any
+  // one of them on its own is sufficient to block anonymous syncs — we run
+  // all three because the client gate is bypassable by a tampered build,
+  // the DB trigger fires too late to return a useful error to the client,
+  // and only this layer returns a 403 that the client can surface as a
+  // "verify your email" banner.
+  const { data: parentProfile, error: parentErr } = await supabase
+    .from('profiles')
+    .select('is_anonymous')
+    .eq('id', callerId)
+    .single();
+  if (parentErr || !parentProfile || parentProfile.is_anonymous !== false) {
+    return new Response(
+      JSON.stringify({
+        error: 'anonymous-first',
+        message:
+          "Cloud sync isn't active yet. Verify your email in the parent dashboard to enable it.",
+      }),
+      {
+        status: 403,
+        headers: { ...cors, 'content-type': 'application/json' },
+      },
+    );
+  }
+
   // ---- Body ----------------------------------------------------------------
   let body: unknown;
   try {

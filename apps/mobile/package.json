@@ -4,14 +4,17 @@
   "private": true,
   "description": "Capacitor wrapper that hosts the @e4k/web static export inside iOS and Android shells.",
   "scripts": {
-    "cap:add:ios": "cap add ios",
-    "cap:add:android": "cap add android",
+    "cap:add:ios": "cap add ios && bash templates/ios/post-cap-add.sh",
+    "cap:add:android": "cap add android && bash templates/android/post-cap-add.sh",
     "cap:sync": "cap sync",
     "cap:copy": "cap copy",
     "cap:open:ios": "cap open ios",
     "cap:open:android": "cap open android",
     "cap:build:web": "E4K_TARGET=mobile pnpm --filter @e4k/web build",
-    "cap:ship": "pnpm cap:build:web && pnpm cap:copy"
+    "cap:ship": "pnpm cap:build:web && pnpm cap:copy",
+    "icons:generate": "node scripts/generate-icons.mjs",
+    "build:local": "bash scripts/build-local.sh",
+    "statusbar:install": "echo 'Run from repo root: pnpm --filter @e4k/mobile add @capacitor/status-bar'"
   },
   "dependencies": {
     "@capacitor/app": "^7.0.0",
@@ -21,6 +24,7 @@
     "@capacitor/ios": "^7.0.0",
     "@capacitor/preferences": "^7.0.0",
     "@capacitor/splash-screen": "^7.0.0",
+    "@capacitor/status-bar": "^7.0.0",
     "@capacitor-community/microphone": "^7.0.0",
     "@capacitor-community/speech-recognition": "^7.0.0"
   },

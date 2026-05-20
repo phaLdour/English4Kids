@@ -14,13 +14,13 @@
  */
 
 import {
-  db,
-  getAllSettings,
   type AuditEvent,
   type Child,
   type Progress,
   type PronunciationAttempt,
   type VocabState,
+  db,
+  getAllSettings,
 } from '@e4k/db';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
@@ -155,17 +155,13 @@ export default function DataExportPage() {
         >
           {t('parent.exportTitle')}
         </h1>
-        <p className="text-base text-[var(--color-ink)]">
-          {t('parent.exportBody')}
-        </p>
-        <p className="text-sm text-[var(--color-mist)]">
-          {t('parent.exportLocalOnly')}
-        </p>
+        <p className="text-base text-[var(--color-ink)]">{t('parent.exportBody')}</p>
+        <p className="text-sm text-[var(--color-mist)]">{t('parent.exportLocalOnly')}</p>
         <button
           type="button"
           onClick={() => void handleDownload()}
           disabled={busy}
-          className="self-start rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-10)] py-[var(--space-4)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] transition-transform duration-[var(--motion-fast)] active:scale-[0.98] disabled:opacity-60"
+          className="plausible-event-name=parent_export self-start rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-10)] py-[var(--space-4)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] transition-transform duration-[var(--motion-fast)] active:scale-[0.98] disabled:opacity-60"
           style={{
             minHeight: 'var(--tap-primary-old)',
             fontFamily: 'var(--font-display)',

@@ -1,9 +1,11 @@
-# Email setup — VPC double opt-in
+# Email setup — Resend + VPC double opt-in
 
 This document covers how the `vpc-upgrade` Edge Function sends (or
-simulates sending) the COPPA email-plus confirmation messages. See
-[ADR-0007](../adr/0007-phase-2-cloud-sync-and-vpc.md) for the policy
-context.
+simulates sending) the COPPA email-plus confirmation messages, and the
+DNS work needed to turn Resend on in production. See
+[ADR-0007](../adr/0007-phase-2-cloud-sync-and-vpc.md) (Phase 2) and
+[ADR-0011](../adr/0011-sprint-5-server-side-gate-and-resend.md)
+(Sprint 5) for the policy context.
 
 ## Dev mode
 
@@ -29,47 +31,123 @@ Two escape hatches let engineers walk the flow end-to-end without one:
 To inspect emails locally, run `supabase functions serve vpc-upgrade`
 and tail the function logs. The confirmation link is printed as
 `[VPC] confirmation link: <origin>/vpc-confirm/<token>` for each
-`/start` call.
+`/start` call. The rendered subject + recipient (but NOT body) is also
+logged as `[VPC dev-mode email] to=... subject=...` so you can confirm
+the template selection without bloating the dev log.
 
-## Production setup
+### Email previewer
 
-1. Sign up for [Resend](https://resend.com) (or another transactional
-   provider). Register the sending domain and complete the DKIM, SPF,
-   and DMARC DNS records the provider walks you through. DMARC must be
-   set to at least `p=quarantine` once the domain is verified.
+`apps/web/src/app/dev/email-preview/page.tsx` renders the three
+templates with sample data. Open
+`http://localhost:3000/dev/email-preview?template=vpc-first-confirmation`
+(also `vpc-second-confirmation-reminder` and `vpc-upgrade-complete`).
+The route is gated behind `NEXT_PUBLIC_E4K_ENV !== 'production'` and
+returns a 404 in prod builds.
 
-2. Set the following secrets in the Supabase project's Edge Function
-   environment (Project Settings -> Edge Functions -> Secrets):
+## Production setup — what YOU do at the end of Sprint 5
 
-   | Variable          | Value                                   |
-   | ----------------- | --------------------------------------- |
-   | `RESEND_API_KEY`  | Project API key from Resend dashboard.  |
-   | `EMAIL_FROM`      | A verified sender on the domain above.  |
-   | `ALLOWED_ORIGIN`  | Production web origin, e.g. `https://app.example.com`. |
+The code is Resend-ready. The remaining steps are account-level work
+that only a human with credit-card + DNS access can do:
 
-3. **Leave `EMAIL_DEV_MODE` UNSET.** The function defaults to prod
-   behaviour when this variable is missing or any value other than the
-   literal string `true`. Both dev-mode escape hatches above are gated
-   on `EMAIL_DEV_MODE === 'true'` — leaving it unset shuts them both
-   off.
+### 1. Create a Resend account
 
-4. Replace the `console.log` link emission in
-   `supabase/functions/vpc-upgrade/index.ts` with a Resend
-   `client.emails.send(...)` call. The plaintext + HTML templates live
-   alongside the function once that work lands; until then production
-   deploys are blocked.
+1. Sign up at <https://resend.com/signup>. Use the privacy alias
+   (e.g. `privacy@english4kids.app`) so the account isn't tied to a
+   single engineer's mailbox.
+2. In the Resend dashboard, go to **Domains -> Add Domain** and enter
+   the sending domain (`english4kids.app` or whichever domain you'll
+   send from). Resend will show you three DNS records to add.
 
-## Verification before go-live
+### 2. Add the DNS records
 
-1. Send a test confirmation to a mailbox you control. The email must
-   arrive in ≤ 30 seconds and pass DKIM + SPF + DMARC (check
-   `Authentication-Results` in the raw headers).
-2. Verify the bounce + complaint webhooks deliver — Resend signs these
-   with HMAC, so reuse the existing CORS-aware function pattern.
-3. Test rate-limit behaviour: ten rapid `/start` calls from the same
-   parent should not all send emails. Resend caps at 100/hour by
-   default per sender; the function relies on this as a coarse safety
-   net.
+At your registrar / DNS provider, add these records on the sending
+domain. (Cloudflare, Route53, Namecheap, etc. all support these record
+types.)
+
+| Type    | Name                       | Value                                                                     |
+| ------- | -------------------------- | ------------------------------------------------------------------------- |
+| `TXT`   | `@` (apex)                 | `v=spf1 include:_spf.resend.com ~all`                                     |
+| `CNAME` | `resend._domainkey`        | (the value Resend shows you — a domain like `domainkey.resend-mail.com.`) |
+| `CNAME` | `<id>._domainkey`          | (a second DKIM CNAME, if Resend issues a rotating-key pair)               |
+| `TXT`   | `_dmarc`                   | `v=DMARC1; p=quarantine; rua=mailto:dmarc@english4kids.app`               |
+
+Notes:
+
+- **SPF (`v=spf1 include:_spf.resend.com ~all`)** — if the apex already
+  has an SPF record for another sender (e.g. Google Workspace), MERGE
+  the includes into one record. Two `v=spf1` TXT records on the same
+  name will silently fail validation.
+- **DKIM CNAMEs** — Resend will show you the exact host + target. Copy
+  them verbatim. Don't append your domain to the value field if your
+  DNS UI adds it automatically.
+- **DMARC** — start with `p=quarantine` for the first month. Once you
+  see consistent passes in the DMARC reports (Postmark, Valimail, or
+  the free `dmarc.postmarkapp.com`), tighten to `p=reject`.
+- Resend's domain page shows green checkmarks when each record is
+  verified. Wait for all three before sending production traffic; the
+  function will fall back to "email-send-failed" 502s if the API call
+  reports a verification error.
+
+### 3. Set the Supabase Edge Function secrets
+
+Either via the Supabase dashboard (**Project Settings -> Edge Functions
+-> Secrets**) or via the CLI:
+
+```bash
+supabase secrets set RESEND_API_KEY=re_...your_key_here
+supabase secrets set EMAIL_FROM=noreply@english4kids.app
+supabase secrets set ALLOWED_ORIGIN=https://app.english4kids.app
+# CRITICAL: leave EMAIL_DEV_MODE unset (or empty). The function defaults
+# to prod behaviour when this var is missing.
+supabase secrets unset EMAIL_DEV_MODE
+```
+
+The function logic is:
+
+```text
+if RESEND_API_KEY is set AND EMAIL_DEV_MODE !== 'true'
+  -> POST to api.resend.com/emails
+else
+  -> log + return devToken (dev mode)
+```
+
+So accidentally setting `EMAIL_DEV_MODE=true` in production would
+DISABLE real sending. The Sprint 5 contract is to leave it unset.
+
+### 4. Verify delivery
+
+1. From the Parent Dashboard `/parent/account`, submit a test email to
+   a real inbox you control.
+2. Confirm the email arrives within 30 seconds and passes DKIM + SPF +
+   DMARC. Open the raw headers in Gmail (More -> Show original) and
+   look at `Authentication-Results:` — every check must say `pass`.
+3. Check that the email lands in **Inbox**, not Spam. If it lands in
+   Spam, the most common cause is missing DMARC. Add the record above
+   and wait 30 minutes for DNS propagation.
+4. In the Resend dashboard, the message should appear under **Emails**
+   with the recipient and a "Delivered" badge.
+
+### 5. Rate-limit smoke test
+
+Submit six `/start` calls in succession from the same anonymous
+Supabase user. The sixth call MUST return 429 with a `retry-after`
+header (cap is 5/hour per parent_id, enforced by the `vpc_rate_limit`
+table added in migration `0005`).
+
+```bash
+for i in 1 2 3 4 5 6; do
+  curl -X POST \
+    -H "authorization: Bearer $JWT" \
+    -H "content-type: application/json" \
+    -d '{"email":"test+'$i'@example.com"}' \
+    "$SUPABASE_URL/functions/v1/vpc-upgrade/start"
+  echo
+done
+```
+
+The first five should return `status: "awaiting-first-confirmation"`;
+the sixth must return `{"error":"rate-limited","retryAfterSec":...}`
+with status 429.
 
 ## COPPA contract — DO NOT SHORTEN THE 24h GAP
 
@@ -92,7 +170,13 @@ the consent claim we make on the parent dashboard.
 
 - [ADR-0007](../adr/0007-phase-2-cloud-sync-and-vpc.md) — Phase 2 cloud
   sync and VPC.
+- [ADR-0011](../adr/0011-sprint-5-server-side-gate-and-resend.md) —
+  Sprint 5 server-side gate and Resend integration.
 - [16 CFR §312.5](https://www.ecfr.gov/current/title-16/part-312#p-312.5) —
   Parental consent under COPPA.
 - `supabase/functions/vpc-upgrade/index.ts` — the implementation.
+- `supabase/functions/_shared/email-templates.ts` — the templates.
 - `apps/web/src/app/parent/account/page.tsx` — the parent-facing UI.
+- `apps/web/src/app/dev/email-preview/page.tsx` — the dev-only template
+  previewer.
+- [Resend SPF/DKIM docs](https://resend.com/docs/dashboard/domains/introduction)

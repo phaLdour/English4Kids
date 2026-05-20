@@ -1,0 +1,129 @@
+name: Mobile build (iOS)
+
+# Manual dispatch only. The job is marked continue-on-error because the
+# archive step requires an Apple Developer signing identity and a
+# provisioning profile, neither of which exist until the user opens an Apple
+# Developer account (deferred to the end of Sprint 5). Until then, this
+# workflow validates the pipeline shape: install, build the static export,
+# run cap sync, and attempt the archive. The archive fails at the signing
+# step but the steps before it tell us whether the rest of the pipeline is
+# healthy.
+
+on:
+  workflow_dispatch:
+    inputs:
+      configuration:
+        description: "Xcode build configuration (Debug or Release)"
+        required: false
+        default: "Release"
+        type: choice
+        options:
+          - Debug
+          - Release
+
+concurrency:
+  group: mobile-ios-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "20"
+  PNPM_VERSION: "9.12.0"
+
+jobs:
+  build-ios:
+    name: Build iOS .ipa
+    runs-on: macos-latest
+    # Sprint 5: no Apple Developer account yet. Keep the workflow as a
+    # template — the user re-enables `continue-on-error: false` once signing
+    # is configured.
+    continue-on-error: true
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build web (static export)
+        run: pnpm --filter @e4k/web build
+        env:
+          E4K_TARGET: mobile
+
+      - name: Verify static export emitted
+        run: |
+          set -e
+          if [ ! -d "apps/web/out/_next/static" ]; then
+            echo "::error::Static export missing"
+            exit 1
+          fi
+
+      - name: Generate icons (placeholder mode in CI)
+        run: node apps/mobile/scripts/generate-icons.mjs
+
+      - name: Add iOS platform
+        run: pnpm --filter @e4k/mobile cap:add:ios
+
+      - name: Apply post-cap-add template
+        run: bash apps/mobile/templates/ios/post-cap-add.sh
+
+      - name: Install CocoaPods dependencies
+        working-directory: apps/mobile/ios/App
+        run: pod install
+
+      - name: Capacitor sync iOS
+        run: pnpm --filter @e4k/mobile exec cap sync ios
+
+      - name: Archive (unsigned)
+        # Will fail without a signing identity. continue-on-error covers this.
+        working-directory: apps/mobile/ios/App
+        run: |
+          xcodebuild \
+            -workspace App.xcworkspace \
+            -scheme App \
+            -sdk iphoneos \
+            -configuration ${{ inputs.configuration }} \
+            -archivePath build/App.xcarchive \
+            archive \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Export IPA
+        working-directory: apps/mobile/ios/App
+        run: |
+          if [ ! -f "build/App.xcarchive/Info.plist" ]; then
+            echo "::warning::Archive did not produce a valid .xcarchive (expected — signing not configured)."
+            exit 0
+          fi
+          # ExportOptions.plist template lives next to the workflow so the
+          # user can edit it without a workflow round-trip.
+          xcodebuild \
+            -exportArchive \
+            -archivePath build/App.xcarchive \
+            -exportOptionsPlist ${{ github.workspace }}/.github/workflows/ios-export-options.plist \
+            -exportPath build/ipa
+
+      - name: Upload IPA artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: english4kids-ios-${{ github.run_number }}
+          path: |
+            apps/mobile/ios/App/build/ipa/*.ipa
+            apps/mobile/ios/App/build/App.xcarchive
+          if-no-files-found: warn
+          retention-days: 14

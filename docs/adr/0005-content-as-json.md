@@ -65,3 +65,17 @@ A move to a headless CMS is on the table for **Phase 2** when (a) a non-engineer
 | Markdown-with-frontmatter | Weak structure; can't validate nested activity shapes. |
 | Google Sheets export | Authors love it, but no validation, no PR review, fragile. |
 | YAML | Schema validation works equally well; JSON wins on tooling familiarity and copy-paste of structured content. |
+
+## Addendum (2026-05-20) — Sprint 3 sentence-chunk variant + content-shape lint
+
+Wave-2 Critic flagged a runtime crash in `WordBuilder`: u3.l4 sentence-assembly items had been authored with `variant: 'letter_spell'` but a `letterPool` of multi-character word tokens (e.g. `["a", "bird", "can", "fly", ...]`). The renderer computed `slots = item.targetWord.length` (14) against a 7-entry pool, producing out-of-bounds index reads.
+
+We added:
+
+1. A third variant `sentence_chunks` on `WordBuilderItemSchema`. Renderer slots = `targetWord.trim().split(/\s+/).length`; tokens are joined with single spaces and compared case-insensitively to `targetWord.trim()`.
+2. A cross-field consistency check `checkWordBuilderConsistency(item)` shared by the Zod `UnitSchema.superRefine` and the `validate-content` CLI. It rejects:
+   - `letter_spell` items whose `letterPool` contains any token with `length > 1` (and no space) — these must use `sentence_chunks`.
+   - `sentence_chunks` items whose `letterPool` is missing one of the tokens required to spell `targetWord`.
+3. The u3.l4.a3 9-12 band items (`i1b`, `i2b`, `i3b`, `i4b`) were migrated from `letter_spell` to `sentence_chunks`.
+
+The CI rule guarantees that any future reintroduction of the same shape mismatch fails `pnpm validate:content` before it reaches a child.

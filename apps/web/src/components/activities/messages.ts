@@ -8,6 +8,7 @@ export const activityMessages = {
     aria: 'Build the word',
     wholeWord: 'Tap the word that matches',
     letterSpell: 'Tap each letter in order',
+    sentenceChunks: 'Tap each word in order',
     clear: 'Clear',
     confirm: 'Check',
   },

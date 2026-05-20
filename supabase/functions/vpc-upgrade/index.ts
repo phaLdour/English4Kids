@@ -20,6 +20,15 @@
  * `auth.updateUser({ email })` (the Supabase auth flow handles the actual
  * email verification on its own). Here we just gate it behind the
  * email-plus consent window.
+ *
+ * Dev-mode escape hatches (NEVER active in production):
+ *   - `devToken` in the `/start` response: returned only when
+ *     `EMAIL_DEV_MODE === 'true'`. Lets the client paste the confirmation
+ *     token without SMTP being configured.
+ *   - `?devSkipDelay=1` on `/confirm-second`: bypasses the 24h check.
+ *     Gated by `EMAIL_DEV_MODE === 'true'` AND the explicit query param;
+ *     production deploys MUST leave `EMAIL_DEV_MODE` unset. The 24h gap
+ *     is a COPPA contract, not a UX choice — see `docs/devops/email-setup.md`.
  */
 
 import { createClient, type SupabaseClient } from 'supabase';
@@ -87,6 +96,8 @@ interface HandlerCtx {
   supabase: SupabaseClient;
   callerId: string;
   origin: string;
+  /** Whether the caller asked for the dev-mode delay bypass on this request. */
+  devSkipDelay: boolean;
 }
 
 async function handleStart(req: Request, ctx: HandlerCtx): Promise<Response> {
@@ -187,7 +198,12 @@ async function handleConfirmSecond(req: Request, ctx: HandlerCtx): Promise<Respo
 
   const firstMs = new Date(pending.first_confirmed_at).getTime();
   const earliest = firstMs + SECOND_CONFIRM_WINDOW_MS;
-  if (Date.now() < earliest) {
+  // Dev-mode escape hatch for E2E. Gated by BOTH `EMAIL_DEV_MODE === 'true'`
+  // AND the explicit `?devSkipDelay=1` query param so a misconfigured prod
+  // env can't accidentally bypass the COPPA-mandated 24h window.
+  const devMode = Deno.env.get('EMAIL_DEV_MODE') === 'true';
+  const skipDelay = devMode && ctx.devSkipDelay;
+  if (!skipDelay && Date.now() < earliest) {
     return json({
       status: 'too-early',
       tryAgainAt: new Date(earliest).toISOString(),
@@ -299,14 +315,14 @@ Deno.serve(async (req) => {
       headers: { ...cors, 'content-type': 'application/json' },
     });
   }
+  const url = new URL(req.url);
+  const tail = url.pathname.replace(/^.*\/vpc-upgrade/, '');
   const ctx: HandlerCtx = {
     supabase,
     callerId: userData.user.id,
     origin: allowed,
+    devSkipDelay: url.searchParams.get('devSkipDelay') === '1',
   };
-
-  const url = new URL(req.url);
-  const tail = url.pathname.replace(/^.*\/vpc-upgrade/, '');
 
   let res: Response;
   if (tail === '/start' || tail === '') {

@@ -14,7 +14,7 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { containsBannedPhrasing } from '../src/banned-words';
-import type { Unit } from '../src/schemas';
+import { checkWordBuilderConsistency, type Unit } from '../src/schemas';
 import { validateUnit } from '../src/validate';
 
 // Locate the repo root: assume this file lives at <repo>/packages/content-schema/bin/.
@@ -161,6 +161,22 @@ async function main(): Promise<void> {
           file: rel,
           message: `Banned phrasing in ${path}: [${scan.matches.join(', ')}] — "${text}"`,
         });
+      }
+    }
+
+    // Activity-shape lint: catches the Critic Wave-2 S0-1 class of bug —
+    // `word_builder` items whose `variant` does not match the actual shape of
+    // `letterPool` (e.g. multi-char tokens with `letter_spell` would crash
+    // the renderer at runtime due to slot/pool index mismatch).
+    for (const lesson of unit.lessons) {
+      for (const activity of lesson.activities) {
+        for (const item of activity.items) {
+          if (item.type !== 'word_builder') continue;
+          const path = `${unit.id}/${lesson.id}/${activity.id}/${item.id}`;
+          for (const msg of checkWordBuilderConsistency(item)) {
+            issues.push({ file: rel, message: `word_builder shape at ${path}: ${msg}` });
+          }
+        }
       }
     }
   }

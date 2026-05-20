@@ -5,7 +5,7 @@
  * Parental Consent flow.
  *
  * Three steps, each backed by a sub-endpoint of the `vpc-upgrade` Edge
- * Function:
+ * Function, followed by a final Supabase-side email-link step:
  *
  *   1. requestUpgrade(email)  -> POST /vpc-upgrade/start
  *      Server stores a pending row, logs a confirmation link, and (in prod)
@@ -21,11 +21,16 @@
  *      profile to non-anonymous. Returns `{ status: 'upgraded' }` or
  *      `{ status: 'too-early', tryAgainAt }`.
  *
- * After a successful second confirmation, the CLIENT is responsible for
- * invoking `supabase.auth.updateUser({ email })` to trigger Supabase's
- * own email verification round trip. The Edge Function's job is to gate
- * whether the client is allowed to do that — it does NOT itself touch
- * `auth.users` (no service-role key is in scope).
+ *   4. linkSupabaseEmail(email) -> supabase.auth.updateUser({ email })
+ *      Triggers Supabase's own email-verification round trip so the
+ *      `auth.users.email` column is populated and the parent can recover
+ *      the account via password reset later. This MUST run immediately
+ *      after a successful `confirmSecond` — without it, the profile is
+ *      flipped to non-anonymous but the auth row has no email and the
+ *      account is unrecoverable. The Edge Function's job was to gate
+ *      whether the client is allowed to do that (email-plus consent
+ *      window). Here the hook completes the round trip so callers don't
+ *      have to remember.
  */
 
 import { getSupabase } from '@e4k/db';
@@ -37,6 +42,7 @@ export type UpgradeStatus =
   | 'awaiting-second-confirmation'
   | 'too-early'
   | 'upgraded'
+  | 'awaiting-supabase-verify'
   | 'error';
 
 export interface RequestUpgradeResult {
@@ -55,6 +61,11 @@ export interface ConfirmSecondResult {
   status: 'upgraded' | 'too-early' | 'error';
   tryAgainAt?: string;
   message?: string;
+}
+
+export interface LinkSupabaseEmailResult {
+  status: 'sent' | 'error';
+  error?: string;
 }
 
 function resolveFunctionBase(): string {
@@ -96,6 +107,7 @@ export interface UseVpcUpgradeResult {
   requestUpgrade: (email: string) => Promise<RequestUpgradeResult>;
   confirmFirst: (token: string) => Promise<ConfirmFirstResult>;
   confirmSecond: (token: string) => Promise<ConfirmSecondResult>;
+  linkSupabaseEmail: (email: string) => Promise<LinkSupabaseEmailResult>;
 }
 
 export function useVpcUpgrade(): UseVpcUpgradeResult {
@@ -172,5 +184,40 @@ export function useVpcUpgrade(): UseVpcUpgradeResult {
     }
   }, []);
 
-  return { status, error, busy, requestUpgrade, confirmFirst, confirmSecond };
+  const linkSupabaseEmail = useCallback<UseVpcUpgradeResult['linkSupabaseEmail']>(
+    async (email) => {
+      setBusy(true);
+      setError(null);
+      try {
+        const supabase = getSupabase();
+        const { error: updateErr } = await supabase.auth.updateUser({ email });
+        if (updateErr) {
+          const msg = updateErr.message || 'auth-updateUser-failed';
+          setError(msg);
+          setStatus('error');
+          return { status: 'error', error: msg };
+        }
+        setStatus('awaiting-supabase-verify');
+        return { status: 'sent' };
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'auth-updateUser-failed';
+        setError(msg);
+        setStatus('error');
+        return { status: 'error', error: msg };
+      } finally {
+        setBusy(false);
+      }
+    },
+    [],
+  );
+
+  return {
+    status,
+    error,
+    busy,
+    requestUpgrade,
+    confirmFirst,
+    confirmSecond,
+    linkSupabaseEmail,
+  };
 }

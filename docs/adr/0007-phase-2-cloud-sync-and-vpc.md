@@ -129,3 +129,35 @@ DSN gating + scrubbing is a simpler safety boundary.
 - A rejected op stays in the local outbox forever until manually cleared
   or the rejection cause is fixed. Audit-log entries surface the
   rejection so the Parent Dashboard can show a "couldn't sync" banner.
+
+## Addendum — Critic Wave-2 S0-2: completing the auth round trip (2026-05-20)
+
+The original Phase 2 implementation stopped one step short of a usable
+upgrade. The `vpc-upgrade/confirm-second` endpoint flipped
+`profiles.is_anonymous = false` but returned a `nextStep:
+'client-must-call-auth-updateUser'` marker that no caller acted on. The
+practical effect: the parent's `auth.users.email` column stayed `NULL`,
+which meant no password reset, no recoverable login, and no way to sign
+back in from a new device — exactly the failure mode COPPA email-plus
+is meant to prevent.
+
+Resolution:
+
+- `apps/web/src/app/parent/account/page.tsx:onConfirmSecond` now calls
+  `supabase.auth.updateUser({ email })` immediately after a successful
+  second confirmation, with the email captured in step 1.
+- A new `linkSupabaseEmail` method on the `useVpcUpgrade` hook
+  encapsulates the call and the state transitions.
+- The visible upgrade-steps indicator is now a 4-step list:
+  `enter-email -> check-inbox -> wait-24h-and-confirm -> verify-supabase-email`.
+- Failure of the `auth.updateUser` call routes to an explicit `error`
+  step with a retry button; the page can no longer silently advance to
+  `done` while the auth row is half-built.
+- A dev-mode `?devSkipDelay=1` query param on `/confirm-second` lets
+  the Playwright spec walk the full flow without waiting 24 hours.
+  Gated by `EMAIL_DEV_MODE === 'true'` AND the explicit param —
+  documented in `docs/devops/email-setup.md`. The gap itself is
+  unchanged: production deploys leave `EMAIL_DEV_MODE` unset and the
+  24h window is enforced.
+
+Critic Wave-2 S0-2 closed.

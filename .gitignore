@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+
+# Testing
+coverage/
+playwright-report/
+test-results/
+.nyc_output/
+
+# Env
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Editors
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Supabase
+.branches/
+.temp/
+supabase/.branches
+supabase/.temp
+
+# Generated audio (pre-rendered by Piper at build time)
+apps/web/public/audio/generated/
+
+# Capacitor (phase 2)
+apps/mobile/ios/App/Pods/
+apps/mobile/android/.gradle/
+apps/mobile/android/build/
+apps/mobile/android/app/build/
+
+# OS
+Thumbs.db
+
+# Storybook
+storybook-static/

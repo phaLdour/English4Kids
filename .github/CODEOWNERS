@@ -1,0 +1,15 @@
+# CODEOWNERS for English4Kids
+#
+# This file maps paths to the GitHub users/teams responsible for review.
+# It is intentionally empty at MVP — the project is currently maintained
+# by the original author plus AI agents and does not yet have multiple
+# human reviewers to route to.
+#
+# When the team grows, add entries like:
+#   /apps/web/                @owner-handle
+#   /packages/audio/          @audio-team
+#   /packages/game-engine/    @engine-team
+#   /docs/safety/             @safety-officer
+#   /supabase/migrations/     @backend-team
+#
+# Until then, all PRs default to the repo's default reviewers.

@@ -1,0 +1,55 @@
+:root {
+  --color-primary: #3DA9FC;
+  --color-primary-dark: #094074;
+  --color-success: #5FB37C;
+  --color-sunflower: #FFC857;
+  --color-milo: #F08A4B;
+  --color-luna: #9D8DF1;
+  --color-coral: #FFB5A7;
+  --color-alert: #E08E1B;
+  --color-muted: #C9D1D9;
+  --color-mist: #6B7280;
+  --color-surface: #FFF8EE;
+  --color-surface-high: #FFFFFF;
+  --color-ink: #1F2933;
+  --color-mic-live: #E63946;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --tap-young: 80px;
+  --tap-older: 56px;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 9999px;
+
+  --shadow-card: 0 4px 12px rgba(9, 64, 116, 0.08);
+  --shadow-pop: 0 8px 24px rgba(9, 64, 116, 0.12);
+  --shadow-milo: 0 8px 24px rgba(240, 138, 75, 0.32);
+  --shadow-luna: 0 8px 24px rgba(157, 141, 241, 0.32);
+
+  --motion-fast: 120ms;
+  --motion-base: 240ms;
+
+  --font-display: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  background: var(--color-surface);
+}
+
+body {
+  margin: 0;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+}

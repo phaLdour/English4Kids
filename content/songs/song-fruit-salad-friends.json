@@ -1,0 +1,29 @@
+{
+  "id": "song.fruitSaladFriends",
+  "title": "Fruit Salad Friends",
+  "lrc": "[00:00.00]Apple, banana, orange, grape,\n[00:04.00]Strawberry, pear — what a shape!\n[00:08.00]Toss them all in a great big bowl,\n[00:12.00]Fruit salad friends — that's the goal!\n[00:16.00]I like apples, I like pears,\n[00:20.00]Sweet little fruits everywhere!\n[00:24.00]Banana yellow, grape so blue,\n[00:28.00]I like fruit and so do you!\n[00:32.00]Strawberry red, orange round,\n[00:36.00]Juicy flavors all around!\n[00:40.00]Mix them up and share a plate,\n[00:44.00]Fruit salad friends taste so great!\n[00:48.00]I like apples, I like pears,\n[00:52.00]Sweet little fruits everywhere!\n[00:56.00]Apple, banana, orange, grape,\n[01:00.00]Strawberry, pear — fruit-salad shape!\n",
+  "audioRef": "mus.fruitSaladFriends",
+  "targetVocabRefs": [
+    "vocab.apple",
+    "vocab.banana",
+    "vocab.orange-fruit",
+    "vocab.grape",
+    "vocab.strawberry",
+    "vocab.pear",
+    "vocab.i-like"
+  ],
+  "tprMoves": [
+    { "ageBand": "6-8", "move": "pat_head", "cueTime": 0 },
+    { "ageBand": "6-8", "move": "pat_tummy", "cueTime": 4.0 },
+    { "ageBand": "6-8", "move": "big_circle_arms", "cueTime": 8.0 },
+    { "ageBand": "6-8", "move": "thumbs_up", "cueTime": 16.0 },
+    { "ageBand": "6-8", "move": "wiggle_fingers", "cueTime": 24.0 },
+    { "ageBand": "6-8", "move": "thumbs_up", "cueTime": 32.0 },
+    { "ageBand": "6-8", "move": "big_circle_arms", "cueTime": 40.0 },
+    { "ageBand": "6-8", "move": "thumbs_up", "cueTime": 48.0 },
+    { "ageBand": "6-8", "move": "pat_head", "cueTime": 56.0 },
+    { "ageBand": "9-12", "move": "clap_pattern", "cueTime": 0 },
+    { "ageBand": "9-12", "move": "clap_pattern", "cueTime": 32.0 },
+    { "ageBand": "9-12", "move": "clap_pattern", "cueTime": 56.0 }
+  ]
+}

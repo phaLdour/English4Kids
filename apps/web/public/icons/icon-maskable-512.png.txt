@@ -1,0 +1,18 @@
+REPLACE WITH 512x512 MASKABLE PWA icon (PNG).
+
+Specs:
+- 512 x 512 pixels.
+- Format: PNG with alpha channel.
+- Designed to the W3C "maskable" spec:
+  https://www.w3.org/TR/appmanifest/#dfn-maskable-icon
+- Background: full-bleed cream (#FFF8EE). Bleed all the way to the edge — no
+  transparent corners.
+- Foreground (Milo) MUST live inside the inner 80% safe zone (centre square
+  of 410 x 410 px). Android launchers may crop to a circle, squircle, or
+  rounded square — anything outside the safe zone may be hidden.
+
+Where this goes:
+  apps/web/public/icons/icon-maskable-512.png
+
+Once the real PNG lands, delete this .txt file and remove the TODO note in
+docs/devops/pwa.md.

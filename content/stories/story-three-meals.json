@@ -1,0 +1,59 @@
+{
+  "id": "story.threeMeals",
+  "title": "Bea's Three Meals",
+  "panels": [
+    {
+      "panelId": "p1",
+      "imageConcept": "img.story.threeMeals.p1",
+      "narrationAudio": "vo.milo.story.threeMeals.p1",
+      "narrationText": "Good morning! Bea eats breakfast. Milk and bread.",
+      "karaokeHighlights": [
+        { "wordStart": 19, "wordEnd": 28, "vocabRef": "vocab.breakfast" },
+        { "wordStart": 30, "wordEnd": 34, "vocabRef": "vocab.milk" }
+      ],
+      "duration": 5.0
+    },
+    {
+      "panelId": "p2",
+      "imageConcept": "img.story.threeMeals.p2",
+      "narrationAudio": "vo.milo.story.threeMeals.p2",
+      "narrationText": "At noon, Bea eats lunch. Soup and water.",
+      "karaokeHighlights": [
+        { "wordStart": 18, "wordEnd": 23, "vocabRef": "vocab.lunch" },
+        { "wordStart": 34, "wordEnd": 39, "vocabRef": "vocab.water" }
+      ],
+      "duration": 4.5
+    },
+    {
+      "panelId": "p3",
+      "imageConcept": "img.story.threeMeals.p3",
+      "narrationAudio": "vo.milo.story.threeMeals.p3",
+      "narrationText": "In the evening, Bea eats dinner. Rice and juice.",
+      "karaokeHighlights": [
+        { "wordStart": 25, "wordEnd": 31, "vocabRef": "vocab.dinner" },
+        { "wordStart": 42, "wordEnd": 47, "vocabRef": "vocab.juice" }
+      ],
+      "duration": 5.0
+    },
+    {
+      "panelId": "p4",
+      "imageConcept": "img.story.threeMeals.p4",
+      "narrationAudio": "vo.milo.story.threeMeals.p4",
+      "narrationText": "Three meals, three smiles. Good night, Bea.",
+      "karaokeHighlights": [],
+      "duration": 4.5
+    }
+  ],
+  "questions": [
+    {
+      "id": "story.threeMeals.q1",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "6-8",
+      "promptAudio": "vo.milo.story.threeMeals.q1",
+      "promptTranscript": "What does Bea eat first?",
+      "items": ["breakfast", "dinner"],
+      "correctIndex": 0
+    }
+  ]
+}

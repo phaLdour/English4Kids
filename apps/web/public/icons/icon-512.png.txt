@@ -1,0 +1,16 @@
+REPLACE WITH 512x512 PWA icon (PNG).
+
+Specs:
+- 512 x 512 pixels.
+- Format: PNG with alpha channel.
+- Background: solid cream (#FFF8EE) — full bleed.
+- Foreground: Milo's face, large and centred. Use the same illustration as
+  the 192 px asset, just upscaled (re-export from the vector source, do not
+  bitmap-upscale).
+- Same safe-area constraints as the 192 px version.
+
+Where this goes:
+  apps/web/public/icons/icon-512.png
+
+Once the real PNG lands, delete this .txt file and remove the TODO note in
+docs/devops/pwa.md.

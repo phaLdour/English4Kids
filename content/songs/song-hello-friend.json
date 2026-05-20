@@ -1,0 +1,22 @@
+{
+  "id": "song.helloFriend",
+  "title": "Hello, Friend!",
+  "lrc": "[00:00.00]Hello, hello, hello, friend!\n[00:03.50]Hi to you and hi again!\n[00:07.00]Good morning, sunny day,\n[00:10.50]Let's all learn and let's all play!\n[00:14.00]Bye, bye, see you soon!\n[00:17.50]Bye, bye, afternoon!\n[00:21.00]Wave your hand and smile so bright,\n[00:24.50]We'll be back, we're feeling right!\n",
+  "audioRef": "mus.helloFriend",
+  "targetVocabRefs": [
+    "vocab.hello",
+    "vocab.hi",
+    "vocab.good-morning",
+    "vocab.bye"
+  ],
+  "tprMoves": [
+    { "ageBand": "6-8", "move": "wave_hand", "cueTime": 0 },
+    { "ageBand": "6-8", "move": "wave_hand", "cueTime": 3.5 },
+    { "ageBand": "6-8", "move": "stretch_up", "cueTime": 7.0 },
+    { "ageBand": "6-8", "move": "wave_hand", "cueTime": 14.0 },
+    { "ageBand": "6-8", "move": "wave_hand", "cueTime": 17.5 },
+    { "ageBand": "6-8", "move": "smile_big", "cueTime": 21.0 },
+    { "ageBand": "9-12", "move": "wave_hand", "cueTime": 0 },
+    { "ageBand": "9-12", "move": "wave_hand", "cueTime": 14.0 }
+  ]
+}

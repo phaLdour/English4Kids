@@ -1,0 +1,101 @@
+{
+  "id": "story.beaTriesPear",
+  "title": "Bea Tries a Pear",
+  "panels": [
+    {
+      "panelId": "p1",
+      "imageConcept": "img.story.beaTriesPear.p1",
+      "narrationAudio": "vo.milo.story.beaTriesPear.p1",
+      "narrationText": "Bea looks at the fruit bowl. So many colors!",
+      "karaokeHighlights": [],
+      "duration": 4.0
+    },
+    {
+      "panelId": "p2",
+      "imageConcept": "img.story.beaTriesPear.p2",
+      "narrationAudio": "vo.milo.story.beaTriesPear.p2",
+      "narrationText": "She picks an apple. I like apples, says Bea.",
+      "karaokeHighlights": [
+        { "wordStart": 16, "wordEnd": 21, "vocabRef": "vocab.apple" },
+        { "wordStart": 23, "wordEnd": 29, "vocabRef": "vocab.i-like" }
+      ],
+      "duration": 4.5
+    },
+    {
+      "panelId": "p3",
+      "imageConcept": "img.story.beaTriesPear.p3",
+      "narrationAudio": "vo.milo.story.beaTriesPear.p3",
+      "narrationText": "Then Bea sees a green pear. A new fruit for her.",
+      "karaokeHighlights": [
+        { "wordStart": 22, "wordEnd": 26, "vocabRef": "vocab.pear" }
+      ],
+      "duration": 4.5
+    },
+    {
+      "panelId": "p4",
+      "imageConcept": "img.story.beaTriesPear.p4",
+      "narrationAudio": "vo.milo.story.beaTriesPear.p4",
+      "narrationText": "Bea takes a small bite. Soft and sweet. She smiles.",
+      "karaokeHighlights": [],
+      "duration": 5.0
+    },
+    {
+      "panelId": "p5",
+      "imageConcept": "img.story.beaTriesPear.p5",
+      "narrationAudio": "vo.milo.story.beaTriesPear.p5",
+      "narrationText": "I like pears too, says Bea. New fruit, new friend.",
+      "karaokeHighlights": [
+        { "wordStart": 0, "wordEnd": 6, "vocabRef": "vocab.i-like" },
+        { "wordStart": 7, "wordEnd": 12, "vocabRef": "vocab.pear" }
+      ],
+      "duration": 5.0
+    }
+  ],
+  "questions": [
+    {
+      "id": "story.beaTriesPear.q1",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "6-8",
+      "promptAudio": "vo.milo.story.beaTriesPear.q1",
+      "promptTranscript": "What fruit was new for Bea?",
+      "items": ["a pear", "an apple"],
+      "correctIndex": 0
+    },
+    {
+      "id": "story.beaTriesPear.q1.912",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "9-12",
+      "promptAudio": "vo.milo.story.beaTriesPear.q1",
+      "promptTranscript": "What fruit was new for Bea?",
+      "items": ["a pear", "an apple", "a banana"],
+      "correctIndex": 0
+    },
+    {
+      "id": "story.beaTriesPear.q2.912",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "9-12",
+      "promptAudio": "vo.milo.story.beaTriesPear.q2",
+      "promptTranscript": "How did the pear taste?",
+      "items": ["soft and sweet", "hard and sour", "salty"],
+      "correctIndex": 0
+    },
+    {
+      "id": "story.beaTriesPear.q3.912",
+      "type": "story_question",
+      "questionType": "sequencing",
+      "ageBand": "9-12",
+      "promptAudio": "vo.milo.story.beaTriesPear.q3",
+      "promptTranscript": "Put the fruit story in order.",
+      "items": [
+        "Bea looks at the fruit bowl.",
+        "Bea picks an apple.",
+        "Bea sees a new pear.",
+        "Bea takes a bite and smiles."
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    }
+  ]
+}

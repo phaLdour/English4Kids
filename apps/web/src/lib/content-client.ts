@@ -57,27 +57,49 @@ export type StoryDoc = z.infer<typeof StoryDocSchema>;
 export type PhonemeMap = Record<string, string[]>;
 
 /**
- * Resolve the content endpoint URL. On Capacitor (static export) Next.js
- * writes the route handler output as a static JSON file at the same path,
- * so the URL is identical. The branch is here so that a future native
- * filesystem adapter can swap in without disturbing callers.
+ * Resolve the content endpoint URL.
+ *
+ * On the web build, Next's App Router serves `/api/content/<id>` from the
+ * route handlers in `src/app/api/content/*`.
+ *
+ * On the Capacitor build the same handlers are pre-rendered at build time
+ * (each route file declares `dynamic = 'force-static'` + `dynamicParams
+ * = false` + `generateStaticParams` so the export contains a file per ID).
+ * Next 14/15 writes these as the literal path with no extension when served
+ * from the dev server, but the static export emits the body next to a sibling
+ * descriptor; in practice Capacitor's WebView (capacitor://localhost) maps
+ * `/api/content/foo` to the static file via its built-in path resolver, so
+ * the same URL works in both contexts.
+ *
+ * The branch below remains so a sideloaded-content adapter (reading via
+ * `@capacitor/filesystem`) can swap in later without changing call sites.
  */
 function endpoint(pathTail: string): string {
-  // Trailing-slash safety: on the web `/api/content/foo` and `/api/content/foo/`
-  // both 200; on a static export the file is usually served at the trailing
-  // form. Leave it unchanged — Capacitor's WebView resolves both.
-  if (isCapacitor()) {
-    return `/api/content/${pathTail}`;
-  }
+  // Identical URL on both runtimes today; the indirection is the swap point
+  // for a real native FS adapter (Sprint 6+).
   return `/api/content/${pathTail}`;
 }
 
 async function fetchJson(url: string, init?: RequestInit): Promise<unknown> {
-  const res = await fetch(url, init);
-  if (!res.ok) {
-    throw new Error(`content-client: ${url} returned ${res.status}`);
+  // First try the canonical URL.
+  const primary = await fetch(url, init);
+  if (primary.ok) return primary.json();
+
+  // Capacitor / static-export fallback: some Next versions emit the route
+  // body at a `.txt` sibling. We probe it ONLY when the runtime is Capacitor
+  // so we don't waste a request on the web. This makes the branch in
+  // `endpoint()` testable and gives us a robust degradation if Next changes
+  // its export filename convention between releases.
+  if (isCapacitor()) {
+    const txtUrl = `${url}.txt`;
+    const fallback = await fetch(txtUrl, init);
+    if (fallback.ok) return fallback.json();
+    throw new Error(
+      `content-client: ${url} (and ${txtUrl}) returned ${primary.status} / ${fallback.status}`,
+    );
   }
-  return res.json();
+
+  throw new Error(`content-client: ${url} returned ${primary.status}`);
 }
 
 /** Load a unit's `manifest.json` (lessons + activity tree). */

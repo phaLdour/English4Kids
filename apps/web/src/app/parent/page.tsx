@@ -503,7 +503,11 @@ export default function ParentDashboardPage() {
         </h2>
         <div className="grid grid-cols-1 gap-[var(--space-3)] sm:grid-cols-2">
           <NavTile
-            href={activeChildId ? `/parent/child/${activeChildId}` : '/parent'}
+            // The static-export build only ships `/parent/child/me` (the
+            // page resolves the real child UUID from Dexie at runtime).
+            // The web build accepts the same URL; the layout returns the
+            // sentinel and the page reads `db.children.toArray()[0]`.
+            href={activeChildId ? '/parent/child/me' : '/parent'}
             title={t('parent.navChildDetails')}
             description={t('parent.navChildDetailsDesc')}
           />

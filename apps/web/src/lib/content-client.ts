@@ -62,21 +62,25 @@ export type PhonemeMap = Record<string, string[]>;
  * On the web build, Next's App Router serves `/api/content/<id>` from the
  * route handlers in `src/app/api/content/*`.
  *
- * On the Capacitor build the same handlers are pre-rendered at build time
- * (each route file declares `dynamic = 'force-static'` + `dynamicParams
- * = false` + `generateStaticParams` so the export contains a file per ID).
- * Next 14/15 writes these as the literal path with no extension when served
- * from the dev server, but the static export emits the body next to a sibling
- * descriptor; in practice Capacitor's WebView (capacitor://localhost) maps
- * `/api/content/foo` to the static file via its built-in path resolver, so
- * the same URL works in both contexts.
+ * On the Capacitor build (`output: 'export'` + `trailingSlash: true`) each
+ * route handler is pre-rendered at build time. Trailing-slash mode is
+ * required because the unit endpoint and its `audio` / `phonemes` siblings
+ * share the same parent segment — without it the export would collide a
+ * file (`<unitId>`) with a directory (`<unitId>/audio/`). The static export
+ * lives at `out/api/content/<unitId>/` so we hit that directory with the
+ * trailing-slash URL.
  *
- * The branch below remains so a sideloaded-content adapter (reading via
- * `@capacitor/filesystem`) can swap in later without changing call sites.
+ * The Capacitor branch is also the swap point for a future native FS
+ * adapter (e.g. sideloaded `@capacitor/filesystem` reads), should we
+ * decide to bypass `fetch` entirely for content packs.
  */
 function endpoint(pathTail: string): string {
-  // Identical URL on both runtimes today; the indirection is the swap point
-  // for a real native FS adapter (Sprint 6+).
+  // Mobile / Capacitor build needs the trailing-slash form so it resolves
+  // to the exported directory's body file. The web build accepts both
+  // forms (Next handles the trailing slash transparently).
+  if (isCapacitor()) {
+    return `/api/content/${pathTail}/`;
+  }
   return `/api/content/${pathTail}`;
 }
 
@@ -87,11 +91,12 @@ async function fetchJson(url: string, init?: RequestInit): Promise<unknown> {
 
   // Capacitor / static-export fallback: some Next versions emit the route
   // body at a `.txt` sibling. We probe it ONLY when the runtime is Capacitor
-  // so we don't waste a request on the web. This makes the branch in
-  // `endpoint()` testable and gives us a robust degradation if Next changes
-  // its export filename convention between releases.
+  // so we don't waste a request on the web. This gives us a robust
+  // degradation if Next changes its export filename convention between
+  // releases. The trailing slash form in `endpoint()` is the primary path;
+  // `.txt` is the legacy fallback.
   if (isCapacitor()) {
-    const txtUrl = `${url}.txt`;
+    const txtUrl = `${url.replace(/\/$/, '')}.txt`;
     const fallback = await fetch(txtUrl, init);
     if (fallback.ok) return fallback.json();
     throw new Error(
@@ -104,7 +109,13 @@ async function fetchJson(url: string, init?: RequestInit): Promise<unknown> {
 
 /** Load a unit's `manifest.json` (lessons + activity tree). */
 export async function getUnit(unitId: string): Promise<Unit> {
-  const raw = await fetchJson(endpoint(encodeURIComponent(unitId)));
+  // Sprint 6 / Iteration 3 (QA-Lead): the Next App Router exporter rejects
+  // a `[unitId]` route handler that has `[unitId]/audio` + `[unitId]/
+  // phonemes` siblings under `output: 'export'` — same segment can't be
+  // both a file and a directory. We moved the unit endpoint to
+  // `[unitId]/manifest/route.ts` so all three siblings live under the
+  // `[unitId]/` directory.
+  const raw = await fetchJson(endpoint(`${encodeURIComponent(unitId)}/manifest`));
   return UnitSchema.parse(raw);
 }
 

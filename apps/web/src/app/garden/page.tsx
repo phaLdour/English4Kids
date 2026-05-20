@@ -3,7 +3,7 @@
 import { MascotFrame, TopBar } from '@e4k/ui';
 import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { WordGarden, type WordGardenState } from '@/components/garden/WordGarden';
 import { useVocabState } from '@/lib/use-vocab-state';
 import { getOrCreateGuestChild } from '@/lib/lesson-player';
@@ -22,7 +22,13 @@ function speakWord(word: string): void {
   }
 }
 
-export default function GardenPage() {
+/**
+ * Inner client component that reads search params. We split it from the
+ * page default export so we can wrap it in `<Suspense>` — Next 15's static
+ * export bails out otherwise (`useSearchParams() should be wrapped in a
+ * suspense boundary`).
+ */
+function GardenContent() {
   const router = useRouter();
   const t = useTranslations();
   const search = useSearchParams();
@@ -78,5 +84,13 @@ export default function GardenPage() {
       </section>
       <MascotFrame variant="milo" reaction="idle" />
     </main>
+  );
+}
+
+export default function GardenPage() {
+  return (
+    <Suspense fallback={null}>
+      <GardenContent />
+    </Suspense>
   );
 }

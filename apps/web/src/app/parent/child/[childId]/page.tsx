@@ -77,7 +77,36 @@ export default function ChildDetailPage() {
   const t = useTranslations();
   const params = useParams<{ childId: string }>();
   const router = useRouter();
-  const childId = params?.childId;
+  const rawChildId = params?.childId;
+  // The Capacitor static export only ships `/parent/child/me` (one
+  // sentinel pre-rendered path — see `./layout.tsx`). When the page
+  // resolves with `me`, look up the active child from Dexie at runtime;
+  // otherwise treat the segment as the literal child UUID.
+  const [resolvedChildId, setResolvedChildId] = useState<string | undefined>(
+    rawChildId && rawChildId !== 'me' ? rawChildId : undefined,
+  );
+  useEffect(() => {
+    if (!rawChildId) return;
+    if (rawChildId !== 'me') {
+      setResolvedChildId(rawChildId);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const rows = await db.children.toArray();
+        if (!cancelled && rows.length > 0 && rows[0]) {
+          setResolvedChildId(rows[0].id);
+        }
+      } catch {
+        // Dexie missing — leave undefined; UI will show empty state.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [rawChildId]);
+  const childId = resolvedChildId;
 
   const [child, setChild] = useState<Child | null>(null);
   const [progress, setProgress] = useState<Progress[]>([]);

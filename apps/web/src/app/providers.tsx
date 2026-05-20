@@ -8,6 +8,10 @@ import { applySettingsToDom } from '@/lib/settings-effects';
 import { useAutoSync } from '@/lib/sync-client';
 import { installWhisperBridge } from '@/lib/whisper-loader';
 import { ServiceWorkerRegister } from './serwist-register';
+// English bundle is statically imported so server-side render + the static
+// export both ship messages on first paint. The TR bundle still lazy-loads
+// when `ui.locale === 'tr'` is read out of Dexie (client-only state).
+import enMessages from '@/locales/en/common.json';
 
 // Wire the @e4k/audio loader bridge once at module evaluation. The bridge
 // itself is lazy — it only fetches when WhisperWasmStt.load() is called.
@@ -82,7 +86,9 @@ export function Providers({ children }: { children: ReactNode }) {
     <QueryClientProvider client={client}>
       <ServiceWorkerRegister />
       <CloudSyncDriver />
-      <I18nProvider>{children}</I18nProvider>
+      <I18nProvider initialMessages={enMessages} initialLocale="en">
+        {children}
+      </I18nProvider>
     </QueryClientProvider>
   );
 }

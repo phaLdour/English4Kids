@@ -74,15 +74,15 @@ describe('content-client.getUnit', () => {
       lessons: [],
     };
     const { calls } = installFetch([
-      (c) => (c.url === '/api/content/01-me-and-my-world' ? jsonResponse(sample) : undefined),
+      (c) => (c.url === '/api/content/01-me-and-my-world/manifest' ? jsonResponse(sample) : undefined),
     ]);
     const unit = await getUnit('01-me-and-my-world');
     expect(unit.id).toBe('01-me-and-my-world');
     expect(calls).toHaveLength(1);
-    expect(calls[0]?.url).toBe('/api/content/01-me-and-my-world');
+    expect(calls[0]?.url).toBe('/api/content/01-me-and-my-world/manifest');
   });
 
-  it('falls back to `.txt` sibling under Capacitor when canonical URL 404s', async () => {
+  it('uses the trailing-slash form on Capacitor (resolves to the exported directory body)', async () => {
     capacitorFlag.value = true;
     const sample = {
       id: '01-me-and-my-world',
@@ -93,13 +93,38 @@ describe('content-client.getUnit', () => {
       lessons: [],
     };
     const { calls } = installFetch([
-      (c) => (c.url === '/api/content/01-me-and-my-world.txt' ? jsonResponse(sample) : undefined),
+      (c) =>
+        c.url === '/api/content/01-me-and-my-world/manifest/'
+          ? jsonResponse(sample)
+          : undefined,
+    ]);
+    const unit = await getUnit('01-me-and-my-world');
+    expect(unit.id).toBe('01-me-and-my-world');
+    expect(calls).toHaveLength(1);
+    expect(calls[0]?.url).toBe('/api/content/01-me-and-my-world/manifest/');
+  });
+
+  it('falls back to `.txt` sibling under Capacitor when the trailing-slash URL 404s', async () => {
+    capacitorFlag.value = true;
+    const sample = {
+      id: '01-me-and-my-world',
+      title: 'Me and My World',
+      theme: 'self',
+      cefr: 'Pre-A1',
+      orderIndex: 0,
+      lessons: [],
+    };
+    const { calls } = installFetch([
+      (c) =>
+        c.url === '/api/content/01-me-and-my-world/manifest.txt'
+          ? jsonResponse(sample)
+          : undefined,
     ]);
     const unit = await getUnit('01-me-and-my-world');
     expect(unit.id).toBe('01-me-and-my-world');
     expect(calls).toHaveLength(2);
-    expect(calls[0]?.url).toBe('/api/content/01-me-and-my-world');
-    expect(calls[1]?.url).toBe('/api/content/01-me-and-my-world.txt');
+    expect(calls[0]?.url).toBe('/api/content/01-me-and-my-world/manifest/');
+    expect(calls[1]?.url).toBe('/api/content/01-me-and-my-world/manifest.txt');
   });
 
   it('does NOT probe the `.txt` fallback on the web — extra request would waste budget', async () => {
@@ -109,19 +134,22 @@ describe('content-client.getUnit', () => {
     ]);
     await expect(getUnit('01-me-and-my-world')).rejects.toThrow(/returned 404/);
     expect(calls).toHaveLength(1);
-    expect(calls[0]?.url).toBe('/api/content/01-me-and-my-world');
+    expect(calls[0]?.url).toBe('/api/content/01-me-and-my-world/manifest');
   });
 
   it('URL-encodes the unitId so a malicious value cannot escape the path', async () => {
     const { calls } = installFetch([
-      (c) => (c.url === '/api/content/..%2F..%2Fetc%2Fpasswd' ? jsonResponse({}) : undefined),
+      (c) =>
+        c.url === '/api/content/..%2F..%2Fetc%2Fpasswd/manifest'
+          ? jsonResponse({})
+          : undefined,
     ]);
     try {
       await getUnit('../../etc/passwd');
     } catch {
       // schema parse will fail — the assertion we care about is the URL.
     }
-    expect(calls[0]?.url).toBe('/api/content/..%2F..%2Fetc%2Fpasswd');
+    expect(calls[0]?.url).toBe('/api/content/..%2F..%2Fetc%2Fpasswd/manifest');
   });
 });
 

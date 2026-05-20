@@ -80,10 +80,32 @@ const nextConfig: NextConfig = {
     '@e4k/content-schema',
     '@e4k/db',
   ],
+  // Resolve `*.js` imports inside our `@e4k/*` packages to the matching `*.ts`
+  // source. Each package's `src/` uses TypeScript-style `.js` specifiers (so
+  // `tsc --moduleResolution=Bundler` resolves them) but Webpack's default
+  // resolver does not perform the `.js → .ts` rewrite that TS does. The
+  // `tsconfig` `paths` map redirects the package entry to `src/index.ts`,
+  // so the rest of the tree needs the `.js → .ts` alias to chain through.
+  webpack(config) {
+    config.resolve = config.resolve ?? {};
+    config.resolve.extensionAlias = {
+      ...(config.resolve.extensionAlias ?? {}),
+      '.js': ['.ts', '.tsx', '.js'],
+      '.mjs': ['.mts', '.mjs'],
+      '.cjs': ['.cts', '.cjs'],
+    };
+    return config;
+  },
   ...(isMobileTarget
     ? {
         output: 'export' as const,
         images: { unoptimized: true },
+        // Trailing slash mode forces every route to export as a directory
+        // (e.g. `/api/content/01-me-and-my-world/index.body`) so the unit
+        // JSON does not collide with the `[unitId]/audio` + `[unitId]/
+        // phonemes` sibling routes (which DO require the segment to be a
+        // directory). Without this Next 15 throws EISDIR mid-export.
+        trailingSlash: true,
       }
     : {}),
   async headers() {

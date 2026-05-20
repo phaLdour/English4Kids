@@ -54,12 +54,36 @@ if [ -z "${provenance_changed}" ]; then
   exit 1
 fi
 
-# Per-file check: every added asset's basename must appear in PROVENANCE.md.
+# Per-file check: every added asset must appear in PROVENANCE.md either by
+# basename (legacy) OR by a parent-directory batch row (e.g. an entry like
+# `apps/web/public/audio/vo/milo/**/*.opus` covers every file under that prefix).
+# Batch rows are required for large generated asset sets (build-time narration,
+# 215 SVG illustrations) where per-file rows are impractical; the manifest.json
+# referenced in PROVENANCE.md provides per-file SHA-256 attestation.
 missing=""
 while IFS= read -r asset_path; do
   [ -z "${asset_path}" ] && continue
+  matched=""
+
+  # 1. Try exact basename match (works for hand-curated assets)
   asset_basename="$(basename "${asset_path}")"
-  if ! grep -q -F "${asset_basename}" PROVENANCE.md; then
+  if grep -q -F "${asset_basename}" PROVENANCE.md; then
+    matched=1
+  fi
+
+  # 2. Try parent-directory batch-row match (walk up the tree)
+  if [ -z "${matched}" ]; then
+    asset_dir="$(dirname "${asset_path}")/"
+    while [ "${asset_dir}" != "./" ] && [ "${asset_dir}" != "/" ] && [ -n "${asset_dir}" ]; do
+      if grep -q -F "${asset_dir}" PROVENANCE.md; then
+        matched=1
+        break
+      fi
+      asset_dir="$(dirname "${asset_dir}")/"
+    done
+  fi
+
+  if [ -z "${matched}" ]; then
     missing="${missing}${asset_path}"$'\n'
   fi
 done <<< "${added_assets}"

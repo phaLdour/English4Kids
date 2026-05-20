@@ -19,9 +19,16 @@ Every audio, image, font, or code asset shipped with English4Kids is tracked her
 
 ## Audio (Music / SFX / Narration)
 
-| File | Source | Author | License | Date | Notes |
+All audio assets are produced by the project's build-time pipeline (`scripts/build-narration.ts`). Placeholder Opus + MP3 silent files ship under `apps/web/public/audio/vo/{milo,luna}/...` and under `apps/web/public/audio/sfx/...`; real Piper-rendered narration replaces placeholders via the manual `render-narration.yml` CI workflow on a machine with `piper-tts` + `ffmpeg` installed. SHA-256 integrity for every file lives in `apps/web/public/audio/manifest.json` (530 entries × 2 formats = 1060 verified files as of Sprint 5).
+
+| File / Batch | Source | Author | License | Date | Notes |
 |---|---|---|---|---|---|
-| _(none yet — Sprint 1)_ | | | | | Pre-rendered narration via Piper added in build step (Sprint 2) |
+| `apps/web/public/audio/manifest.json` | English4Kids team (build pipeline) | Audio Pipeline Agent | Original-MIT | 2026-05-19 | Canonical SHA-256 manifest covering all narration + sfx + music; integrity-verified by `scripts/verify-audio-manifest.ts` |
+| `apps/web/public/audio/vo/milo/**/*.{opus,mp3}` | Build pipeline (placeholder) → Piper `en_US-amy-medium` (production) | English4Kids team | Original-MIT | 2026-05-19 | Milo narration: greetings/family/colors/numbers (Unit 1), rooms/furniture/fruit/meals (Unit 2), pets/farm/actions/can-can't (Unit 3), all story panels + activity prompts |
+| `apps/web/public/audio/vo/luna/**/*.{opus,mp3}` | Build pipeline (placeholder) → Piper `en_GB-jenny_dioco-medium` (production) | English4Kids team | Original-MIT | 2026-05-20 | Luna narration parity: full activity-prompt + story coverage across Unit 1/2/3 (Critic-3 hotfix backfill; mascot-parity CI 100%) |
+| `apps/web/public/audio/sfx/*.{opus,mp3}` | jsfxr-generated + custom Piper renders | SFX Designer (agent) | Original-MIT | 2026-05-19 | Tap, correct bell, gentle-hmm, star jingle (4 shared sfx referenced across units) |
+| `apps/web/public/audio/music/*.{opus,mp3}` | MuseScore + LMMS exports (placeholder until human/AI vocal renders ship) | Music Composer + Songwriter (agents) | Original-MIT | 2026-05-19 | 5 original songs: Hello Hello Friend, Colors All Around, Count With Me, Fruit Salad Friends, On Coco's Farm + Big Small Tall Short |
+| `content/audio-assets/lexicon-overrides.json` | English4Kids team | Audio Pipeline Agent | Original-MIT | 2026-05-19 | Piper phoneme overrides for 5 character names + 10 homophones + 6 brand tokens + 9 kid-tricky words |
 
 ## Lottie Animations
 

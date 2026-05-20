@@ -801,7 +801,7 @@
     "license": "Original-MIT"
   },
   "vo.luna.story.theQuietestAnimal.p1": {
-    "src": "/audio/vo/story/theQuietestAnimal/p1.mp3",
+    "src": "/audio/vo/luna/story/theQuietestAnimal/p1.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
     "durationSec": 5,
@@ -810,7 +810,7 @@
     "license": "Original-MIT"
   },
   "vo.luna.story.theQuietestAnimal.p2": {
-    "src": "/audio/vo/story/theQuietestAnimal/p2.mp3",
+    "src": "/audio/vo/luna/story/theQuietestAnimal/p2.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
     "durationSec": 5.5,
@@ -819,7 +819,7 @@
     "license": "Original-MIT"
   },
   "vo.luna.story.theQuietestAnimal.p3": {
-    "src": "/audio/vo/story/theQuietestAnimal/p3.mp3",
+    "src": "/audio/vo/luna/story/theQuietestAnimal/p3.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
     "durationSec": 5.5,
@@ -828,7 +828,7 @@
     "license": "Original-MIT"
   },
   "vo.luna.story.theQuietestAnimal.p4": {
-    "src": "/audio/vo/story/theQuietestAnimal/p4.mp3",
+    "src": "/audio/vo/luna/story/theQuietestAnimal/p4.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
     "durationSec": 5.5,
@@ -837,7 +837,7 @@
     "license": "Original-MIT"
   },
   "vo.luna.story.theQuietestAnimal.p5": {
-    "src": "/audio/vo/story/theQuietestAnimal/p5.mp3",
+    "src": "/audio/vo/luna/story/theQuietestAnimal/p5.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
     "durationSec": 5.5,
@@ -846,7 +846,7 @@
     "license": "Original-MIT"
   },
   "vo.luna.story.theQuietestAnimal.p6": {
-    "src": "/audio/vo/story/theQuietestAnimal/p6.mp3",
+    "src": "/audio/vo/luna/story/theQuietestAnimal/p6.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
     "durationSec": 6,
@@ -855,7 +855,7 @@
     "license": "Original-MIT"
   },
   "vo.luna.story.theQuietestAnimal.q1": {
-    "src": "/audio/vo/story/theQuietestAnimal/q1.mp3",
+    "src": "/audio/vo/luna/story/theQuietestAnimal/q1.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
     "durationSec": 2.2,
@@ -864,7 +864,7 @@
     "license": "Original-MIT"
   },
   "vo.luna.story.theQuietestAnimal.q2": {
-    "src": "/audio/vo/story/theQuietestAnimal/q2.mp3",
+    "src": "/audio/vo/luna/story/theQuietestAnimal/q2.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
     "durationSec": 2,
@@ -873,7 +873,7 @@
     "license": "Original-MIT"
   },
   "vo.luna.story.theQuietestAnimal.q3": {
-    "src": "/audio/vo/story/theQuietestAnimal/q3.mp3",
+    "src": "/audio/vo/luna/story/theQuietestAnimal/q3.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
     "durationSec": 2.3,
@@ -1662,6 +1662,213 @@
     "durationSec": 27,
     "transcript": "Big! and small, Tall and short. Big like a horse, small like a mouse, Tall like a tree, short like a house. Big and small, tall and short, Every size is just the right sort! Big! Small! Tall! Short! Sing it loud — we love them all!",
     "type": "song",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.pipMeetsPets.p1": {
+    "src": "/audio/vo/luna/story/pipMeetsPets/p1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4,
+    "transcript": "Pip the Parrot visits a sunny pet room.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.pipMeetsPets.p2": {
+    "src": "/audio/vo/luna/story/pipMeetsPets/p2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Hello, cat! A small cat purrs on a soft mat.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.pipMeetsPets.p3": {
+    "src": "/audio/vo/luna/story/pipMeetsPets/p3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "Hi, dog! A happy dog wags its tail. Hello, rabbit! Hop, hop, hop.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.pipMeetsPets.p4": {
+    "src": "/audio/vo/luna/story/pipMeetsPets/p4.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "A bird, a fish, and a hamster wave too. So many new friends!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.pipMeetsPets.q1": {
+    "src": "/audio/vo/luna/story/pipMeetsPets/q1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
+    "transcript": "Which pet did Pip meet first?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.whatCanYouDo.p1": {
+    "src": "/audio/vo/luna/story/whatCanYouDo/p1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "In the forest, the friends share what they can do.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.whatCanYouDo.p2": {
+    "src": "/audio/vo/luna/story/whatCanYouDo/p2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "I can fly, says the bird. Up, up, up!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.whatCanYouDo.p3": {
+    "src": "/audio/vo/luna/story/whatCanYouDo/p3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "I can swim, says the fish. Swish, swish, swish!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.whatCanYouDo.p4": {
+    "src": "/audio/vo/luna/story/whatCanYouDo/p4.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "I can climb, says the bear. Up the big tree!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.whatCanYouDo.p5": {
+    "src": "/audio/vo/luna/story/whatCanYouDo/p5.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 6,
+    "transcript": "A fish can't walk. A cat can't fly. That's okay — we all do different things.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.whatCanYouDo.p6": {
+    "src": "/audio/vo/luna/story/whatCanYouDo/p6.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "Everyone can do something. What can you do today?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.whatCanYouDo.q1": {
+    "src": "/audio/vo/luna/story/whatCanYouDo/q1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
+    "transcript": "Who said 'I can fly'?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.whatCanYouDo.q2": {
+    "src": "/audio/vo/luna/story/whatCanYouDo/q2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
+    "transcript": "What can the bear do?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.whatCanYouDo.q3": {
+    "src": "/audio/vo/luna/story/whatCanYouDo/q3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.4,
+    "transcript": "Put the friends in the order they spoke.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.theQuietestAnimal.p1": {
+    "src": "/audio/vo/story/theQuietestAnimal/p1.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5,
+    "transcript": "Coco the Goat walks on the farm. She wants to hear a quiet sound.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.theQuietestAnimal.p2": {
+    "src": "/audio/vo/story/theQuietestAnimal/p2.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.5,
+    "transcript": "The cow says moo. The sheep says baa. Not so quiet.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.theQuietestAnimal.p3": {
+    "src": "/audio/vo/story/theQuietestAnimal/p3.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.5,
+    "transcript": "The pig says oink. The horse says neigh. Still not so quiet.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.theQuietestAnimal.p4": {
+    "src": "/audio/vo/story/theQuietestAnimal/p4.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.5,
+    "transcript": "The duck says quack. The chicken says cluck. Loud and proud!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.theQuietestAnimal.p5": {
+    "src": "/audio/vo/story/theQuietestAnimal/p5.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 5.5,
+    "transcript": "Coco peeks in the pond. A fish blows bubbles. Bubble, bubble. So quiet!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.theQuietestAnimal.p6": {
+    "src": "/audio/vo/story/theQuietestAnimal/p6.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 6,
+    "transcript": "Every voice is welcome on the farm. Loud, soft, big, small — all friends.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.theQuietestAnimal.q1": {
+    "src": "/audio/vo/story/theQuietestAnimal/q1.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2.2,
+    "transcript": "Which animal made the quietest sound?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.theQuietestAnimal.q2": {
+    "src": "/audio/vo/story/theQuietestAnimal/q2.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2,
+    "transcript": "What sound does the horse make?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.milo.story.theQuietestAnimal.q3": {
+    "src": "/audio/vo/story/theQuietestAnimal/q3.mp3",
+    "voiceActor": "Milo (Piper en_US-amy-medium)",
+    "lang": "en-US",
+    "durationSec": 2.3,
+    "transcript": "Put Coco's farm walk in order.",
+    "type": "narration",
     "license": "Original-MIT"
   }
 }

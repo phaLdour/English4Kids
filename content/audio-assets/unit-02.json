@@ -885,5 +885,167 @@
     "transcript": "(celebratory star jingle)",
     "type": "sfx",
     "license": "Original-MIT"
+  },
+  "vo.luna.story.houseTour.p1": {
+    "src": "/audio/vo/luna/story/houseTour/p1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Bea Bunny opens the door. Welcome to her house!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.houseTour.p2": {
+    "src": "/audio/vo/luna/story/houseTour/p2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "Here is the kitchen. A big table and four chairs.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.houseTour.p3": {
+    "src": "/audio/vo/luna/story/houseTour/p3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "This is the bedroom. A soft bed and a sunny window.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.houseTour.p4": {
+    "src": "/audio/vo/luna/story/houseTour/p4.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "And the living room. A lamp shines on the rug. Come in!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.houseTour.q1": {
+    "src": "/audio/vo/luna/story/houseTour/q1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.2,
+    "transcript": "Where are the table and chairs?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.beaTriesPear.p1": {
+    "src": "/audio/vo/luna/story/beaTriesPear/p1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4,
+    "transcript": "Bea looks at the fruit bowl. So many colors!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.beaTriesPear.p2": {
+    "src": "/audio/vo/luna/story/beaTriesPear/p2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "She picks an apple. I like apples, says Bea.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.beaTriesPear.p3": {
+    "src": "/audio/vo/luna/story/beaTriesPear/p3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Then Bea sees a green pear. A new fruit for her.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.beaTriesPear.p4": {
+    "src": "/audio/vo/luna/story/beaTriesPear/p4.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "Bea takes a small bite. Soft and sweet. She smiles.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.beaTriesPear.p5": {
+    "src": "/audio/vo/luna/story/beaTriesPear/p5.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "I like pears too, says Bea. New fruit, new friend.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.beaTriesPear.q1": {
+    "src": "/audio/vo/luna/story/beaTriesPear/q1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
+    "transcript": "What fruit was new for Bea?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.beaTriesPear.q2": {
+    "src": "/audio/vo/luna/story/beaTriesPear/q2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
+    "transcript": "How did the pear taste?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.beaTriesPear.q3": {
+    "src": "/audio/vo/luna/story/beaTriesPear/q3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.4,
+    "transcript": "Put the fruit story in order.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.threeMeals.p1": {
+    "src": "/audio/vo/luna/story/threeMeals/p1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "Good morning! Bea eats breakfast. Milk and bread.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.threeMeals.p2": {
+    "src": "/audio/vo/luna/story/threeMeals/p2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "At noon, Bea eats lunch. Soup and water.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.threeMeals.p3": {
+    "src": "/audio/vo/luna/story/threeMeals/p3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "In the evening, Bea eats dinner. Rice and juice.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.threeMeals.p4": {
+    "src": "/audio/vo/luna/story/threeMeals/p4.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Three meals, three smiles. Good night, Bea.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.threeMeals.q1": {
+    "src": "/audio/vo/luna/story/threeMeals/q1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
+    "transcript": "What does Bea eat first?",
+    "type": "narration",
+    "license": "Original-MIT"
   }
 }

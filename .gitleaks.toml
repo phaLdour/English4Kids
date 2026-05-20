@@ -1,0 +1,95 @@
+# gitleaks rules for English4Kids — Sprint 5 S5-8.
+#
+# Inherits the maintained default ruleset (sensible coverage for common
+# providers), then adds project-specific rules tailored to the secrets we
+# actually use (Resend, Sentry, Supabase service-role JWT, Apple App
+# Specific Passwords) and a high-entropy fallback for unknown `.env*`
+# leaks. Allowlist excludes the obvious examples (`.env.example`, ADRs,
+# this file itself).
+#
+# Run locally:
+#   brew install gitleaks
+#   gitleaks detect --no-banner --redact --config .gitleaks.toml
+#
+# CI: .github/workflows/secrets-scan.yml.
+
+title = "English4Kids gitleaks config"
+
+[extend]
+useDefault = true
+
+# ----- Project rules -----------------------------------------------------
+
+[[rules]]
+id = "stripe-live-secret"
+description = "Stripe live secret key"
+regex = '''\bsk_live_[0-9a-zA-Z]{16,}\b'''
+tags = ["stripe", "key"]
+
+[[rules]]
+id = "stripe-test-secret"
+description = "Stripe test secret key (still sensitive in shared accounts)"
+regex = '''\bsk_test_[0-9a-zA-Z]{16,}\b'''
+tags = ["stripe", "key"]
+
+[[rules]]
+id = "aws-access-key-id"
+description = "AWS Access Key ID"
+regex = '''\bAKIA[0-9A-Z]{16}\b'''
+tags = ["aws", "key"]
+
+[[rules]]
+id = "resend-api-key"
+description = "Resend API key (re_...)"
+regex = '''\bre_[A-Za-z0-9]{20,}\b'''
+tags = ["resend", "key"]
+
+[[rules]]
+id = "sentry-auth-token"
+description = "Sentry user/org auth token (sntrys_...)"
+regex = '''\bsntrys_[A-Za-z0-9_=\-]{40,}\b'''
+tags = ["sentry", "token"]
+
+[[rules]]
+# Match a JWT (3 base64url segments separated by dots) where the payload
+# segment decodes to include `service_role`. We approximate with a regex
+# that searches for the literal `service_role` token inside the typical
+# base64-encoded JWT payload prefix `eyJ`.
+id = "supabase-service-role-jwt"
+description = "Supabase service-role JWT"
+regex = '''eyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]*c2VydmljZV9yb2xl[A-Za-z0-9_-]*\.[A-Za-z0-9_-]{20,}'''
+tags = ["supabase", "jwt"]
+
+[[rules]]
+id = "apple-app-specific-password"
+description = "Apple App-Specific Password (xxxx-xxxx-xxxx-xxxx)"
+regex = '''\b[a-z]{4}-[a-z]{4}-[a-z]{4}-[a-z]{4}\b'''
+tags = ["apple", "password"]
+
+[[rules]]
+# Generic high-entropy fallback inside `.env*` files (but NOT .env.example).
+# Catches long random-looking strings (40+ chars) after `=` when the file
+# path looks env-shaped. Tighter than the default high-entropy rule but
+# scoped narrowly enough to avoid the Vercel build noise.
+id = "env-file-high-entropy"
+description = "High-entropy string in a .env file (>=40 chars)"
+regex = '''(?i)(?:secret|token|key|password|api[_-]?key)\s*=\s*['"]?([A-Za-z0-9+/_\-]{40,})['"]?'''
+path = '''(^|/)\.env(\..*)?$'''
+tags = ["env", "entropy"]
+
+# ----- Allowlist ---------------------------------------------------------
+
+[allowlist]
+description = "Examples, docs, and ADRs that intentionally show secret shapes"
+paths = [
+  '''(^|/)\.env\.example$''',
+  '''(^|/)docs/.*\.md$''',
+  '''(^|/)\.gitleaks\.toml$''',
+  '''(^|/)\.sentryclirc\.template$''',
+  '''(^|/)CHANGELOG.*$''',
+  '''(^|/)README\.md$''',
+]
+# Common test/fake JWT values used in fixtures and Supabase docs.
+regexes = [
+  '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.eyJzdWIiOiIxMjM0NTY3ODkwIn0\.[A-Za-z0-9_-]+''',
+]

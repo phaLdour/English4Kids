@@ -22,6 +22,10 @@ test-results/
 .env.*.local
 !.env.example
 
+# Sentry CLI — copy .sentryclirc.template to .sentryclirc and fill in
+# locally. CI uses GitHub Actions secrets, not this file.
+.sentryclirc
+
 # Editors
 .vscode/*
 !.vscode/settings.json

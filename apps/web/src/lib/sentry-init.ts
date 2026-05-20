@@ -187,6 +187,12 @@ export async function initSentry(): Promise<void> {
     Sentry.init({
       dsn,
       environment: process.env.NEXT_PUBLIC_E4K_ENV ?? 'development',
+      // Release name matches what CI uploads source maps under
+      // (`.github/workflows/ci.yml` → `sentry-sourcemaps` job sets
+      // `NEXT_PUBLIC_E4K_RELEASE=${{ github.sha }}` at build time). When
+      // unset (local dev) we tag events as `dev` so they don't poison the
+      // production release's stack-trace symbolication.
+      release: process.env.NEXT_PUBLIC_E4K_RELEASE ?? 'dev',
       tracesSampleRate: 0.1,
       sendDefaultPii: false,
       beforeSend(event: SentryEventLike) {

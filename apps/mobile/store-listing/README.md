@@ -8,10 +8,34 @@ The store reviews focus on three things for a kids app: (1) consistent privacy c
 
 | File | Purpose |
 |---|---|
-| `copy-en.md` | English copy block (stubs — Marketing Agent finalises in Sprint 5 wave B). |
-| `copy-tr.md` | Turkish copy block (same stubs). |
+| `copy-en.md` | English copy block — Sprint 5 wave B final. Three URL placeholders + one contact-email placeholder remain. |
+| `copy-tr.md` | Turkish copy block — Sprint 5 wave B final. Formal "siz" tone, brand untranslated, three URL placeholders. |
 | `coppa-checklist.md` | Item-by-item self-certification text the user pastes into the Play Console + App Store Connect privacy forms. |
+| `screenshots-guide.md` | 8-slot capture plan, device specs, capture mechanics, and annotation style. Sprint 6 execution. |
+| `feature-graphic.svg` | 1024×500 Google Play feature graphic. Render to PNG with `rsvg-convert` or `inkscape` before upload. |
+| `privacy-nutrition.md` | App Store Connect privacy nutrition label draft (drop-in answers per category). |
+| `google-data-safety.md` | Google Play data safety form draft (drop-in answers per category). |
 | `assets/` | Generated PNG assets (high-res icon, feature graphic, screenshot templates). Produced by `apps/mobile/scripts/generate-icons.mjs`. |
+
+## Submission checklist (Marketing Agent — Sprint 5 wave B)
+
+The user works through this list before pressing "Submit for Review" in either console. Order roughly matches the consoles' tab order.
+
+- [ ] Replace the 3 URL placeholders in `copy-en.md` (Support, Marketing, Privacy) — same three appear in `copy-tr.md`.
+- [ ] Have the Turkish copy in `copy-tr.md` reviewed by a native speaker, and update the contact email line if a localised support address is preferred.
+- [ ] Capture the 8 screenshots per platform per device class — 4 device classes minimum (Apple iPhone 6.7", Apple iPad 13", Android phone, Android tablet 10") × 2 locales (EN + TR) = **at least 64 captures**. Add the Android 7" tablet set for full coverage (96 captures). See `screenshots-guide.md`.
+- [ ] Render `feature-graphic.svg` to a 1024×500 PNG. Either tool works:
+  ```bash
+  rsvg-convert -w 1024 -h 500 feature-graphic.svg -o assets/play-feature-graphic.png
+  # or
+  inkscape feature-graphic.svg --export-type=png --export-filename=assets/play-feature-graphic.png -w 1024 -h 500
+  ```
+- [ ] Paste `privacy-nutrition.md` answers into App Store Connect → App Privacy. Verify the SDK table matches the build's actual dependencies before submitting.
+- [ ] Paste `google-data-safety.md` answers into Play Console → App content → Data safety.
+- [ ] Paste `coppa-checklist.md` compliance answers into both consoles' Designed for Families / Kids category review notes.
+- [ ] Set age rating: **Apple 4+**, **Google Everyone (E)**.
+- [ ] In Apple, opt into the Kids category and select both age bands (6–8 + 9–11). In Google, opt into Designed for Families and select age bands 6–8 + 9–11.
+- [ ] Confirm the build's bundle ID + version code matches the App Store Connect / Play Console listing.
 
 ## Apple App Store Connect — fields to populate
 

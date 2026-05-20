@@ -13,6 +13,8 @@ Sentry.init({
   dsn: DSN,
   enabled: Boolean(DSN),
   environment: process.env.NEXT_PUBLIC_E4K_ENV ?? 'development',
+  // Matches client + CI source-map upload — see ADR-0014.
+  release: process.env.NEXT_PUBLIC_E4K_RELEASE ?? 'dev',
   tracesSampleRate: 0.1,
   sendDefaultPii: false,
   beforeSend(event) {

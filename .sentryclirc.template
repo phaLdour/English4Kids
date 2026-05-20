@@ -1,0 +1,19 @@
+# Sentry CLI config template — Sprint 5 S5-9.
+#
+# Copy this file to `.sentryclirc` at the repo root (gitignored) and
+# fill in the three placeholders. Used by:
+#   - `apps/web/scripts/upload-sourcemaps.sh` for one-off uploads
+#   - `npx @sentry/cli` invocations from any subdirectory under the
+#     repo, since the CLI walks up the directory tree looking for a
+#     `.sentryclirc`.
+#
+# Never commit the filled-in `.sentryclirc`. CI uses GitHub Actions
+# secrets directly (see `.github/workflows/ci.yml` →
+# `sentry-sourcemaps` job) and does not read this file.
+
+# [auth]
+# token=<SENTRY_AUTH_TOKEN>
+
+# [defaults]
+# org=<SENTRY_ORG>
+# project=<SENTRY_PROJECT>

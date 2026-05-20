@@ -512,5 +512,116 @@
     "greatWork": "Harika iş çıkardın!",
     "madeItShine": "Parlattın!",
     "headlineAria": "{headline} 3 yıldızdan {count} kazandın"
+  },
+  "marketing": {
+    "title": "English4Kids",
+    "tagline": "Çocuğunuz için sakin, reklamsız İngilizce macerası 6-12 yaş",
+    "subhead": "Dokun, söyle, şarkı söyle — ve çocuğunuzun sesi bu cihazda kalır.",
+    "features": {
+      "privacy": {
+        "title": "Önce gizlilik",
+        "body": "Reklam yok, üçüncü taraf takipçi yok, aranacak profil yok. Mikrofon varsayılan olarak kapalıdır; çocuğunuz konuşma alıştırması yaptığında ses yalnızca cihazda işlenir."
+      },
+      "pedagogy": {
+        "title": "Sakin pedagoji",
+        "body": "Zaman baskısı yok, lider tabloları yok, seri utandırması yok. Her etkinlik nazik bir sonraki adım sunar ve övgü sonuçtan çok çabaya odaklanır."
+      },
+      "ageBands": {
+        "title": "İki yaş bandı",
+        "body": "Alt bant (6-8) daha büyük düğmeler, daha yavaş anlatım ve büyük görseller kullanır. Üst bant (9-12) daha zengin metin ve daha hızlı bir tempo ekler."
+      }
+    },
+    "howItWorks": {
+      "title": "Nasıl çalışır",
+      "step1Title": "Bir arkadaş seç",
+      "step1Body": "Tilki Milo veya baykuş Luna'yı seçin — ya da dersi sırayla yönlendirmeleri için ikisini birden davet edin.",
+      "step2Title": "5 dakikalık dersler oyna",
+      "step2Body": "Dinle, dokun, oluştur, konuş, şarkı söyle ve hareket et etkinlikleriyle kısa maceralar. Akşam yemeği ile banyo arasına sığacak şekilde tasarlandı.",
+      "step3Title": "Ebeveyn panelinde ilerlemeyi gör",
+      "step3Body": "Yalnızca yetişkinler için bir panel büyüyen kelimeleri, dersleri ve serileri izler. İstediğiniz zaman her şeyi dışa aktarabilir veya silebilirsiniz."
+    },
+    "privacy": {
+      "title": "Gizlilik ve güvenlik",
+      "bullet1": "COPPA uyumlu: önce anonim profiller, bulut senkronizasyonundan önce doğrulanabilir ebeveyn onayı.",
+      "bullet2": "GDPR-K ve Birleşik Krallık Yaşa Uygun Tasarım Kuralı uyumlu: yasal dayanak, veri en aza indirme, çocuk dostu açıklamalar.",
+      "bullet3": "Mikrofon sesi cihazda işlenir. Yalnızca sayısal bir puan ağdan geçer ve yalnızca bir yetişkin senkronizasyonu etkinleştirdikten sonra.",
+      "bullet4": "Reklam yok, davranışsal profil çıkarma yok, çocuğunuzun gördüğü hiçbir sayfada üçüncü taraf takipçi yok.",
+      "readMore": "Tam gizlilik politikasını oku"
+    },
+    "cta": {
+      "openApp": "Uygulamayı aç",
+      "openAppAria": "Uygulamayı aç ve tanıtıma başla"
+    },
+    "footer": {
+      "contact": "İletişim: support@english4kids.app",
+      "privacy": "Gizlilik",
+      "terms": "Şartlar",
+      "faq": "SSS",
+      "tagline": "Erken okuyucular ve konuşmacılar için özenle hazırlandı."
+    }
+  },
+  "faq": {
+    "title": "Sık sorulan sorular",
+    "intro": "Yetişkinler için sade cevaplar (ve birkaçı yetişkinlerin çocuklarıyla birlikte okuyabileceği). Atladığımız bir şey olursa support@english4kids.app adresine yazın.",
+    "categories": {
+      "parents": "Ebeveynler için",
+      "kids": "Çocuklar için (bir yetişkinle birlikte okuyun)",
+      "technical": "Teknik"
+    },
+    "parents": {
+      "privacy": {
+        "q": "Çocuğumun gizliliğini nasıl koruyorsunuz?",
+        "a": "Profiller önce anonimdir — asla gerçek bir ad istemeyiz. İlerleme cihazda saklanır. Bulut senkronizasyonu yalnızca bir yetişkin, iki e-posta onayı arasında 24 saatlik bir gecikme içeren doğrulanabilir ebeveyn onayı akışımızı tamamladıktan sonra etkinleşir."
+      },
+      "micAudio": {
+        "q": "Çocuğumun mikrofon sesi cihazdan ayrılır mı?",
+        "a": "Hayır. Konuşmadan metne dönüştürme, tarayıcıda yerleşik Web Speech API'si veya isteğe bağlı bir çevrimdışı WASM modeli kullanılarak çalışır. Yalnızca sayısal bir telaffuz puanı saklanır ve yalnızca senkronizasyon etkinleştirildikten sonra."
+      },
+      "delete": {
+        "q": "Çocuğumun tüm verilerini nasıl silerim?",
+        "a": "Ebeveyn Panelini açın, Tüm verileri sil seçeneğini belirleyin ve onaylayın. Fikir değiştirirseniz geri yüklemek için 7 günlük bir bekleme süresi alırsınız, ardından her şey hem cihazdan hem de sunucularımızdan kalıcı olarak silinir."
+      },
+      "controls": {
+        "q": "Ebeveyn kontrolü var mı?",
+        "a": "Evet. Bir matematik kapısı her hassas ayarı korur: mikrofon, ebeveyn paneli, veri dışa aktarma ve hesap yükseltme. Panel içinde diğer ilerlemeyi kaybetmeden katılığı, günlük süre sınırını ve mikrofon erişimini ayarlayabilirsiniz."
+      },
+      "vpc": {
+        "q": "Bulut senkronizasyonu neden e-posta doğrulaması gerektiriyor?",
+        "a": "COPPA, kişisel verilerin cihazdan ayrılmasından önce doğrulanabilir ebeveyn onayı gerektirir. E-posta-artı yöntemimiz, meraklı bir çocuğun atlayamaması için 24 saat arayla iki onay gönderir. Onaylandıktan sonra çocuğunuzun ilerlemesi yedeklenir ve cihazlar arasında takip eder."
+      }
+    },
+    "kids": {
+      "offline": {
+        "q": "Çevrimdışı oynayabilir miyim?",
+        "a": "Evet! İlk ziyaretinizden sonra English4Kids etkinlikleri cihazınıza kaydeder, böylece internet olmadan oynamaya devam edebilirsiniz. Bir sonraki bağlandığınızda yeni dersleri göreceksiniz."
+      },
+      "milo": {
+        "q": "Milo neden bir tilki?",
+        "a": "Milo ve Luna nazik, meraklı ve cesur olarak çizildi. Tilkiler ve baykuşlar harika dinleyicilerdir — bir dil macerası için mükemmel. Sana doğru hissettiren hangisini seç, ya da ikisini de dene."
+      },
+      "scores": {
+        "q": "Neden puan veya lider tablosu yok?",
+        "a": "Kimseyle yarışmak yerine yolculuğun tadını çıkarmanı istiyoruz. Kazandığın her yıldız çaban içindir. İlk denemede ya da onuncuda yapsan da beynin büyüyor."
+      }
+    },
+    "technical": {
+      "browsers": {
+        "q": "Hangi tarayıcılar ve cihazlar destekleniyor?",
+        "a": "Masaüstü ve mobilde Chrome, Safari, Firefox ve Edge'in son sürümleri. iOS ve Android yerel uygulamaları aynı deneyimi sarar. Konuşma özellikleri en iyi Chrome ve Safari'de çalışır."
+      },
+      "internet": {
+        "q": "Bir ders sırasında internetimi kaybedersem ne olur?",
+        "a": "Dersiniz devam eder. İlerlemeyi cihazda kaydediyoruz ve tekrar bağlandığınızda senkronize ediyoruz (bulut senkronizasyonu etkinse). Konuşma alıştırması da çalışmaya devam eder — konuşmadan metne yerel olarak çalışır."
+      },
+      "languages": {
+        "q": "İngilizce ve Türkçe arasında geçiş yapabilir miyim?",
+        "a": "Evet. Ayarları açın ve Dil seçin. Arayüz Türkçeye geçerken İngilizce ders içeriği İngilizce kalır — çocuğunuzun öğrendiği şey budur."
+      },
+      "support": {
+        "q": "Destekle nasıl iletişim kurabilirim?",
+        "a": "support@english4kids.app adresine yazın. İki iş günü içinde yanıtlamayı hedefliyoruz. Gizlilik veya veri sahibi talepleri için aynı adres veri ekibimize ulaşır."
+      }
+    },
+    "backTo": "Uygulamaya dön"
   }
 }

@@ -512,5 +512,116 @@
     "greatWork": "Great work!",
     "madeItShine": "Made it Shine!",
     "headlineAria": "{headline} {count} of 3 stars earned"
+  },
+  "marketing": {
+    "title": "English4Kids",
+    "tagline": "Calm, ad-free English adventure for kids 6 to 12",
+    "subhead": "Tap, say, sing — and your child's voice stays on this device.",
+    "features": {
+      "privacy": {
+        "title": "Privacy-first",
+        "body": "No ads, no third-party trackers, no profiles to look up. The microphone is off by default; when your child enables speaking practice, the audio is processed on-device only."
+      },
+      "pedagogy": {
+        "title": "Calm pedagogy",
+        "body": "No time pressure, no leaderboards, no streak-shaming. Every activity offers a gentle next step, and praise focuses on effort over outcome."
+      },
+      "ageBands": {
+        "title": "Two age bands",
+        "body": "Lower band (6 to 8) uses larger buttons, slower narration, and big visuals. Upper band (9 to 12) layers in richer text and a quicker tempo."
+      }
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "step1Title": "Pick a buddy",
+      "step1Body": "Choose Milo the fox or Luna the owl — or invite both to take turns guiding the lesson.",
+      "step2Title": "Play 5-minute lessons",
+      "step2Body": "Short adventures with listen, tap, build, speak, sing, and move activities. Designed to fit between dinner and bath time.",
+      "step3Title": "See progress in the parent dashboard",
+      "step3Body": "A grown-ups-only dashboard tracks growing words, lessons, and streaks. You can export or delete everything at any time."
+    },
+    "privacy": {
+      "title": "Privacy and safety",
+      "bullet1": "COPPA-aligned: anonymous-first profiles, verifiable parental consent before cloud sync.",
+      "bullet2": "GDPR-K and UK Age-Appropriate Design Code aligned: lawful basis, data minimisation, child-friendly disclosures.",
+      "bullet3": "Microphone audio is processed on-device. Only a numeric score crosses the network, and only after a grown-up enables sync.",
+      "bullet4": "No advertising, no behavioural profiling, no third-party trackers on any page your child sees.",
+      "readMore": "Read the full privacy policy"
+    },
+    "cta": {
+      "openApp": "Open the app",
+      "openAppAria": "Open the app and start onboarding"
+    },
+    "footer": {
+      "contact": "Contact: support@english4kids.app",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "faq": "FAQ",
+      "tagline": "Made with care for early readers and speakers."
+    }
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "intro": "Plain answers for grown-ups (and a few that grown-ups can read with their kids). For anything we missed, write to support@english4kids.app.",
+    "categories": {
+      "parents": "For parents",
+      "kids": "For kids (read with a grown-up)",
+      "technical": "Technical"
+    },
+    "parents": {
+      "privacy": {
+        "q": "How do you protect my child's privacy?",
+        "a": "Profiles are anonymous-first — we never ask for a real name. Progress is stored on the device. Cloud sync only activates after a grown-up completes our verifiable parental consent flow, which includes a 24-hour delay between two email confirmations."
+      },
+      "micAudio": {
+        "q": "Does my child's microphone audio leave the device?",
+        "a": "No. Speech-to-text runs in the browser using the built-in Web Speech API or an optional offline WASM model. Only a numeric pronunciation score is ever stored, and only after sync is enabled."
+      },
+      "delete": {
+        "q": "How do I delete all my child's data?",
+        "a": "Open Parent Dashboard, choose Delete all data, and confirm. You get a 7-day grace window to restore in case you change your mind, then everything is permanently removed from both the device and our servers."
+      },
+      "controls": {
+        "q": "Is there parental control?",
+        "a": "Yes. A math gate protects every sensitive setting: microphone, parent dashboard, data export, and account upgrade. Inside the dashboard you can adjust strictness, daily time limit, and microphone access without losing other progress."
+      },
+      "vpc": {
+        "q": "Why does the cloud sync need email verification?",
+        "a": "COPPA requires verifiable parental consent before personal data leaves the device. Our email-plus method sends two confirmations 24 hours apart so a curious child cannot bypass it. Once confirmed, your child's progress is backed up and follows them across devices."
+      }
+    },
+    "kids": {
+      "offline": {
+        "q": "Can I play offline?",
+        "a": "Yes! After your first visit, English4Kids saves the activities to your device so you can keep playing without internet. You will see new lessons the next time you connect."
+      },
+      "milo": {
+        "q": "Why is Milo the fox?",
+        "a": "Milo and Luna were drawn to be kind, curious, and brave. Foxes and owls are great listeners — perfect for a language adventure. Pick whichever one feels right to you, or try both."
+      },
+      "scores": {
+        "q": "Why are there no scores or leaderboards?",
+        "a": "We want you to enjoy the journey, not race anyone. Every star you earn is for your effort. Your brain grows whether you get it on the first try or the tenth."
+      }
+    },
+    "technical": {
+      "browsers": {
+        "q": "Which browsers and devices are supported?",
+        "a": "Recent versions of Chrome, Safari, Firefox, and Edge on desktop and mobile. iOS and Android native apps wrap the same experience. Speech features work best on Chrome and Safari."
+      },
+      "internet": {
+        "q": "What if I lose internet during a lesson?",
+        "a": "Your lesson continues. We save progress on the device and sync the next time you reconnect (if cloud sync is enabled). Speaking practice keeps working too — speech-to-text runs locally."
+      },
+      "languages": {
+        "q": "Can I switch between English and Turkish?",
+        "a": "Yes. Open Settings and pick Language. The interface switches to Turkish while the English lesson content stays in English — that is what your child is learning."
+      },
+      "support": {
+        "q": "How can I contact support?",
+        "a": "Write to support@english4kids.app. We aim to reply within two working days. For privacy or data-subject requests, the same address reaches our data team."
+      }
+    },
+    "backTo": "Back to the app"
   }
 }

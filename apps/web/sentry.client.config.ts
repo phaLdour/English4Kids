@@ -22,6 +22,9 @@ if (DSN) {
       dsn: DSN,
       enabled: true,
       environment: process.env.NEXT_PUBLIC_E4K_ENV ?? 'development',
+      // See `src/lib/sentry-init.ts` and ADR-0014 §"Sentry source-map upload"
+      // — release is the git SHA in CI, "dev" otherwise.
+      release: process.env.NEXT_PUBLIC_E4K_RELEASE ?? 'dev',
       tracesSampleRate: 0.1,
       sendDefaultPii: false,
       beforeSend(event) {

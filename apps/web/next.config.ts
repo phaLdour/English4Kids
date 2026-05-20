@@ -104,27 +104,38 @@ const nextConfig: NextConfig = {
   },
 };
 
-// Conditional Sentry wrap: only enabled when org/project env are present, so
-// dev and child-only deployments stay free of Sentry's webpack plugin.
+// Conditional Sentry wrap: only enabled when ALL of org / project / auth-token
+// env are present, so dev and child-only deployments stay free of Sentry's
+// webpack plugin. ADR-0014 §"Sentry source-map upload" for why we require the
+// auth token now: a partial config (org+project, no token) used to silently
+// emit maps without uploading — that produced misleading "release found, no
+// maps" warnings in the Sentry UI and confused on-call.
 const SENTRY_ORG = process.env.SENTRY_ORG;
 const SENTRY_PROJECT = process.env.SENTRY_PROJECT;
-const sentryEnabled = Boolean(SENTRY_ORG && SENTRY_PROJECT);
+const SENTRY_AUTH_TOKEN = process.env.SENTRY_AUTH_TOKEN;
+const sentryEnabled = Boolean(SENTRY_ORG && SENTRY_PROJECT && SENTRY_AUTH_TOKEN);
 
 const wrapped = withSerwist(nextConfig);
 
+const sentryWebpackPluginOptions = {
+  org: SENTRY_ORG,
+  project: SENTRY_PROJECT,
+  authToken: SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
+  // Hide the maps from the public-facing bundle (Sentry still gets them via
+  // upload). The full path of the map is rewritten to a sentry:// URL so a
+  // determined visitor can't pull the originals from /_next/static.
+  hideSourceMaps: true,
+  // Upload server- + edge-runtime maps too. The kid bundle stays small at
+  // runtime; this only affects what the build uploads to Sentry, not what
+  // ships to the browser.
+  widenClientFileUpload: true,
+  disableLogger: true,
+  automaticVercelMonitors: false,
+};
+
 const sentryWrapped = sentryEnabled
-  ? withSentryConfig(wrapped, {
-      org: SENTRY_ORG,
-      project: SENTRY_PROJECT,
-      authToken: process.env.SENTRY_AUTH_TOKEN,
-      silent: !process.env.CI,
-      // Bundle-size matters on kid devices — keep tunnel and source-map upload
-      // opt-in. Source maps are still emitted, just not auto-uploaded unless
-      // an auth token is present.
-      widenClientFileUpload: false,
-      hideSourceMaps: true,
-      disableLogger: true,
-    })
+  ? withSentryConfig(wrapped, sentryWebpackPluginOptions)
   : wrapped;
 
 export default withBundleAnalyzer(sentryWrapped);

@@ -345,3 +345,58 @@ jobs:
         run: pnpm --filter @e4k/web test:e2e tests/e2e/a11y-baseline.spec.ts
         env:
           CI: 'true'
+
+  sentry-sourcemaps:
+    name: Upload Sentry source maps
+    runs-on: ubuntu-latest
+    # Production-only. Preview branches don't burn release slots in
+    # Sentry. PRs never upload. See ADR-0014 §"Sentry source-map upload".
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [lint, typecheck, test]
+    # Marked continue-on-error until the user provisions SENTRY_AUTH_TOKEN
+    # in repo secrets. Until then the job builds successfully but the
+    # upload step skips with a warning; promoting to required is a
+    # one-line change once secrets are wired.
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build app with release tag
+        # The Sentry webpack plugin only activates when ALL three env
+        # vars are set (`next.config.ts`). We export them inline so the
+        # plugin generates maps and the post-build action uploads them
+        # under the same release name.
+        run: pnpm --filter @e4k/web build
+        env:
+          NEXT_PUBLIC_E4K_RELEASE: ${{ github.sha }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+      - name: Upload source maps to Sentry
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+        with:
+          environment: production
+          version: ${{ github.sha }}
+          sourcemaps: apps/web/.next
+          url_prefix: '~/_next'

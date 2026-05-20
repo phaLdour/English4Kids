@@ -144,11 +144,13 @@ GitHub Actions secrets (mobile + CI):
 
 ## Known limitations (real, not pretend)
 
-1. **Pronunciation multi-word edge case** — `packages/audio/src/pronunciation.test.ts:105-115` fails because the current `scorePronunciation` returns `score === 0` for `target="cat", recognized="the cat"` under normal strictness. The downstream 3-attempt auto-pass in `SpeakIt.tsx` masks this end-user-side, but the test asserts `> 0`. Pre-existing since Sprint 1. Recommend Sprint 6 fix that token-aligns rather than concatenates phonemes.
-2. **`lottie-react` import in vitest** — 9 of 19 `apps/web` test suites fail to load (`Failed to resolve import "lottie-react"`). The runtime build works (Next.js resolves through transpilePackages). Pre-existing Vite + pnpm hoisting issue. Recommend pinning a vitest alias for `lottie-react` in `apps/web/vitest.config.ts`.
-3. **`React is not defined` in `i18n-provider.test.tsx`** — 5 tests fail under vitest with old JSX runtime expectation. Pre-existing. Recommend either adding `import React from 'react'` or switching the file to `import { jsx } from 'react/jsx-runtime'` per the test's actual usage.
-4. **`content-client` `isCapacitor()` branch is a placeholder** — `apps/web/src/lib/content-client.ts:65-73` returns the identical URL in both branches. The native filesystem adapter is intentionally deferred to Sprint 6 (the existing static export over WebView works for MVP). The `runtime-adapter.ts` STT branch IS real — `CapacitorSttAdapter` at line 105 is the wired native STT path.
-5. **Audio assets are placeholder silence** — 530 narration entries are 283-byte Opus + 3,952-byte MP3 silent stubs from `scripts/build-narration.ts`'s default mode. Real Piper-synthesized audio requires the production CI image with `piper` + `ffmpeg` on PATH and `RENDER_NARRATION=true`. The lesson player gracefully degrades (audio plays a brief beat where narration would go). Per ADR-0010 this is the intentional MVP posture; full narration is a soft-launch Day 0 task.
+> **Update — QA-Lead supervisor sweep (commits `9f56d37` → `c4f1ae1` → `33b3fcf`):** items 1–4 below are now CLOSED in source. See `docs/launch/qa-lead-final-report.md` for full audit trail.
+
+1. ~~**Pronunciation multi-word edge case**~~ **CLOSED** (commit `9f56d37`). Added `phonemeSubstringDistance` to `packages/audio/src/pronunciation.ts` and gated it behind `recogTokenCount > 1`, so single-token recog still detects "wrong word" while multi-word filler like "the cat" matches the embedded target. 8/8 tests green.
+2. ~~**`lottie-react` import in vitest**~~ **CLOSED** (commit `9f56d37`). `apps/web/vitest.setup.ts` now mocks `lottie-react` + `lottie-web` globally. 9 previously-blocked suites now run.
+3. ~~**`React is not defined` in `i18n-provider.test.tsx`**~~ **CLOSED** (commit `9f56d37`). `vitest.setup.ts` now sets `globalThis.React = React` for the classic JSX runtime path, and `i18n-provider.test.tsx` has an explicit React import. 5 previously-failing tests now pass.
+4. ~~**`content-client` `isCapacitor()` branch is a placeholder**~~ **CLOSED** (commit `c4f1ae1` + `33b3fcf`). The branch now returns the trailing-slash form on Capacitor (matches the static-export directory layout) and adds a `.txt` legacy fallback only when Capacitor's primary URL 404s. Covered by 11 unit tests in `content-client.test.ts`.
+5. **Audio assets are placeholder silence** — 530 narration entries are 283-byte Opus + 3,952-byte MP3 silent stubs from `scripts/build-narration.ts`'s default mode. Real Piper-synthesized audio requires the production CI image with `piper` + `ffmpeg` on PATH and `RENDER_NARRATION=true`. The lesson player gracefully degrades (audio plays a brief beat where narration would go). Per ADR-0010 this is the intentional MVP posture; full narration is a soft-launch Day 0 task — **external blocker (CI image), not code blocker**.
 6. **Storybook component coverage incomplete** — Sprint 5 Wave B closed the three highest-priority stories (MascotFrame grid, MicButton matrix, ParentGate flow). Remaining components stayed in the existing partial-coverage state; non-blocking per ADR-0015.
 
 ## Sprint 6+ scope (deferred work)
@@ -171,8 +173,11 @@ GitHub Actions secrets (mobile + CI):
 | QA Engineer | ACCEPT, conditional on S1 | All functional gates pass; 1 doc-drift gate must be fixed before tagging |
 | Safety & Privacy Officer | ACCEPT | All 25 safety red lines verified at the cited file + line numbers; privacy policy v1.0 ships with 3 documented placeholders; three-layer anonymous-sync gate verified at client/edge/DB |
 | Orchestrator | ACCEPT, conditional on S1 + soft-launch checklist completion | The provenance-log update is a 10-minute task; the user-side checklist work depends on accounts that only the human operator can provision |
+| **QA-Lead (supervisor, post-`33b3fcf`)** | **ACCEPT (unconditional)** | Re-ran every CI gate, full typecheck + lint + test, AND `pnpm build` / `E4K_TARGET=mobile pnpm build` end-to-end. Surfaced and closed 25 additional findings (S0 × 6 build-breakers, S1 × 14, S2 × 5). All four "known limitations" 1–4 above closed in source. Zero regressions introduced. See `docs/launch/qa-lead-final-report.md`. |
 
 **Conclusion:** Once the S1 provenance log update is committed, the codebase is ready for the first invited families. The soft-launch checklist (`docs/launch/soft-launch-checklist.md`) is the gate between "code complete" and "first family installs the app."
+
+**Post-supervisor update:** The provenance log update landed in commit `10ee3fe` and the QA-Lead supervisor sweep (commits `9f56d37`, `c4f1ae1`, `33b3fcf`) verified the codebase is in a strictly stronger position than this ADR signed off. Production builds (web SSR + Capacitor static export) both succeed end-to-end. The only remaining work is the user's external blockers (accounts, signing, DNS, screenshots, privacy placeholders).
 
 ## References
 

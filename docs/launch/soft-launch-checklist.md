@@ -60,15 +60,16 @@ Cross-references:
 
 ## QA
 
-- [ ] Final QA pass (sister deliverable S5-11) complete. All P0 / P1 bugs closed.
-- [ ] axe-core a11y CI green on every page (`pnpm test:a11y`).
-- [ ] Lighthouse mobile perf >=85 on `/play`, `/play/[unit]/lesson/[lesson]`, `/marketing`, `/faq`.
-- [ ] Safety lint clean: no `MediaRecorder`, no third-party trackers on child pages (`pnpm lint:safety`).
-- [ ] Banned-phrasing lint clean (`pnpm lint:content`).
-- [ ] Mascot parity 100%: both Milo and Luna ship all 7 reactions (`pnpm test:mascot-parity`).
-- [ ] Locale coverage symmetry verified (`pnpm test:locale-symmetry`). Every EN key has a TR sibling and vice versa.
-- [ ] Privacy E2E green (`pnpm test:e2e -- plausible-child-isolation`).
-- [ ] VPC double-confirmation E2E green (`pnpm test:e2e -- vpc-double-confirmation`).
+- [x] Final QA pass (sister deliverable S5-11) complete. All P0 / P1 bugs closed. _Verified by QA-Lead supervisor sweep, `33b3fcf`._
+- [x] Safety lint clean: no `MediaRecorder`, no third-party trackers on child pages. _`bash .github/scripts/safety-lint.sh` PASS._
+- [x] Banned-phrasing lint clean. _`tsx packages/content-schema/bin/validate-content.ts` PASS (3 units, 0 issues)._
+- [x] Mascot parity 100%: both Milo and Luna ship all 7 reactions. _`tsx scripts/check-mascot-parity.ts` PASS (u1/u2/u3 each 100%)._
+- [x] Locale coverage symmetry verified. _`tsx scripts/check-locale-coverage.ts` PASS (535 keys symmetric, 15 untranslated literals under budget 40 — all aria-labels in dev / marketing footer; zero kid- or parent-visible English copy without TR sibling)._
+- [x] Production build runs end-to-end. _`pnpm --filter @e4k/web build` PASS; `E4K_TARGET=mobile pnpm --filter @e4k/web build` PASS with all 3 units × 12 lessons pre-rendered._
+- [ ] axe-core a11y CI green on every page (`pnpm test:a11y`). _Requires deployed preview; spec lives in `tests/e2e/a11y-baseline.spec.ts`._
+- [ ] Lighthouse mobile perf >=85 on `/play`, `/play/[unit]/lesson/[lesson]`, `/marketing`, `/faq`. _Requires deployed preview._
+- [ ] Privacy E2E green (`pnpm test:e2e -- plausible-child-isolation`). _Requires deployed preview._
+- [ ] VPC double-confirmation E2E green (`pnpm test:e2e -- vpc-double-confirmation`). _Requires deployed preview._
 
 ## Communication
 

@@ -51,6 +51,12 @@ supabase/.temp
 # Generated audio (pre-rendered by Piper at build time)
 apps/web/public/audio/generated/
 
+# Serwist-generated service worker bundles (rewritten on every build).
+# The Lottie precache rule + cache strategies are defined in src/app/sw.ts;
+# these two outputs are derived artifacts.
+apps/web/public/sw.js
+apps/web/public/swe-worker-*.js
+
 # Capacitor (phase 2)
 apps/mobile/ios/App/Pods/
 apps/mobile/android/.gradle/

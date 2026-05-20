@@ -8,11 +8,11 @@ const store = new Map<string, unknown>();
 const setSettingMock = vi.fn(async (key: string, value: unknown) => {
   store.set(key, value);
 });
-const childrenPutMock = vi.fn(async () => {});
+const childrenPutMock = vi.fn(async (_row: unknown) => {});
 
 vi.mock('@e4k/db', () => ({
   setSetting: (key: string, value: unknown) => setSettingMock(key, value),
-  getSetting: async <T,>(_key: string, fallback: T): Promise<T> => fallback,
+  getSetting: async (_key: string, fallback: unknown): Promise<unknown> => fallback,
   db: { children: { put: (row: unknown) => childrenPutMock(row) } },
 }));
 
@@ -153,10 +153,18 @@ describe('OnboardingPage', () => {
 
     // Step 1
     fireEvent.click(await screen.findByRole('button', { name: /Tap to begin/i }));
-    // Step 2 — default Milo
+    // Step 2 — default Milo. The handler awaits setSetting before advancing
+    // to the next step, so wait for the buddy persist call to flush.
     fireEvent.click(await screen.findByRole('button', { name: /^Continue$/i }));
-    // Step 3
+    await waitFor(() => {
+      expect(setSettingMock).toHaveBeenCalledWith('mascot.choice', 'milo');
+    });
+    // Step 3 — age band. Same shape: handler awaits setSetting('age.band', ...)
+    // before goTo('nickname'), so we have to wait between clicks.
     fireEvent.click(await screen.findByRole('button', { name: /^Continue$/i }));
+    await waitFor(() => {
+      expect(setSettingMock).toHaveBeenCalledWith('age.band', '6-8');
+    });
 
     // Now in nickname step.
     const refresh = await screen.findByRole('button', { name: /Refresh for more/i });

@@ -27,7 +27,6 @@ export function TopBar({
   }
   return (
     <header
-      role="banner"
       className={cn(
         'flex w-full items-center justify-between bg-[var(--color-surface)] px-[var(--space-4)] py-[var(--space-3)]',
         className,

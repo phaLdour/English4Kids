@@ -66,6 +66,7 @@ export function resolveImage(imageConcept: string): string | undefined {
   // Story routing: img.story.<slug>.<panelId> -> /img/<unit>/story-<slug>-<panelId>.svg
   if (category === 'story' && parts.length >= 4) {
     const storySlug = parts[2];
+    if (!storySlug) return undefined;
     const panel = parts.slice(3).join('-');
     const unit = STORY_UNIT[storySlug];
     if (!unit) return undefined;

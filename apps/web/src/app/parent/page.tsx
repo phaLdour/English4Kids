@@ -152,16 +152,16 @@ function WeeklyChart({ days }: { days: DailyMinutes[] }) {
 }
 
 function ChildSwitcher({
-  children,
+  learners,
   activeId,
   onPick,
 }: {
-  children: Child[];
+  learners: Child[];
   activeId: string | undefined;
   onPick: (id: string) => void;
 }) {
   const t = useTranslations();
-  if (children.length === 0) {
+  if (learners.length === 0) {
     return (
       <div
         className="flex w-full items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] text-center text-[var(--color-mist)] shadow-[var(--shadow-card)]"
@@ -177,7 +177,7 @@ function ChildSwitcher({
       aria-label={t('parent.chooseLearner')}
       className="flex w-full flex-wrap gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-3)] shadow-[var(--shadow-card)]"
     >
-      {children.map((c) => {
+      {learners.map((c) => {
         const selected = c.id === activeId;
         return (
           <button
@@ -383,7 +383,7 @@ export default function ParentDashboardPage() {
       className="mx-auto flex w-full max-w-3xl flex-col gap-[var(--space-6)] px-[var(--space-4)] py-[var(--space-6)] pb-[var(--space-16)]"
     >
       <ChildSwitcher
-        children={children}
+        learners={children}
         activeId={activeChildId}
         onPick={setActiveChildId}
       />

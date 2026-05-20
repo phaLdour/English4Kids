@@ -15,7 +15,7 @@
  */
 
 import { getSetting } from '@e4k/db';
-import { NextIntlClientProvider } from 'next-intl';
+import { type AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
 import { type ReactNode, useEffect, useState } from 'react';
 
 export type Locale = 'en' | 'tr';
@@ -23,7 +23,9 @@ export type Locale = 'en' | 'tr';
 export const SUPPORTED_LOCALES: readonly Locale[] = ['en', 'tr'] as const;
 export const DEFAULT_LOCALE: Locale = 'en';
 
-type Messages = Record<string, unknown>;
+// `next-intl`'s message-tree shape; we keep our load layer typed as the same
+// recursive map so the provider hand-off type-checks without a cast.
+type Messages = AbstractIntlMessages;
 
 /** Custom event other parts of the app can dispatch to notify the provider
  *  that `ui.locale` changed in Dexie. Saves us from polling settings. */

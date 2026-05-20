@@ -125,7 +125,6 @@ export default function ParentLayout({ children }: ParentLayoutProps) {
       <PlausibleScript />
       <div className="flex min-h-dvh flex-col bg-[var(--color-surface)]">
         <header
-          role="banner"
           className="flex w-full items-center justify-between gap-[var(--space-3)] bg-[var(--color-surface-high)] px-[var(--space-4)] py-[var(--space-3)] shadow-[var(--shadow-card)]"
         >
           <button

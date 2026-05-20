@@ -1,12 +1,31 @@
 import { promises as fs } from 'node:fs';
+import { readdirSync } from 'node:fs';
 import path from 'node:path';
 import { UnitSchema } from '@e4k/content-schema';
 import { NextResponse } from 'next/server';
 
 export const runtime = 'nodejs';
+// S4-10: pre-render this endpoint at build time so it survives `output: 'export'`
+// for the Capacitor static export. The list of unit IDs comes from the
+// `content/units/` directory at build time; there is no runtime fallback.
+export const dynamic = 'force-static';
+export const dynamicParams = false;
 
 function contentRoot(): string {
   return path.resolve(process.cwd(), '..', '..', 'content');
+}
+
+export function generateStaticParams(): { unitId: string }[] {
+  const unitsDir = path.join(contentRoot(), 'units');
+  try {
+    return readdirSync(unitsDir, { withFileTypes: true })
+      .filter((d) => d.isDirectory())
+      .map((d) => ({ unitId: d.name }));
+  } catch {
+    // The content dir is missing — happens in pathological CI sandboxes that
+    // do not include /content. Returning an empty matrix keeps the build green.
+    return [];
+  }
 }
 
 export async function GET(

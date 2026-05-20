@@ -6,7 +6,12 @@ import { type ReactNode, useEffect, useState } from 'react';
 import { I18nProvider } from '@/lib/i18n-provider';
 import { applySettingsToDom } from '@/lib/settings-effects';
 import { useAutoSync } from '@/lib/sync-client';
+import { installWhisperBridge } from '@/lib/whisper-loader';
 import { ServiceWorkerRegister } from './serwist-register';
+
+// Wire the @e4k/audio loader bridge once at module evaluation. The bridge
+// itself is lazy — it only fetches when WhisperWasmStt.load() is called.
+installWhisperBridge();
 
 /**
  * Background cloud-sync driver.

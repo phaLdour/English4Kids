@@ -2,6 +2,7 @@
 
 import { MascotFrame, TopBar } from '@e4k/ui';
 import { getSetting } from '@e4k/db';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { StreakPlant } from '@/components/streak/StreakPlant';
@@ -11,11 +12,12 @@ import { useStreak } from '@/lib/use-streak';
 const SPRINT_2_UNIT = {
   id: '01-me-and-my-world',
   title: 'Me & My World',
-  blurb: 'Tap to start',
+  blurbKey: 'play.tapToStart',
 };
 
 export default function PlayHomePage() {
   const router = useRouter();
+  const t = useTranslations();
   const { state, isReturningToday, grantWeeklyFreezeIfMonday } = useStreak();
   const [nickname, setNickname] = useState<string>('Explorer');
   const [welcomeDismissed, setWelcomeDismissed] = useState(false);
@@ -34,10 +36,12 @@ export default function PlayHomePage() {
 
   const showWelcome = isReturningToday && !welcomeDismissed;
 
+  const blurb = t(SPRINT_2_UNIT.blurbKey);
+
   return (
     <main className="flex min-h-dvh flex-col bg-[var(--color-surface)]">
       <TopBar
-        title="Adventures"
+        title={t('play.adventures')}
         onBack={() => router.push('/')}
         onOpenSettings={() => router.push('/settings')}
       />
@@ -60,7 +64,7 @@ export default function PlayHomePage() {
             className="text-center text-3xl text-[var(--color-primary-dark)]"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Hello, {nickname}!
+            {t('play.helloNickname', { nickname })}
           </h1>
         )}
         <button
@@ -68,14 +72,14 @@ export default function PlayHomePage() {
           onClick={() => router.push(`/play/${SPRINT_2_UNIT.id}`)}
           className="flex w-full max-w-md flex-col items-center gap-[var(--space-4)] rounded-[var(--radius-xl)] bg-[var(--color-surface-high)] p-[var(--space-6)] shadow-[var(--shadow-pop)] transition-transform duration-[var(--motion-base)] active:scale-95"
           style={{ minHeight: 'var(--tap-primary-young)' }}
-          aria-label={`${SPRINT_2_UNIT.title}, ${SPRINT_2_UNIT.blurb}`}
+          aria-label={t('play.unitTileAria', { title: SPRINT_2_UNIT.title, blurb })}
         >
           <div
             aria-hidden="true"
             className="flex h-32 w-32 items-center justify-center rounded-[var(--radius-xl)] bg-[var(--color-milo)] text-[var(--color-surface-high)] shadow-[var(--shadow-milo)]"
             style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem' }}
           >
-            Milo
+            {t('mascot.milo')}
           </div>
           <h2
             className="text-3xl text-[var(--color-primary-dark)]"
@@ -87,7 +91,7 @@ export default function PlayHomePage() {
             className="text-lg text-[var(--color-ink)]"
             style={{ fontFamily: 'var(--font-body)' }}
           >
-            {SPRINT_2_UNIT.blurb}
+            {blurb}
           </p>
         </button>
         <button
@@ -95,7 +99,7 @@ export default function PlayHomePage() {
           onClick={() => router.push('/garden')}
           className="flex w-full max-w-md items-center justify-between gap-[var(--space-4)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-base)] active:scale-95"
           style={{ minHeight: 'var(--tap-min-young)' }}
-          aria-label="Open word garden"
+          aria-label={t('play.openWordGarden')}
         >
           <div
             aria-hidden="true"
@@ -126,13 +130,13 @@ export default function PlayHomePage() {
               className="text-xl text-[var(--color-primary-dark)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Word Garden
+              {t('play.wordGarden')}
             </span>
             <span
               className="text-sm text-[var(--color-mist)]"
               style={{ fontFamily: 'var(--font-body)' }}
             >
-              See your growing words.
+              {t('play.wordGardenDesc')}
             </span>
           </div>
         </button>

@@ -2,11 +2,12 @@
 
 import type { ActivityItem, AudioAssetMap, SongLyric } from '@e4k/content-schema';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { MascotReaction } from '@e4k/ui';
 import { useAudio } from '@/lib/audio-client';
+import { getSong } from '@/lib/content-client';
 import { getSetting } from '@e4k/db';
-import { activityMessages } from './messages';
 import { WordHighlighter } from './WordHighlighter';
 
 type SingAlongItem = Extract<ActivityItem, { type: 'sing_along' }>;
@@ -70,6 +71,7 @@ export function SingAlong({
   onActivityComplete,
   onMascotChange,
 }: SingAlongProps) {
+  const t = useTranslations();
   const { player } = useAudio();
   const [itemIndex, setItemIndex] = useState(0);
   const [song, setSong] = useState<SongLyric | null>(null);
@@ -108,17 +110,12 @@ export function SingAlong({
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch(
-          `/api/content/songs/${encodeURIComponent(item.songId)}`,
-        );
-        if (!res.ok) {
-          if (!cancelled) setError('Song manifest is on the way.');
-          return;
-        }
-        const json = (await res.json()) as SongLyric;
+        // S4-10: routed through `content-client` so the static export uses
+        // the same code path as the live web route.
+        const json = await getSong(item.songId);
         if (!cancelled) setSong(json);
       } catch {
-        if (!cancelled) setError('Song manifest is on the way.');
+        if (!cancelled) setError(t('activities.singAlongSongOnTheWay'));
       }
     })();
     return () => {
@@ -216,21 +213,21 @@ export function SingAlong({
 
   return (
     <section
-      aria-label="Sing along"
+      aria-label={t('activities.singAlongAria')}
       className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-5)]"
     >
       <h2
         className="text-2xl text-[var(--color-primary-dark)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        {song?.title ?? 'Sing along'}
+        {song?.title ?? t('activities.singAlongTitleFallback')}
       </h2>
       {error ? (
         <p
           aria-live="polite"
           className="max-w-xl text-center text-lg text-[var(--color-mist)]"
         >
-          {activityMessages.singAlong.notReady}
+          {t('activities.singAlongNotReady')}
         </p>
       ) : null}
       {audioFailed && !error ? (
@@ -239,7 +236,7 @@ export function SingAlong({
           className="max-w-xl text-center text-base text-[var(--color-mist)]"
           style={{ fontFamily: 'var(--font-body)' }}
         >
-          Sing along with the words!
+          {t('activities.singAlongFallback')}
         </p>
       ) : null}
       {activeMove ? (
@@ -253,12 +250,12 @@ export function SingAlong({
           style={{ fontFamily: 'var(--font-display)' }}
           data-tpr-move={activeMove}
         >
-          {moveLabel(activeMove)}
+          {moveLabel(activeMove, t)}
         </motion.div>
       ) : null}
       {captionsEnabled ? (
         <ol
-          aria-label={activityMessages.singAlong.lyricsLabel}
+          aria-label={t('activities.singAlongLyrics')}
           className="flex flex-col items-center gap-[var(--space-2)] text-center text-xl text-[var(--color-ink)]"
           style={{ fontFamily: 'var(--font-body)' }}
         >
@@ -296,24 +293,24 @@ export function SingAlong({
           fontSize: '1.25rem',
         }}
       >
-        {activityMessages.singAlong.done}
+        {t('activities.singAlongDone')}
       </button>
     </section>
   );
 }
 
-function moveLabel(move: string): string {
+function moveLabel(move: string, t: ReturnType<typeof useTranslations>): string {
   switch (move) {
     case 'wave_hand':
-      return 'Wave your hand!';
+      return t('activities.moveWaveHand');
     case 'stretch_up':
-      return 'Stretch up tall!';
+      return t('activities.moveStretchUp');
     case 'smile_big':
-      return 'Big smile!';
+      return t('activities.moveSmileBig');
     case 'stomp':
-      return 'Stomp your feet!';
+      return t('activities.moveStomp');
     case 'clap':
-      return 'Clap along!';
+      return t('activities.moveClap');
     default:
       return move.replace(/_/g, ' ');
   }

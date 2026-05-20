@@ -1,3 +1,4 @@
+import '@/test-utils/mock-next-intl';
 import React from 'react';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';

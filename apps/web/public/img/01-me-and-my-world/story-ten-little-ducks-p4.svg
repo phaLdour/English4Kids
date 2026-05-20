@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>Seven, eight, nine ducklings glide so smoothly</title>
+  <rect x="0" y="0" width="240" height="240" fill="#3DA9FC" stroke="none" opacity="0.25"/>
+  <rect x="0" y="110" width="240" height="130" fill="#3DA9FC"/>
+  <path d="M0 130 Q60 124 120 130 Q180 136 240 130" stroke-width="2" stroke="#FFFFFF" fill="none"/>
+  <path d="M0 170 Q60 164 120 170 Q180 176 240 170" stroke-width="2" stroke="#FFFFFF" fill="none"/>
+  <path d="M0 210 Q60 204 120 210 Q180 216 240 210" stroke-width="2" stroke="#FFFFFF" fill="none"/>
+  <g transform="translate(0,0)">
+    <ellipse cx="36" cy="146" rx="18" ry="12" fill="#FFC857"/>
+    <circle cx="44" cy="136" r="10" fill="#FFC857"/>
+    <path d="M52 134 L58 132 L54 140 Z" fill="#F08A4B"/>
+    <circle cx="44" cy="134" r="1.6" fill="#1F2933" stroke="none"/>
+  </g>
+  <g>
+    <ellipse cx="84" cy="158" rx="18" ry="12" fill="#FFC857"/>
+    <circle cx="92" cy="148" r="10" fill="#FFC857"/>
+    <path d="M100 146 L106 144 L102 152 Z" fill="#F08A4B"/>
+    <circle cx="92" cy="146" r="1.6" fill="#1F2933" stroke="none"/>
+  </g>
+  <g>
+    <ellipse cx="136" cy="148" rx="18" ry="12" fill="#FFC857"/>
+    <circle cx="144" cy="138" r="10" fill="#FFC857"/>
+    <path d="M152 136 L158 134 L154 142 Z" fill="#F08A4B"/>
+    <circle cx="144" cy="136" r="1.6" fill="#1F2933" stroke="none"/>
+  </g>
+  <g>
+    <ellipse cx="188" cy="160" rx="18" ry="12" fill="#FFC857"/>
+    <circle cx="196" cy="150" r="10" fill="#FFC857"/>
+    <path d="M204 148 L210 146 L206 154 Z" fill="#F08A4B"/>
+    <circle cx="196" cy="148" r="1.6" fill="#1F2933" stroke="none"/>
+  </g>
+  <text x="50" y="74" font-family="'Fredoka', system-ui, sans-serif" font-size="40" font-weight="700" fill="#F08A4B" stroke="none">7</text>
+  <text x="110" y="74" font-family="'Fredoka', system-ui, sans-serif" font-size="40" font-weight="700" fill="#5FB37C" stroke="none">8</text>
+  <text x="170" y="74" font-family="'Fredoka', system-ui, sans-serif" font-size="40" font-weight="700" fill="#9D8DF1" stroke="none">9</text>
+</svg>

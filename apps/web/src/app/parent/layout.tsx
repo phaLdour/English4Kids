@@ -20,6 +20,7 @@
 
 import { db } from '@e4k/db';
 import { ParentGate } from '@e4k/ui';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { type ReactNode, useCallback, useEffect, useState } from 'react';
 import {
@@ -48,6 +49,7 @@ async function logAudit(eventType: string): Promise<void> {
 
 export default function ParentLayout({ children }: ParentLayoutProps) {
   const router = useRouter();
+  const t = useTranslations();
   const session = useParentSessionState();
   const [gateOpen, setGateOpen] = useState<boolean>(false);
   const [checkedInitial, setCheckedInitial] = useState<boolean>(false);
@@ -117,27 +119,27 @@ export default function ParentLayout({ children }: ParentLayoutProps) {
           <button
             type="button"
             onClick={handleBackToApp}
-            aria-label="Back to the app"
+            aria-label={t('parent.backToAppAria')}
             className="flex items-center justify-center rounded-[var(--radius-pill)] bg-transparent px-[var(--space-3)] text-[var(--color-primary-dark)] transition-transform duration-[var(--motion-fast)] active:scale-95"
             style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
           >
-            Back to app
+            {t('common.backToApp')}
           </button>
           <h1
             className="flex-1 truncate px-[var(--space-3)] text-center text-xl text-[var(--color-ink)]"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Parent Dashboard
+            {t('parent.title')}
           </h1>
           {session.isAuthenticated ? (
             <button
               type="button"
               onClick={handleLogout}
-              aria-label="Lock parent dashboard"
+              aria-label={t('parent.lockAria')}
               className="flex items-center justify-center rounded-[var(--radius-pill)] bg-[var(--color-surface)] px-[var(--space-3)] text-[var(--color-ink)] transition-transform duration-[var(--motion-fast)] active:scale-95"
               style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
             >
-              Lock
+              {t('parent.lock')}
             </button>
           ) : (
             <span className="h-12 w-20" aria-hidden="true" />
@@ -151,7 +153,7 @@ export default function ParentLayout({ children }: ParentLayoutProps) {
             aria-live="polite"
             className="flex flex-1 items-center justify-center px-[var(--space-6)] text-center text-lg text-[var(--color-ink)]"
           >
-            Verifying grown-up access...
+            {t('common.verifyingGrownUp')}
           </p>
         )}
 
@@ -159,8 +161,8 @@ export default function ParentLayout({ children }: ParentLayoutProps) {
           open={gateOpen}
           onOpenChange={handleGateOpenChange}
           onPass={handleGatePass}
-          title="Grown-ups only"
-          description="Solve this to open the parent dashboard."
+          title={t('gate.title')}
+          description={t('gate.descriptionOpenDashboard')}
         />
       </div>
     </ParentSessionContext.Provider>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A white dog</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <circle cx="120" cy="120" r="48" fill="#FFFFFF"/>
+  <ellipse cx="80" cy="124" rx="16" ry="28" fill="#FFFFFF"/>
+  <ellipse cx="160" cy="124" rx="16" ry="28" fill="#FFFFFF"/>
+  <circle cx="106" cy="118" r="5" fill="#1F2933" stroke="none"/>
+  <circle cx="134" cy="118" r="5" fill="#1F2933" stroke="none"/>
+  <ellipse cx="120" cy="138" rx="8" ry="5" fill="#1F2933" stroke="none"/>
+  <path d="M114 146 Q120 158 126 146" fill="#FFB5A7"/>
+  <ellipse cx="120" cy="194" rx="46" ry="22" fill="#FFFFFF"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>One yellow duck on the water</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <rect x="0" y="150" width="240" height="90" fill="#3DA9FC"/>
+  <path d="M0 170 Q60 164 120 170 Q180 176 240 170" stroke-width="2" stroke="#FFFFFF" fill="none"/>
+  <ellipse cx="120" cy="172" rx="36" ry="24" fill="#FFC857"/>
+  <circle cx="140" cy="146" r="20" fill="#FFC857"/>
+  <path d="M156 142 L178 138 L162 154 Z" fill="#F08A4B"/>
+  <circle cx="140" cy="142" r="3" fill="#1F2933" stroke="none"/>
+  <text x="40" y="80" font-family="'Fredoka', system-ui, sans-serif" font-size="64" font-weight="700" fill="#F08A4B" stroke="none">1</text>
+</svg>

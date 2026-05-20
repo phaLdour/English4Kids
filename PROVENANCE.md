@@ -84,6 +84,19 @@ Tracked in `package.json` and audited via `pnpm licenses ls`. Any dep with a non
 | scripts/cmu-dict-mini.json (Unit 3 additions) | Carnegie Mellon University Pronouncing Dictionary (subset) + English4Kids team | CMU Speech Group + Content Engineer | BSD-2 (CMU subset) / MIT (multi-word chunks) | 2026-05-20 | Added hamster, chicken, goat, parrot, pet, small, big, tall, short, animal sounds (moo/baa/oink/neigh/quack/cluck), action verbs (climb, hop, bear), can/can't chunks |
 | apps/web/public/phonemes/unit-03.json | English4Kids team | Content Engineer (agent, Sprint 4 / Phase 2, prebuild output) | MIT (own) | 2026-05-20 | Hand-written mirror of build-phonemes output for CI safety |
 
+## Illustrations
+
+All vocabulary, story, and activity illustrations are hand-authored SVG (viewBox 240x240) in the locked Lingokids style. Charcoal `#1F2933` outline-only, 2.5px primary stroke; palette restricted to the design-tokens set plus a small extension for inclusive skin tones and "brown / grey / pink" semantic colors. Each SVG includes a `<title>` element for screen reader support. Raw sizes 0.3-2.5 KB, gzipped 0.3-0.8 KB — well under the 8 KB gzipped budget. See `docs/design/illustration-style-guide.md` and `apps/web/public/img/_primitives/README.md`.
+
+| File / Batch | Source | Author | License | Date | Notes |
+|---|---|---|---|---|---|
+| apps/web/public/img/01-me-and-my-world/*.svg (88 files) | English4Kids team | Illustrator Agent (Sprint 4 Wave A) | Original-MIT | 2026-05-20 | Unit 1: greetings, family, color swatches, numerals 1-10, count-ducks 1-10, color-noun activity items, Milo Hello story (p1-p4), Family Picnic story (p1-p4), Ten Little Ducks story (p1-p6). Tier 1 production. |
+| apps/web/public/img/02-home-and-food/*.svg (43 files) | English4Kids team | Illustrator Agent (Sprint 4 Wave B) | Original-MIT | 2026-05-20 | Unit 2: rooms (4), furniture (6), fruit (6), meals (3), drinks (3), expressions (8), House Tour / Bea Tries Pear / Three Meals story panels (placeholder cards). Tier 2 production for vocab; story panels are labelled placeholders pending Sprint 5. |
+| apps/web/public/img/03-animals-and-actions/*.svg (84 files) | English4Kids team | Illustrator Agent (Sprint 4 / Tier 3) | Original-MIT | 2026-05-20 | Unit 3: pets, farm animals, action verbs, ability + mixed combos, minimal pairs, color-noun re-uses, Pip / Quietest / What Can You Do story panels. Tier 3 — pet/farm/action art is production; ability + mixed combos are simple animal-plus-badge composites; story panels are labelled placeholders pending Sprint 5. |
+| apps/web/public/img/_primitives/README.md | English4Kids team | Illustrator Agent (Sprint 4) | MIT (own) | 2026-05-20 | Primitives library documentation (face-round, body-oval, fruit-ovoid, animal-cat/dog/fox/owl, cloud, sun, wave-hand, etc.). Not bundled at runtime. |
+| docs/design/illustration-style-guide.md | English4Kids team | Illustrator Agent + Design Lead | MIT (own) | 2026-05-20 | Locked Lingokids style + palette + tier prioritization. |
+| scripts/generate-illustrations.mjs | English4Kids team | Illustrator Agent (Sprint 4) | MIT (own) | 2026-05-20 | One-shot SVG generator for Tier 2/3 batch; idempotent, skips Tier 1 hand-authored set. |
+
 ## Audit Trail
 
 Quarterly audit by the Safety & Privacy Officer; archived license HTML stored under `LICENSES/` for each CC-BY-attributed source.

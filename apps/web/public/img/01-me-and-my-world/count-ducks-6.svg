@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>Six yellow ducks on the water</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <rect x="0" y="120" width="240" height="120" fill="#3DA9FC"/>
+  <g fill="#FFC857" stroke="#1F2933">
+    <g><ellipse cx="50" cy="148" rx="14" ry="10"/><circle cx="58" cy="140" r="8"/><path d="M64 138 L74 136 L66 144 Z" fill="#F08A4B"/><circle cx="58" cy="138" r="1.4" fill="#1F2933"/></g>
+    <g><ellipse cx="120" cy="148" rx="14" ry="10"/><circle cx="128" cy="140" r="8"/><path d="M134 138 L144 136 L136 144 Z" fill="#F08A4B"/><circle cx="128" cy="138" r="1.4" fill="#1F2933"/></g>
+    <g><ellipse cx="190" cy="148" rx="14" ry="10"/><circle cx="198" cy="140" r="8"/><path d="M204 138 L214 136 L206 144 Z" fill="#F08A4B"/><circle cx="198" cy="138" r="1.4" fill="#1F2933"/></g>
+    <g><ellipse cx="50" cy="200" rx="14" ry="10"/><circle cx="58" cy="192" r="8"/><path d="M64 190 L74 188 L66 196 Z" fill="#F08A4B"/><circle cx="58" cy="190" r="1.4" fill="#1F2933"/></g>
+    <g><ellipse cx="120" cy="200" rx="14" ry="10"/><circle cx="128" cy="192" r="8"/><path d="M134 190 L144 188 L136 196 Z" fill="#F08A4B"/><circle cx="128" cy="190" r="1.4" fill="#1F2933"/></g>
+    <g><ellipse cx="190" cy="200" rx="14" ry="10"/><circle cx="198" cy="192" r="8"/><path d="M204 190 L214 188 L206 196 Z" fill="#F08A4B"/><circle cx="198" cy="190" r="1.4" fill="#1F2933"/></g>
+  </g>
+  <text x="40" y="80" font-family="'Fredoka', system-ui, sans-serif" font-size="56" font-weight="700" fill="#F08A4B" stroke="none">6</text>
+</svg>

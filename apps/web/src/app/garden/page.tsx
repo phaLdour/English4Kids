@@ -1,6 +1,7 @@
 'use client';
 
 import { MascotFrame, TopBar } from '@e4k/ui';
+import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { WordGarden, type WordGardenState } from '@/components/garden/WordGarden';
@@ -23,6 +24,7 @@ function speakWord(word: string): void {
 
 export default function GardenPage() {
   const router = useRouter();
+  const t = useTranslations();
   const search = useSearchParams();
   const view = search.get('view') === 'list' ? 'list' : 'visual';
   const [childId, setChildId] = useState<string | null>(null);
@@ -53,7 +55,7 @@ export default function GardenPage() {
   return (
     <main className="flex min-h-dvh flex-col bg-[var(--color-surface)]">
       <TopBar
-        title="Word Garden"
+        title={t('garden.title')}
         onBack={() => router.push('/play')}
         onOpenSettings={() => router.push('/settings')}
       />
@@ -64,7 +66,7 @@ export default function GardenPage() {
             className="text-lg text-[var(--color-mist)]"
             style={{ fontFamily: 'var(--font-body)' }}
           >
-            Loading your garden…
+            {t('garden.loadingGarden')}
           </p>
         ) : (
           <WordGarden

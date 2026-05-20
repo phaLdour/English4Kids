@@ -17,6 +17,7 @@
 import { getSetting, setSetting, type MicEngine } from '@e4k/db';
 import { ToggleRow } from '@e4k/ui';
 import * as RadioGroup from '@radix-ui/react-radio-group';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useId, useState } from 'react';
 import { StrictnessControl } from '@/components/parent/StrictnessControl';
 import { loadWhisper } from '@/lib/whisper-loader';
@@ -104,6 +105,7 @@ function RadioCard({
 }
 
 export default function ParentSettingsPage() {
+  const t = useTranslations();
   const [state, setState] = useState<ParentSettingsState>({
     micEnabled: false,
     micEngine: 'web-speech',
@@ -152,10 +154,10 @@ export default function ParentSettingsPage() {
         await setSetting(settingKey, value);
         setAnnounce(msg);
       } catch {
-        setAnnounce('Could not save. Please try again.');
+        setAnnounce(t('common.couldNotSave'));
       }
     },
-    [],
+    [t],
   );
 
   const handleMicToggle = useCallback(
@@ -164,10 +166,10 @@ export default function ParentSettingsPage() {
         'micEnabled',
         next,
         'mic.enabled',
-        next ? 'Microphone enabled' : 'Microphone disabled',
+        next ? t('parent.settingsMicEnabledAnnounce') : t('parent.settingsMicDisabledAnnounce'),
       );
     },
-    [persist],
+    [persist, t],
   );
 
   const handleEngineChange = useCallback(
@@ -176,32 +178,32 @@ export default function ParentSettingsPage() {
         'micEngine',
         next,
         'mic.engine',
-        next === 'whisper-offline' ? 'Offline engine selected' : 'Default engine selected',
+        next === 'whisper-offline' ? t('settings.announceEngineOffline') : t('settings.announceEngineDefault'),
       );
       if (next === 'whisper-offline') {
-        setWhisperStatus('Preparing offline engine...');
+        setWhisperStatus(t('parent.settingsEnginePreparing'));
         try {
           await loadWhisper((p) => {
-            if (p.status === 'downloading') {
+            if (p.status === 'loading') {
               setWhisperStatus(
                 p.bytesTotal > 0
-                  ? `Downloading ${Math.round((p.bytesLoaded / p.bytesTotal) * 100)}%`
-                  : 'Downloading...',
+                  ? t('parent.settingsEngineDownloading', { pct: Math.round((p.bytesLoaded / p.bytesTotal) * 100) })
+                  : t('parent.settingsEngineDownloadingFallback'),
               );
             } else if (p.status === 'ready') {
-              setWhisperStatus('Offline engine ready.');
+              setWhisperStatus(t('parent.settingsEngineReady'));
             } else if (p.status === 'error') {
-              setWhisperStatus('Offline engine unavailable. Using browser speech instead.');
+              setWhisperStatus(t('parent.settingsEngineUnavailable'));
             }
           });
         } catch {
-          setWhisperStatus('Offline engine unavailable. Using browser speech instead.');
+          setWhisperStatus(t('parent.settingsEngineUnavailable'));
         }
       } else {
         setWhisperStatus('');
       }
     },
-    [persist],
+    [persist, t],
   );
 
   const handleLimitChange = useCallback(
@@ -212,10 +214,10 @@ export default function ParentSettingsPage() {
         'dailyLimitMin',
         clamped,
         'parent.dailyLimitMin',
-        `Daily limit set to ${clamped} minutes`,
+        t('parent.settingsLimitAnnounce', { minutes: clamped }),
       );
     },
-    [persist],
+    [persist, t],
   );
 
   const handleNotifToggle = useCallback(
@@ -230,12 +232,12 @@ export default function ParentSettingsPage() {
         try {
           const perm = await window.Notification.requestPermission();
           if (perm !== 'granted') {
-            setAnnounce('Notifications not granted.');
+            setAnnounce(t('parent.settingsNotifNotGranted'));
             await persist(
               'notificationsAllowed',
               false,
               'parent.notificationsAllowed',
-              'Notifications off',
+              t('parent.settingsNotifDenied'),
             );
             return;
           }
@@ -245,7 +247,7 @@ export default function ParentSettingsPage() {
             'notificationsAllowed',
             false,
             'parent.notificationsAllowed',
-            'Notifications off',
+            t('parent.settingsNotifDenied'),
           );
           return;
         }
@@ -254,10 +256,10 @@ export default function ParentSettingsPage() {
         'notificationsAllowed',
         next,
         'parent.notificationsAllowed',
-        next ? 'Notifications on' : 'Notifications off',
+        next ? t('parent.settingsNotifGranted') : t('parent.settingsNotifDenied'),
       );
     },
-    [persist],
+    [persist, t],
   );
 
   return (
@@ -275,31 +277,30 @@ export default function ParentSettingsPage() {
           aria-live="polite"
           className="px-[var(--space-6)] py-[var(--space-10)] text-center text-[var(--color-ink)]"
         >
-          Loading parent settings...
+          {t('parent.settingsLoading')}
         </p>
       ) : (
         <>
-          <Section title="Microphone">
+          <Section title={t('parent.settingsMicSection')}>
             <ToggleRow
-              label="Enable microphone"
-              description="Used only for speaking practice. The mic indicator is always visible while live."
+              label={t('parent.settingsMicEnable')}
+              description={t('parent.settingsMicEnableDesc')}
               checked={state.micEnabled}
               onCheckedChange={(v) => void handleMicToggle(v)}
             />
             <p className="px-[var(--space-2)] text-sm text-[var(--color-mist)]">
-              Reminder: the mic indicator stays visible the entire time the microphone is
-              live. Your child can tap it to stop at any moment.
+              {t('parent.settingsMicReminder')}
             </p>
           </Section>
 
-          <Section title="Speech engine">
+          <Section title={t('parent.settingsEngineSection')}>
             <div className="flex w-full flex-col gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]">
               <span
                 id="engine-label"
                 className="text-base text-[var(--color-ink)]"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                Choose an engine
+                {t('parent.settingsEngineChoose')}
               </span>
               <RadioGroup.Root
                 aria-labelledby="engine-label"
@@ -309,13 +310,13 @@ export default function ParentSettingsPage() {
               >
                 <RadioCard
                   value="web-speech"
-                  label="Browser speech"
-                  description="Fast, no download. Quality varies by browser."
+                  label={t('parent.settingsEngineBrowser')}
+                  description={t('parent.settingsEngineBrowserDesc')}
                 />
                 <RadioCard
                   value="whisper-offline"
-                  label="Offline engine"
-                  description="Higher accuracy. One-time 30 MB download."
+                  label={t('parent.settingsEngineOffline')}
+                  description={t('parent.settingsEngineOfflineDesc')}
                 />
               </RadioGroup.Root>
               {whisperStatus ? (
@@ -330,18 +331,18 @@ export default function ParentSettingsPage() {
             </div>
           </Section>
 
-          <Section title="Pronunciation strictness">
+          <Section title={t('parent.settingsStrictnessSection')}>
             <StrictnessControl />
           </Section>
 
-          <Section title="Daily time limit">
+          <Section title={t('parent.settingsLimitSection')}>
             <div className="flex w-full flex-col gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]">
               <label
                 htmlFor="daily-limit-input"
                 className="text-base text-[var(--color-ink)]"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                Minutes per day
+                {t('parent.settingsLimitLabel')}
               </label>
               <input
                 id="daily-limit-input"
@@ -355,23 +356,21 @@ export default function ParentSettingsPage() {
                 style={{ minHeight: '48px', fontFamily: 'var(--font-mono)' }}
               />
               <p className="text-sm text-[var(--color-mist)]">
-                When the limit is reached, your child sees &ldquo;Great job today! Let&rsquo;s
-                come back tomorrow.&rdquo; No countdowns, no nagging.
+                {t('parent.settingsLimitNote')}
               </p>
             </div>
           </Section>
 
-          <Section title="Content controls">
+          <Section title={t('parent.settingsContentSection')}>
             <p className="rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] text-[var(--color-mist)] shadow-[var(--shadow-card)]">
-              Theme and topic filters are coming in a future update. Today the content set is
-              curated to age band and our editorial guardrails.
+              {t('parent.settingsContentDesc')}
             </p>
           </Section>
 
-          <Section title="Notifications">
+          <Section title={t('parent.settingsNotifSection')}>
             <ToggleRow
-              label="Allow parent dashboard notifications"
-              description="Off by default. Uses your browser's notification permission only; nothing is sent from a server."
+              label={t('parent.settingsNotifLabel')}
+              description={t('parent.settingsNotifDesc')}
               checked={state.notificationsAllowed}
               onCheckedChange={(v) => void handleNotifToggle(v)}
             />

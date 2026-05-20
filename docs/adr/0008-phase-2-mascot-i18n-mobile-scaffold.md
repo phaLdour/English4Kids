@@ -71,3 +71,52 @@ The three items share a constraint: they must land *without* invalidating the ex
 | Server-side language detection                  | We have no server in the static export path; would re-introduce SSR cost.    |
 | React Native / Flutter shell                    | Forks the codebase. Loses Dexie, Howler, Lottie, the Web Speech contract.    |
 | Per-activity mascot picked at runtime via RNG   | Non-deterministic — different mascot per replay would confuse learners.       |
+
+## Sprint 4 Addendum (S4-9 + S4-10)
+
+Two follow-ups extend the Phase 2 scaffold without changing its shape.
+
+**S4-9 — Luna voice coverage parity (Wave-2 S1-1 closed).**
+The Phase 2 scaffold shipped Luna with zero rendered assets, so selecting
+Luna or Both fell through to Milo via the `resolveNarrationAsset` fallback.
+Sprint 4 closes the gap by adding a `vo.luna.u<N>.l<L>.*` counterpart for
+every Milo activity prompt in `content/audio-assets/unit-0{1,2,3}.json`
+(transcripts copied verbatim — same words, different mascot voice). Stories
+remain single-narrator by design (Unit 1+2 → Milo; "The Quietest Animal" →
+Luna). The placeholder narration pipeline (`scripts/build-narration.ts`)
+materialises matching silent Opus/MP3 files under
+`apps/web/public/audio/vo/luna/...`; the real Piper render (CI workflow
+`render-narration.yml`) will replace them by routing the `Luna` voiceActor
+through `en_GB-jenny_dioco-medium`. A new CI lint
+(`scripts/check-mascot-parity.ts`, exposed as `pnpm check:mascot-parity`)
+enforces ≥90 % Luna coverage per unit, and `mascot-voice.test.ts` adds a
+filesystem-backed smoke test that catches regressions if the lint is ever
+skipped.
+
+**S4-10 — Capacitor static export compatibility (Wave-2 S1-2 closed).**
+The mobile build path (`E4K_TARGET=mobile pnpm --filter @e4k/web build`)
+toggles Next's `output: 'export'`, which previously omitted the dynamic
+content API routes and left lessons blank inside the Capacitor WebView.
+Each of `/api/content/[unitId]/route.ts`,
+`/api/content/songs/[songId]/route.ts`,
+`/api/content/stories/[storyId]/route.ts`,
+`/api/content/[unitId]/phonemes/route.ts`, and
+`/api/content/[unitId]/audio/route.ts` now declares:
+
+```ts
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+export function generateStaticParams() { /* enumerate content/ */ }
+```
+
+so Next pre-bakes one JSON endpoint per known id at build time. A new
+`apps/web/src/lib/content-client.ts` adapter centralises the read pattern
+(`getUnit`, `getSong`, `getStory`, `getAudioMap`, `getPhonemeMap`) and
+branches on `runtime-adapter.isCapacitor()`. Existing consumers
+(`lesson-player.ts`, `play/[unitId]/page.tsx`,
+`play/[unitId]/lesson/[lessonId]/page.tsx`, `SingAlong`, `StoryTime`)
+were refactored to call the adapter instead of `fetch('/api/content/...')`
+directly. A non-blocking CI job (`mobile-build-check`) runs
+`E4K_TARGET=mobile pnpm --filter @e4k/web build` and asserts
+`apps/web/out/_next/static/` exists — promoted to blocking once a
+contributor wires `cap add ios/android` for the first time.

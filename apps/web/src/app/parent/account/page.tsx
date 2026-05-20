@@ -35,6 +35,7 @@
  * fully local-first per Safety Officer policy.
  */
 
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useVpcUpgrade } from '@/lib/use-vpc-upgrade';
@@ -49,6 +50,7 @@ type Step =
   | 'done';
 
 export default function AccountUpgradePage() {
+  const t = useTranslations();
   const vpc = useVpcUpgrade();
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
@@ -138,49 +140,46 @@ export default function AccountUpgradePage() {
       className="mx-auto flex w-full max-w-2xl flex-col gap-[var(--space-6)] px-[var(--space-4)] py-[var(--space-6)] pb-[var(--space-16)]"
     >
       <section
-        aria-label="Account upgrade"
+        aria-label={t('parent.accountSectionAria')}
         className="flex flex-col gap-[var(--space-3)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-6)] shadow-[var(--shadow-card)]"
       >
         <h1
           className="text-2xl text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Account upgrade
+          {t('parent.accountTitle')}
         </h1>
         <p className="text-base text-[var(--color-ink)]">
-          Connect an email to back up your child&rsquo;s progress and sync across devices. We
-          use a two-step confirmation — required by COPPA — so the upgrade takes at least 24
-          hours to complete. Your child&rsquo;s data stays on this device until you finish
-          step 3, then we send one final email to verify the address.
+          {t('parent.accountIntro')}
         </p>
 
         <ol
-          aria-label="Upgrade steps"
+          aria-label={t('parent.accountStepsAria')}
           data-testid="upgrade-steps"
           className="flex flex-col gap-[var(--space-2)] text-sm text-[var(--color-ink)]"
         >
-          <li data-active={step === 'email' || undefined}>1. Enter your email</li>
-          <li data-active={step === 'first-confirm' || undefined}>2. Check your inbox</li>
+          <li data-active={step === 'email' || undefined}>{t('parent.accountStep1')}</li>
+          <li data-active={step === 'first-confirm' || undefined}>{t('parent.accountStep2')}</li>
           <li
             data-active={
               step === 'wait' || step === 'second-confirm' || undefined
             }
           >
-            3. Wait 24 hours and confirm again
+            {t('parent.accountStep3')}
           </li>
           <li
             data-active={
               step === 'awaiting-supabase-verify' || step === 'done' || undefined
             }
           >
-            4. Verify your email with Supabase
+            {t('parent.accountStep4')}
           </li>
         </ol>
 
         {step === 'email' && (
           <form onSubmit={onRequest} className="flex flex-col gap-[var(--space-3)]">
             <label htmlFor="vpc-email" className="text-sm text-[var(--color-ink)]">
-              Your email
+              {t('parent.accountEmailLabel')}
             </label>
             <input
               id="vpc-email"
@@ -198,7 +197,7 @@ export default function AccountUpgradePage() {
               className="self-start rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-10)] py-[var(--space-4)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] disabled:opacity-60"
               style={{ minHeight: 'var(--tap-primary-old)', fontFamily: 'var(--font-display)' }}
             >
-              {vpc.busy ? 'Sending...' : 'Send confirmation email'}
+              {vpc.busy ? t('parent.accountSending') : t('parent.accountSendBtn')}
             </button>
           </form>
         )}
@@ -206,15 +205,15 @@ export default function AccountUpgradePage() {
         {step === 'first-confirm' && (
           <form onSubmit={onConfirmFirst} className="flex flex-col gap-[var(--space-3)]">
             <p className="text-sm text-[var(--color-ink)]">
-              Check your inbox for a confirmation link, then paste the token below.
+              {t('parent.accountFirstConfirm')}
             </p>
             {devToken && (
               <p className="rounded-[var(--radius-md)] bg-[var(--color-surface)] p-[var(--space-3)] text-xs text-[var(--color-mist)]">
-                Dev mode token: <code>{devToken}</code>
+                {t('parent.accountDevToken', { token: devToken })}
               </p>
             )}
             <label htmlFor="vpc-token-1" className="text-sm text-[var(--color-ink)]">
-              Confirmation token
+              {t('parent.accountTokenLabel')}
             </label>
             <input
               id="vpc-token-1"
@@ -231,7 +230,7 @@ export default function AccountUpgradePage() {
               className="self-start rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-10)] py-[var(--space-4)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] disabled:opacity-60"
               style={{ minHeight: 'var(--tap-primary-old)', fontFamily: 'var(--font-display)' }}
             >
-              {vpc.busy ? 'Confirming...' : 'Confirm first step'}
+              {vpc.busy ? t('parent.accountConfirming') : t('parent.accountConfirmFirstBtn')}
             </button>
           </form>
         )}
@@ -239,12 +238,11 @@ export default function AccountUpgradePage() {
         {step === 'wait' && (
           <div className="flex flex-col gap-[var(--space-3)]">
             <p className="text-base text-[var(--color-ink)]">
-              First confirmation received. Please come back in 24 hours to finish.
+              {t('parent.accountWaitBody')}
             </p>
             {secondAvailableAt && (
               <p className="text-sm text-[var(--color-mist)]">
-                You can complete the upgrade after{' '}
-                <strong>{new Date(secondAvailableAt).toLocaleString()}</strong>.
+                {t('parent.accountWaitAvailable', { date: new Date(secondAvailableAt).toLocaleString() })}
               </p>
             )}
             <button
@@ -253,7 +251,7 @@ export default function AccountUpgradePage() {
               className="self-start rounded-[var(--radius-pill)] bg-[var(--color-surface)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-ink)]"
               style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
             >
-              I&rsquo;m back, try second confirmation
+              {t('parent.accountTryBack')}
             </button>
           </div>
         )}
@@ -261,7 +259,7 @@ export default function AccountUpgradePage() {
         {step === 'second-confirm' && (
           <form onSubmit={onConfirmSecond} className="flex flex-col gap-[var(--space-3)]">
             <label htmlFor="vpc-token-2" className="text-sm text-[var(--color-ink)]">
-              Confirmation token (same as before)
+              {t('parent.accountSecondTokenLabel')}
             </label>
             <input
               id="vpc-token-2"
@@ -278,7 +276,7 @@ export default function AccountUpgradePage() {
               className="self-start rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-10)] py-[var(--space-4)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] disabled:opacity-60"
               style={{ minHeight: 'var(--tap-primary-old)', fontFamily: 'var(--font-display)' }}
             >
-              {vpc.busy ? 'Finalizing...' : 'Finish upgrade'}
+              {vpc.busy ? t('parent.accountFinalizing') : t('parent.accountFinishBtn')}
             </button>
           </form>
         )}
@@ -291,9 +289,7 @@ export default function AccountUpgradePage() {
             className="flex flex-col gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface)] p-[var(--space-3)] text-[var(--color-ink)]"
           >
             <p className="text-base">
-              We&rsquo;ve sent a final confirmation to <strong>{email}</strong>. Click the
-              link in that email to finish linking your account. Cloud sync will activate
-              once verification completes.
+              {t('parent.accountAwaitingBody', { email })}
             </p>
             <button
               type="button"
@@ -301,7 +297,7 @@ export default function AccountUpgradePage() {
               className="self-start rounded-[var(--radius-pill)] bg-[var(--color-surface-high)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-ink)]"
               style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
             >
-              I&rsquo;ve clicked the link
+              {t('parent.accountClickedLink')}
             </button>
           </div>
         )}
@@ -313,9 +309,7 @@ export default function AccountUpgradePage() {
             className="flex flex-col gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface)] p-[var(--space-3)] text-[var(--color-alert)]"
           >
             <p className="text-base">
-              We couldn&rsquo;t send the final verification email
-              {linkError ? ` (${linkError})` : ''}. Your consent is recorded but the
-              account isn&rsquo;t fully linked yet — please retry.
+              {t('parent.accountErrorBody', { detail: linkError ? ` (${linkError})` : '' })}
             </p>
             <button
               type="button"
@@ -324,7 +318,7 @@ export default function AccountUpgradePage() {
               className="self-start rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-surface-high)] disabled:opacity-60"
               style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
             >
-              {vpc.busy ? 'Retrying...' : 'Retry verification email'}
+              {vpc.busy ? t('parent.accountRetrying') : t('parent.accountRetryBtn')}
             </button>
           </div>
         )}
@@ -335,7 +329,7 @@ export default function AccountUpgradePage() {
             aria-live="polite"
             className="rounded-[var(--radius-md)] bg-[var(--color-surface)] p-[var(--space-3)] text-[var(--color-ink)]"
           >
-            Upgrade complete. Cloud sync is now active for this device.
+            {t('parent.accountDoneBody')}
           </p>
         )}
 
@@ -353,7 +347,7 @@ export default function AccountUpgradePage() {
           className="self-start rounded-[var(--radius-pill)] bg-[var(--color-surface)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-ink)]"
           style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
         >
-          Back to dashboard
+          {t('parent.backToDashboard')}
         </Link>
       </section>
     </main>

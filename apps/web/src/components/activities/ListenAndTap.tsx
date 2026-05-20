@@ -3,10 +3,10 @@
 import { TapCard, type TapCardSize } from '@e4k/ui';
 import type { ActivityItem, AudioAssetMap } from '@e4k/content-schema';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useAudio } from '@/lib/audio-client';
 import type { MascotReaction } from '@e4k/ui';
-import { activityMessages } from './messages';
 
 type ListenTapItem = Extract<ActivityItem, { type: 'listen_tap' }>;
 
@@ -33,6 +33,7 @@ export function ListenAndTap({
   onMascotChange,
   imageResolver,
 }: ListenAndTapProps) {
+  const t = useTranslations();
   const { playPrompt, player } = useAudio();
   const [itemIndex, setItemIndex] = useState(0);
   const [textVisible, setTextVisible] = useState(false);
@@ -136,7 +137,7 @@ export function ListenAndTap({
 
   return (
     <section
-      aria-label={activityMessages.listenAndTap.aria}
+      aria-label={t('activities.listenAndTapAria')}
       className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-6)]"
     >
       <div className="sr-only" aria-live="polite">
@@ -151,9 +152,9 @@ export function ListenAndTap({
           fontFamily: 'var(--font-display)',
           fontSize: '1.125rem',
         }}
-        aria-label={activityMessages.listenAndTap.replayPrompt}
+        aria-label={t('activities.listenAndTapReplay')}
       >
-        Listen
+        {t('activities.listenAndTapListen')}
       </button>
       <motion.div
         key={`wobble-${wobbleKey}`}

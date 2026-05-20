@@ -1,7 +1,7 @@
+import { MicIndicator } from '@/components/MicIndicator';
 import type { Metadata, Viewport } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { MicIndicator } from '@/components/MicIndicator';
 import { Providers } from './providers';
 import './globals.css';
 
@@ -23,6 +23,21 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" data-theme="default">
+      <head>
+        {/*
+          S4-4 perf hints: preload the mascot greeting illustration that the
+          /play hub renders above the fold and prefetch the active mascot's
+          idle Lottie so the first paint isn't blocked on the JSON fetch.
+          Both are first-party origin so no `crossOrigin` mismatch with CSP.
+        */}
+        <link
+          rel="preload"
+          as="image"
+          href="/img/01-me-and-my-world/greeting-wave-smile.svg"
+          type="image/svg+xml"
+        />
+        <link rel="prefetch" as="fetch" href="/lottie/milo-idle.json" crossOrigin="anonymous" />
+      </head>
       <body className="bg-[var(--color-surface)] text-[var(--color-ink)] antialiased">
         <Providers>
           {children}

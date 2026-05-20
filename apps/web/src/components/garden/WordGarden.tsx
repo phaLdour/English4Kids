@@ -1,6 +1,7 @@
 'use client';
 
 import type { LeitnerBox } from '@e4k/game-engine';
+import { useTranslations } from 'next-intl';
 import { WordPlant } from './WordPlant';
 
 export interface WordGardenState {
@@ -24,6 +25,7 @@ export interface WordGardenProps {
  * `view='list'` renders a read-only grid suited to the parent dashboard.
  */
 export function WordGarden({ states, view = 'visual', onPlantTap }: WordGardenProps) {
+  const t = useTranslations();
   if (view === 'list') {
     return <WordGardenList states={states} />;
   }
@@ -33,12 +35,12 @@ export function WordGarden({ states, view = 'visual', onPlantTap }: WordGardenPr
 
   return (
     <section
-      aria-label="Word garden"
+      aria-label={t('garden.ariaLabel')}
       data-view="visual"
       className="flex w-full max-w-3xl flex-col gap-[var(--space-4)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-card)]"
     >
       <div
-        aria-label="Mastered words"
+        aria-label={t('garden.ariaMastered')}
         className="flex min-h-[88px] w-full flex-wrap items-center justify-center gap-[var(--space-2)] rounded-[var(--radius-md)] bg-[var(--color-surface)] p-[var(--space-3)]"
         style={{ borderBottom: '1px dashed var(--color-muted)' }}
       >
@@ -47,7 +49,7 @@ export function WordGarden({ states, view = 'visual', onPlantTap }: WordGardenPr
             className="text-sm text-[var(--color-mist)]"
             style={{ fontFamily: 'var(--font-body)' }}
           >
-            Mastered words sparkle here.
+            {t('garden.masteredPlaceholder')}
           </p>
         ) : (
           stars.map((s) => (
@@ -62,7 +64,7 @@ export function WordGarden({ states, view = 'visual', onPlantTap }: WordGardenPr
         )}
       </div>
       <div
-        aria-label="Growing words"
+        aria-label={t('garden.ariaGrowing')}
         className="grid w-full gap-[var(--space-3)]"
         style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(96px, 1fr))' }}
       >
@@ -71,7 +73,7 @@ export function WordGarden({ states, view = 'visual', onPlantTap }: WordGardenPr
             className="col-span-full text-center text-base text-[var(--color-mist)]"
             style={{ fontFamily: 'var(--font-body)' }}
           >
-            Play a lesson to plant your first word.
+            {t('garden.growingPlaceholder')}
           </p>
         ) : (
           growing.map((s) => (
@@ -89,18 +91,18 @@ export function WordGarden({ states, view = 'visual', onPlantTap }: WordGardenPr
   );
 }
 
-const STAGE_NAME: Record<LeitnerBox, string> = {
-  1: 'Seed',
-  2: 'Sprout',
-  3: 'Bud',
-  4: 'Bloom',
-  5: 'Star',
-};
-
 function WordGardenList({ states }: { states: WordGardenState[] }) {
+  const t = useTranslations();
+  const stageName: Record<LeitnerBox, string> = {
+    1: t('garden.stageSeed'),
+    2: t('garden.stageSprout'),
+    3: t('garden.stageBud'),
+    4: t('garden.stageBloom'),
+    5: t('garden.stageStar'),
+  };
   return (
     <section
-      aria-label="Word garden list"
+      aria-label={t('garden.ariaLabelList')}
       data-view="list"
       className="flex w-full max-w-3xl flex-col gap-[var(--space-3)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-card)]"
     >
@@ -114,13 +116,13 @@ function WordGardenList({ states }: { states: WordGardenState[] }) {
             style={{ fontFamily: 'var(--font-display)' }}
           >
             <th scope="col" className="py-[var(--space-2)]">
-              Word
+              {t('garden.colWord')}
             </th>
             <th scope="col" className="py-[var(--space-2)]">
-              Stage
+              {t('garden.colStage')}
             </th>
             <th scope="col" className="py-[var(--space-2)]">
-              Last practice
+              {t('garden.colLastPractice')}
             </th>
           </tr>
         </thead>
@@ -131,14 +133,14 @@ function WordGardenList({ states }: { states: WordGardenState[] }) {
                 colSpan={3}
                 className="py-[var(--space-3)] text-center text-[var(--color-mist)]"
               >
-                No words planted yet.
+                {t('garden.noWords')}
               </td>
             </tr>
           ) : (
             states.map((s) => (
               <tr key={`row-${s.word}`}>
                 <td className="py-[var(--space-2)]">{s.word}</td>
-                <td className="py-[var(--space-2)]">{STAGE_NAME[s.box]}</td>
+                <td className="py-[var(--space-2)]">{stageName[s.box]}</td>
                 <td className="py-[var(--space-2)]">
                   {s.lastPracticedAt ? s.lastPracticedAt.toLocaleDateString() : '—'}
                 </td>

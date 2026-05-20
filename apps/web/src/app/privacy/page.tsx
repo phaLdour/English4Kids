@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { PrivacyTranslationNotice } from './translation-notice';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — English4Kids',
@@ -16,6 +17,12 @@ export const metadata: Metadata = {
  * The summary at the top is targeted at children (~grade 3 readability);
  * the body is targeted at parents (~grade 8). The companion
  * `/privacy/parent-summary` page collapses the body to a single paragraph.
+ *
+ * I18N: This page is LEGAL TEXT. Sprint 4 S4-5 deliberately keeps the body
+ * inline in English. A `PrivacyTranslationNotice` client component renders a
+ * locale-aware "translation pending" banner so Turkish parents see a clear
+ * heads-up. The full TR translation will be authored by the Sprint 5
+ * Legal-lite Agent (S5-6) under user review before going live.
  */
 export default function PrivacyPage(): React.JSX.Element {
   return (
@@ -33,6 +40,7 @@ export default function PrivacyPage(): React.JSX.Element {
             Parent quick summary
           </Link>
         </p>
+        <PrivacyTranslationNotice />
       </header>
 
       <section aria-labelledby="kid-summary" className="mb-[var(--space-6)]">

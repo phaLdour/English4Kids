@@ -84,6 +84,10 @@ export function TapCard({
             alt={imageAlt ?? ''}
             width={Number.parseInt(dims.img, 10)}
             height={Number.parseInt(dims.img, 10)}
+            // S4-11: kids see one activity at a time; cards beyond the
+            // current item are off-screen until the lesson advances.
+            loading="lazy"
+            decoding="async"
             style={{ objectFit: 'contain' }}
           />
         ) : (

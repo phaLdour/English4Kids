@@ -1,6 +1,17 @@
+import bundleAnalyzer from '@next/bundle-analyzer';
+import { withSentryConfig } from '@sentry/nextjs';
 import withSerwistInit from '@serwist/next';
 import type { NextConfig } from 'next';
-import { withSentryConfig } from '@sentry/nextjs';
+
+/**
+ * `@next/bundle-analyzer` only wires up its webpack plugin when `ANALYZE=true`
+ * is passed at build time (see the `analyze` script in `apps/web/package.json`).
+ * In normal builds it short-circuits to an identity wrapper, so we can leave it
+ * in the production pipeline without affecting bundle output.
+ */
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 // SAFETY INVARIANTS (do NOT change without Safety Officer sign-off):
 // - `connect-src` MUST only allow `'self'` and Supabase. No Google, no
@@ -42,6 +53,10 @@ const withSerwist = withSerwistInit({
   disable: process.env.NODE_ENV === 'development',
   cacheOnNavigation: true,
   reloadOnOnline: true,
+  // STT Agent (S4-3): keep the ~39 MB whisper.cpp model + WASM runtime out
+  // of the initial precache. They lazy-load on first Speak It! opt-in via
+  // `whisper-loader.ts` and live in a separate runtime cache instead.
+  exclude: [/^\/whisper\//, /\/whisper\/.*\.(bin|wasm|js)$/],
 });
 
 /**
@@ -97,7 +112,7 @@ const sentryEnabled = Boolean(SENTRY_ORG && SENTRY_PROJECT);
 
 const wrapped = withSerwist(nextConfig);
 
-export default sentryEnabled
+const sentryWrapped = sentryEnabled
   ? withSentryConfig(wrapped, {
       org: SENTRY_ORG,
       project: SENTRY_PROJECT,
@@ -111,3 +126,5 @@ export default sentryEnabled
       disableLogger: true,
     })
   : wrapped;
+
+export default withBundleAnalyzer(sentryWrapped);

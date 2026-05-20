@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A cat can run</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <circle cx="120" cy="110" r="40" fill="#1F2933"/>
+  <circle cx="108" cy="106" r="4" fill="#1F2933" stroke="none"/>
+  <circle cx="132" cy="106" r="4" fill="#1F2933" stroke="none"/>
+  <path d="M108 122 Q120 130 132 122" stroke-width="1.5"/>
+  <text x="120" y="190" text-anchor="middle" font-family="'Fredoka', system-ui, sans-serif" font-size="16" font-weight="700" fill="#1F2933" stroke="none">cat + run</text>
+  <circle cx="180" cy="60" r="28" fill="#5FB37C"/>
+  <path d="M168 62 L176 70 L194 50" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+</svg>

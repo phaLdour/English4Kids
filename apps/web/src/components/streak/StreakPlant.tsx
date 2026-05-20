@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { usePrefersReducedMotion } from '@e4k/ui';
+import { useTranslations } from 'next-intl';
 
 export interface StreakPlantProps {
   current: number;
@@ -27,28 +28,30 @@ export function StreakPlant({
   variant = 'home',
 }: StreakPlantProps) {
   const prefersReduced = usePrefersReducedMotion();
+  const t = useTranslations();
   const visualLeaves = Math.min(current, MAX_VISUAL_LEAVES);
   const dimensions = variant === 'home' ? 96 : 160;
   const leafTransition = prefersReduced
     ? { duration: 0 }
     : { type: 'spring' as const, stiffness: 240, damping: 18 };
 
+  const ariaLabel =
+    current === 0
+      ? freezesAvailable > 0
+        ? t('streak.newPlantAriaWithFreezes', { count: freezesAvailable })
+        : t('streak.newPlantAria')
+      : freezesAvailable > 0
+        ? t('streak.ariaWithStreakAndFreezes', {
+            count: current,
+            longest,
+            freezes: freezesAvailable,
+          })
+        : t('streak.ariaWithStreak', { count: current, longest });
+
   return (
     <div
       role="img"
-      aria-label={
-        current === 0
-          ? `New plant ready to grow${
-              freezesAvailable > 0
-                ? `, ${freezesAvailable} freeze${freezesAvailable === 1 ? '' : 's'} available`
-                : ''
-            }`
-          : `${current}-day streak, longest ${longest}${
-              freezesAvailable > 0
-                ? `, ${freezesAvailable} freeze${freezesAvailable === 1 ? '' : 's'} available`
-                : ''
-            }`
-      }
+      aria-label={ariaLabel}
       data-variant={variant}
       className="flex items-center gap-[var(--space-2)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-3)] shadow-[var(--shadow-card)]"
       style={{ fontFamily: 'var(--font-display)' }}
@@ -95,14 +98,14 @@ export function StreakPlant({
           className="text-2xl text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          {current === 0 ? 'New plant' : `${current}-day streak`}
+          {current === 0 ? t('streak.newPlant') : t('streak.daysActive', { count: current })}
         </span>
         {variant === 'detail' ? (
           <span
             className="text-sm text-[var(--color-mist)]"
             style={{ fontFamily: 'var(--font-body)' }}
           >
-            Longest: {longest} day{longest === 1 ? '' : 's'}
+            {t('streak.longest', { count: longest })}
           </span>
         ) : null}
         {freezesAvailable > 0 ? (
@@ -120,7 +123,7 @@ export function StreakPlant({
                 role="img"
                 aria-hidden="true"
               >
-                <title>Streak freeze</title>
+                <title>{t('streak.freezeIcon')}</title>
                 <path
                   d="M 8 0 L 12 8 L 10 8 L 14 24 L 2 24 L 6 8 L 4 8 Z"
                   fill="var(--color-luna)"
@@ -129,7 +132,7 @@ export function StreakPlant({
                 />
               </svg>
             ))}
-            <span>freeze{freezesAvailable === 1 ? '' : 's'}</span>
+            <span>{t('streak.freezes', { count: freezesAvailable })}</span>
           </span>
         ) : null}
       </div>

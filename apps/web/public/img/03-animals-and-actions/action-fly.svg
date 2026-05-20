@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A character flying</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <path d="M0 240 L240 240 L240 200 L0 200 Z" fill="#5FB37C" stroke="none"/>
+  <ellipse cx="120" cy="120" rx="48" ry="34" fill="#3DA9FC"/>
+  <circle cx="120" cy="100" r="26" fill="#3DA9FC"/>
+  <path d="M40 110 Q90 100 110 130 Q70 130 40 130 Z" fill="#9D8DF1"/>
+  <path d="M200 110 Q150 100 130 130 Q170 130 200 130 Z" fill="#9D8DF1"/>
+  <path d="M142 96 L160 92 L148 104 Z" fill="#FFC857"/>
+  <circle cx="118" cy="96" r="3" fill="#1F2933" stroke="none"/>
+</svg>

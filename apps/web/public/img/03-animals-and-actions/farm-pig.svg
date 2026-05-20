@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A farm pig</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <ellipse cx="120" cy="140" rx="64" ry="48" fill="#FFB5A7"/>
+  <circle cx="120" cy="120" r="36" fill="#FFB5A7"/>
+  <ellipse cx="120" cy="138" rx="20" ry="14" fill="#E26F8E"/>
+  <circle cx="114" cy="138" r="3" fill="#1F2933" stroke="none"/>
+  <circle cx="126" cy="138" r="3" fill="#1F2933" stroke="none"/>
+  <circle cx="106" cy="108" r="3" fill="#1F2933" stroke="none"/>
+  <circle cx="134" cy="108" r="3" fill="#1F2933" stroke="none"/>
+  <path d="M102 86 L116 96 L100 102 Z" fill="#FFB5A7"/>
+  <path d="M138 86 L124 96 L140 102 Z" fill="#FFB5A7"/>
+  <path d="M180 150 Q200 144 196 162 Q188 168 184 158" stroke-width="2.5" fill="none"/>
+</svg>

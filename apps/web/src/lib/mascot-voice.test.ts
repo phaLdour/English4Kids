@@ -1,3 +1,5 @@
+import { readFileSync, readdirSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 // In-memory mock for the Dexie-backed settings layer. The test mutates this
@@ -135,6 +137,60 @@ describe('mascot-voice', () => {
     });
     it('produces different values for different inputs (smoke)', () => {
       expect(__hashForTests('a')).not.toBe(__hashForTests('b'));
+    });
+  });
+
+  // S4-9 smoke test that complements scripts/check-mascot-parity.ts. By
+  // loading the asset JSON at test time, we catch regressions where a new
+  // Milo activity prompt ships without its Luna twin even if the CI lint
+  // script is somehow skipped (e.g. a refactor accidentally renames the
+  // turbo task).
+  describe('S4-9 Luna activity-prompt parity', () => {
+    interface AssetEntry {
+      type: string;
+    }
+    type AssetMap = Record<string, AssetEntry>;
+
+    const ASSETS_DIR = resolve(__dirname, '..', '..', '..', '..', 'content', 'audio-assets');
+
+    function loadUnits(): { file: string; map: AssetMap }[] {
+      return readdirSync(ASSETS_DIR)
+        .filter((f) => f.startsWith('unit-') && f.endsWith('.json'))
+        .sort()
+        .map((file) => {
+          const raw = readFileSync(join(ASSETS_DIR, file), 'utf8');
+          return { file, map: JSON.parse(raw) as AssetMap };
+        });
+    }
+
+    function isActivityKey(key: string, mascot: 'milo' | 'luna'): boolean {
+      return new RegExp(`^vo\\.${mascot}\\.u\\d+\\.l\\d+\\.`).test(key);
+    }
+
+    it('every Milo activity-prompt asset has a Luna counterpart (>= 90% per unit)', () => {
+      const units = loadUnits();
+      expect(units.length).toBeGreaterThan(0);
+      for (const { file, map } of units) {
+        const milo: string[] = [];
+        const lunaSuffixes = new Set<string>();
+        for (const [key, entry] of Object.entries(map)) {
+          if (entry.type !== 'narration') continue;
+          if (isActivityKey(key, 'milo')) milo.push(key);
+          else if (isActivityKey(key, 'luna')) {
+            lunaSuffixes.add(key.slice('vo.luna.'.length));
+          }
+        }
+        if (milo.length === 0) continue;
+        const matched = milo.filter((k) =>
+          lunaSuffixes.has(k.slice('vo.milo.'.length)),
+        );
+        const coverage = matched.length / milo.length;
+        // Hard threshold (matches scripts/check-mascot-parity.ts).
+        expect(
+          coverage,
+          `${file}: ${matched.length}/${milo.length} Luna parity`,
+        ).toBeGreaterThanOrEqual(0.9);
+      }
     });
   });
 });

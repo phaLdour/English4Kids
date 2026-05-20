@@ -122,6 +122,31 @@ jobs:
       - name: Validate content
         run: pnpm validate:content
 
+  mascot-parity:
+    name: Mascot voice parity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check Luna/Milo activity-prompt coverage
+        run: pnpm check:mascot-parity
+
   provenance-check:
     name: Provenance check
     runs-on: ubuntu-latest
@@ -146,6 +171,146 @@ jobs:
 
       - name: Run safety lint
         run: bash .github/scripts/safety-lint.sh
+
+  locale-coverage:
+    name: Locale coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify EN/TR locale symmetry and untranslated-literal budget
+        run: pnpm dlx tsx scripts/check-locale-coverage.ts
+        env:
+          # Sprint 4 baseline. Sprint 5 ramps this to 0.
+          LOCALE_BUDGET: '20'
+
+  mobile-build-check:
+    name: Capacitor static export (mobile build check)
+    runs-on: ubuntu-latest
+    # Non-blocking for Sprint 4: a real Capacitor build needs Xcode / Android
+    # Studio; this job only verifies that `E4K_TARGET=mobile pnpm next build`
+    # finishes without error and emits the expected static output (S4-10).
+    continue-on-error: true
+    needs: [lint, typecheck]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build static export
+        run: pnpm --filter @e4k/web build
+        env:
+          E4K_TARGET: mobile
+
+      - name: Verify static export emitted
+        run: |
+          set -e
+          if [ ! -d "apps/web/out/_next/static" ]; then
+            echo "::error::Static export missing: apps/web/out/_next/static not found"
+            ls -la apps/web/out || echo "no out dir at all"
+            exit 1
+          fi
+          echo "Static export OK: $(find apps/web/out -type f | wc -l) files"
+
+  storybook:
+    name: Storybook build
+    runs-on: ubuntu-latest
+    # Non-blocking for Sprint 4: web Storybook depends on the next-intl
+    # provider decorator landing first and sister subagent's TR migration
+    # touching the same locale bundles. Sprint 5 promotes this to required.
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build @e4k/ui Storybook
+        run: pnpm build-storybook
+
+      - name: Build @e4k/web Storybook
+        run: pnpm build-storybook:web
+
+  e2e:
+    name: E2E tests (Phase 2)
+    runs-on: ubuntu-latest
+    # Non-blocking in Sprint 4: several specs (cloud-sync, mascot-voice
+    # routing, sync-flush) depend on a live Supabase URL and skip cleanly
+    # without one. The mic-policy + locale-switch specs run unconditionally.
+    continue-on-error: true
+    needs: [lint, typecheck]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm --filter @e4k/web exec playwright install --with-deps chromium
+
+      - name: Build app
+        run: pnpm --filter @e4k/web build
+
+      - name: Run E2E suite
+        run: pnpm --filter @e4k/web test:e2e
+        env:
+          CI: 'true'
 
   a11y:
     name: Accessibility baseline

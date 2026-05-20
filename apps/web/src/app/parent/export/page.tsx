@@ -22,6 +22,7 @@ import {
   type PronunciationAttempt,
   type VocabState,
 } from '@e4k/db';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
 
 interface ExportPayload {
@@ -76,6 +77,7 @@ export function buildExportFilename(nickname: string | null, now: Date = new Dat
 }
 
 export default function DataExportPage() {
+  const t = useTranslations();
   const [child, setChild] = useState<Child | null>(null);
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
@@ -135,11 +137,11 @@ export default function DataExportPage() {
       window.setTimeout(() => URL.revokeObjectURL(url), 1_000);
       setDone(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not build the export.');
+      setError(err instanceof Error ? err.message : t('parent.exportError'));
     } finally {
       setBusy(false);
     }
-  }, [child]);
+  }, [child, t]);
 
   return (
     <main
@@ -151,15 +153,13 @@ export default function DataExportPage() {
           className="text-2xl text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Download all data
+          {t('parent.exportTitle')}
         </h1>
         <p className="text-base text-[var(--color-ink)]">
-          Your data is yours. This download includes every lesson, word, speaking attempt, and
-          setting on this device, packaged as a single JSON file you can keep, share, or
-          archive.
+          {t('parent.exportBody')}
         </p>
         <p className="text-sm text-[var(--color-mist)]">
-          The file lives on this device only. Nothing is uploaded.
+          {t('parent.exportLocalOnly')}
         </p>
         <button
           type="button"
@@ -172,7 +172,7 @@ export default function DataExportPage() {
             fontSize: '1.125rem',
           }}
         >
-          {busy ? 'Preparing...' : 'Download all data (JSON)'}
+          {busy ? t('parent.exportPreparing') : t('parent.exportButton')}
         </button>
         {done ? (
           <p
@@ -180,7 +180,7 @@ export default function DataExportPage() {
             aria-live="polite"
             className="rounded-[var(--radius-md)] bg-[var(--color-surface)] p-[var(--space-3)] text-[var(--color-ink)]"
           >
-            Download started. Your data is yours.
+            {t('parent.exportSuccess')}
           </p>
         ) : null}
         {error ? (

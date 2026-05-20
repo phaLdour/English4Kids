@@ -8,11 +8,13 @@
 
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useMicStore } from '@/lib/mic-store';
 
 export function MicIndicator() {
   const active = useMicStore((s) => s.active);
   const requestStop = useMicStore((s) => s.requestStop);
+  const t = useTranslations();
 
   if (!active) return null;
 
@@ -31,15 +33,15 @@ export function MicIndicator() {
           boxShadow: '0 0 0 4px rgba(230, 57, 70, 0.25)',
         }}
       />
-      <span className="text-sm text-[var(--color-ink)]">Listening...</span>
+      <span className="text-sm text-[var(--color-ink)]">{t('mic.listening')}</span>
       <button
         type="button"
         onClick={requestStop}
         className="ml-[var(--space-2)] rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-3)] py-[var(--space-1)] text-sm text-[var(--color-surface-high)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95"
         style={{ minHeight: '32px' }}
-        aria-label="Stop talking"
+        aria-label={t('mic.stopAria')}
       >
-        Stop
+        {t('mic.stop')}
       </button>
     </output>
   );

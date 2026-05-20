@@ -8,10 +8,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.tapCat": {
+    "src": "/audio/vo/luna/u3/l1/tapCat.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.3,
+    "transcript": "Tap the cat!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.tapDog": {
     "src": "/audio/vo/u3/l1/tapDog.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap the dog!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.tapDog": {
+    "src": "/audio/vo/luna/u3/l1/tapDog.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.3,
     "transcript": "Tap the dog!",
     "type": "narration",
@@ -26,10 +44,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.tapFish": {
+    "src": "/audio/vo/luna/u3/l1/tapFish.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.3,
+    "transcript": "Tap the fish!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.tapRabbit": {
     "src": "/audio/vo/u3/l1/tapRabbit.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap the rabbit!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.tapRabbit": {
+    "src": "/audio/vo/luna/u3/l1/tapRabbit.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Tap the rabbit!",
     "type": "narration",
@@ -44,10 +80,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.tapBird": {
+    "src": "/audio/vo/luna/u3/l1/tapBird.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.3,
+    "transcript": "Tap the bird!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.tapHamster": {
     "src": "/audio/vo/u3/l1/tapHamster.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.6,
+    "transcript": "Tap the hamster!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.tapHamster": {
+    "src": "/audio/vo/luna/u3/l1/tapHamster.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.6,
     "transcript": "Tap the hamster!",
     "type": "narration",
@@ -62,10 +116,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.spellCat": {
+    "src": "/audio/vo/luna/u3/l1/spellCat.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Spell 'cat'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.spellDog": {
     "src": "/audio/vo/u3/l1/spellDog.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Spell 'dog'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.spellDog": {
+    "src": "/audio/vo/luna/u3/l1/spellDog.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.4,
     "transcript": "Spell 'dog'.",
     "type": "narration",
@@ -80,10 +152,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.spellFish": {
+    "src": "/audio/vo/luna/u3/l1/spellFish.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Spell 'fish'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.spellRabbit": {
     "src": "/audio/vo/u3/l1/spellRabbit.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.6,
+    "transcript": "Spell 'rabbit'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.spellRabbit": {
+    "src": "/audio/vo/luna/u3/l1/spellRabbit.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.6,
     "transcript": "Spell 'rabbit'.",
     "type": "narration",
@@ -98,10 +188,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.spellBird": {
+    "src": "/audio/vo/luna/u3/l1/spellBird.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Spell 'bird'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.spellHamster": {
     "src": "/audio/vo/u3/l1/spellHamster.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.7,
+    "transcript": "Spell 'hamster'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.spellHamster": {
+    "src": "/audio/vo/luna/u3/l1/spellHamster.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.7,
     "transcript": "Spell 'hamster'.",
     "type": "narration",
@@ -116,10 +224,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.sayCat": {
+    "src": "/audio/vo/luna/u3/l1/sayCat.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.8,
+    "transcript": "Your turn! Say 'cat'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.sayDog": {
     "src": "/audio/vo/u3/l1/sayDog.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Your turn! Say 'dog'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.sayDog": {
+    "src": "/audio/vo/luna/u3/l1/sayDog.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.8,
     "transcript": "Your turn! Say 'dog'.",
     "type": "narration",
@@ -134,10 +260,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.sayFish": {
+    "src": "/audio/vo/luna/u3/l1/sayFish.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.8,
+    "transcript": "Your turn! Say 'fish'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.sayBird": {
     "src": "/audio/vo/u3/l1/sayBird.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Your turn! Say 'bird'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.sayBird": {
+    "src": "/audio/vo/luna/u3/l1/sayBird.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.8,
     "transcript": "Your turn! Say 'bird'.",
     "type": "narration",
@@ -152,10 +296,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.saySmallCat": {
+    "src": "/audio/vo/luna/u3/l1/saySmallCat.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.2,
+    "transcript": "Your turn! Say 'a small cat'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.sayMyPetDog": {
     "src": "/audio/vo/u3/l1/sayMyPetDog.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 2.3,
+    "transcript": "Your turn! Say 'my pet dog'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.sayMyPetDog": {
+    "src": "/audio/vo/luna/u3/l1/sayMyPetDog.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 2.3,
     "transcript": "Your turn! Say 'my pet dog'.",
     "type": "narration",
@@ -170,10 +332,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.tapBlackCat": {
+    "src": "/audio/vo/luna/u3/l1/tapBlackCat.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Tap the black cat!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.tapYellowBird": {
     "src": "/audio/vo/u3/l1/tapYellowBird.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.7,
+    "transcript": "Tap the yellow bird!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.tapYellowBird": {
+    "src": "/audio/vo/luna/u3/l1/tapYellowBird.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.7,
     "transcript": "Tap the yellow bird!",
     "type": "narration",
@@ -188,10 +368,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.tapBlueFish": {
+    "src": "/audio/vo/luna/u3/l1/tapBlueFish.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Tap the blue fish!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.tapWhiteRabbit": {
     "src": "/audio/vo/u3/l1/tapWhiteRabbit.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.7,
+    "transcript": "Tap the white rabbit!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l1.tapWhiteRabbit": {
+    "src": "/audio/vo/luna/u3/l1/tapWhiteRabbit.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.7,
     "transcript": "Tap the white rabbit!",
     "type": "narration",
@@ -206,6 +404,15 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.tapBrownDog": {
+    "src": "/audio/vo/luna/u3/l1/tapBrownDog.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.6,
+    "transcript": "Tap the brown dog!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l1.tapOrangeHamster": {
     "src": "/audio/vo/u3/l1/tapOrangeHamster.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
@@ -215,11 +422,20 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l1.tapOrangeHamster": {
+    "src": "/audio/vo/luna/u3/l1/tapOrangeHamster.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.9,
+    "transcript": "Tap the orange hamster!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.story.pipMeetsPets.p1": {
     "src": "/audio/vo/story/pipMeetsPets/p1.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 4.0,
+    "durationSec": 4,
     "transcript": "Pip the Parrot visits a sunny pet room.",
     "type": "narration",
     "license": "Original-MIT"
@@ -237,7 +453,7 @@
     "src": "/audio/vo/story/pipMeetsPets/p3.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 5.0,
+    "durationSec": 5,
     "transcript": "Hi, dog! A happy dog wags its tail. Hello, rabbit! Hop, hop, hop.",
     "type": "narration",
     "license": "Original-MIT"
@@ -246,7 +462,7 @@
     "src": "/audio/vo/story/pipMeetsPets/p4.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 5.0,
+    "durationSec": 5,
     "transcript": "A bird, a fish, and a hamster wave too. So many new friends!",
     "type": "narration",
     "license": "Original-MIT"
@@ -255,7 +471,7 @@
     "src": "/audio/vo/story/pipMeetsPets/q1.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
     "transcript": "Which pet did Pip meet first?",
     "type": "narration",
     "license": "Original-MIT"
@@ -264,6 +480,15 @@
     "src": "/audio/vo/u3/l2/tapMoo.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Who says moo?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l2.tapMoo": {
+    "src": "/audio/vo/luna/u3/l2/tapMoo.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.4,
     "transcript": "Who says moo?",
     "type": "narration",
@@ -278,10 +503,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l2.tapBaa": {
+    "src": "/audio/vo/luna/u3/l2/tapBaa.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Who says baa?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l2.tapOink": {
     "src": "/audio/vo/u3/l2/tapOink.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Who says oink?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l2.tapOink": {
+    "src": "/audio/vo/luna/u3/l2/tapOink.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.4,
     "transcript": "Who says oink?",
     "type": "narration",
@@ -296,10 +539,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l2.tapNeigh": {
+    "src": "/audio/vo/luna/u3/l2/tapNeigh.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Who says neigh?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l2.tapQuack": {
     "src": "/audio/vo/u3/l2/tapQuack.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Who says quack?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l2.tapQuack": {
+    "src": "/audio/vo/luna/u3/l2/tapQuack.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Who says quack?",
     "type": "narration",
@@ -314,10 +575,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l2.tapCluck": {
+    "src": "/audio/vo/luna/u3/l2/tapCluck.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Who says cluck?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l2.tapCow": {
     "src": "/audio/vo/u3/l2/tapCow.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap the cow!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l2.tapCow": {
+    "src": "/audio/vo/luna/u3/l2/tapCow.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.3,
     "transcript": "Tap the cow!",
     "type": "narration",
@@ -332,10 +611,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l2.tapSheep": {
+    "src": "/audio/vo/luna/u3/l2/tapSheep.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Tap the sheep!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l2.tapPig": {
     "src": "/audio/vo/u3/l2/tapPig.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap the pig!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l2.tapPig": {
+    "src": "/audio/vo/luna/u3/l2/tapPig.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.3,
     "transcript": "Tap the pig!",
     "type": "narration",
@@ -350,10 +647,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l2.tapHorse": {
+    "src": "/audio/vo/luna/u3/l2/tapHorse.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Tap the horse!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l2.tapDuck": {
     "src": "/audio/vo/u3/l2/tapDuck.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap the duck!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l2.tapDuck": {
+    "src": "/audio/vo/luna/u3/l2/tapDuck.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.3,
     "transcript": "Tap the duck!",
     "type": "narration",
@@ -368,10 +683,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l2.tapChicken": {
+    "src": "/audio/vo/luna/u3/l2/tapChicken.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Tap the chicken!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l2.spellCow": {
     "src": "/audio/vo/u3/l2/spellCow.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Spell 'cow'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l2.spellCow": {
+    "src": "/audio/vo/luna/u3/l2/spellCow.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.4,
     "transcript": "Spell 'cow'.",
     "type": "narration",
@@ -386,10 +719,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l2.spellPig": {
+    "src": "/audio/vo/luna/u3/l2/spellPig.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.3,
+    "transcript": "Spell 'pig'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l2.spellSheep": {
     "src": "/audio/vo/u3/l2/spellSheep.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'sheep'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l2.spellSheep": {
+    "src": "/audio/vo/luna/u3/l2/spellSheep.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Spell 'sheep'.",
     "type": "narration",
@@ -404,10 +755,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l2.spellHorse": {
+    "src": "/audio/vo/luna/u3/l2/spellHorse.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Spell 'horse'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l2.spellDuck": {
     "src": "/audio/vo/u3/l2/spellDuck.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Spell 'duck'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l2.spellDuck": {
+    "src": "/audio/vo/luna/u3/l2/spellDuck.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.4,
     "transcript": "Spell 'duck'.",
     "type": "narration",
@@ -422,11 +791,20 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l2.spellChicken": {
+    "src": "/audio/vo/luna/u3/l2/spellChicken.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.6,
+    "transcript": "Spell 'chicken'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.luna.story.theQuietestAnimal.p1": {
     "src": "/audio/vo/story/theQuietestAnimal/p1.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
-    "durationSec": 5.0,
+    "durationSec": 5,
     "transcript": "Coco the Goat walks on the farm. She wants to hear a quiet sound.",
     "type": "narration",
     "license": "Original-MIT"
@@ -471,7 +849,7 @@
     "src": "/audio/vo/story/theQuietestAnimal/p6.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
-    "durationSec": 6.0,
+    "durationSec": 6,
     "transcript": "Every voice is welcome on the farm. Loud, soft, big, small — all friends.",
     "type": "narration",
     "license": "Original-MIT"
@@ -489,7 +867,7 @@
     "src": "/audio/vo/story/theQuietestAnimal/q2.mp3",
     "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
     "lang": "en-GB",
-    "durationSec": 2.0,
+    "durationSec": 2,
     "transcript": "What sound does the horse make?",
     "type": "narration",
     "license": "Original-MIT"
@@ -512,10 +890,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.tapRun": {
+    "src": "/audio/vo/luna/u3/l3/tapRun.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.2,
+    "transcript": "Tap: run!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.tapJump": {
     "src": "/audio/vo/u3/l3/tapJump.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap: jump!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.tapJump": {
+    "src": "/audio/vo/luna/u3/l3/tapJump.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.2,
     "transcript": "Tap: jump!",
     "type": "narration",
@@ -530,10 +926,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.tapWalk": {
+    "src": "/audio/vo/luna/u3/l3/tapWalk.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.2,
+    "transcript": "Tap: walk!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.tapSwim": {
     "src": "/audio/vo/u3/l3/tapSwim.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap: swim!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.tapSwim": {
+    "src": "/audio/vo/luna/u3/l3/tapSwim.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.2,
     "transcript": "Tap: swim!",
     "type": "narration",
@@ -548,10 +962,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.tapFly": {
+    "src": "/audio/vo/luna/u3/l3/tapFly.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.1,
+    "transcript": "Tap: fly!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.tapSleep": {
     "src": "/audio/vo/u3/l3/tapSleep.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap: sleep!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.tapSleep": {
+    "src": "/audio/vo/luna/u3/l3/tapSleep.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.3,
     "transcript": "Tap: sleep!",
     "type": "narration",
@@ -566,10 +998,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.spellRun": {
+    "src": "/audio/vo/luna/u3/l3/spellRun.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Spell 'run'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.spellJump": {
     "src": "/audio/vo/u3/l3/spellJump.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Spell 'jump'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.spellJump": {
+    "src": "/audio/vo/luna/u3/l3/spellJump.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.4,
     "transcript": "Spell 'jump'.",
     "type": "narration",
@@ -584,10 +1034,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.spellWalk": {
+    "src": "/audio/vo/luna/u3/l3/spellWalk.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Spell 'walk'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.spellSwim": {
     "src": "/audio/vo/u3/l3/spellSwim.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'swim'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.spellSwim": {
+    "src": "/audio/vo/luna/u3/l3/spellSwim.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Spell 'swim'.",
     "type": "narration",
@@ -602,10 +1070,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.spellFly": {
+    "src": "/audio/vo/luna/u3/l3/spellFly.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.3,
+    "transcript": "Spell 'fly'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.spellSleep": {
     "src": "/audio/vo/u3/l3/spellSleep.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'sleep'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.spellSleep": {
+    "src": "/audio/vo/luna/u3/l3/spellSleep.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Spell 'sleep'.",
     "type": "narration",
@@ -620,10 +1106,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.sayRun": {
+    "src": "/audio/vo/luna/u3/l3/sayRun.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.8,
+    "transcript": "Your turn! Say 'run'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.sayJump": {
     "src": "/audio/vo/u3/l3/sayJump.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Your turn! Say 'jump'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.sayJump": {
+    "src": "/audio/vo/luna/u3/l3/sayJump.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.8,
     "transcript": "Your turn! Say 'jump'.",
     "type": "narration",
@@ -638,10 +1142,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.sayFly": {
+    "src": "/audio/vo/luna/u3/l3/sayFly.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.7,
+    "transcript": "Your turn! Say 'fly'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.sayICanRun": {
     "src": "/audio/vo/u3/l3/sayICanRun.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 2.2,
+    "transcript": "Your turn! Say 'I can run'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.sayICanRun": {
+    "src": "/audio/vo/luna/u3/l3/sayICanRun.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 2.2,
     "transcript": "Your turn! Say 'I can run'.",
     "type": "narration",
@@ -656,6 +1178,15 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.sayICanJump": {
+    "src": "/audio/vo/luna/u3/l3/sayICanJump.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.3,
+    "transcript": "Your turn! Say 'I can jump'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.sayICanSwim": {
     "src": "/audio/vo/u3/l3/sayICanSwim.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
@@ -665,11 +1196,29 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.sayICanSwim": {
+    "src": "/audio/vo/luna/u3/l3/sayICanSwim.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.3,
+    "transcript": "Your turn! Say 'I can swim'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.tapCatSleeps": {
     "src": "/audio/vo/u3/l3/tapCatSleeps.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
+    "transcript": "Tap: the cat can sleep.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.tapCatSleeps": {
+    "src": "/audio/vo/luna/u3/l3/tapCatSleeps.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
     "transcript": "Tap: the cat can sleep.",
     "type": "narration",
     "license": "Original-MIT"
@@ -678,7 +1227,16 @@
     "src": "/audio/vo/u3/l3/tapFishSwims.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
+    "transcript": "Tap: the fish can swim.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.tapFishSwims": {
+    "src": "/audio/vo/luna/u3/l3/tapFishSwims.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
     "transcript": "Tap: the fish can swim.",
     "type": "narration",
     "license": "Original-MIT"
@@ -687,7 +1245,16 @@
     "src": "/audio/vo/u3/l3/tapBirdFlies.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
+    "transcript": "Tap: the bird can fly.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.tapBirdFlies": {
+    "src": "/audio/vo/luna/u3/l3/tapBirdFlies.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
     "transcript": "Tap: the bird can fly.",
     "type": "narration",
     "license": "Original-MIT"
@@ -701,11 +1268,29 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.tapRabbitJumps": {
+    "src": "/audio/vo/luna/u3/l3/tapRabbitJumps.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.1,
+    "transcript": "Tap: the rabbit can jump.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l3.tapDogRuns": {
     "src": "/audio/vo/u3/l3/tapDogRuns.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
+    "transcript": "Tap: the dog can run.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l3.tapDogRuns": {
+    "src": "/audio/vo/luna/u3/l3/tapDogRuns.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
     "transcript": "Tap: the dog can run.",
     "type": "narration",
     "license": "Original-MIT"
@@ -719,11 +1304,29 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l3.tapHamsterWalks": {
+    "src": "/audio/vo/luna/u3/l3/tapHamsterWalks.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.2,
+    "transcript": "Tap: the hamster can walk.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l4.tapBirdCanFly": {
     "src": "/audio/vo/u3/l4/tapBirdCanFly.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
+    "transcript": "Tap: a bird can fly.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l4.tapBirdCanFly": {
+    "src": "/audio/vo/luna/u3/l4/tapBirdCanFly.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
     "transcript": "Tap: a bird can fly.",
     "type": "narration",
     "license": "Original-MIT"
@@ -732,7 +1335,16 @@
     "src": "/audio/vo/u3/l4/tapFishCanSwim.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
+    "transcript": "Tap: a fish can swim.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l4.tapFishCanSwim": {
+    "src": "/audio/vo/luna/u3/l4/tapFishCanSwim.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
     "transcript": "Tap: a fish can swim.",
     "type": "narration",
     "license": "Original-MIT"
@@ -741,6 +1353,15 @@
     "src": "/audio/vo/u3/l4/tapRabbitCanJump.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 2.1,
+    "transcript": "Tap: a rabbit can jump.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l4.tapRabbitCanJump": {
+    "src": "/audio/vo/luna/u3/l4/tapRabbitCanJump.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 2.1,
     "transcript": "Tap: a rabbit can jump.",
     "type": "narration",
@@ -755,10 +1376,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l4.tapHorseCanRun": {
+    "src": "/audio/vo/luna/u3/l4/tapHorseCanRun.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.1,
+    "transcript": "Tap: a horse can run.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l4.tapDuckCanSwim": {
     "src": "/audio/vo/u3/l4/tapDuckCanSwim.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 2.1,
+    "transcript": "Tap: a duck can swim.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l4.tapDuckCanSwim": {
+    "src": "/audio/vo/luna/u3/l4/tapDuckCanSwim.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 2.1,
     "transcript": "Tap: a duck can swim.",
     "type": "narration",
@@ -773,10 +1412,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l4.tapFishCantWalk": {
+    "src": "/audio/vo/luna/u3/l4/tapFishCantWalk.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.2,
+    "transcript": "Tap: a fish can't walk.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l4.tapCatCantFly": {
     "src": "/audio/vo/u3/l4/tapCatCantFly.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 2.1,
+    "transcript": "Tap: a cat can't fly.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l4.tapCatCantFly": {
+    "src": "/audio/vo/luna/u3/l4/tapCatCantFly.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 2.1,
     "transcript": "Tap: a cat can't fly.",
     "type": "narration",
@@ -791,10 +1448,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l4.tapDogCantFly": {
+    "src": "/audio/vo/luna/u3/l4/tapDogCantFly.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.1,
+    "transcript": "Tap: a dog can't fly.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l4.tapBirdCantSwimFar": {
     "src": "/audio/vo/u3/l4/tapBirdCantSwimFar.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 2.6,
+    "transcript": "Tap: a bird can't swim like a fish.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l4.tapBirdCantSwimFar": {
+    "src": "/audio/vo/luna/u3/l4/tapBirdCantSwimFar.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 2.6,
     "transcript": "Tap: a bird can't swim like a fish.",
     "type": "narration",
@@ -809,10 +1484,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l4.tapHamsterCantFly": {
+    "src": "/audio/vo/luna/u3/l4/tapHamsterCantFly.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.2,
+    "transcript": "Tap: a hamster can't fly.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l4.buildBirdCanFly": {
     "src": "/audio/vo/u3/l4/buildBirdCanFly.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 2.2,
+    "transcript": "Build: a bird can fly.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l4.buildBirdCanFly": {
+    "src": "/audio/vo/luna/u3/l4/buildBirdCanFly.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 2.2,
     "transcript": "Build: a bird can fly.",
     "type": "narration",
@@ -827,6 +1520,15 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l4.buildFishCanSwim": {
+    "src": "/audio/vo/luna/u3/l4/buildFishCanSwim.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.2,
+    "transcript": "Build: a fish can swim.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l4.buildFishCantWalk": {
     "src": "/audio/vo/u3/l4/buildFishCantWalk.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
@@ -836,10 +1538,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u3.l4.buildFishCantWalk": {
+    "src": "/audio/vo/luna/u3/l4/buildFishCantWalk.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.3,
+    "transcript": "Build: a fish can't walk.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u3.l4.buildCatCantFly": {
     "src": "/audio/vo/u3/l4/buildCatCantFly.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 2.2,
+    "transcript": "Build: a cat can't fly.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u3.l4.buildCatCantFly": {
+    "src": "/audio/vo/luna/u3/l4/buildCatCantFly.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 2.2,
     "transcript": "Build: a cat can't fly.",
     "type": "narration",
@@ -885,7 +1605,7 @@
     "src": "/audio/vo/story/whatCanYouDo/p5.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 6.0,
+    "durationSec": 6,
     "transcript": "A fish can't walk. A cat can't fly. That's okay — we all do different things.",
     "type": "narration",
     "license": "Original-MIT"
@@ -894,7 +1614,7 @@
     "src": "/audio/vo/story/whatCanYouDo/p6.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 5.0,
+    "durationSec": 5,
     "transcript": "Everyone can do something. What can you do today?",
     "type": "narration",
     "license": "Original-MIT"
@@ -903,7 +1623,7 @@
     "src": "/audio/vo/story/whatCanYouDo/q1.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
     "transcript": "Who said 'I can fly'?",
     "type": "narration",
     "license": "Original-MIT"
@@ -912,7 +1632,7 @@
     "src": "/audio/vo/story/whatCanYouDo/q2.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
     "transcript": "What can the bear do?",
     "type": "narration",
     "license": "Original-MIT"
@@ -930,7 +1650,7 @@
     "src": "/audio/mus/onCocosFarm.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium) + original instrumental",
     "lang": "en-US",
-    "durationSec": 42.0,
+    "durationSec": 42,
     "transcript": "On Coco's farm the day begins, A cow steps out and moo, moo, moo. A sheep walks by and baa, baa, baa, A pig says oink — hello to you! On Coco's farm the friends all sing, Different voices, every one! A horse goes neigh, a duck goes quack, A chicken clucks beneath the sun. Cow and sheep and pig and horse, Duck and chicken — all together! On Coco's farm we sing along, Every voice and every feather. On Coco's farm we sing along, One big farm, one happy song!",
     "type": "song",
     "license": "Original-MIT"
@@ -939,7 +1659,7 @@
     "src": "/audio/mus/bigSmallTallShort.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium) + original instrumental",
     "lang": "en-US",
-    "durationSec": 27.0,
+    "durationSec": 27,
     "transcript": "Big! and small, Tall and short. Big like a horse, small like a mouse, Tall like a tree, short like a house. Big and small, tall and short, Every size is just the right sort! Big! Small! Tall! Short! Sing it loud — we love them all!",
     "type": "song",
     "license": "Original-MIT"

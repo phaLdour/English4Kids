@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { usePrefersReducedMotion } from '@e4k/ui';
 import type { LeitnerBox } from '@e4k/game-engine';
 import { wordGardenStage, type GardenStage } from '@e4k/game-engine';
+import { useTranslations } from 'next-intl';
 
 export interface WordPlantProps {
   word: string;
@@ -31,13 +32,16 @@ function bloomColorFor(word: string): string {
   return BLOOM_PALETTE[idx] ?? BLOOM_PALETTE[0] ?? 'var(--color-sunflower)';
 }
 
-const STAGE_LABEL: Record<GardenStage, string> = {
-  seed: 'seed',
-  sprout: 'sprout',
-  bud: 'bud',
-  bloom: 'bloom',
-  star: 'mastered',
-};
+function useStageLabels(): Record<GardenStage, string> {
+  const t = useTranslations();
+  return {
+    seed: t('garden.stageSeedShort'),
+    sprout: t('garden.stageSproutShort'),
+    bud: t('garden.stageBudShort'),
+    bloom: t('garden.stageBloomShort'),
+    star: t('garden.stageStarShort'),
+  };
+}
 
 /**
  * Per-stage SVG rendering. All stages share the same SVG viewbox so swapping
@@ -133,9 +137,11 @@ function StageGraphic({
  */
 export function WordPlant({ word, box, size = 96, onTap }: WordPlantProps) {
   const prefersReduced = usePrefersReducedMotion();
+  const t = useTranslations();
+  const stageLabel = useStageLabels();
   const stage = wordGardenStage(box);
   const bloomColor = bloomColorFor(word);
-  const label = `${word}, ${STAGE_LABEL[stage]}`;
+  const label = t('garden.plantAria', { word, stage: stageLabel[stage] });
 
   const content = (
     <div

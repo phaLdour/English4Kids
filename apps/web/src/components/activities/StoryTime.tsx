@@ -8,11 +8,12 @@ import type {
   StoryQuestion,
 } from '@e4k/content-schema';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { MascotReaction } from '@e4k/ui';
 import { useAudio } from '@/lib/audio-client';
+import { getStory } from '@/lib/content-client';
 import { getSetting } from '@e4k/db';
-import { activityMessages } from './messages';
 import { WordHighlighter } from './WordHighlighter';
 
 type StoryTimeItem = Extract<ActivityItem, { type: 'story_time' }>;
@@ -85,6 +86,7 @@ export function StoryTime({
   onMascotChange,
   imageResolver,
 }: StoryTimeProps) {
+  const t = useTranslations();
   const { playPrompt, player } = useAudio();
   const filteredItems = useMemo(
     () => items.filter((i) => i.ageBand === ageBand || items.length === 1),
@@ -147,23 +149,9 @@ export function StoryTime({
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch(
-          `/api/content/stories/${encodeURIComponent(item.storyId)}`,
-        );
-        if (!res.ok) {
-          if (!cancelled) {
-            // Fallback: use the embedded panels/questions on the item itself.
-            setStory({
-              id: item.storyId,
-              title: item.storyId,
-              ageBand: item.ageBand,
-              panels: item.panels,
-              questions: item.questions,
-            });
-          }
-          return;
-        }
-        const json = (await res.json()) as StoryDoc;
+        // S4-10: routed through `content-client` so the static export uses
+        // the same code path as the live web route.
+        const json = await getStory(item.storyId);
         if (!cancelled) setStory(json);
       } catch {
         if (!cancelled) {
@@ -326,7 +314,7 @@ export function StoryTime({
   if (!story && !storyError) {
     return (
       <section
-        aria-label="Loading story"
+        aria-label={t('activities.storyTimeLoadingAria')}
         className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-4)]"
       >
         <p
@@ -334,7 +322,7 @@ export function StoryTime({
           className="text-lg text-[var(--color-mist)]"
           style={{ fontFamily: 'var(--font-body)' }}
         >
-          Loading story…
+          {t('activities.storyTimeLoadingDots')}
         </p>
       </section>
     );
@@ -345,7 +333,7 @@ export function StoryTime({
     const imageSrc = imageResolver?.(panel.imageConcept);
     return (
       <section
-        aria-label="Story panel"
+        aria-label={t('activities.storyTimePanelAria')}
         className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-5)]"
       >
         <div
@@ -358,6 +346,12 @@ export function StoryTime({
             <img
               src={imageSrc}
               alt={panel.imageConcept}
+              width={720}
+              height={540}
+              // Story panels are revealed sequentially; the next panel sits
+              // below the fold until the kid taps Next.
+              loading={panelIndex === 0 ? 'eager' : 'lazy'}
+              decoding="async"
               style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           ) : (
@@ -413,7 +407,7 @@ export function StoryTime({
         <div className="flex items-center gap-[var(--space-3)]">
           <button
             type="button"
-            aria-label={paused ? 'Resume story' : 'Pause story'}
+            aria-label={paused ? t('activities.storyTimeResume') : t('activities.storyTimePause')}
             onClick={handleTogglePause}
             className="flex items-center justify-center rounded-[var(--radius-pill)] bg-[var(--color-surface-high)] px-[var(--space-5)] text-[var(--color-ink)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95"
             style={{
@@ -422,7 +416,7 @@ export function StoryTime({
               fontSize: '1.125rem',
             }}
           >
-            {paused ? 'Resume' : 'Pause'}
+            {paused ? t('activities.storyTimeResumeLabel') : t('activities.storyTimePauseLabel')}
           </button>
           <button
             type="button"
@@ -436,8 +430,8 @@ export function StoryTime({
             }}
           >
             {panelIndex + 1 >= panels.length
-              ? activityMessages.storyTime.finish
-              : activityMessages.storyTime.next}
+              ? t('activities.storyTimeFinish')
+              : t('activities.storyTimeNext')}
           </button>
         </div>
       </section>
@@ -450,7 +444,7 @@ export function StoryTime({
       const correctIndex = question.correctIndex ?? 0;
       return (
         <section
-          aria-label={activityMessages.storyTime.question}
+          aria-label={t('activities.storyTimeQuestion')}
           className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-5)]"
         >
           <p
@@ -504,7 +498,7 @@ export function StoryTime({
     const remaining = sequenceOrder.filter((idx) => !sequencePicks.includes(idx));
     return (
       <section
-        aria-label={activityMessages.storyTime.question}
+        aria-label={t('activities.storyTimeQuestion')}
         className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-5)]"
       >
         <p
@@ -515,11 +509,11 @@ export function StoryTime({
           {question.promptTranscript}
         </p>
         <div
-          aria-label="Chosen order"
+          aria-label={t('activities.storyTimeChosenOrder')}
           className="flex min-h-[60px] w-full flex-wrap items-center justify-center gap-[var(--space-2)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-3)] shadow-[var(--shadow-card)]"
         >
           {sequencePicks.length === 0 ? (
-            <span className="text-sm text-[var(--color-mist)]">Tap items in order</span>
+            <span className="text-sm text-[var(--color-mist)]">{t('activities.storyTimeTapInOrder')}</span>
           ) : (
             sequencePicks.map((idx, slot) => (
               <span

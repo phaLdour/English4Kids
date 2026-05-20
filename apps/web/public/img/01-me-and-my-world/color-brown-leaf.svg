@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A brown leaf</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <path d="M50 200 Q50 80 200 60 Q160 180 70 210 Q60 206 50 200 Z" fill="#A06A3F"/>
+  <path d="M70 210 Q120 160 200 60" stroke-width="2.5"/>
+  <path d="M100 168 Q90 172 76 184" stroke-width="1.5"/>
+  <path d="M130 140 Q120 144 110 156" stroke-width="1.5"/>
+  <path d="M160 116 Q150 120 140 132" stroke-width="1.5"/>
+</svg>

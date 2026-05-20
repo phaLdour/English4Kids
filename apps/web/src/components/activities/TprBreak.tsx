@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
-import { activityMessages } from './messages';
 
 function usePrefersReducedMotion(): boolean {
   const [prefers, setPrefers] = useState(false);
@@ -24,6 +24,7 @@ export interface TprBreakProps {
 }
 
 export function TprBreak({ promptText, durationSec, onComplete }: TprBreakProps) {
+  const t = useTranslations();
   const [elapsed, setElapsed] = useState(0);
   const startedAt = useRef(Date.now());
   const prefersReduced = usePrefersReducedMotion();
@@ -50,14 +51,14 @@ export function TprBreak({ promptText, durationSec, onComplete }: TprBreakProps)
 
   return (
     <section
-      aria-label={activityMessages.tprBreak.title}
+      aria-label={t('activities.tprBreakTitle')}
       className="flex w-full max-w-2xl flex-col items-center gap-[var(--space-8)]"
     >
       <h2
         className="text-3xl text-[var(--color-primary-dark)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        {activityMessages.tprBreak.title}
+        {t('activities.tprBreakTitle')}
       </h2>
       <p
         aria-live="polite"
@@ -81,7 +82,7 @@ export function TprBreak({ promptText, durationSec, onComplete }: TprBreakProps)
         style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem' }}
         aria-hidden="true"
       >
-        Move!
+        {t('activities.tprBreakMove')}
       </motion.div>
       <svg
         aria-hidden="true"
@@ -121,7 +122,7 @@ export function TprBreak({ promptText, durationSec, onComplete }: TprBreakProps)
           fontSize: '1.25rem',
         }}
       >
-        {activityMessages.tprBreak.skip}
+        {t('activities.tprBreakSkip')}
       </button>
     </section>
   );

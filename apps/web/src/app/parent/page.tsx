@@ -16,6 +16,7 @@
 
 import { db, getSetting, type Child, type VocabState } from '@e4k/db';
 import type { LeitnerBox } from '@e4k/game-engine';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { WordGarden, type WordGardenState } from '@/components/garden/WordGarden';
@@ -34,12 +35,17 @@ const DEFAULT_STREAK: StreakSnapshot = {
   freezesAvailable: 0,
 };
 
-function formatMinutes(min: number): string {
-  if (min <= 0) return '0 min';
-  if (min < 60) return `${min} min`;
-  const hours = Math.floor(min / 60);
-  const rest = min % 60;
-  return rest === 0 ? `${hours} hr` : `${hours} hr ${rest} min`;
+function useFormatMinutes() {
+  const t = useTranslations();
+  return (min: number): string => {
+    if (min <= 0) return t('parent.zeroMin');
+    if (min < 60) return t('parent.minutesShort', { count: min });
+    const hours = Math.floor(min / 60);
+    const rest = min % 60;
+    return rest === 0
+      ? t('parent.hoursShort', { count: hours })
+      : t('parent.hoursAndMinutesShort', { hours, minutes: rest });
+  };
 }
 
 function clampBox(n: number): LeitnerBox {
@@ -72,6 +78,7 @@ function StatChip({ label, value }: { label: string; value: string }) {
  * the others into invisibility).
  */
 function WeeklyChart({ days }: { days: DailyMinutes[] }) {
+  const t = useTranslations();
   const max = useMemo(() => {
     const peak = days.reduce((m, d) => Math.max(m, d.minutes), 0);
     return Math.max(peak, 30);
@@ -87,14 +94,14 @@ function WeeklyChart({ days }: { days: DailyMinutes[] }) {
 
   return (
     <figure
-      aria-label="Daily minutes for the past 7 days"
+      aria-label={t('parent.weeklyChartAria')}
       className="flex w-full flex-col gap-[var(--space-2)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]"
     >
       <figcaption
         className="text-sm text-[var(--color-mist)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        This week
+        {t('parent.weeklyChartCaption')}
       </figcaption>
       <svg
         viewBox={`0 0 ${width} ${height}`}
@@ -136,7 +143,7 @@ function WeeklyChart({ days }: { days: DailyMinutes[] }) {
       <ul className="sr-only">
         {days.map((d) => (
           <li key={`a-${d.day}`}>
-            {d.label} {d.day}: {d.minutes} minutes
+            {t('parent.weeklyChartItemAria', { label: d.label, day: d.day, minutes: d.minutes })}
           </li>
         ))}
       </ul>
@@ -153,20 +160,21 @@ function ChildSwitcher({
   activeId: string | undefined;
   onPick: (id: string) => void;
 }) {
+  const t = useTranslations();
   if (children.length === 0) {
     return (
       <div
         className="flex w-full items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] text-center text-[var(--color-mist)] shadow-[var(--shadow-card)]"
         style={{ minHeight: '64px' }}
       >
-        No learner profile yet.
+        {t('parent.noLearner')}
       </div>
     );
   }
   return (
     <div
       role="radiogroup"
-      aria-label="Choose a learner"
+      aria-label={t('parent.chooseLearner')}
       className="flex w-full flex-wrap gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-3)] shadow-[var(--shadow-card)]"
     >
       {children.map((c) => {
@@ -248,10 +256,11 @@ function NavTile({
 }
 
 function RecentLessonsList({ stats }: { stats: ChildStats }) {
+  const t = useTranslations();
   if (stats.recentLessons.length === 0) {
     return (
       <p className="rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] text-[var(--color-mist)] shadow-[var(--shadow-card)]">
-        Start a lesson together to see your child&rsquo;s progress here.
+        {t('parent.noLessonsYet')}
       </p>
     );
   }
@@ -275,7 +284,7 @@ function RecentLessonsList({ stats }: { stats: ChildStats }) {
             </span>
           </div>
           <span
-            aria-label={`${l.stars} stars`}
+            aria-label={t('parent.starsAria', { count: l.stars })}
             className="text-base text-[var(--color-sunflower)]"
             style={{ fontFamily: 'var(--font-display)' }}
           >
@@ -291,6 +300,8 @@ function RecentLessonsList({ stats }: { stats: ChildStats }) {
 }
 
 export default function ParentDashboardPage() {
+  const t = useTranslations();
+  const formatMinutes = useFormatMinutes();
   const [children, setChildren] = useState<Child[]>([]);
   const [activeChildId, setActiveChildId] = useState<string | undefined>(undefined);
   const [vocab, setVocab] = useState<VocabState[]>([]);
@@ -385,12 +396,12 @@ export default function ParentDashboardPage() {
           style={{ borderLeft: '6px solid var(--color-alert)' }}
         >
           <p className="text-base text-[var(--color-ink)]">
-            Deletion scheduled for {new Date(scheduledDelete).toLocaleDateString()}.{' '}
+            {t('parent.deleteScheduled', { date: new Date(scheduledDelete).toLocaleDateString() })}{' '}
             <Link
               href="/parent/delete"
               className="text-[var(--color-primary-dark)] underline"
             >
-              Open Parent Dashboard before then to cancel.
+              {t('parent.openBeforeToCancel')}
             </Link>
           </p>
         </div>
@@ -402,23 +413,23 @@ export default function ParentDashboardPage() {
           className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Today
+          {t('parent.snapshotHeading')}
         </h2>
         <div className="flex flex-wrap gap-[var(--space-3)]">
           <StatChip
-            label="Time today"
+            label={t('parent.timeToday')}
             value={loading ? '—' : formatMinutes(stats?.todayMinutes ?? 0)}
           />
           <StatChip
-            label="Lessons today"
+            label={t('parent.lessonsToday')}
             value={loading ? '—' : String(stats?.todayLessons ?? 0)}
           />
           <StatChip
-            label="New words"
+            label={t('parent.newWords')}
             value={loading ? '—' : String(stats?.todayNewWords ?? 0)}
           />
           <StatChip
-            label="Speaking attempts"
+            label={t('parent.speakingAttempts')}
             value={loading ? '—' : String(stats?.todayPronunciationAttempts ?? 0)}
           />
         </div>
@@ -430,7 +441,7 @@ export default function ParentDashboardPage() {
           className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Past 7 days
+          {t('parent.past7Days')}
         </h2>
         <WeeklyChart days={stats?.weeklyMinutes ?? []} />
       </section>
@@ -441,7 +452,7 @@ export default function ParentDashboardPage() {
           className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Word garden
+          {t('parent.garden')}
         </h2>
         <WordGarden states={gardenStates} view="list" />
       </section>
@@ -452,7 +463,7 @@ export default function ParentDashboardPage() {
           className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Streak
+          {t('parent.streak')}
         </h2>
         <StreakPlant
           current={streak.current}
@@ -461,8 +472,7 @@ export default function ParentDashboardPage() {
           variant="detail"
         />
         <p className="px-[var(--space-2)] text-sm text-[var(--color-mist)]">
-          Streaks cannot be lost punitively. Missed days are forgiven with a freeze, and a new
-          plant starts whenever your child is ready.
+          {t('parent.streakNeverPunitive')}
         </p>
       </section>
 
@@ -472,11 +482,11 @@ export default function ParentDashboardPage() {
           className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Recent lessons
+          {t('parent.recentLessonsLower')}
         </h2>
         {empty ? (
           <p className="rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] text-[var(--color-mist)] shadow-[var(--shadow-card)]">
-            Start a lesson together to see your child&rsquo;s progress here.
+            {t('parent.noLessonsYet')}
           </p>
         ) : stats ? (
           <RecentLessonsList stats={stats} />
@@ -489,33 +499,33 @@ export default function ParentDashboardPage() {
           className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Manage
+          {t('parent.manage')}
         </h2>
         <div className="grid grid-cols-1 gap-[var(--space-3)] sm:grid-cols-2">
           <NavTile
             href={activeChildId ? `/parent/child/${activeChildId}` : '/parent'}
-            title="Child details"
-            description="Profile, progress, audit log."
+            title={t('parent.navChildDetails')}
+            description={t('parent.navChildDetailsDesc')}
           />
           <NavTile
             href="/parent/settings"
-            title="Settings"
-            description="Microphone, strictness, daily limit."
+            title={t('parent.navSettings')}
+            description={t('parent.navSettingsDesc')}
           />
           <NavTile
             href="/parent/export"
-            title="Data export"
-            description="Download everything as JSON."
+            title={t('parent.navExport')}
+            description={t('parent.navExportDesc')}
           />
           <NavTile
             href="/parent/delete"
-            title="Delete all data"
-            description="Schedule a wipe with a 7-day grace."
+            title={t('parent.navDelete')}
+            description={t('parent.navDeleteDesc')}
           />
           <NavTile
             href="/parent/account"
-            title="Account upgrade"
-            description="Coming soon."
+            title={t('parent.navAccount')}
+            description={t('parent.navAccountDesc')}
             disabled
           />
         </div>

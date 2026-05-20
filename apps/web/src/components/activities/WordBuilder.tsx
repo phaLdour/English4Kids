@@ -3,10 +3,10 @@
 import { TapCard } from '@e4k/ui';
 import type { ActivityItem, AudioAssetMap } from '@e4k/content-schema';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { MascotReaction } from '@e4k/ui';
 import { useAudio } from '@/lib/audio-client';
-import { activityMessages } from './messages';
 
 type WordBuilderItem = Extract<ActivityItem, { type: 'word_builder' }>;
 
@@ -145,6 +145,7 @@ function WholeWordDrag({
   onCorrect,
   onWrong,
 }: VariantProps & { ageBand: '6-8' | '9-12' }) {
+  const t = useTranslations();
   const options = item.options ?? [];
   const correctIndex = item.correctIndex ?? 0;
   const [selected, setSelected] = useState<number | null>(null);
@@ -153,7 +154,7 @@ function WholeWordDrag({
 
   return (
     <section
-      aria-label={activityMessages.wordBuilder.aria}
+      aria-label={t('activities.wordBuilderAria')}
       className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-6)]"
     >
       <p
@@ -161,7 +162,7 @@ function WholeWordDrag({
         className="text-center text-xl text-[var(--color-ink)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        {activityMessages.wordBuilder.wholeWord}
+        {t('activities.wordBuilderWholeWord')}
       </p>
       <div
         className="flex items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]"
@@ -172,6 +173,10 @@ function WholeWordDrag({
           <img
             src={imageSrc}
             alt={item.targetWord}
+            width={160}
+            height={160}
+            loading="lazy"
+            decoding="async"
             style={{ maxWidth: 160, maxHeight: 160, objectFit: 'contain' }}
           />
         ) : (
@@ -224,6 +229,7 @@ function WholeWordDrag({
 }
 
 function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) {
+  const t = useTranslations();
   // Spaces are visual-only — strip from slot count and target comparison so
   // a `letter_spell` variant with single-char pool tiles never goes out of bounds.
   const targetLetters = item.targetWord.replace(/\s/g, '');
@@ -292,7 +298,7 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
 
   return (
     <section
-      aria-label={activityMessages.wordBuilder.aria}
+      aria-label={t('activities.wordBuilderAria')}
       className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-6)]"
     >
       <p
@@ -300,7 +306,7 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
         className="text-center text-xl text-[var(--color-ink)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        {activityMessages.wordBuilder.letterSpell}
+        {t('activities.wordBuilderLetterSpell')}
       </p>
       <div
         className="flex items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]"
@@ -311,6 +317,10 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
           <img
             src={imageSrc}
             alt={item.targetWord}
+            width={160}
+            height={160}
+            loading="lazy"
+            decoding="async"
             style={{ maxWidth: 160, maxHeight: 160, objectFit: 'contain' }}
           />
         ) : (
@@ -337,7 +347,7 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
             key={`slot-${item.id}-${slotIdx}`}
             type="button"
             onClick={() => clearSlot(slotIdx)}
-            aria-label={`Slot ${slotIdx + 1}`}
+            aria-label={t('activities.wordBuilderSlotAria', { index: slotIdx + 1 })}
             className="flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-high)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95"
             style={{
               width: 56,
@@ -364,7 +374,7 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
               type="button"
               disabled={used}
               onClick={() => tryPlace(idx)}
-              aria-label={`Letter ${letter}`}
+              aria-label={t('activities.wordBuilderLetterAria', { letter })}
               className="flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-high)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95 disabled:opacity-30"
               style={{
                 width: 56,
@@ -387,7 +397,7 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
         className="rounded-[var(--radius-pill)] bg-transparent px-[var(--space-4)] py-[var(--space-2)] text-[var(--color-mist)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        {activityMessages.wordBuilder.clear}
+        {t('activities.wordBuilderClear')}
       </button>
     </section>
   );
@@ -407,6 +417,7 @@ function SentenceChunks({
   onCorrect,
   onWrong,
 }: VariantProps & { ageBand: '6-8' | '9-12' }) {
+  const t = useTranslations();
   const targetTokens = item.targetWord.trim().split(/\s+/);
   const pool = item.letterPool ?? targetTokens;
   const slots = targetTokens.length;
@@ -480,7 +491,7 @@ function SentenceChunks({
 
   return (
     <section
-      aria-label={activityMessages.wordBuilder.aria}
+      aria-label={t('activities.wordBuilderAria')}
       className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-6)]"
     >
       <p
@@ -488,7 +499,7 @@ function SentenceChunks({
         className="text-center text-xl text-[var(--color-ink)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        {activityMessages.wordBuilder.sentenceChunks}
+        {t('activities.wordBuilderSentenceChunks')}
       </p>
       <div
         className="flex items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]"
@@ -499,6 +510,10 @@ function SentenceChunks({
           <img
             src={imageSrc}
             alt={item.targetWord}
+            width={160}
+            height={160}
+            loading="lazy"
+            decoding="async"
             style={{ maxWidth: 160, maxHeight: 160, objectFit: 'contain' }}
           />
         ) : (
@@ -525,7 +540,7 @@ function SentenceChunks({
             key={`chunk-slot-${item.id}-${slotIdx}`}
             type="button"
             onClick={() => clearSlot(slotIdx)}
-            aria-label={`Slot ${slotIdx + 1}`}
+            aria-label={t('activities.wordBuilderSlotAria', { index: slotIdx + 1 })}
             className="flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-high)] px-[var(--space-3)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95"
             style={{
               minWidth: 72,
@@ -552,7 +567,7 @@ function SentenceChunks({
               type="button"
               disabled={used}
               onClick={() => tryPlace(idx)}
-              aria-label={`Word ${chunk}`}
+              aria-label={t('activities.wordBuilderWordAria', { word: chunk })}
               className="flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-high)] px-[var(--space-3)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95 disabled:opacity-30"
               style={{
                 minWidth: 72,
@@ -573,7 +588,7 @@ function SentenceChunks({
         className="rounded-[var(--radius-pill)] bg-transparent px-[var(--space-4)] py-[var(--space-2)] text-[var(--color-mist)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        {activityMessages.wordBuilder.clear}
+        {t('activities.wordBuilderClear')}
       </button>
     </section>
   );

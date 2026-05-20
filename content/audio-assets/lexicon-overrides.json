@@ -1,0 +1,47 @@
+{
+  "_meta": {
+    "purpose": "Piper lexicon overrides for kid-name, loanword, brand, and homophone edge cases.",
+    "format": "Maps a written token (case-insensitive, surrounded by word boundaries) to its IPA pronunciation. Piper's eSpeak NG frontend will substitute these before phonemization.",
+    "consumedBy": "scripts/build-narration.ts (passes via --phoneme_id_map_path)",
+    "schemaVersion": 1,
+    "lastReviewedBy": "Pedagogy Lead 2026-05-19"
+  },
+  "characters": {
+    "bea": "biː",
+    "milo": "ˈmaɪloʊ",
+    "luna": "ˈluːnə",
+    "coco": "ˈkoʊkoʊ",
+    "pip": "pɪp"
+  },
+  "homophones": {
+    "two": "tuː",
+    "to": "tuː",
+    "too": "tuː",
+    "four": "fɔːr",
+    "for": "fɔːr",
+    "ate": "eɪt",
+    "eight": "eɪt",
+    "their": "ðɛr",
+    "there": "ðɛr",
+    "theyre": "ðɛr"
+  },
+  "brand": {
+    "english4kids": "ˈɪŋɡlɪʃ fɔːr kɪdz",
+    "owl lavender": "aʊl ˈlævəndər",
+    "speak it": "spiːk ɪt",
+    "tap it": "tæp ɪt",
+    "listen up": "ˈlɪsən ʌp",
+    "starry garden": "ˈstɑːri ˈɡɑːrdən"
+  },
+  "tricky_kid_words": {
+    "yum": "jʌm",
+    "ducklings": "ˈdʌklɪŋz",
+    "grandma": "ˈɡrænmɑː",
+    "grandpa": "ˈɡrænpɑː",
+    "picnic": "ˈpɪknɪk",
+    "purple": "ˈpɜːrpəl",
+    "strawberry": "ˈstrɔːbɛri",
+    "orange": "ˈɔːrɪndʒ",
+    "kangaroo": "ˌkæŋɡəˈruː"
+  }
+}

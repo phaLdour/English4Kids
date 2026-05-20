@@ -1,0 +1,68 @@
+/* Storybook CSS for app-side stories. The Next app's `globals.css` uses
+   Tailwind v4 with `@theme`, which doesn't load cleanly outside the Next
+   pipeline. We mirror the design tokens here so stories render with the same
+   colors, spacing, and typography as the runtime app.
+
+   If you add or change a token in `apps/web/src/app/globals.css`, please mirror
+   the change here. The unit test in `apps/web/src/lib/i18n-provider.test.tsx`
+   does not exercise these tokens, so a mismatch will only show up visually.
+*/
+
+:root {
+  --color-primary: #3da9fc;
+  --color-primary-dark: #094074;
+  --color-success: #5fb37c;
+  --color-sunflower: #ffc857;
+  --color-milo: #f08a4b;
+  --color-luna: #9d8df1;
+  --color-coral: #ffb5a7;
+  --color-alert: #e08e1b;
+  --color-muted: #c9d1d9;
+  --color-surface: #fff8ee;
+  --color-surface-high: #ffffff;
+  --color-ink: #1f2933;
+  --color-mist: #5a6878;
+  --color-mic-live: #e63946;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 9999px;
+
+  --tap-primary-young: 80px;
+  --tap-primary-old: 56px;
+  --tap-min-young: 64px;
+
+  --shadow-card: 0 4px 12px rgba(9, 64, 116, 0.08);
+  --shadow-pop: 0 8px 24px rgba(9, 64, 116, 0.12);
+  --shadow-milo: 0 8px 24px rgba(240, 138, 75, 0.32);
+  --shadow-luna: 0 8px 24px rgba(157, 141, 241, 0.32);
+
+  --motion-fast: 120ms;
+  --motion-base: 240ms;
+
+  --font-display: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-body: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  background: var(--color-surface);
+}
+
+body {
+  margin: 0;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+}

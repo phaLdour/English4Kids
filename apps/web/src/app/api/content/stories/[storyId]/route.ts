@@ -1,10 +1,14 @@
 import { promises as fs } from 'node:fs';
+import { readdirSync } from 'node:fs';
 import path from 'node:path';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { StoryPanelSchema, StoryQuestionSchema } from '@e4k/content-schema';
 
 export const runtime = 'nodejs';
+// S4-10: pre-render every story id for static export.
+export const dynamic = 'force-static';
+export const dynamicParams = false;
 
 const StoryDocSchema = z.object({
   id: z.string(),
@@ -16,6 +20,17 @@ const StoryDocSchema = z.object({
 
 function contentRoot(): string {
   return path.resolve(process.cwd(), '..', '..', 'content');
+}
+
+export function generateStaticParams(): { storyId: string }[] {
+  const storiesDir = path.join(contentRoot(), 'stories');
+  try {
+    return readdirSync(storiesDir)
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => ({ storyId: f.replace(/\.json$/, '') }));
+  } catch {
+    return [];
+  }
 }
 
 export async function GET(

@@ -3,6 +3,7 @@
 import { getSetting, setSetting, type MicEngine } from '@e4k/db';
 import { ParentGate, ToggleRow, TopBar, VolumeSlider } from '@e4k/ui';
 import * as RadioGroup from '@radix-ui/react-radio-group';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { type ReactNode, useCallback, useEffect, useId, useState } from 'react';
 import { getAudioClient } from '@/lib/audio-client';
@@ -168,6 +169,7 @@ function RadioCard({
 
 export default function SettingsPage() {
   const router = useRouter();
+  const t = useTranslations();
   const [state, setState] = useState<SettingsState>(DEFAULT_SETTINGS);
   const [loaded, setLoaded] = useState(false);
   const [announce, setAnnounce] = useState('');
@@ -261,10 +263,10 @@ export default function SettingsPage() {
         await setSetting(settingKey, value);
         setAnnounce(announceMsg);
       } catch {
-        setAnnounce('Could not save. Please try again.');
+        setAnnounce(t('common.couldNotSave'));
       }
     },
-    [],
+    [t],
   );
 
   // Volume handlers — write through to AudioPlayer immediately.
@@ -273,21 +275,21 @@ export default function SettingsPage() {
       channel: 'master' | 'music' | 'sfx' | 'voice',
       stateKey: keyof SettingsState,
       settingKey: string,
-      label: string,
+      announceKey: string,
       value: number,
     ) => {
-      await persist(stateKey, value as never, settingKey, `${label} ${value}`);
+      await persist(stateKey, value as never, settingKey, t(announceKey, { value }));
       void applyVolume(channel, value);
     },
-    [persist],
+    [persist, t],
   );
 
   const handleMute = useCallback(
     async (next: boolean) => {
-      await persist('muted', next, 'audio.muted', next ? 'Sound off' : 'Sound on');
+      await persist('muted', next, 'audio.muted', next ? t('settings.announceSoundOff') : t('settings.announceSoundOn'));
       void applyMute(next);
     },
-    [persist],
+    [persist, t],
   );
 
   const handleFocus = useCallback(
@@ -296,11 +298,11 @@ export default function SettingsPage() {
         'focusMode',
         next,
         'audio.focusMode',
-        next ? 'Focus mode on' : 'Focus mode off',
+        next ? t('settings.announceFocusOn') : t('settings.announceFocusOff'),
       );
       void applyFocusMode(next);
     },
-    [persist],
+    [persist, t],
   );
 
   // Reading-help toggles also re-apply DOM effects.
@@ -310,7 +312,7 @@ export default function SettingsPage() {
         'fontDyslexia',
         next,
         'font.dyslexia',
-        next ? 'Easier reading on' : 'Easier reading off',
+        next ? t('settings.announceFontOn') : t('settings.announceFontOff'),
       );
       applySettingsToDom({
         'font.dyslexia': next,
@@ -318,7 +320,7 @@ export default function SettingsPage() {
         'contrast.high': state.contrastHigh,
       });
     },
-    [persist, state.motionReduced, state.contrastHigh],
+    [persist, t, state.motionReduced, state.contrastHigh],
   );
 
   const handleMotionReduced = useCallback(
@@ -327,7 +329,7 @@ export default function SettingsPage() {
         'motionReduced',
         next,
         'motion.reduced',
-        next ? 'Reduced motion on' : 'Reduced motion off',
+        next ? t('settings.announceMotionOn') : t('settings.announceMotionOff'),
       );
       applySettingsToDom({
         'font.dyslexia': state.fontDyslexia,
@@ -335,7 +337,7 @@ export default function SettingsPage() {
         'contrast.high': state.contrastHigh,
       });
     },
-    [persist, state.fontDyslexia, state.contrastHigh],
+    [persist, t, state.fontDyslexia, state.contrastHigh],
   );
 
   const handleContrast = useCallback(
@@ -344,7 +346,7 @@ export default function SettingsPage() {
         'contrastHigh',
         next,
         'contrast.high',
-        next ? 'High contrast on' : 'High contrast off',
+        next ? t('settings.announceContrastOn') : t('settings.announceContrastOff'),
       );
       applySettingsToDom({
         'font.dyslexia': state.fontDyslexia,
@@ -352,7 +354,7 @@ export default function SettingsPage() {
         'contrast.high': next,
       });
     },
-    [persist, state.fontDyslexia, state.motionReduced],
+    [persist, t, state.fontDyslexia, state.motionReduced],
   );
 
   // Mic enable — gate behind ParentGate the first time it's flipped on.
@@ -365,9 +367,9 @@ export default function SettingsPage() {
         return;
       }
       // Disabling: no gate required.
-      await persist('micEnabled', false, 'mic.enabled', 'Microphone off');
+      await persist('micEnabled', false, 'mic.enabled', t('settings.announceMicOff'));
     },
-    [persist],
+    [persist, t],
   );
 
   const handleParentGatePass = useCallback(() => {
@@ -378,10 +380,10 @@ export default function SettingsPage() {
     }
     if (pendingMicEnable) {
       setPendingMicEnable(false);
-      void persist('micEnabled', true, 'mic.enabled', 'Microphone ready');
+      void persist('micEnabled', true, 'mic.enabled', t('settings.announceMicOn'));
       setShowMicPrimer(true);
     }
-  }, [pendingMicEnable, pendingParentRoute, persist, router]);
+  }, [pendingMicEnable, pendingParentRoute, persist, router, t]);
 
   const handleParentGateOpenChange = useCallback((open: boolean) => {
     setParentGateOpen(open);
@@ -414,7 +416,7 @@ export default function SettingsPage() {
         'micEngine',
         engine,
         'mic.engine',
-        next ? 'Offline engine selected' : 'Default engine selected',
+        next ? t('settings.announceEngineOffline') : t('settings.announceEngineDefault'),
       );
       if (next) {
         // Kick the loader. We don't await — the UI streams progress via the
@@ -428,29 +430,46 @@ export default function SettingsPage() {
         }
       }
     },
-    [persist],
+    [persist, t],
   );
 
+  const whisperPct: number =
+    whisperProgress.bytesTotal > 0
+      ? Math.min(
+          100,
+          Math.round((whisperProgress.bytesLoaded / whisperProgress.bytesTotal) * 100),
+        )
+      : 0;
+
   const engineStatusLabel: string = (() => {
-    if (!state.micEnabled) return 'Microphone is off';
-    if (state.micEngine === 'web-speech') return 'Engine: Web Speech (built-in)';
-    if (whisperProgress.status === 'ready') return 'Engine: Offline (ready)';
-    if (whisperProgress.status === 'downloading') {
-      const pct =
-        whisperProgress.bytesTotal > 0
-          ? Math.round((whisperProgress.bytesLoaded / whisperProgress.bytesTotal) * 100)
-          : 0;
-      return `Engine: Offline (downloading ${pct}%)`;
+    if (!state.micEnabled) return t('settings.engineStatusOff');
+    if (state.micEngine === 'web-speech') {
+      return t('settings.mic.engineOnline');
     }
-    if (whisperProgress.status === 'error') {
-      return 'Engine: Offline not yet available — using Web Speech for now';
+    switch (whisperProgress.status) {
+      case 'ready':
+        return t('settings.mic.engineReady');
+      case 'loading':
+        return t('settings.mic.engineDownloading', { percent: whisperPct });
+      case 'placeholder':
+        return t('settings.mic.enginePlaceholder');
+      case 'error':
+        return t('settings.mic.engineError');
+      default:
+        return t('settings.mic.engineOffline');
     }
-    return 'Engine: Offline (preparing)';
   })();
+
+  // Disable the toggle while a download is in flight OR when the binary is
+  // a placeholder. Re-enable on `ready` (re-test available) and `idle`.
+  const offlineToggleDisabled =
+    !state.micEnabled ||
+    whisperProgress.status === 'loading' ||
+    whisperProgress.status === 'placeholder';
 
   return (
     <main className="flex min-h-dvh flex-col bg-[var(--color-surface)]">
-      <TopBar title="Settings" onBack={() => router.back()} />
+      <TopBar title={t('settings.title')} onBack={() => router.back()} />
 
       <span aria-live="polite" className="sr-only">
         {announce}
@@ -462,63 +481,63 @@ export default function SettingsPage() {
           aria-live="polite"
           className="px-[var(--space-6)] py-[var(--space-10)] text-center text-[var(--color-ink)]"
         >
-          Loading your settings...
+          {t('settings.loading')}
         </p>
       ) : (
         <div className="mx-auto flex w-full max-w-2xl flex-col gap-[var(--space-6)] px-[var(--space-4)] py-[var(--space-6)] pb-[var(--space-16)]">
-          <Section title="Sound">
+          <Section title={t('settings.sound')}>
             <div className="flex flex-col gap-[var(--space-4)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]">
               <VolumeSlider
-                label="Master volume"
+                label={t('settings.masterVolume')}
                 value={state.audioMaster}
                 onChange={(v) =>
-                  void handleVolume('master', 'audioMaster', 'audio.master', 'Master volume', v)
+                  void handleVolume('master', 'audioMaster', 'audio.master', 'settings.announceMasterVolume', v)
                 }
               />
               <VolumeSlider
-                label="Music"
+                label={t('settings.music')}
                 value={state.audioMusic}
                 onChange={(v) =>
-                  void handleVolume('music', 'audioMusic', 'audio.music', 'Music volume', v)
+                  void handleVolume('music', 'audioMusic', 'audio.music', 'settings.announceMusic', v)
                 }
               />
               <VolumeSlider
-                label="Sound effects"
+                label={t('settings.soundEffects')}
                 value={state.audioSfx}
                 onChange={(v) =>
-                  void handleVolume('sfx', 'audioSfx', 'audio.sfx', 'Sound effects volume', v)
+                  void handleVolume('sfx', 'audioSfx', 'audio.sfx', 'settings.announceSfx', v)
                 }
               />
               <VolumeSlider
-                label="Voice"
+                label={t('settings.voiceLabel')}
                 value={state.audioVoice}
                 onChange={(v) =>
-                  void handleVolume('voice', 'audioVoice', 'audio.voice', 'Voice volume', v)
+                  void handleVolume('voice', 'audioVoice', 'audio.voice', 'settings.announceVoice', v)
                 }
               />
             </div>
             <ToggleRow
-              label="Mute all"
-              description="Silence everything for a quiet moment."
+              label={t('settings.muteAll')}
+              description={t('settings.muteAllDesc')}
               checked={state.muted}
               onCheckedChange={(v) => void handleMute(v)}
             />
             <ToggleRow
-              label="Focus mode"
-              description="Quiets music and extra sounds. Voice prompts stay on."
+              label={t('settings.focusMode')}
+              description={t('settings.focusModeDesc')}
               checked={state.focusMode}
               onCheckedChange={(v) => void handleFocus(v)}
             />
           </Section>
 
-          <Section title="Voice">
+          <Section title={t('settings.voice')}>
             <div className="flex w-full flex-col gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]">
               <span
                 id="mascot-voice-label"
                 className="text-base text-[var(--color-ink)]"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                Mascot voice
+                {t('settings.mascotVoice')}
               </span>
               <RadioGroup.Root
                 aria-labelledby="mascot-voice-label"
@@ -528,17 +547,17 @@ export default function SettingsPage() {
                     'mascotChoice',
                     v as MascotChoice,
                     'mascot.choice',
-                    `Buddy set to ${v}`,
+                    t('settings.announceBuddySet', { choice: v }),
                   )
                 }
                 className="flex flex-col gap-[var(--space-2)]"
               >
-                <RadioCard value="milo" label="Milo" description="Warm, friendly guide." />
-                <RadioCard value="luna" label="Luna" description="Gentle and wise." />
+                <RadioCard value="milo" label={t('settings.mascotMilo')} description={t('settings.mascotMiloDesc')} />
+                <RadioCard value="luna" label={t('settings.mascotLuna')} description={t('settings.mascotLunaDesc')} />
                 <RadioCard
                   value="both"
-                  label="Both"
-                  description="We'll alternate per activity."
+                  label={t('settings.mascotBoth')}
+                  description={t('settings.mascotBothDesc')}
                 />
               </RadioGroup.Root>
             </div>
@@ -549,7 +568,7 @@ export default function SettingsPage() {
                 className="text-base text-[var(--color-ink)]"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                Narration speed
+                {t('settings.narrationSpeed')}
               </span>
               <RadioGroup.Root
                 aria-labelledby="narration-speed-label"
@@ -559,52 +578,52 @@ export default function SettingsPage() {
                     'narrationSpeed',
                     v as NarrationSpeed,
                     'narration.speed',
-                    `Narration speed ${v}`,
+                    t('settings.announceNarrationSpeed', { speed: v }),
                   )
                 }
                 className="flex flex-col gap-[var(--space-2)]"
               >
-                <RadioCard value="slow" label="Slow" description="0.85x — gentle pace." />
-                <RadioCard value="normal" label="Normal" description="1.0x — everyday pace." />
-                <RadioCard value="fast" label="Fast" description="1.15x — quicker pace." />
+                <RadioCard value="slow" label={t('settings.narrationSlow')} description={t('settings.narrationSlowDesc')} />
+                <RadioCard value="normal" label={t('settings.narrationNormal')} description={t('settings.narrationNormalDesc')} />
+                <RadioCard value="fast" label={t('settings.narrationFast')} description={t('settings.narrationFastDesc')} />
               </RadioGroup.Root>
             </div>
 
             <ToggleRow
-              label="Captions"
-              description="Show the words on screen while voice plays."
+              label={t('settings.captions')}
+              description={t('settings.captionsDesc')}
               checked={state.captionsEnabled}
               onCheckedChange={(v) =>
                 void persist(
                   'captionsEnabled',
                   v,
                   'captions.enabled',
-                  v ? 'Captions on' : 'Captions off',
+                  v ? t('settings.announceCaptionsOn') : t('settings.announceCaptionsOff'),
                 )
               }
             />
           </Section>
 
-          <Section title="Songs">
+          <Section title={t('settings.songs')}>
             <ToggleRow
-              label="Auto-play songs"
-              description="Start the next song without a tap."
+              label={t('settings.autoplaySongs')}
+              description={t('settings.autoplaySongsDesc')}
               checked={state.autoplaySongs}
               onCheckedChange={(v) =>
                 void persist(
                   'autoplaySongs',
                   v,
                   'songs.autoplay',
-                  v ? 'Auto-play on' : 'Auto-play off',
+                  v ? t('settings.announceAutoplayOn') : t('settings.announceAutoplayOff'),
                 )
               }
             />
           </Section>
 
-          <Section title="Microphone">
+          <Section title={t('settings.microphone')}>
             <ToggleRow
-              label="Enable microphone"
-              description="Used only for speaking practice. Your voice stays on this device."
+              label={t('settings.enableMic')}
+              description={t('settings.enableMicDesc')}
               checked={state.micEnabled}
               onCheckedChange={(v) => void handleMicEnable(v)}
             />
@@ -617,64 +636,82 @@ export default function SettingsPage() {
                   className="text-base text-[var(--color-ink)]"
                   style={{ fontFamily: 'var(--font-display)' }}
                 >
-                  Test microphone
+                  {t('settings.testMic')}
                 </span>
                 <span className="text-sm text-[var(--color-mist)]">
-                  Available in the next update.
+                  {t('settings.testMicDesc')}
                 </span>
               </div>
               <button
                 type="button"
                 disabled
                 aria-disabled="true"
-                title="Available in the next update."
+                title={t('settings.testMicDesc')}
                 className="flex items-center justify-center rounded-[var(--radius-pill)] bg-[var(--color-muted)] px-[var(--space-6)] text-[var(--color-mist)] opacity-60"
                 style={{
                   minHeight: 'var(--tap-min-young)',
                   fontFamily: 'var(--font-display)',
                 }}
               >
-                Test
+                {t('common.test')}
               </button>
             </div>
             <ToggleRow
-              label="Offline speech engine"
-              description="Extra-private speech check on Chrome. One-time 30 MB download."
+              label={t('settings.mic.engineOffline')}
+              description={t('settings.offlineEngineDesc')}
               checked={state.micEngine === 'whisper-offline'}
-              disabled={!state.micEnabled}
+              disabled={offlineToggleDisabled}
               onCheckedChange={(v) => void handleMicEngineToggle(v)}
             />
             {state.micEnabled && state.micEngine === 'whisper-offline' &&
-            whisperProgress.status === 'downloading' ? (
+            whisperProgress.status === 'loading' ? (
               <div
                 role="progressbar"
                 aria-valuemin={0}
                 aria-valuemax={whisperProgress.bytesTotal || 1}
                 aria-valuenow={whisperProgress.bytesLoaded}
-                aria-label="Downloading offline speech model"
+                aria-label={t('settings.mic.engineDownloading', { percent: whisperPct })}
                 className="flex w-full flex-col gap-[var(--space-2)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-3)] shadow-[var(--shadow-card)]"
               >
                 <span className="text-sm text-[var(--color-ink)]">
-                  Getting the offline engine ready...
+                  {t('settings.mic.engineDownloading', { percent: whisperPct })}
                 </span>
                 <div className="h-2 w-full overflow-hidden rounded-[var(--radius-pill)] bg-[var(--color-surface)]">
                   <div
                     className="h-full bg-[var(--color-primary)]"
                     style={{
                       width:
-                        whisperProgress.bytesTotal > 0
-                          ? `${Math.min(
-                              100,
-                              Math.round(
-                                (whisperProgress.bytesLoaded /
-                                  whisperProgress.bytesTotal) *
-                                  100,
-                              ),
-                            )}%`
-                          : '5%',
+                        whisperProgress.bytesTotal > 0 ? `${whisperPct}%` : '5%',
                     }}
                   />
                 </div>
+              </div>
+            ) : null}
+            {state.micEnabled && state.micEngine === 'whisper-offline' &&
+            whisperProgress.status === 'ready' ? (
+              <div className="flex w-full items-center justify-between gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]">
+                <span className="text-sm text-[var(--color-ink)]">
+                  {t('settings.mic.engineReady')}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setWhisperProgress({
+                      status: 'idle',
+                      bytesLoaded: 0,
+                      bytesTotal: 0,
+                      error: null,
+                    });
+                    void handleMicEngineToggle(true);
+                  }}
+                  className="flex items-center justify-center rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-4)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)]"
+                  style={{
+                    minHeight: 'var(--tap-min-young)',
+                    fontFamily: 'var(--font-display)',
+                  }}
+                >
+                  {t('settings.mic.retest')}
+                </button>
               </div>
             ) : null}
             <p
@@ -685,39 +722,39 @@ export default function SettingsPage() {
               {engineStatusLabel}
             </p>
             <p className="px-[var(--space-2)] text-sm text-[var(--color-mist)]">
-              We use your device's built-in speech recognition (Web Speech). Your voice never leaves your device. Want extra privacy on Chrome? Enable the offline engine — a one-time 30 MB download.
+              {t('settings.micPrivacyNote')}
             </p>
           </Section>
 
-          <Section title="Reading Help">
+          <Section title={t('settings.readingHelp')}>
             <ToggleRow
-              label="Easier reading font"
-              description="Switches to Lexend, a font many learners find easier to read."
+              label={t('settings.easierFont')}
+              description={t('settings.easierFontDesc')}
               checked={state.fontDyslexia}
               onCheckedChange={(v) => void handleFontDyslexia(v)}
             />
             <ToggleRow
-              label="Reduce motion"
-              description="Calmer animations across the app."
+              label={t('settings.reduceMotion')}
+              description={t('settings.reduceMotionDesc')}
               checked={state.motionReduced}
               onCheckedChange={(v) => void handleMotionReduced(v)}
             />
             <ToggleRow
-              label="High contrast"
-              description="Stronger colour difference for text and buttons."
+              label={t('settings.highContrast')}
+              description={t('settings.highContrastDesc')}
               checked={state.contrastHigh}
               onCheckedChange={(v) => void handleContrast(v)}
             />
           </Section>
 
-          <Section title="Language">
+          <Section title={t('settings.language')}>
             <div className="flex w-full flex-col gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]">
               <span
                 id="locale-label"
                 className="text-base text-[var(--color-ink)]"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                App language
+                {t('settings.appLanguage')}
               </span>
               <RadioGroup.Root
                 aria-labelledby="locale-label"
@@ -728,20 +765,20 @@ export default function SettingsPage() {
                     'locale',
                     next,
                     'ui.locale',
-                    next === 'tr' ? 'Dil Türkçe' : 'Language English',
+                    next === 'tr' ? t('settings.languageAnnounceTr') : t('settings.languageAnnounceEn'),
                   );
                   // Tell the I18nProvider to reload the bundle immediately.
                   notifyLocaleChanged();
                 }}
                 className="flex flex-col gap-[var(--space-2)]"
               >
-                <RadioCard value="en" label="English" description="English (US/UK)." />
-                <RadioCard value="tr" label="Türkçe" description="Turkish." />
+                <RadioCard value="en" label={t('settings.languageEnglish')} description={t('settings.languageEnglishDesc')} />
+                <RadioCard value="tr" label={t('settings.languageTurkish')} description={t('settings.languageTurkishDesc')} />
               </RadioGroup.Root>
             </div>
           </Section>
 
-          <Section title="Parent Tools">
+          <Section title={t('settings.parentTools')}>
             <button
               type="button"
               onClick={openParentDashboard}
@@ -752,7 +789,7 @@ export default function SettingsPage() {
                 fontSize: '1.125rem',
               }}
             >
-              Open Parent Dashboard
+              {t('settings.openParentDashboard')}
             </button>
           </Section>
         </div>
@@ -762,8 +799,8 @@ export default function SettingsPage() {
         open={parentGateOpen}
         onOpenChange={handleParentGateOpenChange}
         onPass={handleParentGatePass}
-        title="Grown-ups only"
-        description="Solve this to continue."
+        title={t('gate.title')}
+        description={t('gate.descriptionDefault')}
       />
 
       {showMicPrimer ? (
@@ -779,11 +816,10 @@ export default function SettingsPage() {
               className="text-2xl text-[var(--color-primary-dark)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              About the microphone
+              {t('settings.micPrimerTitle')}
             </h2>
             <p className="mt-[var(--space-4)] text-base text-[var(--color-ink)]">
-              When you reach speaking practice, your browser will ask permission to use the
-              microphone. Your voice is checked on this device and never sent anywhere.
+              {t('settings.micPrimerBody')}
             </p>
             <button
               type="button"
@@ -795,7 +831,7 @@ export default function SettingsPage() {
                 fontSize: '1.125rem',
               }}
             >
-              Got it
+              {t('onboarding.gotIt')}
             </button>
           </div>
         </div>

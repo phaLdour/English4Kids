@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>Grandma brings apples, Grandpa brings bread</title>
+  <rect x="0" y="0" width="240" height="240" fill="#3DA9FC" stroke="none" opacity="0.35"/>
+  <rect x="0" y="180" width="240" height="60" fill="#5FB37C" stroke="none"/>
+  <path d="M0 180 L240 180" stroke-width="2.5"/>
+  <circle cx="68" cy="120" r="26" fill="#FFFFFF"/>
+  <ellipse cx="60" cy="90" rx="6" ry="18" fill="#FFFFFF"/>
+  <ellipse cx="76" cy="90" rx="6" ry="18" fill="#FFFFFF"/>
+  <path d="M44 110 Q40 84 68 80 Q96 84 92 110 L88 88 L48 88 Z" fill="#B7BEC9"/>
+  <circle cx="62" cy="120" r="3" fill="#1F2933" stroke="none"/>
+  <circle cx="74" cy="120" r="3" fill="#1F2933" stroke="none"/>
+  <path d="M62 132 Q68 138 74 132" stroke-width="1.5"/>
+  <circle cx="60" cy="180" r="14" fill="#E04848"/>
+  <path d="M60 168 L60 162" stroke-width="2"/>
+  <path d="M62 165 Q68 158 74 165" stroke="#5FB37C" stroke-width="3"/>
+  <circle cx="172" cy="120" r="26" fill="#FFFFFF"/>
+  <ellipse cx="164" cy="90" rx="6" ry="18" fill="#FFFFFF"/>
+  <ellipse cx="180" cy="90" rx="6" ry="18" fill="#FFFFFF"/>
+  <path d="M148 110 Q144 84 172 80 Q200 84 196 110 L192 88 L152 88 Z" fill="#B7BEC9"/>
+  <circle cx="166" cy="120" r="3" fill="#1F2933" stroke="none"/>
+  <circle cx="178" cy="120" r="3" fill="#1F2933" stroke="none"/>
+  <path d="M166 132 Q172 138 178 132" stroke-width="1.5"/>
+  <ellipse cx="172" cy="180" rx="22" ry="14" fill="#FFC857"/>
+  <path d="M156 180 Q172 168 188 180" stroke-width="2"/>
+</svg>

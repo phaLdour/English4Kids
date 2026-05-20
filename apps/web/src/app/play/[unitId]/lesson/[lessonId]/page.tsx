@@ -26,6 +26,7 @@ import {
   recordActivity,
 } from '@e4k/game-engine';
 import { getSetting, setSetting } from '@e4k/db';
+import { useTranslations } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ListenAndTap } from '@/components/activities/ListenAndTap';
@@ -35,6 +36,7 @@ import { StoryTime } from '@/components/activities/StoryTime';
 import { TprBreak } from '@/components/activities/TprBreak';
 import { WordBuilder } from '@/components/activities/WordBuilder';
 import { activityMessages } from '@/components/activities/messages';
+import { getPhonemeMap, getUnit } from '@/lib/content-client';
 import { resolveImage } from '@/lib/image-resolver';
 import {
   getOrCreateGuestChild,
@@ -71,6 +73,7 @@ function isoToday(): string {
 
 export default function LessonPlayerPage() {
   const router = useRouter();
+  const t = useTranslations();
   const params = useParams<{ unitId: string; lessonId: string }>();
   const unitId = Array.isArray(params.unitId) ? params.unitId[0] : params.unitId;
   const lessonId = Array.isArray(params.lessonId) ? params.lessonId[0] : params.lessonId;
@@ -99,34 +102,29 @@ export default function LessonPlayerPage() {
     let cancelled = false;
     (async () => {
       try {
-        const [unitRes, audioMap, phonemeRes, band, child, choice] = await Promise.all([
-          fetch(`/api/content/${encodeURIComponent(unitId)}`),
+        // S4-10: all content reads go through `content-client` so the
+        // Capacitor static export (which serves these endpoints as static
+        // JSON files) uses the same code path as the live web SSR build.
+        const [unitResult, audioMap, phonemeMap, band, child, choice] = await Promise.all([
+          getUnit(unitId)
+            .then((unit) => ({ ok: true as const, unit }))
+            .catch(() => ({ ok: false as const })),
           loadAudioMap(unitId),
-          fetch(`/api/content/${encodeURIComponent(unitId)}/phonemes`).catch(
-            () => null,
-          ),
+          getPhonemeMap(unitId),
           getSetting<'6-8' | '9-12'>('age.band', '6-8'),
           getOrCreateGuestChild(),
           getSetting<MascotChoice>('mascot.choice', 'milo'),
         ]);
         if (cancelled) return;
-        if (!unitRes.ok) {
-          setState({ kind: 'error', message: 'Lesson is on the way.' });
+        if (!unitResult.ok) {
+          setState({ kind: 'error', message: t('lesson.lessonOnTheWay') });
           return;
         }
-        const unit = (await unitRes.json()) as Unit;
+        const unit = unitResult.unit;
         const lesson = unit.lessons.find((l) => l.id === lessonId);
         if (!lesson) {
-          setState({ kind: 'error', message: 'Lesson not found.' });
+          setState({ kind: 'error', message: t('lesson.lessonNotFound') });
           return;
-        }
-        let phonemeMap: PhonemeMap = {};
-        if (phonemeRes && phonemeRes.ok) {
-          try {
-            phonemeMap = (await phonemeRes.json()) as PhonemeMap;
-          } catch {
-            phonemeMap = {};
-          }
         }
         setAgeBand(band);
         setChildId(child.id);
@@ -139,13 +137,13 @@ export default function LessonPlayerPage() {
         }
         setState({ kind: 'ready', unit, lesson, audioMap, phonemeMap });
       } catch {
-        if (!cancelled) setState({ kind: 'error', message: 'Could not load lesson.' });
+        if (!cancelled) setState({ kind: 'error', message: t('lesson.couldNotLoadLesson') });
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [unitId, lessonId]);
+  }, [unitId, lessonId, t]);
 
   const lesson = state.kind === 'ready' ? state.lesson : null;
   const rawAudioMap = state.kind === 'ready' ? state.audioMap : ({} as AudioAssetMap);
@@ -299,7 +297,7 @@ export default function LessonPlayerPage() {
     return (
       <main className="flex min-h-dvh items-center justify-center bg-[var(--color-surface)] px-[var(--space-4)]">
         <p className="text-xl text-[var(--color-ink)]" aria-live="polite">
-          Loading lesson…
+          {t('lesson.loadingLessonDots')}
         </p>
       </main>
     );
@@ -315,7 +313,7 @@ export default function LessonPlayerPage() {
           className="rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)]"
           style={{ fontFamily: 'var(--font-display)', minHeight: 'var(--tap-min-young)' }}
         >
-          Back to unit
+          {t('lesson.backToUnit')}
         </button>
       </main>
     );
@@ -370,7 +368,7 @@ export default function LessonPlayerPage() {
             <StarReveal count={stars as 1 | 2 | 3} wasReplay={wasReplay} />
             <div className="flex flex-wrap items-center justify-center gap-[var(--space-3)]">
               <ActionButton
-                label="Replay"
+                label={t('lesson.replay')}
                 onClick={() => {
                   setPriorStars(stars ?? priorStars);
                   setWasReplay(false);
@@ -382,7 +380,7 @@ export default function LessonPlayerPage() {
                 }}
               />
               <ActionButton
-                label="Next lesson"
+                label={t('lesson.nextLesson')}
                 onClick={() => {
                   const next = nextLessonId(state.unit, lessonId);
                   if (next) {
@@ -392,7 +390,7 @@ export default function LessonPlayerPage() {
                   }
                 }}
               />
-              <ActionButton label="Home" onClick={() => router.push('/play')} />
+              <ActionButton label={t('lesson.home')} onClick={() => router.push('/play')} />
             </div>
           </div>
         ) : null}
@@ -496,8 +494,13 @@ function ActivityRenderer({
     );
   }
   return (
-    <ActionButton label="Continue" onClick={onActivityComplete} />
+    <ContinueButton onClick={onActivityComplete} />
   );
+}
+
+function ContinueButton({ onClick }: { onClick: () => void }) {
+  const t = useTranslations();
+  return <ActionButton label={t('common.continue')} onClick={onClick} />;
 }
 
 function ActionButton({ label, onClick }: { label: string; onClick: () => void }) {

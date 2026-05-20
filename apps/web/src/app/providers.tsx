@@ -1,10 +1,46 @@
 'use client';
 
-import { getAllSettings } from '@e4k/db';
+import { db, getAllSettings } from '@e4k/db';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { type ReactNode, useEffect, useState } from 'react';
+import { I18nProvider } from '@/lib/i18n-provider';
 import { applySettingsToDom } from '@/lib/settings-effects';
+import { useAutoSync } from '@/lib/sync-client';
 import { ServiceWorkerRegister } from './serwist-register';
+
+/**
+ * Background cloud-sync driver.
+ *
+ * Picks the first local child (matches existing dashboard / export / lesson
+ * conventions) and hands it to `useAutoSync`. The hook itself gates on the
+ * parent profile being non-anonymous, so this component is a NO-OP for the
+ * default anonymous-first user.
+ *
+ * Renders nothing — pure side-effect wrapper.
+ */
+function CloudSyncDriver(): null {
+  const [childId, setChildId] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      try {
+        const rows = await db.children.toArray();
+        if (!cancelled && rows.length > 0 && rows[0]) {
+          setChildId(rows[0].id);
+        }
+      } catch {
+        // Dexie unavailable (private mode); skip.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useAutoSync(childId);
+  return null;
+}
 
 export function Providers({ children }: { children: ReactNode }) {
   const [client] = useState(
@@ -40,7 +76,8 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={client}>
       <ServiceWorkerRegister />
-      {children}
+      <CloudSyncDriver />
+      <I18nProvider>{children}</I18nProvider>
     </QueryClientProvider>
   );
 }

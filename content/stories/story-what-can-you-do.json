@@ -1,0 +1,114 @@
+{
+  "id": "story.whatCanYouDo",
+  "title": "What Can You Do?",
+  "panels": [
+    {
+      "panelId": "p1",
+      "imageConcept": "img.story.whatCanYouDo.p1",
+      "narrationAudio": "vo.milo.story.whatCanYouDo.p1",
+      "narrationText": "In the forest, the friends share what they can do.",
+      "karaokeHighlights": [],
+      "duration": 4.5
+    },
+    {
+      "panelId": "p2",
+      "imageConcept": "img.story.whatCanYouDo.p2",
+      "narrationAudio": "vo.milo.story.whatCanYouDo.p2",
+      "narrationText": "I can fly, says the bird. Up, up, up!",
+      "karaokeHighlights": [
+        { "wordStart": 2, "wordEnd": 5, "vocabRef": "vocab.can" },
+        { "wordStart": 6, "wordEnd": 9, "vocabRef": "vocab.fly" },
+        { "wordStart": 19, "wordEnd": 23, "vocabRef": "vocab.bird" }
+      ],
+      "duration": 4.5
+    },
+    {
+      "panelId": "p3",
+      "imageConcept": "img.story.whatCanYouDo.p3",
+      "narrationAudio": "vo.milo.story.whatCanYouDo.p3",
+      "narrationText": "I can swim, says the fish. Swish, swish, swish!",
+      "karaokeHighlights": [
+        { "wordStart": 2, "wordEnd": 5, "vocabRef": "vocab.can" },
+        { "wordStart": 6, "wordEnd": 10, "vocabRef": "vocab.swim" },
+        { "wordStart": 20, "wordEnd": 24, "vocabRef": "vocab.fish" }
+      ],
+      "duration": 4.5
+    },
+    {
+      "panelId": "p4",
+      "imageConcept": "img.story.whatCanYouDo.p4",
+      "narrationAudio": "vo.milo.story.whatCanYouDo.p4",
+      "narrationText": "I can climb, says the bear. Up the big tree!",
+      "karaokeHighlights": [
+        { "wordStart": 2, "wordEnd": 5, "vocabRef": "vocab.can" }
+      ],
+      "duration": 4.5
+    },
+    {
+      "panelId": "p5",
+      "imageConcept": "img.story.whatCanYouDo.p5",
+      "narrationAudio": "vo.milo.story.whatCanYouDo.p5",
+      "narrationText": "A fish can't walk. A cat can't fly. That's okay — we all do different things.",
+      "karaokeHighlights": [
+        { "wordStart": 0, "wordEnd": 17, "vocabRef": "vocab.a-fish-cant-walk" },
+        { "wordStart": 19, "wordEnd": 34, "vocabRef": "vocab.a-cat-cant-fly" }
+      ],
+      "duration": 6.0
+    },
+    {
+      "panelId": "p6",
+      "imageConcept": "img.story.whatCanYouDo.p6",
+      "narrationAudio": "vo.milo.story.whatCanYouDo.p6",
+      "narrationText": "Everyone can do something. What can you do today?",
+      "karaokeHighlights": [],
+      "duration": 5.0
+    }
+  ],
+  "questions": [
+    {
+      "id": "story.whatCanYouDo.q1",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "6-8",
+      "promptAudio": "vo.milo.story.whatCanYouDo.q1",
+      "promptTranscript": "Who can fly?",
+      "items": ["the bird", "the fish"],
+      "correctIndex": 0
+    },
+    {
+      "id": "story.whatCanYouDo.q1.912",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "9-12",
+      "promptAudio": "vo.milo.story.whatCanYouDo.q1",
+      "promptTranscript": "Who said 'I can fly'?",
+      "items": ["the bird", "the fish", "the bear"],
+      "correctIndex": 0
+    },
+    {
+      "id": "story.whatCanYouDo.q2.912",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "9-12",
+      "promptAudio": "vo.milo.story.whatCanYouDo.q2",
+      "promptTranscript": "What can the bear do?",
+      "items": ["climb", "swim", "fly"],
+      "correctIndex": 0
+    },
+    {
+      "id": "story.whatCanYouDo.q3.912",
+      "type": "story_question",
+      "questionType": "sequencing",
+      "ageBand": "9-12",
+      "promptAudio": "vo.milo.story.whatCanYouDo.q3",
+      "promptTranscript": "Put the friends in the order they spoke.",
+      "items": [
+        "The bird says 'I can fly'.",
+        "The fish says 'I can swim'.",
+        "The bear says 'I can climb'.",
+        "Everyone shares what they can do."
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    }
+  ]
+}

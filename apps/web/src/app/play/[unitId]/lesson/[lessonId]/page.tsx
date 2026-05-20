@@ -42,6 +42,11 @@ import {
   loadProgress,
   saveProgress,
 } from '@/lib/lesson-player';
+import {
+  type ActiveMascot,
+  type MascotChoice,
+  resolveNarrationAsset,
+} from '@/lib/mascot-voice';
 import { isShineReplay } from '@/lib/replay-detection';
 import { useVocabState } from '@/lib/use-vocab-state';
 
@@ -81,6 +86,7 @@ export default function LessonPlayerPage() {
   const [childId, setChildId] = useState<string | null>(null);
   const [priorStars, setPriorStars] = useState<number>(0);
   const [wasReplay, setWasReplay] = useState<boolean>(false);
+  const [mascotChoice, setMascotChoice] = useState<MascotChoice>('milo');
   const { recordOutcome } = useVocabState(childId);
   const recordOutcomeRef = useRef(recordOutcome);
   const itemCounterRef = useRef<number>(0);
@@ -93,7 +99,7 @@ export default function LessonPlayerPage() {
     let cancelled = false;
     (async () => {
       try {
-        const [unitRes, audioMap, phonemeRes, band, child] = await Promise.all([
+        const [unitRes, audioMap, phonemeRes, band, child, choice] = await Promise.all([
           fetch(`/api/content/${encodeURIComponent(unitId)}`),
           loadAudioMap(unitId),
           fetch(`/api/content/${encodeURIComponent(unitId)}/phonemes`).catch(
@@ -101,6 +107,7 @@ export default function LessonPlayerPage() {
           ),
           getSetting<'6-8' | '9-12'>('age.band', '6-8'),
           getOrCreateGuestChild(),
+          getSetting<MascotChoice>('mascot.choice', 'milo'),
         ]);
         if (cancelled) return;
         if (!unitRes.ok) {
@@ -123,6 +130,7 @@ export default function LessonPlayerPage() {
         }
         setAgeBand(band);
         setChildId(child.id);
+        setMascotChoice(choice);
         try {
           const prev = await loadProgress(child.id, lesson.id);
           if (prev && !cancelled) setPriorStars(prev.stars ?? 0);
@@ -140,7 +148,7 @@ export default function LessonPlayerPage() {
   }, [unitId, lessonId]);
 
   const lesson = state.kind === 'ready' ? state.lesson : null;
-  const audioMap = state.kind === 'ready' ? state.audioMap : ({} as AudioAssetMap);
+  const rawAudioMap = state.kind === 'ready' ? state.audioMap : ({} as AudioAssetMap);
   const phonemeMap: PhonemeMap = state.kind === 'ready' ? state.phonemeMap : {};
   const activities: Activity[] = lesson?.activities ?? [];
   const currentActivity = activities[activityIndex];
@@ -149,6 +157,51 @@ export default function LessonPlayerPage() {
     if (!currentActivity) return null;
     return groupItemsByType(currentActivity.items);
   }, [currentActivity]);
+
+  /**
+   * Resolve the active mascot for the *current* activity. Memoised on the
+   * activity id so that, in 'both' mode, the same activity always shows the
+   * same mascot across renders / replays. Outside an activity (loading,
+   * completion screen) we default to Milo.
+   *
+   * We pre-compute Milo/Luna inline rather than awaiting `getActiveMascot`
+   * because that helper does an async Dexie read; here we already hold the
+   * persisted `mascotChoice` in state and want a synchronous answer.
+   */
+  const activeMascot: ActiveMascot = useMemo(() => {
+    if (mascotChoice === 'milo' || mascotChoice === 'luna') return mascotChoice;
+    if (!currentActivity) return 'milo';
+    // FNV-1a parity on the activity id, mirroring mascot-voice.ts. Keeping
+    // the two implementations identical lets the unit-test contract carry
+    // here too.
+    let h = 0x811c9dc5;
+    for (let i = 0; i < currentActivity.id.length; i += 1) {
+      h ^= currentActivity.id.charCodeAt(i);
+      h = Math.imul(h, 0x01000193);
+    }
+    return ((h >>> 0) & 1) === 0 ? 'milo' : 'luna';
+  }, [mascotChoice, currentActivity]);
+
+  /**
+   * Rewrite the audio map so that any lookup of `vo.milo.<x>` / `vo.luna.<x>`
+   * returns the entry for the active mascot when it is available.
+   *
+   * Activities use `audioMap[item.promptAudio]` directly, so doing the swap
+   * once here avoids touching every activity component. We also expose the
+   * original asset id under its alias by overwriting the original key with
+   * the resolved entry; the original entry stays addressable too.
+   */
+  const audioMap: AudioAssetMap = useMemo(() => {
+    const out: AudioAssetMap = { ...rawAudioMap };
+    for (const id of Object.keys(rawAudioMap)) {
+      if (!id.startsWith('vo.milo.') && !id.startsWith('vo.luna.')) continue;
+      const target = resolveNarrationAsset(id, activeMascot, rawAudioMap);
+      if (target === id) continue;
+      const swapped = rawAudioMap[target];
+      if (swapped) out[id] = swapped;
+    }
+    return out;
+  }, [rawAudioMap, activeMascot]);
 
   const handleItemComplete = useCallback(
     (
@@ -344,7 +397,7 @@ export default function LessonPlayerPage() {
           </div>
         ) : null}
       </section>
-      <MascotFrame variant="milo" reaction={mascotReaction} />
+      <MascotFrame variant={activeMascot} reaction={mascotReaction} />
     </main>
   );
 }

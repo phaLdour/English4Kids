@@ -6,6 +6,12 @@ import * as RadioGroup from '@radix-ui/react-radio-group';
 import { useRouter } from 'next/navigation';
 import { type ReactNode, useCallback, useEffect, useId, useState } from 'react';
 import { getAudioClient } from '@/lib/audio-client';
+import {
+  DEFAULT_LOCALE,
+  type Locale,
+  notifyLocaleChanged,
+  SUPPORTED_LOCALES,
+} from '@/lib/i18n-provider';
 import { applySettingsToDom } from '@/lib/settings-effects';
 import {
   loadWhisper,
@@ -48,6 +54,8 @@ async function applyFocusMode(enabled: boolean): Promise<void> {
 type NarrationSpeed = 'slow' | 'normal' | 'fast';
 type AgeBand = '6-8' | '9-12';
 
+type MascotChoice = 'milo' | 'luna' | 'both';
+
 interface SettingsState {
   audioMaster: number;
   audioMusic: number;
@@ -55,7 +63,7 @@ interface SettingsState {
   audioVoice: number;
   muted: boolean;
   focusMode: boolean;
-  mascotChoice: 'milo' | 'luna';
+  mascotChoice: MascotChoice;
   narrationSpeed: NarrationSpeed;
   captionsEnabled: boolean;
   autoplaySongs: boolean;
@@ -65,6 +73,7 @@ interface SettingsState {
   motionReduced: boolean;
   contrastHigh: boolean;
   ageBand: AgeBand;
+  locale: Locale;
 }
 
 const DEFAULT_SETTINGS: SettingsState = {
@@ -84,7 +93,12 @@ const DEFAULT_SETTINGS: SettingsState = {
   motionReduced: false,
   contrastHigh: false,
   ageBand: '6-8',
+  locale: DEFAULT_LOCALE,
 };
+
+function isLocale(v: unknown): v is Locale {
+  return typeof v === 'string' && (SUPPORTED_LOCALES as readonly string[]).includes(v);
+}
 
 /** Section wrapper — gives every grouping a consistent card look. */
 function Section({
@@ -183,6 +197,7 @@ export default function SettingsPage() {
         fontDyslexia,
         motionReduced,
         contrastHigh,
+        localeRaw,
       ] = await Promise.all([
         getSetting<number>('audio.master', DEFAULT_SETTINGS.audioMaster),
         getSetting<number>('audio.music', DEFAULT_SETTINGS.audioMusic),
@@ -190,7 +205,7 @@ export default function SettingsPage() {
         getSetting<number>('audio.voice', DEFAULT_SETTINGS.audioVoice),
         getSetting<boolean>('audio.muted', DEFAULT_SETTINGS.muted),
         getSetting<boolean>('audio.focusMode', DEFAULT_SETTINGS.focusMode),
-        getSetting<'milo' | 'luna'>('mascot.choice', DEFAULT_SETTINGS.mascotChoice),
+        getSetting<MascotChoice>('mascot.choice', DEFAULT_SETTINGS.mascotChoice),
         getSetting<NarrationSpeed>('narration.speed', DEFAULT_SETTINGS.narrationSpeed),
         getSetting<AgeBand>('age.band', DEFAULT_SETTINGS.ageBand),
         // Captions: derive default from age.band when unset. We probe with a
@@ -202,10 +217,12 @@ export default function SettingsPage() {
         getSetting<boolean>('font.dyslexia', DEFAULT_SETTINGS.fontDyslexia),
         getSetting<boolean>('motion.reduced', DEFAULT_SETTINGS.motionReduced),
         getSetting<boolean>('contrast.high', DEFAULT_SETTINGS.contrastHigh),
+        getSetting<unknown>('ui.locale', DEFAULT_SETTINGS.locale),
       ]);
       if (cancelled) return;
       const captionsEnabled =
         captionsExplicit === null ? ageBand === '6-8' : captionsExplicit;
+      const locale: Locale = isLocale(localeRaw) ? localeRaw : DEFAULT_SETTINGS.locale;
       setState({
         audioMaster,
         audioMusic,
@@ -223,6 +240,7 @@ export default function SettingsPage() {
         motionReduced,
         contrastHigh,
         ageBand,
+        locale,
       });
       setLoaded(true);
     })();
@@ -508,7 +526,7 @@ export default function SettingsPage() {
                 onValueChange={(v) =>
                   void persist(
                     'mascotChoice',
-                    v as 'milo' | 'luna',
+                    v as MascotChoice,
                     'mascot.choice',
                     `Buddy set to ${v}`,
                   )
@@ -516,28 +534,12 @@ export default function SettingsPage() {
                 className="flex flex-col gap-[var(--space-2)]"
               >
                 <RadioCard value="milo" label="Milo" description="Warm, friendly guide." />
-                {/* Luna placeholder — disabled until Phase 2. Keeps structure ready. */}
-                <div
-                  className="flex w-full items-center gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface)] p-[var(--space-4)] opacity-60"
-                  style={{ minHeight: 'var(--tap-min-young)' }}
-                  aria-disabled="true"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[var(--radius-pill)] border-2 border-[var(--color-muted)]"
-                  />
-                  <div className="flex flex-col">
-                    <span
-                      className="text-base text-[var(--color-mist)]"
-                      style={{ fontFamily: 'var(--font-display)' }}
-                    >
-                      Luna
-                    </span>
-                    <span className="text-sm text-[var(--color-mist)]">
-                      Available in a future update.
-                    </span>
-                  </div>
-                </div>
+                <RadioCard value="luna" label="Luna" description="Gentle and wise." />
+                <RadioCard
+                  value="both"
+                  label="Both"
+                  description="We'll alternate per activity."
+                />
               </RadioGroup.Root>
             </div>
 
@@ -706,6 +708,37 @@ export default function SettingsPage() {
               checked={state.contrastHigh}
               onCheckedChange={(v) => void handleContrast(v)}
             />
+          </Section>
+
+          <Section title="Language">
+            <div className="flex w-full flex-col gap-[var(--space-3)] rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]">
+              <span
+                id="locale-label"
+                className="text-base text-[var(--color-ink)]"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                App language
+              </span>
+              <RadioGroup.Root
+                aria-labelledby="locale-label"
+                value={state.locale}
+                onValueChange={(v) => {
+                  const next = isLocale(v) ? v : DEFAULT_LOCALE;
+                  void persist(
+                    'locale',
+                    next,
+                    'ui.locale',
+                    next === 'tr' ? 'Dil Türkçe' : 'Language English',
+                  );
+                  // Tell the I18nProvider to reload the bundle immediately.
+                  notifyLocaleChanged();
+                }}
+                className="flex flex-col gap-[var(--space-2)]"
+              >
+                <RadioCard value="en" label="English" description="English (US/UK)." />
+                <RadioCard value="tr" label="Türkçe" description="Turkish." />
+              </RadioGroup.Root>
+            </div>
           </Section>
 
           <Section title="Parent Tools">

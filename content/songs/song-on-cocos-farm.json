@@ -1,0 +1,31 @@
+{
+  "id": "song.onCocosFarm",
+  "title": "On Coco's Farm",
+  "lrc": "[00:00.00]On Coco's farm the day begins,\n[00:03.00]A cow steps out and moo, moo, moo.\n[00:06.00]A sheep walks by and baa, baa, baa,\n[00:09.00]A pig says oink — hello to you!\n[00:12.00]On Coco's farm the friends all sing,\n[00:15.00]Different voices, every one!\n[00:18.00]A horse goes neigh, a duck goes quack,\n[00:21.00]A chicken clucks beneath the sun.\n[00:24.00]Cow and sheep and pig and horse,\n[00:27.00]Duck and chicken — all together!\n[00:30.00]On Coco's farm we sing along,\n[00:33.00]Every voice and every feather.\n[00:36.00]On Coco's farm we sing along,\n[00:39.00]One big farm, one happy song!\n",
+  "audioRef": "mus.onCocosFarm",
+  "targetVocabRefs": [
+    "vocab.cow",
+    "vocab.sheep",
+    "vocab.pig",
+    "vocab.horse",
+    "vocab.duck",
+    "vocab.chicken",
+    "vocab.moo",
+    "vocab.baa",
+    "vocab.oink",
+    "vocab.neigh",
+    "vocab.quack",
+    "vocab.cluck"
+  ],
+  "tprMoves": [
+    { "ageBand": "6-8", "move": "cow_ears_hands", "cueTime": 3.0 },
+    { "ageBand": "6-8", "move": "sheep_hop", "cueTime": 6.0 },
+    { "ageBand": "6-8", "move": "pig_snort", "cueTime": 9.0 },
+    { "ageBand": "6-8", "move": "horse_gallop", "cueTime": 18.0 },
+    { "ageBand": "6-8", "move": "duck_waddle", "cueTime": 21.0 },
+    { "ageBand": "6-8", "move": "chicken_flap", "cueTime": 24.0 },
+    { "ageBand": "6-8", "move": "all_together_clap", "cueTime": 36.0 },
+    { "ageBand": "9-12", "move": "tempo_clap_pattern", "cueTime": 0 },
+    { "ageBand": "9-12", "move": "tempo_clap_pattern", "cueTime": 24.0 }
+  ]
+}

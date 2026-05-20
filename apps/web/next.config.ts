@@ -1,5 +1,6 @@
 import withSerwistInit from '@serwist/next';
 import type { NextConfig } from 'next';
+import { withSentryConfig } from '@sentry/nextjs';
 
 // SAFETY INVARIANTS (do NOT change without Safety Officer sign-off):
 // - `connect-src` MUST only allow `'self'` and Supabase. No Google, no
@@ -43,6 +44,15 @@ const withSerwist = withSerwistInit({
   reloadOnOnline: true,
 });
 
+/**
+ * `E4K_TARGET=mobile` is set by `apps/mobile/package.json` when building the
+ * static export that Capacitor bundles into the iOS / Android WebView. We
+ * toggle `output: 'export'` and disable Image Optimization (incompatible
+ * with static export) only in that mode so the default SSR web build is
+ * unaffected.
+ */
+const isMobileTarget = process.env.E4K_TARGET === 'mobile';
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   experimental: {
@@ -55,6 +65,12 @@ const nextConfig: NextConfig = {
     '@e4k/content-schema',
     '@e4k/db',
   ],
+  ...(isMobileTarget
+    ? {
+        output: 'export' as const,
+        images: { unoptimized: true },
+      }
+    : {}),
   async headers() {
     return [
       {
@@ -73,4 +89,25 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withSerwist(nextConfig);
+// Conditional Sentry wrap: only enabled when org/project env are present, so
+// dev and child-only deployments stay free of Sentry's webpack plugin.
+const SENTRY_ORG = process.env.SENTRY_ORG;
+const SENTRY_PROJECT = process.env.SENTRY_PROJECT;
+const sentryEnabled = Boolean(SENTRY_ORG && SENTRY_PROJECT);
+
+const wrapped = withSerwist(nextConfig);
+
+export default sentryEnabled
+  ? withSentryConfig(wrapped, {
+      org: SENTRY_ORG,
+      project: SENTRY_PROJECT,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      silent: !process.env.CI,
+      // Bundle-size matters on kid devices — keep tunnel and source-map upload
+      // opt-in. Source maps are still emitted, just not auto-uploaded unless
+      // an auth token is present.
+      widenClientFileUpload: false,
+      hideSourceMaps: true,
+      disableLogger: true,
+    })
+  : wrapped;

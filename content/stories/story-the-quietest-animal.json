@@ -1,0 +1,118 @@
+{
+  "id": "story.theQuietestAnimal",
+  "title": "The Quietest Animal",
+  "panels": [
+    {
+      "panelId": "p1",
+      "imageConcept": "img.story.theQuietestAnimal.p1",
+      "narrationAudio": "vo.luna.story.theQuietestAnimal.p1",
+      "narrationText": "Coco the Goat walks on the farm. She wants to hear a quiet sound.",
+      "karaokeHighlights": [],
+      "duration": 5.0
+    },
+    {
+      "panelId": "p2",
+      "imageConcept": "img.story.theQuietestAnimal.p2",
+      "narrationAudio": "vo.luna.story.theQuietestAnimal.p2",
+      "narrationText": "The cow says moo. The sheep says baa. Not so quiet.",
+      "karaokeHighlights": [
+        { "wordStart": 4, "wordEnd": 7, "vocabRef": "vocab.cow" },
+        { "wordStart": 13, "wordEnd": 16, "vocabRef": "vocab.moo" },
+        { "wordStart": 22, "wordEnd": 27, "vocabRef": "vocab.sheep" },
+        { "wordStart": 33, "wordEnd": 36, "vocabRef": "vocab.baa" }
+      ],
+      "duration": 5.5
+    },
+    {
+      "panelId": "p3",
+      "imageConcept": "img.story.theQuietestAnimal.p3",
+      "narrationAudio": "vo.luna.story.theQuietestAnimal.p3",
+      "narrationText": "The pig says oink. The horse says neigh. Still not so quiet.",
+      "karaokeHighlights": [
+        { "wordStart": 4, "wordEnd": 7, "vocabRef": "vocab.pig" },
+        { "wordStart": 13, "wordEnd": 17, "vocabRef": "vocab.oink" },
+        { "wordStart": 23, "wordEnd": 28, "vocabRef": "vocab.horse" },
+        { "wordStart": 34, "wordEnd": 39, "vocabRef": "vocab.neigh" }
+      ],
+      "duration": 5.5
+    },
+    {
+      "panelId": "p4",
+      "imageConcept": "img.story.theQuietestAnimal.p4",
+      "narrationAudio": "vo.luna.story.theQuietestAnimal.p4",
+      "narrationText": "The duck says quack. The chicken says cluck. Loud and proud!",
+      "karaokeHighlights": [
+        { "wordStart": 4, "wordEnd": 8, "vocabRef": "vocab.duck" },
+        { "wordStart": 14, "wordEnd": 19, "vocabRef": "vocab.quack" },
+        { "wordStart": 25, "wordEnd": 32, "vocabRef": "vocab.chicken" },
+        { "wordStart": 38, "wordEnd": 43, "vocabRef": "vocab.cluck" }
+      ],
+      "duration": 5.5
+    },
+    {
+      "panelId": "p5",
+      "imageConcept": "img.story.theQuietestAnimal.p5",
+      "narrationAudio": "vo.luna.story.theQuietestAnimal.p5",
+      "narrationText": "Coco peeks in the pond. A fish blows bubbles. Bubble, bubble. So quiet!",
+      "karaokeHighlights": [
+        { "wordStart": 26, "wordEnd": 30, "vocabRef": "vocab.fish" }
+      ],
+      "duration": 5.5
+    },
+    {
+      "panelId": "p6",
+      "imageConcept": "img.story.theQuietestAnimal.p6",
+      "narrationAudio": "vo.luna.story.theQuietestAnimal.p6",
+      "narrationText": "Every voice is welcome on the farm. Loud, soft, big, small — all friends.",
+      "karaokeHighlights": [],
+      "duration": 6.0
+    }
+  ],
+  "questions": [
+    {
+      "id": "story.theQuietestAnimal.q1",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "6-8",
+      "promptAudio": "vo.luna.story.theQuietestAnimal.q1",
+      "promptTranscript": "Which animal was the quietest?",
+      "items": ["the fish", "the cow"],
+      "correctIndex": 0
+    },
+    {
+      "id": "story.theQuietestAnimal.q1.912",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "9-12",
+      "promptAudio": "vo.luna.story.theQuietestAnimal.q1",
+      "promptTranscript": "Which animal made the quietest sound?",
+      "items": ["the fish", "the cow", "the duck"],
+      "correctIndex": 0
+    },
+    {
+      "id": "story.theQuietestAnimal.q2.912",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "9-12",
+      "promptAudio": "vo.luna.story.theQuietestAnimal.q2",
+      "promptTranscript": "What sound does the horse make?",
+      "items": ["neigh", "moo", "quack"],
+      "correctIndex": 0
+    },
+    {
+      "id": "story.theQuietestAnimal.q3.912",
+      "type": "story_question",
+      "questionType": "sequencing",
+      "ageBand": "9-12",
+      "promptAudio": "vo.luna.story.theQuietestAnimal.q3",
+      "promptTranscript": "Put Coco's farm walk in order.",
+      "items": [
+        "Coco meets the cow and the sheep.",
+        "Coco meets the pig and the horse.",
+        "Coco meets the duck and the chicken.",
+        "Coco finds the fish in the pond."
+      ],
+      "correctOrder": [0, 1, 2, 3]
+    }
+  ]
+}

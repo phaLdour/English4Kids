@@ -1,17 +1,8 @@
 /**
- * Sentry client entrypoint.
+ * Sentry server entrypoint (Node runtime).
  *
- * Phase 2: the real `@sentry/nextjs` SDK is installed. We still DSN-gate the
- * init via `enabled` so child-only deployments (no DSN configured) end up
- * with a fully no-op Sentry client and no telemetry leaves the device.
- *
- * Scrubbing rules (Safety Officer red lines):
- *   - sendDefaultPii: false — never auto-attach IP / cookies / user agent.
- *   - beforeSend strips user identifiers (IP, email, username) and any
- *     forwarding/cookie request headers.
- *   - Free-form strings inside `message` / `exception.value` are passed
- *     through a regex that redacts JSON fragments like
- *     `"nickname":"Penguin"`, `"childName":"..."`, `"email":"..."`.
+ * Same DSN gate and scrubbing rules as the client config — see
+ * `sentry.client.config.ts` for the design notes.
  */
 
 import * as Sentry from '@sentry/nextjs';

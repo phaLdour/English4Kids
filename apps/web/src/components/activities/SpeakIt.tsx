@@ -373,7 +373,11 @@ export function SpeakIt({
         type="button"
         onClick={handleSkip}
         className="absolute bottom-[var(--space-4)] right-[var(--space-4)] rounded-[var(--radius-pill)] bg-[var(--color-surface-high)] px-[var(--space-4)] py-[var(--space-2)] text-sm text-[var(--color-ink)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95"
-        style={{ minHeight: '40px', fontFamily: 'var(--font-display)' }}
+        style={{
+          minHeight: 'var(--tap-min-old)',
+          minWidth: 'var(--tap-min-old)',
+          fontFamily: 'var(--font-display)',
+        }}
         aria-label={t('activities.speakItSkipAria')}
       >
         {t('common.skip')}

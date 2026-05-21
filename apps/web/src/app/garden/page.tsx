@@ -87,9 +87,36 @@ function GardenContent() {
   );
 }
 
+/**
+ * Lightweight loading shell shown while the inner `GardenContent` component
+ * hydrates. Renders the same chrome (surface background + status text) as
+ * the real page so the layout doesn't flash blank for one frame on slow
+ * networks / cold start.
+ */
+function GardenLoading() {
+  return (
+    <main
+      className="flex min-h-dvh flex-col items-center justify-center bg-[var(--color-surface)]"
+      aria-busy="true"
+    >
+      <p
+        role="status"
+        aria-live="polite"
+        className="text-lg text-[var(--color-mist)]"
+        style={{ fontFamily: 'var(--font-body)' }}
+      >
+        {/* Translation-free placeholder: the suspense boundary should never
+            stay mounted long enough for a real user to read this. Using a
+            neutral character keeps it locale-agnostic. */}
+        …
+      </p>
+    </main>
+  );
+}
+
 export default function GardenPage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<GardenLoading />}>
       <GardenContent />
     </Suspense>
   );

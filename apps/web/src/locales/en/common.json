@@ -525,6 +525,7 @@
     "title": "English4Kids",
     "tagline": "Calm, ad-free English adventure for kids 6 to 12",
     "subhead": "Tap, say, sing — and your child's voice stays on this device.",
+    "featuresHeading": "Features",
     "features": {
       "privacy": {
         "title": "Privacy-first",
@@ -631,6 +632,7 @@
         "a": "Write to support@english4kids.app. We aim to reply within two working days. For privacy or data-subject requests, the same address reaches our data team."
       }
     },
-    "backTo": "Back to the app"
+    "backTo": "Back to the app",
+    "privacyLink": "Privacy"
   }
 }

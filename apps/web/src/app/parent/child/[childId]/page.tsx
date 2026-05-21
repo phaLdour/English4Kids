@@ -254,7 +254,7 @@ export default function ChildDetailPage() {
           type="button"
           onClick={() => router.push('/parent')}
           className="self-start rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-surface-high)]"
-          style={{ fontFamily: 'var(--font-display)' }}
+          style={{ fontFamily: 'var(--font-display)', minHeight: '48px' }}
         >
           {t('parent.backToDashboard')}
         </button>

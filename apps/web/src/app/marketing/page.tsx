@@ -104,7 +104,7 @@ export default function MarketingPage(): React.JSX.Element {
         className="mx-auto max-w-5xl px-[var(--space-5)] py-[var(--space-8)]"
       >
         <h2 id="features-title" className="sr-only">
-          Features
+          {t('featuresHeading')}
         </h2>
         <ul className="grid gap-[var(--space-5)] md:grid-cols-3">
           {[

@@ -126,6 +126,63 @@ function scanFile(file: string): Finding[] {
       }
     }
 
+    // Multi-line JSX text: a content-only line that's sandwiched between
+    // an open-tag-ish previous line and a close-tag-ish next line. Catches
+    // patterns like:
+    //   <Link href="...">
+    //     Privacy
+    //   </Link>
+    // The simple matcher above misses this because the text lives on its
+    // own line. We require the previous non-empty, non-comment line to end
+    // with `>` and the next such line to start with `<` for a tight match.
+    const trimmed = line.trim();
+    const looksLikeJsxFragment =
+      trimmed.startsWith(')') ||
+      trimmed.startsWith('{') ||
+      trimmed.startsWith('}') ||
+      trimmed.endsWith('*/}') ||
+      trimmed.endsWith('*/') ||
+      trimmed.includes(':') ||
+      trimmed.includes('?') ||
+      trimmed.includes('=') ||
+      trimmed.endsWith(',');
+    // Proper nouns like "Milo" / "Luna" are intentional brand strings the
+    // app renders as English regardless of locale (mascot names are not
+    // translated). Skip a small whitelist of single-token brand identifiers.
+    const isBrandToken = /^(Milo|Luna|E4K)$/.test(trimmed);
+    if (
+      trimmed.length > 0 &&
+      !trimmed.startsWith('{') &&
+      !trimmed.includes('<') &&
+      !trimmed.includes('>') &&
+      !looksLikeJsxFragment &&
+      !isBrandToken &&
+      !trimmed.includes('//')
+    ) {
+      // Walk backwards to the previous non-blank, non-comment line.
+      let prev = '';
+      for (let j = i - 1; j >= 0; j -= 1) {
+        const ln = (lines[j] ?? '').trim();
+        if (ln.length === 0) continue;
+        if (ln.startsWith('//') || ln.startsWith('*') || ln.startsWith('{/*')) continue;
+        prev = ln;
+        break;
+      }
+      let next = '';
+      for (let j = i + 1; j < lines.length; j += 1) {
+        const ln = (lines[j] ?? '').trim();
+        if (ln.length === 0) continue;
+        if (ln.startsWith('//') || ln.startsWith('*') || ln.startsWith('{/*')) continue;
+        next = ln;
+        break;
+      }
+      if (prev.endsWith('>') && next.startsWith('<')) {
+        if (isLikelyUiString(trimmed) && !trimmed.includes('t(')) {
+          findings.push({ file, line: i + 1, snippet: trimmed.slice(0, 80) });
+        }
+      }
+    }
+
     // Attribute literal: aria-label="..." | placeholder="..." | title="..." | alt="..."
     const attrRe = /\b(aria-label|placeholder|title|alt|label|description)\s*=\s*"([^"\n]+)"/g;
     for (const m of attrRe.exec(line) ? [attrRe.exec(line)!] : []) {

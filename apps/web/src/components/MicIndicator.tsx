@@ -37,8 +37,8 @@ export function MicIndicator() {
       <button
         type="button"
         onClick={requestStop}
-        className="ml-[var(--space-2)] rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-3)] py-[var(--space-1)] text-sm text-[var(--color-surface-high)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95"
-        style={{ minHeight: '32px' }}
+        className="ml-[var(--space-2)] rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-4)] py-[var(--space-2)] text-sm text-[var(--color-surface-high)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95"
+        style={{ minHeight: 'var(--tap-min-old)', minWidth: 'var(--tap-min-old)' }}
         aria-label={t('mic.stopAria')}
       >
         {t('mic.stop')}

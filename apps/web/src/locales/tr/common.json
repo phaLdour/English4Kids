@@ -525,6 +525,7 @@
     "title": "English4Kids",
     "tagline": "Çocuğunuz için sakin, reklamsız İngilizce macerası 6-12 yaş",
     "subhead": "Dokun, söyle, şarkı söyle — ve çocuğunuzun sesi bu cihazda kalır.",
+    "featuresHeading": "Özellikler",
     "features": {
       "privacy": {
         "title": "Önce gizlilik",
@@ -631,6 +632,7 @@
         "a": "support@english4kids.app adresine yazın. İki iş günü içinde yanıtlamayı hedefliyoruz. Gizlilik veya veri sahibi talepleri için aynı adres veri ekibimize ulaşır."
       }
     },
-    "backTo": "Uygulamaya dön"
+    "backTo": "Uygulamaya dön",
+    "privacyLink": "Gizlilik"
   }
 }

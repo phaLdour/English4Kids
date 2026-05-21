@@ -1,6 +1,6 @@
 import { MicIndicator } from '@/components/MicIndicator';
+import { GlobalFooter } from '@/components/GlobalFooter';
 import type { Metadata, Viewport } from 'next';
-import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { Providers } from './providers';
 import './globals.css';
@@ -42,15 +42,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Providers>
           {children}
           <MicIndicator />
+          {/* GlobalFooter sits inside Providers so it can read translations
+              from the I18nProvider. Full-screen game layouts overlay it; the
+              lesson player is unaffected. */}
+          <GlobalFooter />
         </Providers>
-        {/* Privacy link is rendered globally below the app shell. Full-screen
-            game layouts cover this footer, so it does not interrupt the
-            lesson player. */}
-        <footer className="px-[var(--space-4)] py-[var(--space-3)] text-center text-xs text-[var(--color-ink)]">
-          <Link href="/privacy" className="underline">
-            Privacy
-          </Link>
-        </footer>
       </body>
     </html>
   );

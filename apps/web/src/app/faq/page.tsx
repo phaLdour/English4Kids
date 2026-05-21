@@ -152,7 +152,7 @@ export default function FaqPage(): React.JSX.Element {
         </Link>
         <Link href="/privacy" className="underline">
           {/* Privacy footer link kept consistent with the marketing page. */}
-          Privacy
+          {t('privacyLink')}
         </Link>
       </footer>
     </main>

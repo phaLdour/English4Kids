@@ -396,7 +396,11 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
         type="button"
         onClick={clearAll}
         className="rounded-[var(--radius-pill)] bg-transparent px-[var(--space-4)] py-[var(--space-2)] text-[var(--color-mist)]"
-        style={{ fontFamily: 'var(--font-display)' }}
+        style={{
+          fontFamily: 'var(--font-display)',
+          minHeight: 'var(--tap-min-old)',
+          minWidth: 'var(--tap-min-old)',
+        }}
       >
         {t('activities.wordBuilderClear')}
       </button>
@@ -587,7 +591,11 @@ function SentenceChunks({
         type="button"
         onClick={clearAll}
         className="rounded-[var(--radius-pill)] bg-transparent px-[var(--space-4)] py-[var(--space-2)] text-[var(--color-mist)]"
-        style={{ fontFamily: 'var(--font-display)' }}
+        style={{
+          fontFamily: 'var(--font-display)',
+          minHeight: 'var(--tap-min-old)',
+          minWidth: 'var(--tap-min-old)',
+        }}
       >
         {t('activities.wordBuilderClear')}
       </button>

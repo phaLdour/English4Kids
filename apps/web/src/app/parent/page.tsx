@@ -530,7 +530,6 @@ export default function ParentDashboardPage() {
             href="/parent/account"
             title={t('parent.navAccount')}
             description={t('parent.navAccountDesc')}
-            disabled
           />
         </div>
       </section>

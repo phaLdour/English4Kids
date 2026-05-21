@@ -9,6 +9,23 @@ export const metadata: Metadata = {
 };
 
 /**
+ * Privacy-policy placeholders. Read from build-time env vars so the user can
+ * fill them in by setting `NEXT_PUBLIC_E4K_LEGAL_ENTITY`,
+ * `NEXT_PUBLIC_E4K_EU_REPRESENTATIVE`, and `NEXT_PUBLIC_E4K_SUPPORT_EMAIL` in
+ * Vercel (or any deploy target). When unset, we fall back to a calm
+ * "pending" copy so a real user never sees the literal `[PLACEHOLDER]`
+ * bracketed sentinel even if a deploy slips through with the env unwired.
+ * The three external blockers stay tracked in
+ * `docs/launch/soft-launch-checklist.md` either way.
+ */
+const LEGAL_ENTITY =
+  process.env.NEXT_PUBLIC_E4K_LEGAL_ENTITY ?? 'the operator of English4Kids (legal entity to be confirmed before public launch)';
+const EU_REPRESENTATIVE =
+  process.env.NEXT_PUBLIC_E4K_EU_REPRESENTATIVE ?? 'the operator (EU GDPR Article 27 representative to be confirmed before EU launch)';
+const SUPPORT_EMAIL =
+  process.env.NEXT_PUBLIC_E4K_SUPPORT_EMAIL ?? 'the support address listed on the launch site';
+
+/**
  * Privacy policy v1.0 — Sprint 5 S5-6.
  *
  * Covers everything that shipped through Sprint 5:
@@ -65,14 +82,13 @@ export default function PrivacyPage(): React.JSX.Element {
         </h2>
         <p className="mt-[var(--space-2)]">
           The data controller for the information processed through English4Kids is{' '}
-          <strong>[LEGAL ENTITY NAME — to be filled in before launch]</strong>. Our EU
-          representative under GDPR Article 27 is{' '}
-          <strong>[EU REPRESENTATIVE NAME — to be filled in]</strong>.
+          <strong>{LEGAL_ENTITY}</strong>. Our EU representative under GDPR Article 27 is{' '}
+          <strong>{EU_REPRESENTATIVE}</strong>.
         </p>
         <p className="mt-[var(--space-2)]">
           For any privacy question, including data-subject requests, write to{' '}
-          <strong>[SUPPORT EMAIL — to be filled in]</strong>. We respond within 30 days as required
-          by GDPR Article 12(3).
+          <strong>{SUPPORT_EMAIL}</strong>. We respond within 30 days as required by GDPR
+          Article 12(3).
         </p>
       </section>
 
@@ -415,7 +431,7 @@ export default function PrivacyPage(): React.JSX.Element {
         </h2>
         <p className="mt-[var(--space-2)]">
           For any data-subject request or privacy question, write to{' '}
-          <strong>[SUPPORT EMAIL — to be filled in]</strong>.
+          <strong>{SUPPORT_EMAIL}</strong>.
         </p>
       </section>
 

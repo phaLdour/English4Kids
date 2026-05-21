@@ -49,7 +49,7 @@ Cross-references:
 
 ## Privacy and legal
 
-- [ ] Privacy policy v1.0 published. Three placeholders filled: `[LEGAL ENTITY NAME]`, `[EU REPRESENTATIVE NAME]`, `[SUPPORT EMAIL]`.
+- [ ] Privacy policy v1.0 published. Three env-driven placeholders set on the production deploy (Vercel env or equivalent): `NEXT_PUBLIC_E4K_LEGAL_ENTITY`, `NEXT_PUBLIC_E4K_EU_REPRESENTATIVE`, `NEXT_PUBLIC_E4K_SUPPORT_EMAIL`. Without these, the page falls back to a calm "pending" copy rather than the literal `[PLACEHOLDER]` brackets — that protects you from ever shipping a deploy with sentinel text visible, but the live launch still requires the real values.
 - [ ] Privacy policy linked from app footer, marketing footer, FAQ footer, parent dashboard, and the Resend email templates.
 - [ ] COPPA self-certification text pasted into App Store Connect and Play Console.
 - [ ] Privacy nutrition label complete on App Store.

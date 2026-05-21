@@ -31,6 +31,9 @@ Set via the Vercel UI (Project Settings → Environment Variables) or
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | no | Prod | DevOps | Set once a Plausible account exists; until then leave blank and the loader returns null. |
 | `NEXT_PUBLIC_E4K_ENV` | yes | Per-env | DevOps | One of `development \| preview \| production`. |
 | `NEXT_PUBLIC_E4K_RELEASE` | recommended | Prod | CI (GitHub Actions) | Set automatically by the build step to `${{ github.sha }}` — see `.github/workflows/ci.yml`. |
+| `NEXT_PUBLIC_E4K_LEGAL_ENTITY` | yes (launch) | Prod + Preview | Legal | Public legal-entity name printed on `/privacy` §1. If unset the page falls back to a calm "pending" copy so a deploy slipped through with the env unwired never shows `[PLACEHOLDER]` brackets to a real user. |
+| `NEXT_PUBLIC_E4K_EU_REPRESENTATIVE` | yes (EU launch) | Prod + Preview | Legal | GDPR Article 27 representative. Same fallback policy as the legal entity. |
+| `NEXT_PUBLIC_E4K_SUPPORT_EMAIL` | yes (launch) | Prod + Preview | Ops | Support address printed on `/privacy` §1 + §11. Falls back to a generic pointer to the launch site if unset. |
 | `SENTRY_ORG` | yes (for SM upload) | Prod build only | DevOps | Sentry slug, e.g. `english4kids`. Build-time only; not shipped to client. |
 | `SENTRY_PROJECT` | yes (for SM upload) | Prod build only | DevOps | Sentry project slug, e.g. `web`. |
 | `SENTRY_AUTH_TOKEN` | yes (for SM upload) | Prod build only | DevOps | Org auth token with `project:releases` scope. **Rotate 90 days.** |

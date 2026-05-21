@@ -197,8 +197,11 @@ jobs:
       - name: Verify EN/TR locale symmetry and untranslated-literal budget
         run: pnpm dlx tsx scripts/check-locale-coverage.ts
         env:
-          # Sprint 4 baseline. Sprint 5 ramps this to 0.
-          LOCALE_BUDGET: '20'
+          # Sprint 4 baseline was 20. Yayinlama Sprinti drops this to 0 —
+          # every user-visible literal in the kid and parent routes is now
+          # translatable. The `/dev/*` and `/privacy` routes are exempted
+          # at the script level (dev-only / phased translation respectively).
+          LOCALE_BUDGET: '0'
 
   mobile-build-check:
     name: Capacitor static export (mobile build check)

@@ -14,7 +14,8 @@
     "test": "Dene",
     "couldNotSave": "Kaydedilemedi. Lütfen tekrar deneyin.",
     "verifyingGrownUp": "Yetişkin erişimi doğrulanıyor...",
-    "backToApp": "Uygulamaya dön"
+    "backToApp": "Uygulamaya dön",
+    "gettingReady": "Hazırlanıyor..."
   },
   "onboarding": {
     "unlockTitle": "Merhaba! Başlamak için dokun.",
@@ -45,7 +46,13 @@
     "micBody": "Konuşma alıştırmalarına geldiğimizde mikrofon iznini soracağız. Sesin cihazından asla ayrılmaz.",
     "gotIt": "Anladım",
     "allSet": "Her şey hazır! Hadi başlayalım!",
-    "startPlaying": "Oynamaya başla"
+    "startPlaying": "Oynamaya başla",
+    "tapAgainToHear": "Beni tekrar duymak için dokun.",
+    "setupProgressAria": "Kurulum ilerlemesi",
+    "ageBandAria": "Yaş aralığı",
+    "nicknameAria": "Takma ad",
+    "hearMascotAria": "{mascot} tekrar konuşsun",
+    "masterVolumeAria": "Ana ses seviyesi"
   },
   "play": {
     "helloNickname": "Merhaba, {nickname}!",
@@ -65,7 +72,8 @@
     "loadingDots": "Yükleniyor…",
     "unitOnTheWay": "Ünite yolda.",
     "couldNotLoadUnit": "Ünite yüklenemedi.",
-    "lessonStarsAria": "{title}, 3 yıldızdan {stars} yıldız"
+    "lessonStarsAria": "{title}, 3 yıldızdan {stars} yıldız",
+    "lessonCount": "{count, plural, =1 {# ders} other {# ders}}"
   },
   "lesson": {
     "startAdventure": "Maceraya başlamak için dokun!",
@@ -557,7 +565,8 @@
       "privacy": "Gizlilik",
       "terms": "Şartlar",
       "faq": "SSS",
-      "tagline": "Erken okuyucular ve konuşmacılar için özenle hazırlandı."
+      "tagline": "Erken okuyucular ve konuşmacılar için özenle hazırlandı.",
+      "nav": "Alt bilgi"
     }
   },
   "faq": {

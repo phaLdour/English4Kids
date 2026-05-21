@@ -1,6 +1,7 @@
 'use client';
 
 import { getSetting } from '@e4k/db';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -14,6 +15,7 @@ import { useEffect } from 'react';
  */
 export default function HomePage() {
   const router = useRouter();
+  const t = useTranslations();
 
   useEffect(() => {
     let cancelled = false;
@@ -42,7 +44,7 @@ export default function HomePage() {
           className="block h-16 w-16 animate-pulse rounded-[var(--radius-pill)] bg-[var(--color-milo)] shadow-[var(--shadow-milo)]"
         />
         <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem' }}>
-          Getting things ready...
+          {t('common.gettingReady')}
         </span>
       </div>
     </main>

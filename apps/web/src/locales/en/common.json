@@ -14,7 +14,8 @@
     "test": "Test",
     "couldNotSave": "Could not save. Please try again.",
     "verifyingGrownUp": "Verifying grown-up access...",
-    "backToApp": "Back to app"
+    "backToApp": "Back to app",
+    "gettingReady": "Getting things ready..."
   },
   "onboarding": {
     "unlockTitle": "Hi! Tap to begin.",
@@ -45,7 +46,13 @@
     "micBody": "We'll ask permission to use your microphone when we get to speaking practice. Your voice never leaves your device.",
     "gotIt": "Got it",
     "allSet": "All set! Let's go!",
-    "startPlaying": "Start playing"
+    "startPlaying": "Start playing",
+    "tapAgainToHear": "Tap again to hear me.",
+    "setupProgressAria": "Setup progress",
+    "ageBandAria": "Age band",
+    "nicknameAria": "Nickname",
+    "hearMascotAria": "Hear {mascot} speak again",
+    "masterVolumeAria": "Master volume"
   },
   "play": {
     "helloNickname": "Hello, {nickname}!",
@@ -65,7 +72,8 @@
     "loadingDots": "Loading…",
     "unitOnTheWay": "Unit is on the way.",
     "couldNotLoadUnit": "Could not load unit.",
-    "lessonStarsAria": "{title}, {stars} of 3 stars"
+    "lessonStarsAria": "{title}, {stars} of 3 stars",
+    "lessonCount": "{count, plural, =1 {# lesson} other {# lessons}}"
   },
   "lesson": {
     "startAdventure": "Tap to start your adventure!",
@@ -557,7 +565,8 @@
       "privacy": "Privacy",
       "terms": "Terms",
       "faq": "FAQ",
-      "tagline": "Made with care for early readers and speakers."
+      "tagline": "Made with care for early readers and speakers.",
+      "nav": "Footer"
     }
   },
   "faq": {

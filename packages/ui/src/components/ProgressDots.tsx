@@ -19,6 +19,7 @@ export function ProgressDots({
   const safeCurrent = Math.min(Math.max(0, Math.floor(current)), safeTotal);
 
   return (
+    // biome-ignore lint/a11y/useFocusableInteractive: progressbar is a non-interactive status indicator (per WAI-ARIA 1.2); making it focusable would mislead AT users into thinking it accepts input
     <div
       role="progressbar"
       aria-label={label}

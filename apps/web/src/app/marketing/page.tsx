@@ -224,7 +224,7 @@ export default function MarketingPage(): React.JSX.Element {
       >
         <p className="text-center text-[var(--color-ink)]">{t('footer.tagline')}</p>
         <nav
-          aria-label="Footer"
+          aria-label={t('footer.nav')}
           className="mt-[var(--space-3)] flex flex-wrap items-center justify-center gap-[var(--space-4)]"
         >
           <span>{t('footer.contact')}</span>

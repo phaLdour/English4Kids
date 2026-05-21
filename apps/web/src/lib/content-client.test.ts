@@ -17,6 +17,7 @@ import {
   getSong,
   getStory,
   getUnit,
+  getUnitsIndex,
 } from './content-client';
 
 // Mock `runtime-adapter.isCapacitor` so we can flip between web and native
@@ -208,6 +209,42 @@ describe('content-client.getAudioMap', () => {
     installFetch([() => jsonResponse({ bogus: 'shape' })]);
     const map = await getAudioMap('01-me-and-my-world');
     expect(map).toEqual({});
+  });
+});
+
+describe('content-client.getUnitsIndex', () => {
+  it('fetches `/api/content/units` and returns the parsed list', async () => {
+    const sample = {
+      units: [
+        { id: '01-me-and-my-world', title: 'Me and My World', theme: 'self', orderIndex: 0, lessonCount: 4 },
+        { id: '02-home-and-food', title: 'Home and Food', theme: 'home', orderIndex: 1, lessonCount: 4 },
+      ],
+    };
+    const { calls } = installFetch([
+      (c) => (c.url === '/api/content/units' ? jsonResponse(sample) : undefined),
+    ]);
+    const units = await getUnitsIndex();
+    expect(units).toHaveLength(2);
+    expect(units[0]?.id).toBe('01-me-and-my-world');
+    expect(units[1]?.lessonCount).toBe(4);
+    expect(calls).toHaveLength(1);
+    expect(calls[0]?.url).toBe('/api/content/units');
+  });
+
+  it('uses the trailing-slash form on Capacitor', async () => {
+    capacitorFlag.value = true;
+    const sample = { units: [] };
+    const { calls } = installFetch([
+      (c) => (c.url === '/api/content/units/' ? jsonResponse(sample) : undefined),
+    ]);
+    const units = await getUnitsIndex();
+    expect(units).toEqual([]);
+    expect(calls[0]?.url).toBe('/api/content/units/');
+  });
+
+  it('rejects a payload whose shape does not match the schema', async () => {
+    installFetch([() => jsonResponse({ wrong: 'shape' })]);
+    await expect(getUnitsIndex()).rejects.toThrow();
   });
 });
 

@@ -156,6 +156,7 @@ export function SpeakIt({
   // trigger — we reset each time the player advances. The biome rule warns
   // about it being unused inside the body; that's fine, we use the change
   // detection only.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: itemIndex is the change-detection trigger
   useEffect(() => {
     setAttemptCount(0);
     setFeedback(null);

@@ -10,6 +10,7 @@ import { MicIndicator } from './MicIndicator';
  */
 function withMicActive(active: boolean) {
   return function Decorator(Story: () => ReactElement): ReactElement {
+    // biome-ignore lint/correctness/useExhaustiveDependencies: `active` is captured at decorator-factory time, intentionally fixed per story variant
     useEffect(() => {
       const previous = useMicStore.getState().active;
       useMicStore.setState({ active });

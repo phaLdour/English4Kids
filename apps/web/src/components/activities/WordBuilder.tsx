@@ -53,6 +53,7 @@ export function WordBuilder({
     timersRef.current.push(t);
   }, [audioMap, item, onMascotChange, playPrompt]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: itemIndex is the change-detection trigger; playPromptForCurrent + clearTimers are intentionally re-bound per render
   useEffect(() => {
     firstAttemptCorrectRef.current = null;
     playPromptForCurrent();

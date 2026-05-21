@@ -74,6 +74,7 @@ export function ListenAndTap({
     timersRef.current.push(imageRevealTimer);
   }, [audioMap, item, onMascotChange, playPrompt]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: itemIndex is the change-detection trigger
   useEffect(() => {
     firstAttemptCorrectRef.current = null;
     setSelectionState({});

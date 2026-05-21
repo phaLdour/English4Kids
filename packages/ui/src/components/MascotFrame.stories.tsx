@@ -146,6 +146,7 @@ export const ReducedMotion: Story = {
       if (typeof window !== 'undefined') {
         window.matchMedia = buildReducedMotionMatchMedia() as unknown as typeof window.matchMedia;
       }
+      // biome-ignore lint/correctness/useExhaustiveDependencies: `original` is captured at decorator-render time; the cleanup must restore that exact reference, not re-read from window
       useEffect(() => {
         return () => {
           if (typeof window !== 'undefined' && original) {
@@ -192,6 +193,7 @@ export const FetchFail: Story = {
           return original(input);
         }) as typeof window.fetch;
       }
+      // biome-ignore lint/correctness/useExhaustiveDependencies: `original` is captured at decorator-render time; the cleanup must restore that exact reference
       useEffect(() => {
         return () => {
           if (typeof window !== 'undefined' && original) {

@@ -166,10 +166,14 @@ function main(): void {
 
   // Privacy page is intentionally excluded from the literal lint — see Phase
   // D / Sprint 5 S5-6 (Legal-lite Agent owns the body translation).
+  // The `/dev/*` routes (e.g. email-preview) are dev-server-only — they
+  // short-circuit to a 404 in production and are never shown to a real user,
+  // so we don't burn translator effort on them either.
   const findings: Finding[] = [];
   for (const dir of [join(WEB_SRC, 'app'), join(WEB_SRC, 'components')]) {
     for (const f of walk(dir)) {
       if (f.includes('/app/privacy/')) continue;
+      if (f.includes('/app/dev/')) continue;
       findings.push(...scanFile(f));
     }
   }

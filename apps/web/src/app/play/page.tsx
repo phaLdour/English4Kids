@@ -7,13 +7,13 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { StreakPlant } from '@/components/streak/StreakPlant';
 import { StreakWelcome } from '@/components/streak/StreakWelcome';
+import { getUnitsIndex, type UnitIndexEntry } from '@/lib/content-client';
 import { useStreak } from '@/lib/use-streak';
 
-const SPRINT_2_UNIT = {
-  id: '01-me-and-my-world',
-  title: 'Me & My World',
-  blurbKey: 'play.tapToStart',
-};
+type UnitsState =
+  | { kind: 'loading' }
+  | { kind: 'error' }
+  | { kind: 'ready'; units: UnitIndexEntry[] };
 
 export default function PlayHomePage() {
   const router = useRouter();
@@ -21,6 +21,7 @@ export default function PlayHomePage() {
   const { state, isReturningToday, grantWeeklyFreezeIfMonday } = useStreak();
   const [nickname, setNickname] = useState<string>('Explorer');
   const [welcomeDismissed, setWelcomeDismissed] = useState(false);
+  const [unitsState, setUnitsState] = useState<UnitsState>({ kind: 'loading' });
 
   useEffect(() => {
     let cancelled = false;
@@ -34,9 +35,26 @@ export default function PlayHomePage() {
     };
   }, [grantWeeklyFreezeIfMonday]);
 
-  const showWelcome = isReturningToday && !welcomeDismissed;
+  // Fetch the unit catalogue once on mount. Routed through the units-index
+  // endpoint so the static (Capacitor) build and the web build share the
+  // same code path.
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const units = await getUnitsIndex();
+        if (!cancelled) setUnitsState({ kind: 'ready', units });
+      } catch {
+        if (!cancelled) setUnitsState({ kind: 'error' });
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
-  const blurb = t(SPRINT_2_UNIT.blurbKey);
+  const showWelcome = isReturningToday && !welcomeDismissed;
+  const blurb = t('play.tapToStart');
 
   return (
     <main className="flex min-h-dvh flex-col bg-[var(--color-surface)]">
@@ -53,7 +71,7 @@ export default function PlayHomePage() {
           variant="home"
         />
       </div>
-      <section className="flex flex-1 flex-col items-center justify-center gap-[var(--space-6)] px-[var(--space-4)] py-[var(--space-6)]">
+      <section className="flex flex-1 flex-col items-center gap-[var(--space-6)] px-[var(--space-4)] py-[var(--space-6)]">
         {showWelcome ? (
           <StreakWelcome
             nickname={nickname}
@@ -67,33 +85,36 @@ export default function PlayHomePage() {
             {t('play.helloNickname', { nickname })}
           </h1>
         )}
-        <button
-          type="button"
-          onClick={() => router.push(`/play/${SPRINT_2_UNIT.id}`)}
-          className="flex w-full max-w-md flex-col items-center gap-[var(--space-4)] rounded-[var(--radius-xl)] bg-[var(--color-surface-high)] p-[var(--space-6)] shadow-[var(--shadow-pop)] transition-transform duration-[var(--motion-base)] active:scale-95"
-          style={{ minHeight: 'var(--tap-primary-young)' }}
-          aria-label={t('play.unitTileAria', { title: SPRINT_2_UNIT.title, blurb })}
-        >
-          <div
-            aria-hidden="true"
-            className="flex h-32 w-32 items-center justify-center rounded-[var(--radius-xl)] bg-[var(--color-milo)] text-[var(--color-surface-high)] shadow-[var(--shadow-milo)]"
-            style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem' }}
-          >
-            {t('mascot.milo')}
-          </div>
-          <h2
-            className="text-3xl text-[var(--color-primary-dark)]"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            {SPRINT_2_UNIT.title}
-          </h2>
-          <p
-            className="text-lg text-[var(--color-ink)]"
-            style={{ fontFamily: 'var(--font-body)' }}
-          >
-            {blurb}
+
+        {unitsState.kind === 'loading' ? (
+          <p aria-live="polite" className="text-lg text-[var(--color-ink)]">
+            {t('play.loadingDots')}
           </p>
-        </button>
+        ) : null}
+
+        {unitsState.kind === 'error' ? (
+          <p aria-live="polite" className="text-lg text-[var(--color-ink)]">
+            {t('play.couldNotLoadUnit')}
+          </p>
+        ) : null}
+
+        {unitsState.kind === 'ready' ? (
+          <ul className="flex w-full max-w-md flex-col gap-[var(--space-4)]">
+            {unitsState.units.map((unit, index) => (
+              <li key={unit.id}>
+                <UnitTile
+                  unit={unit}
+                  // Alternate Milo (index 0, 2, 4...) and Luna (index 1, 3...) so
+                  // the parity contract reads visually on the home grid too.
+                  mascot={index % 2 === 0 ? 'milo' : 'luna'}
+                  blurb={blurb}
+                  onSelect={() => router.push(`/play/${unit.id}`)}
+                />
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
         <button
           type="button"
           onClick={() => router.push('/garden')}
@@ -143,5 +164,59 @@ export default function PlayHomePage() {
       </section>
       <MascotFrame variant="milo" reaction="waving" />
     </main>
+  );
+}
+
+interface UnitTileProps {
+  unit: UnitIndexEntry;
+  mascot: 'milo' | 'luna';
+  blurb: string;
+  onSelect: () => void;
+}
+
+function UnitTile({ unit, mascot, blurb, onSelect }: UnitTileProps) {
+  const t = useTranslations();
+  const mascotName = t(`mascot.${mascot}`);
+  const swatchClass = mascot === 'milo' ? 'bg-[var(--color-milo)]' : 'bg-[var(--color-luna)]';
+  const swatchShadow = mascot === 'milo' ? 'var(--shadow-milo)' : 'var(--shadow-luna)';
+
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className="flex w-full flex-col items-center gap-[var(--space-3)] rounded-[var(--radius-xl)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-pop)] transition-transform duration-[var(--motion-base)] active:scale-95"
+      style={{ minHeight: 'var(--tap-primary-young)' }}
+      aria-label={t('play.unitTileAria', { title: unit.title, blurb })}
+    >
+      <div
+        aria-hidden="true"
+        className={`flex h-24 w-24 items-center justify-center rounded-[var(--radius-xl)] text-[var(--color-surface-high)] ${swatchClass}`}
+        style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: '1.25rem',
+          boxShadow: swatchShadow,
+        }}
+      >
+        {mascotName}
+      </div>
+      <h2
+        className="text-center text-2xl text-[var(--color-primary-dark)]"
+        style={{ fontFamily: 'var(--font-display)' }}
+      >
+        {unit.title}
+      </h2>
+      <p
+        className="text-center text-base text-[var(--color-ink)]"
+        style={{ fontFamily: 'var(--font-body)' }}
+      >
+        {unit.theme}
+      </p>
+      <p
+        className="text-sm text-[var(--color-mist)]"
+        style={{ fontFamily: 'var(--font-body)' }}
+      >
+        {t('play.lessonCount', { count: unit.lessonCount })}
+      </p>
+    </button>
   );
 }

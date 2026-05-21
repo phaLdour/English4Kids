@@ -82,7 +82,7 @@ export default function LessonPlayerPage() {
   const [ageBand, setAgeBand] = useState<'6-8' | '9-12'>('6-8');
   const [activityIndex, setActivityIndex] = useState(0);
   const [phase, setPhase] = useState<PlayerPhase>('activity');
-  const [attempts, setAttempts] = useState<AttemptResult[]>([]);
+  const [, setAttempts] = useState<AttemptResult[]>([]);
   const [stars, setStars] = useState<StarCount | null>(null);
   const [mascotReaction, setMascotReaction] = useState<MascotReaction>('idle');
   const [banner, setBanner] = useState<string | null>(null);

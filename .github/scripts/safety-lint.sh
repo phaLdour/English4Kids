@@ -38,7 +38,18 @@ GREP_EXCLUDES=(
   "--exclude-dir=dist"
   "--exclude-dir=build"
   "--exclude-dir=coverage"
+  "--exclude-dir=out"
   "--exclude-dir=.git"
+  # Generated Serwist service-worker bundles. These are emitted by
+  # `next build` from `apps/web/src/app/sw.ts` (which we DO scan) and
+  # contain Workbox internals like `googleAnalyticsName` constants that
+  # are *names* of optional plugins, not actual GA loads. The .gitignore
+  # confirms they are build output. CI's safety-lint job never runs
+  # `next build`, so this only hits when someone runs the lint locally
+  # after a build. Excluding them here keeps the gate honest while
+  # preventing false positives on developer machines.
+  "--exclude=sw.js"
+  "--exclude=swe-worker-*.js"
 )
 
 run_grep() {

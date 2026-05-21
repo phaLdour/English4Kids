@@ -82,6 +82,20 @@ function speak(text: string, lang: 'en-US' | 'en-GB' = 'en-US'): void {
   }
 }
 
+/**
+ * Tiny hint shown beneath a selected buddy card. Extracted so we can call
+ * `useTranslations()` without forcing every BuddyCard render to invoke the
+ * provider (BuddyCard is a pure presentational component).
+ */
+function SelectedHint() {
+  const t = useTranslations();
+  return (
+    <span className="text-xs text-[var(--color-primary-dark)]">
+      {t('onboarding.tapAgainToHear')}
+    </span>
+  );
+}
+
 function StepFrame({ children }: { children: ReactNode }) {
   return (
     <div className="flex w-full max-w-xl flex-col items-center gap-[var(--space-6)] px-[var(--space-4)]">
@@ -192,9 +206,7 @@ function BuddyCard({
           {title}
         </span>
         <span className="text-sm text-[var(--color-mist)]">{description}</span>
-        {selected ? (
-          <span className="text-xs text-[var(--color-primary-dark)]">Tap again to hear me.</span>
-        ) : null}
+        {selected ? <SelectedHint /> : null}
       </span>
     </RadioGroup.Item>
   );
@@ -320,7 +332,7 @@ export default function OnboardingPage() {
         <ProgressDots
           total={VISIBLE_STEPS}
           current={visibleIndex}
-          label="Setup progress"
+          label={t('onboarding.setupProgressAria')}
         />
         <span className="h-12 w-24" aria-hidden="true" />
       </header>
@@ -416,7 +428,7 @@ export default function OnboardingPage() {
               value={ageBand}
               onValueChange={(v) => setAgeBand(v as AgeBand)}
               className="flex w-full flex-col gap-[var(--space-3)]"
-              aria-label="Age band"
+              aria-label={t('onboarding.ageBandAria')}
             >
               <RadioGroup.Item
                 value="6-8"
@@ -480,7 +492,7 @@ export default function OnboardingPage() {
               value={nickname}
               onValueChange={(v) => setNickname(v)}
               className="grid w-full grid-cols-2 gap-[var(--space-3)]"
-              aria-label="Nickname"
+              aria-label={t('onboarding.nicknameAria')}
             >
               {nicknameList.map((name) => (
                 <RadioGroup.Item
@@ -519,7 +531,7 @@ export default function OnboardingPage() {
               type="button"
               onClick={() => speak("Let's check your sound!")}
               className="flex flex-col items-center gap-[var(--space-3)] rounded-[var(--radius-xl)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-pop)]"
-              aria-label="Hear Milo speak again"
+              aria-label={t('onboarding.hearMascotAria', { mascot: t('mascot.milo') })}
             >
               <span
                 aria-hidden="true"
@@ -534,7 +546,7 @@ export default function OnboardingPage() {
             </button>
             <div className="w-full rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-card)]">
               <VolumeSlider
-                label="Master volume"
+                label={t('onboarding.masterVolumeAria')}
                 value={audioMaster}
                 onChange={handleAudioVolumeChange}
               />

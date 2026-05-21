@@ -107,6 +107,36 @@ async function fetchJson(url: string, init?: RequestInit): Promise<unknown> {
   throw new Error(`content-client: ${url} returned ${primary.status}`);
 }
 
+/** Shape returned by the units index endpoint. */
+export const UnitIndexEntrySchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  theme: z.string(),
+  orderIndex: z.number().int(),
+  lessonCount: z.number().int(),
+});
+export type UnitIndexEntry = z.infer<typeof UnitIndexEntrySchema>;
+
+const UnitsIndexResponseSchema = z.object({
+  units: z.array(UnitIndexEntrySchema),
+});
+
+/**
+ * Load the flat list of every shipped unit. Sorted by `orderIndex` ascending.
+ *
+ * Used by the play home page to render a card per unit. The full lesson tree
+ * is still loaded on demand via `getUnit(id)` — this endpoint only carries
+ * what the home page needs to render the tile grid.
+ */
+export async function getUnitsIndex(): Promise<UnitIndexEntry[]> {
+  // Plain `endpoint('units')` resolves to `/api/content/units` on the web
+  // and `/api/content/units/` on Capacitor, matching the same scheme as the
+  // per-unit manifest fetch.
+  const raw = await fetchJson(endpoint('units'));
+  const parsed = UnitsIndexResponseSchema.parse(raw);
+  return parsed.units;
+}
+
 /** Load a unit's `manifest.json` (lessons + activity tree). */
 export async function getUnit(unitId: string): Promise<Unit> {
   // Sprint 6 / Iteration 3 (QA-Lead): the Next App Router exporter rejects

@@ -665,6 +665,7 @@ export default function SettingsPage() {
             />
             {state.micEnabled && state.micEngine === 'whisper-offline' &&
             whisperProgress.status === 'loading' ? (
+              // biome-ignore lint/a11y/useFocusableInteractive: progressbar is a non-interactive status indicator (per WAI-ARIA 1.2 §progressbar)
               <div
                 role="progressbar"
                 aria-valuemin={0}

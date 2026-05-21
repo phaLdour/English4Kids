@@ -121,7 +121,7 @@ export function SingAlong({
     return () => {
       cancelled = true;
     };
-  }, [item]);
+  }, [item, t]);
 
   const lyrics = useMemo<LyricLine[]>(() => (song ? parseLrc(song.lrc) : []), [song]);
   const moves = useMemo(

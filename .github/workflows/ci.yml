@@ -206,10 +206,12 @@ jobs:
   mobile-build-check:
     name: Capacitor static export (mobile build check)
     runs-on: ubuntu-latest
-    # Non-blocking for Sprint 4: a real Capacitor build needs Xcode / Android
-    # Studio; this job only verifies that `E4K_TARGET=mobile pnpm next build`
-    # finishes without error and emits the expected static output (S4-10).
-    continue-on-error: true
+    # Yayinlama Sprinti promoted this to required: the `E4K_TARGET=mobile`
+    # static export has been green end-to-end since QA-Lead Wave 3
+    # (commit 33b3fcf) and all three units export as SSG. A real iOS /
+    # Android packaging build still needs Xcode / Android Studio (see
+    # `mobile-ios-build.yml` / `mobile-android-build.yml`), but the Next
+    # static export contract itself is now a hard gate.
     needs: [lint, typecheck]
     steps:
       - name: Checkout
@@ -248,10 +250,10 @@ jobs:
   storybook:
     name: Storybook build
     runs-on: ubuntu-latest
-    # Non-blocking for Sprint 4: web Storybook depends on the next-intl
-    # provider decorator landing first and sister subagent's TR migration
-    # touching the same locale bundles. Sprint 5 promotes this to required.
-    continue-on-error: true
+    # Yayinlama Sprinti promoted this to required: the web Storybook now
+    # builds cleanly after the Vite `@/*` path-alias fix in
+    # `apps/web/.storybook/main.ts`. The "continue-on-error" hatch was
+    # masking a real Rollup resolution failure.
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -17,6 +17,11 @@
 import { getSetting } from '@e4k/db';
 import { type AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
 import { type ReactNode, useEffect, useState } from 'react';
+// English bundle is statically imported so the not-ready fallback can
+// hand a real message tree to next-intl instead of `{}`. Empty messages
+// cause MISSING_MESSAGE warnings on every key access during the brief
+// hydration window — harmless at runtime but noisy in CI test logs.
+import enFallback from '../locales/en/common.json';
 
 export type Locale = 'en' | 'tr';
 
@@ -110,13 +115,15 @@ export function I18nProvider({
     };
   }, []);
 
-  // While we wait for Dexie on first paint, render children with an empty
-  // bundle but the default locale; once messages load, the tree re-renders
-  // with translations. next-intl tolerates missing keys (it logs and falls
-  // back to the key name), so this short window is acceptable.
+  // While we wait for Dexie on first paint, render children with the static
+  // English bundle as the fallback message tree. Previous versions passed
+  // `messages={{}}` which made next-intl emit MISSING_MESSAGE warnings for
+  // every key access during the hydration window — harmless at runtime but
+  // noisy in CI test logs. The static fallback is bundled regardless, so
+  // it costs nothing extra to ship.
   if (!ready) {
     return (
-      <NextIntlClientProvider locale={DEFAULT_LOCALE} messages={{}}>
+      <NextIntlClientProvider locale={DEFAULT_LOCALE} messages={enFallback as Messages}>
         {children}
       </NextIntlClientProvider>
     );

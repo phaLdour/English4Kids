@@ -1,3 +1,4 @@
+import path from 'node:path';
 import type { StorybookConfig } from '@storybook/react-vite';
 
 /**
@@ -14,6 +15,19 @@ const config: StorybookConfig = {
   addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', '@storybook/addon-interactions'],
   framework: { name: '@storybook/react-vite', options: {} },
   docs: { autodocs: 'tag' },
+  // The app uses `@/*` as a path alias for `apps/web/src/*` (see
+  // `apps/web/tsconfig.json`). Storybook's Vite builder does not read that
+  // tsconfig automatically, so we mirror the alias here. Without this, any
+  // story that imports `@/lib/...` or `@/components/...` fails Rollup
+  // resolution at build time.
+  viteFinal: async (cfg) => {
+    cfg.resolve = cfg.resolve ?? {};
+    cfg.resolve.alias = {
+      ...(cfg.resolve.alias ?? {}),
+      '@': path.resolve(__dirname, '../src'),
+    };
+    return cfg;
+  },
 };
 
 export default config;

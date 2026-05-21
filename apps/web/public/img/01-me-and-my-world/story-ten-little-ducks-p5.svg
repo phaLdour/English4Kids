@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>Ten little ducklings swim together</title>
+  <rect x="0" y="0" width="240" height="240" fill="#3DA9FC" stroke="none" opacity="0.25"/>
+  <rect x="0" y="80" width="240" height="160" fill="#3DA9FC"/>
+  <path d="M0 110 Q60 104 120 110 Q180 116 240 110" stroke-width="2" stroke="#FFFFFF" fill="none"/>
+  <path d="M0 150 Q60 144 120 150 Q180 156 240 150" stroke-width="2" stroke="#FFFFFF" fill="none"/>
+  <path d="M0 190 Q60 184 120 190 Q180 196 240 190" stroke-width="2" stroke="#FFFFFF" fill="none"/>
+  <g fill="#FFC857" stroke="#1F2933" stroke-width="1.8">
+    <g><ellipse cx="30" cy="120" rx="14" ry="10"/><circle cx="36" cy="112" r="8"/><path d="M42 110 L48 108 L44 116 Z" fill="#F08A4B" stroke="#1F2933"/></g>
+    <g><ellipse cx="70" cy="130" rx="14" ry="10"/><circle cx="76" cy="122" r="8"/><path d="M82 120 L88 118 L84 126 Z" fill="#F08A4B" stroke="#1F2933"/></g>
+    <g><ellipse cx="110" cy="118" rx="14" ry="10"/><circle cx="116" cy="110" r="8"/><path d="M122 108 L128 106 L124 114 Z" fill="#F08A4B" stroke="#1F2933"/></g>
+    <g><ellipse cx="150" cy="130" rx="14" ry="10"/><circle cx="156" cy="122" r="8"/><path d="M162 120 L168 118 L164 126 Z" fill="#F08A4B" stroke="#1F2933"/></g>
+    <g><ellipse cx="190" cy="120" rx="14" ry="10"/><circle cx="196" cy="112" r="8"/><path d="M202 110 L208 108 L204 116 Z" fill="#F08A4B" stroke="#1F2933"/></g>
+    <g><ellipse cx="40" cy="170" rx="14" ry="10"/><circle cx="46" cy="162" r="8"/><path d="M52 160 L58 158 L54 166 Z" fill="#F08A4B" stroke="#1F2933"/></g>
+    <g><ellipse cx="80" cy="180" rx="14" ry="10"/><circle cx="86" cy="172" r="8"/><path d="M92 170 L98 168 L94 176 Z" fill="#F08A4B" stroke="#1F2933"/></g>
+    <g><ellipse cx="120" cy="168" rx="14" ry="10"/><circle cx="126" cy="160" r="8"/><path d="M132 158 L138 156 L134 164 Z" fill="#F08A4B" stroke="#1F2933"/></g>
+    <g><ellipse cx="160" cy="180" rx="14" ry="10"/><circle cx="166" cy="172" r="8"/><path d="M172 170 L178 168 L174 176 Z" fill="#F08A4B" stroke="#1F2933"/></g>
+    <g><ellipse cx="200" cy="170" rx="14" ry="10"/><circle cx="206" cy="162" r="8"/><path d="M212 160 L218 158 L214 166 Z" fill="#F08A4B" stroke="#1F2933"/></g>
+  </g>
+  <text x="120" y="60" text-anchor="middle" font-family="'Fredoka', system-ui, sans-serif" font-size="40" font-weight="700" fill="#F08A4B" stroke="none">10!</text>
+</svg>

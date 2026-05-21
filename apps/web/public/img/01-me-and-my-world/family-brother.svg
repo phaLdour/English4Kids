@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>An older boy, a brother figure</title>
+  <ellipse cx="120" cy="176" rx="52" ry="46" fill="#5FB37C"/>
+  <circle cx="120" cy="96" r="42" fill="#8B5A3C"/>
+  <path d="M82 92 Q78 56 120 54 Q162 56 158 92 L158 84 Q140 74 120 74 Q100 74 82 82 Z" fill="#1F2933"/>
+  <path d="M76 100 Q72 80 86 76 L88 96 Z" fill="#1F2933"/>
+  <circle cx="106" cy="96" r="4.5" fill="#1F2933" stroke="none"/>
+  <circle cx="134" cy="96" r="4.5" fill="#1F2933" stroke="none"/>
+  <circle cx="107" cy="94" r="1.4" fill="#FFFFFF" stroke="none"/>
+  <circle cx="135" cy="94" r="1.4" fill="#FFFFFF" stroke="none"/>
+  <path d="M108 116 Q120 124 132 116" stroke-width="2"/>
+  <path d="M104 158 L104 222" stroke-width="2.5"/>
+  <path d="M136 158 L136 222" stroke-width="2.5"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A orange bear</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <circle cx="80" cy="80" r="22" fill="#F08A4B"/>
+  <circle cx="160" cy="80" r="22" fill="#F08A4B"/>
+  <circle cx="80" cy="80" r="10" fill="#FFB5A7" stroke="none"/>
+  <circle cx="160" cy="80" r="10" fill="#FFB5A7" stroke="none"/>
+  <circle cx="120" cy="130" r="56" fill="#F08A4B"/>
+  <circle cx="100" cy="124" r="5" fill="#1F2933" stroke="none"/>
+  <circle cx="140" cy="124" r="5" fill="#1F2933" stroke="none"/>
+  <ellipse cx="120" cy="146" rx="14" ry="10" fill="#FFB5A7"/>
+  <circle cx="120" cy="142" r="3" fill="#1F2933" stroke="none"/>
+  <path d="M120 148 L120 156" stroke-width="1.5"/>
+  <path d="M110 158 Q120 166 130 158" stroke-width="2"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A yellow pear</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <path d="M120 70 Q100 70 96 100 Q70 130 80 170 Q90 210 120 210 Q150 210 160 170 Q170 130 144 100 Q140 70 120 70 Z" fill="#FFC857"/>
+  <path d="M120 70 Q124 58 138 56" stroke-width="3"/>
+  <path d="M124 64 Q138 52 150 64 Q138 72 124 64 Z" fill="#5FB37C"/>
+  <ellipse cx="104" cy="140" rx="6" ry="10" fill="#FFFFFF" opacity="0.55" stroke="none"/>
+</svg>

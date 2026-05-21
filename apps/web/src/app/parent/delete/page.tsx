@@ -24,6 +24,7 @@
 
 import { getSetting, setSetting } from '@e4k/db';
 import { ParentGate } from '@e4k/ui';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -34,6 +35,7 @@ const CONFIRM_WORD = 'DELETE';
 type Step = 'idle' | 'understood' | 'typed' | 'gating' | 'scheduled';
 
 export default function DeleteAllDataPage() {
+  const t = useTranslations();
   const [step, setStep] = useState<Step>('idle');
   const [understood, setUnderstood] = useState(false);
   const [typed, setTyped] = useState('');
@@ -86,11 +88,11 @@ export default function DeleteAllDataPage() {
       await setSetting('parent.deletion.scheduledFor', target);
       setScheduledFor(target);
       setStep('scheduled');
-      setAnnounce('Deletion scheduled.');
+      setAnnounce(t('parent.deleteAnnounceScheduled'));
     } catch {
-      setAnnounce('Could not schedule. Please try again.');
+      setAnnounce(t('parent.deleteAnnounceCouldNotSchedule'));
     }
-  }, []);
+  }, [t]);
 
   const handleGatePass = useCallback(() => {
     void finaliseSchedule();
@@ -103,11 +105,11 @@ export default function DeleteAllDataPage() {
       setStep('idle');
       setUnderstood(false);
       setTyped('');
-      setAnnounce('Deletion cancelled. Your data is safe.');
+      setAnnounce(t('parent.deleteAnnounceCancelled'));
     } catch {
-      setAnnounce('Could not cancel. Please try again.');
+      setAnnounce(t('parent.deleteAnnounceCouldNotCancel'));
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     if (understood && typedMatches && step !== 'gating' && step !== 'scheduled') {
@@ -125,7 +127,7 @@ export default function DeleteAllDataPage() {
       </span>
 
       <section
-        aria-label="Delete all data"
+        aria-label={t('parent.deleteAreaAria')}
         className="flex flex-col gap-[var(--space-3)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-6)] shadow-[var(--shadow-card)]"
         style={{ borderLeft: '6px solid var(--color-alert)' }}
       >
@@ -133,20 +135,15 @@ export default function DeleteAllDataPage() {
           className="text-2xl text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Delete all data
+          {t('parent.deleteTitle')}
         </h1>
-        <p className="text-base text-[var(--color-ink)]">
-          This removes everything stored for your learner on this device: lessons, words,
-          settings, and history. You can restore for 7 days.
-        </p>
-        <p className="text-sm text-[var(--color-mist)]">
-          After 7 days the data is permanently removed and cannot be recovered.
-        </p>
+        <p className="text-base text-[var(--color-ink)]">{t('parent.deleteBody')}</p>
+        <p className="text-sm text-[var(--color-mist)]">{t('parent.deleteFinal')}</p>
       </section>
 
       {step === 'scheduled' && scheduledFor !== null ? (
         <section
-          aria-label="Deletion scheduled"
+          aria-label={t('parent.deleteScheduledAria')}
           className="flex flex-col gap-[var(--space-3)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-6)] shadow-[var(--shadow-card)]"
           style={{ borderLeft: '6px solid var(--color-alert)' }}
         >
@@ -154,12 +151,10 @@ export default function DeleteAllDataPage() {
             className="text-xl text-[var(--color-primary-dark)]"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Deletion scheduled
+            {t('parent.deleteScheduledTitle')}
           </h2>
           <p className="text-base text-[var(--color-ink)]">
-            Your data will be deleted on{' '}
-            <strong>{new Date(scheduledFor).toLocaleDateString()}</strong>. Until then you can
-            return here to cancel.
+            {t('parent.deleteScheduledBody', { date: new Date(scheduledFor).toLocaleDateString() })}
           </p>
           <div className="flex flex-wrap gap-[var(--space-3)]">
             <button
@@ -168,20 +163,20 @@ export default function DeleteAllDataPage() {
               className="rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-8)] py-[var(--space-3)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)]"
               style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
             >
-              Cancel deletion
+              {t('parent.deleteCancel')}
             </button>
             <Link
               href="/parent"
               className="flex items-center justify-center rounded-[var(--radius-pill)] bg-[var(--color-surface)] px-[var(--space-8)] py-[var(--space-3)] text-[var(--color-ink)]"
               style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
             >
-              Back to dashboard
+              {t('parent.backToDashboard')}
             </Link>
           </div>
         </section>
       ) : (
         <section
-          aria-label="Confirmation"
+          aria-label={t('parent.deleteConfirmationAria')}
           className="flex flex-col gap-[var(--space-4)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-6)] shadow-[var(--shadow-card)]"
         >
           <label className="flex items-start gap-[var(--space-3)] text-base text-[var(--color-ink)]">
@@ -190,21 +185,16 @@ export default function DeleteAllDataPage() {
               checked={understood}
               onChange={(e) => handleUnderstoodChange(e.target.checked)}
               className="mt-1 h-6 w-6"
-              aria-label="I understand this will delete all data"
+              aria-label={t('parent.deleteUnderstandAria')}
             />
-            <span>
-              I understand this will remove everything. I have 7 days to cancel before it is
-              permanent.
-            </span>
+            <span>{t('parent.deleteUnderstand')}</span>
           </label>
 
           <label
             htmlFor="delete-confirm-input"
             className="flex flex-col gap-[var(--space-2)] text-base text-[var(--color-ink)]"
           >
-            <span>
-              Type <strong>{CONFIRM_WORD}</strong> to confirm.
-            </span>
+            <span>{t('parent.deleteTypeConfirm', { word: CONFIRM_WORD })}</span>
             <input
               id="delete-confirm-input"
               type="text"
@@ -222,10 +212,10 @@ export default function DeleteAllDataPage() {
             type="button"
             onClick={handleProceed}
             disabled={!understood || !typedMatches}
-            className="self-start rounded-[var(--radius-pill)] bg-[var(--color-alert)] px-[var(--space-8)] py-[var(--space-3)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] disabled:opacity-50"
+            className="plausible-event-name=parent_delete_request self-start rounded-[var(--radius-pill)] bg-[var(--color-alert)] px-[var(--space-8)] py-[var(--space-3)] text-[var(--color-surface-high)] shadow-[var(--shadow-pop)] disabled:opacity-50"
             style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
           >
-            Schedule deletion
+            {t('parent.deleteSchedule')}
           </button>
         </section>
       )}
@@ -234,8 +224,8 @@ export default function DeleteAllDataPage() {
         open={gateOpen}
         onOpenChange={handleGateOpenChange}
         onPass={handleGatePass}
-        title="Grown-ups only"
-        description="One more check before we schedule the deletion."
+        title={t('gate.title')}
+        description={t('parent.deleteGateDescription')}
       />
     </main>
   );

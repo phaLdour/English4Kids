@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A window with a sky view</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <rect x="40" y="50" width="160" height="140" rx="6" fill="#A06A3F"/>
+  <rect x="50" y="60" width="140" height="120" fill="#3DA9FC"/>
+  <line x1="120" y1="60" x2="120" y2="180" stroke-width="3"/>
+  <line x1="50" y1="120" x2="190" y2="120" stroke-width="3"/>
+  <circle cx="170" cy="80" r="10" fill="#FFC857"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>Nine yellow ducks on the water</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <rect x="0" y="100" width="240" height="140" fill="#3DA9FC"/>
+  <g fill="#FFC857" stroke="#1F2933">
+    <g><ellipse cx="40" cy="124" rx="11" ry="7"/><circle cx="46" cy="118" r="6"/><path d="M51 116 L58 114 L52 121 Z" fill="#F08A4B"/><circle cx="46" cy="116" r="1.2" fill="#1F2933"/></g>
+    <g><ellipse cx="100" cy="124" rx="11" ry="7"/><circle cx="106" cy="118" r="6"/><path d="M111 116 L118 114 L112 121 Z" fill="#F08A4B"/><circle cx="106" cy="116" r="1.2" fill="#1F2933"/></g>
+    <g><ellipse cx="160" cy="124" rx="11" ry="7"/><circle cx="166" cy="118" r="6"/><path d="M171 116 L178 114 L172 121 Z" fill="#F08A4B"/><circle cx="166" cy="116" r="1.2" fill="#1F2933"/></g>
+    <g><ellipse cx="40" cy="164" rx="11" ry="7"/><circle cx="46" cy="158" r="6"/><path d="M51 156 L58 154 L52 161 Z" fill="#F08A4B"/><circle cx="46" cy="156" r="1.2" fill="#1F2933"/></g>
+    <g><ellipse cx="100" cy="164" rx="11" ry="7"/><circle cx="106" cy="158" r="6"/><path d="M111 156 L118 154 L112 161 Z" fill="#F08A4B"/><circle cx="106" cy="156" r="1.2" fill="#1F2933"/></g>
+    <g><ellipse cx="160" cy="164" rx="11" ry="7"/><circle cx="166" cy="158" r="6"/><path d="M171 156 L178 154 L172 161 Z" fill="#F08A4B"/><circle cx="166" cy="156" r="1.2" fill="#1F2933"/></g>
+    <g><ellipse cx="40" cy="204" rx="11" ry="7"/><circle cx="46" cy="198" r="6"/><path d="M51 196 L58 194 L52 201 Z" fill="#F08A4B"/><circle cx="46" cy="196" r="1.2" fill="#1F2933"/></g>
+    <g><ellipse cx="100" cy="204" rx="11" ry="7"/><circle cx="106" cy="198" r="6"/><path d="M111 196 L118 194 L112 201 Z" fill="#F08A4B"/><circle cx="106" cy="196" r="1.2" fill="#1F2933"/></g>
+    <g><ellipse cx="160" cy="204" rx="11" ry="7"/><circle cx="166" cy="198" r="6"/><path d="M171 196 L178 194 L172 201 Z" fill="#F08A4B"/><circle cx="166" cy="196" r="1.2" fill="#1F2933"/></g>
+  </g>
+  <text x="40" y="74" font-family="'Fredoka', system-ui, sans-serif" font-size="48" font-weight="700" fill="#F08A4B" stroke="none">9</text>
+</svg>

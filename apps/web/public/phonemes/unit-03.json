@@ -1,0 +1,193 @@
+{
+  "vocab.cat": [
+    "K",
+    "AE",
+    "T"
+  ],
+  "vocab.dog": [
+    "D",
+    "AO",
+    "G"
+  ],
+  "vocab.fish": [
+    "F",
+    "IH",
+    "SH"
+  ],
+  "vocab.rabbit": [
+    "R",
+    "AE",
+    "B",
+    "AH",
+    "T"
+  ],
+  "vocab.bird": [
+    "B",
+    "ER",
+    "D"
+  ],
+  "vocab.hamster": [
+    "HH",
+    "AE",
+    "M",
+    "S",
+    "T",
+    "ER"
+  ],
+  "vocab.cow": [
+    "K",
+    "AW"
+  ],
+  "vocab.sheep": [
+    "SH",
+    "IY",
+    "P"
+  ],
+  "vocab.pig": [
+    "P",
+    "IH",
+    "G"
+  ],
+  "vocab.horse": [
+    "HH",
+    "AO",
+    "R",
+    "S"
+  ],
+  "vocab.duck": [
+    "D",
+    "AH",
+    "K"
+  ],
+  "vocab.chicken": [
+    "CH",
+    "IH",
+    "K",
+    "AH",
+    "N"
+  ],
+  "vocab.moo": [
+    "M",
+    "UW"
+  ],
+  "vocab.baa": [
+    "B",
+    "AA"
+  ],
+  "vocab.oink": [
+    "OY",
+    "NG",
+    "K"
+  ],
+  "vocab.neigh": [
+    "N",
+    "EY"
+  ],
+  "vocab.quack": [
+    "K",
+    "W",
+    "AE",
+    "K"
+  ],
+  "vocab.cluck": [
+    "K",
+    "L",
+    "AH",
+    "K"
+  ],
+  "vocab.run": [
+    "R",
+    "AH",
+    "N"
+  ],
+  "vocab.jump": [
+    "JH",
+    "AH",
+    "M",
+    "P"
+  ],
+  "vocab.walk": [
+    "W",
+    "AO",
+    "K"
+  ],
+  "vocab.swim": [
+    "S",
+    "W",
+    "IH",
+    "M"
+  ],
+  "vocab.fly": [
+    "F",
+    "L",
+    "AY"
+  ],
+  "vocab.sleep": [
+    "S",
+    "L",
+    "IY",
+    "P"
+  ],
+  "vocab.can": [
+    "K",
+    "AE",
+    "N"
+  ],
+  "vocab.cant": [
+    "K",
+    "AE",
+    "N",
+    "T"
+  ],
+  "vocab.a-bird-can-fly": [
+    "AH",
+    "B",
+    "ER",
+    "D",
+    "K",
+    "AE",
+    "N",
+    "F",
+    "L",
+    "AY"
+  ],
+  "vocab.a-fish-can-swim": [
+    "AH",
+    "F",
+    "IH",
+    "SH",
+    "K",
+    "AE",
+    "N",
+    "S",
+    "W",
+    "IH",
+    "M"
+  ],
+  "vocab.a-fish-cant-walk": [
+    "AH",
+    "F",
+    "IH",
+    "SH",
+    "K",
+    "AE",
+    "N",
+    "T",
+    "W",
+    "AO",
+    "K"
+  ],
+  "vocab.a-cat-cant-fly": [
+    "AH",
+    "K",
+    "AE",
+    "T",
+    "K",
+    "AE",
+    "N",
+    "T",
+    "F",
+    "L",
+    "AY"
+  ]
+}

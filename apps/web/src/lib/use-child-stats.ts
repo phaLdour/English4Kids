@@ -212,6 +212,7 @@ export function useChildStats(childId: string | undefined): UseChildStatsResult 
   const [error, setError] = useState<Error | null>(null);
   const [version, setVersion] = useState(0);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `version` is a manual refresh trigger — bumping it re-runs the effect even when childId is unchanged
   useEffect(() => {
     let cancelled = false;
     if (!childId) {

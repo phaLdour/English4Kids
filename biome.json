@@ -7,7 +7,21 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "ignore": ["**/.next/**", "**/dist/**", "**/build/**", "**/.turbo/**", "**/node_modules/**", "**/generated/**", "**/*.lottie.json"]
+    "ignore": [
+      "**/.next/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.turbo/**",
+      "**/node_modules/**",
+      "**/generated/**",
+      "**/*.lottie.json",
+      "apps/web/public/sw.js",
+      "apps/web/public/swe-worker-*.js",
+      "apps/web/out/**",
+      "**/public/sw.js",
+      "**/public/swe-worker-*.js",
+      "**/out/**"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -30,6 +44,13 @@
       "correctness": {
         "noUnusedVariables": "warn",
         "useExhaustiveDependencies": "warn"
+      },
+      "a11y": {
+        "useSemanticElements": "off",
+        "useFocusableInteractive": "warn"
+      },
+      "performance": {
+        "noDelete": "off"
       }
     }
   },

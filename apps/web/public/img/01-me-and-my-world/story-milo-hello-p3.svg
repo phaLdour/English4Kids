@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>Milo and Bea chat, how are you</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <rect x="0" y="180" width="240" height="60" fill="#5FB37C" stroke="none"/>
+  <path d="M0 180 L240 180" stroke-width="2.5"/>
+  <circle cx="68" cy="140" r="30" fill="#F08A4B"/>
+  <path d="M46 122 L42 96 L62 118 Z" fill="#F08A4B"/>
+  <path d="M90 122 L94 96 L74 118 Z" fill="#F08A4B"/>
+  <circle cx="60" cy="138" r="3" fill="#1F2933" stroke="none"/>
+  <circle cx="78" cy="138" r="3" fill="#1F2933" stroke="none"/>
+  <path d="M60 150 Q68 158 76 150" stroke-width="1.5"/>
+  <ellipse cx="68" cy="194" rx="26" ry="18" fill="#F08A4B"/>
+  <ellipse cx="174" cy="140" rx="26" ry="32" fill="#FFFFFF"/>
+  <ellipse cx="164" cy="106" rx="7" ry="18" fill="#FFFFFF"/>
+  <ellipse cx="184" cy="106" rx="7" ry="18" fill="#FFFFFF"/>
+  <circle cx="168" cy="138" r="3" fill="#1F2933" stroke="none"/>
+  <circle cx="180" cy="138" r="3" fill="#1F2933" stroke="none"/>
+  <path d="M168 150 Q174 156 180 150" stroke-width="1.5"/>
+  <ellipse cx="174" cy="194" rx="24" ry="16" fill="#FFFFFF"/>
+  <path d="M110 64 Q100 50 116 42 L140 42 Q150 42 150 52 L150 78 Q150 88 140 88 L120 88 Z" fill="#9D8DF1"/>
+  <circle cx="120" cy="64" r="2.5" fill="#FFFFFF" stroke="none"/>
+  <circle cx="132" cy="64" r="2.5" fill="#FFFFFF" stroke="none"/>
+  <circle cx="144" cy="64" r="2.5" fill="#FFFFFF" stroke="none"/>
+</svg>

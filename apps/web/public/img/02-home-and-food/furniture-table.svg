@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A wooden table</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <rect x="30" y="100" width="180" height="20" rx="6" fill="#A06A3F"/>
+  <rect x="40" y="120" width="14" height="80" fill="#A06A3F"/>
+  <rect x="186" y="120" width="14" height="80" fill="#A06A3F"/>
+  <rect x="50" y="106" width="160" height="6" fill="#FFC857" opacity="0.5" stroke="none"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A character jumping</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <circle cx="120" cy="70" r="30" fill="#FFC857"/>
+  <circle cx="112" cy="66" r="4" fill="#1F2933" stroke="none"/>
+  <circle cx="128" cy="66" r="4" fill="#1F2933" stroke="none"/>
+  <path d="M112 80 Q120 88 128 80" stroke-width="1.5"/>
+  <path d="M90 100 L80 140" stroke-width="6"/>
+  <path d="M150 100 L160 140" stroke-width="6"/>
+  <path d="M100 100 L100 150" stroke-width="6"/>
+  <path d="M140 100 L140 150" stroke-width="6"/>
+  <ellipse cx="120" cy="200" rx="60" ry="6" fill="#1F2933" opacity="0.15" stroke="none"/>
+  <path d="M50 160 Q70 156 60 170" stroke-width="2.5" fill="none"/>
+  <path d="M170 160 Q190 156 180 170" stroke-width="2.5" fill="none"/>
+</svg>

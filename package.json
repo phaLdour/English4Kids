@@ -17,8 +17,11 @@
     "test": "turbo run test",
     "test:e2e": "turbo run test:e2e",
     "validate:content": "turbo run validate:content",
+    "check:mascot-parity": "turbo run check:mascot-parity",
     "storybook": "pnpm --filter @e4k/ui storybook",
+    "storybook:web": "pnpm --filter @e4k/web storybook",
     "build-storybook": "pnpm --filter @e4k/ui build-storybook",
+    "build-storybook:web": "pnpm --filter @e4k/web build-storybook",
     "format": "biome format --write .",
     "format:check": "biome format ."
   },

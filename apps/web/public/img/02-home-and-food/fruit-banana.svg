@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A yellow banana</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <path d="M40 130 Q70 60 170 80 Q200 96 198 116 Q186 110 178 102 Q160 110 130 110 Q90 110 60 142 Q44 156 40 130 Z" fill="#FFC857"/>
+  <path d="M40 130 Q44 156 60 142" stroke-width="1.8"/>
+</svg>

@@ -1,8 +1,9 @@
 'use client';
 
 import { MascotFrame, TopBar } from '@e4k/ui';
+import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { WordGarden, type WordGardenState } from '@/components/garden/WordGarden';
 import { useVocabState } from '@/lib/use-vocab-state';
 import { getOrCreateGuestChild } from '@/lib/lesson-player';
@@ -21,8 +22,15 @@ function speakWord(word: string): void {
   }
 }
 
-export default function GardenPage() {
+/**
+ * Inner client component that reads search params. We split it from the
+ * page default export so we can wrap it in `<Suspense>` — Next 15's static
+ * export bails out otherwise (`useSearchParams() should be wrapped in a
+ * suspense boundary`).
+ */
+function GardenContent() {
   const router = useRouter();
+  const t = useTranslations();
   const search = useSearchParams();
   const view = search.get('view') === 'list' ? 'list' : 'visual';
   const [childId, setChildId] = useState<string | null>(null);
@@ -53,7 +61,7 @@ export default function GardenPage() {
   return (
     <main className="flex min-h-dvh flex-col bg-[var(--color-surface)]">
       <TopBar
-        title="Word Garden"
+        title={t('garden.title')}
         onBack={() => router.push('/play')}
         onOpenSettings={() => router.push('/settings')}
       />
@@ -64,7 +72,7 @@ export default function GardenPage() {
             className="text-lg text-[var(--color-mist)]"
             style={{ fontFamily: 'var(--font-body)' }}
           >
-            Loading your garden…
+            {t('garden.loadingGarden')}
           </p>
         ) : (
           <WordGarden
@@ -76,5 +84,40 @@ export default function GardenPage() {
       </section>
       <MascotFrame variant="milo" reaction="idle" />
     </main>
+  );
+}
+
+/**
+ * Lightweight loading shell shown while the inner `GardenContent` component
+ * hydrates. Renders the same chrome (surface background + status text) as
+ * the real page so the layout doesn't flash blank for one frame on slow
+ * networks / cold start.
+ */
+function GardenLoading() {
+  return (
+    <main
+      className="flex min-h-dvh flex-col items-center justify-center bg-[var(--color-surface)]"
+      aria-busy="true"
+    >
+      <p
+        role="status"
+        aria-live="polite"
+        className="text-lg text-[var(--color-mist)]"
+        style={{ fontFamily: 'var(--font-body)' }}
+      >
+        {/* Translation-free placeholder: the suspense boundary should never
+            stay mounted long enough for a real user to read this. Using a
+            neutral character keeps it locale-agnostic. */}
+        …
+      </p>
+    </main>
+  );
+}
+
+export default function GardenPage() {
+  return (
+    <Suspense fallback={<GardenLoading />}>
+      <GardenContent />
+    </Suspense>
   );
 }

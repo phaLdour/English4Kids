@@ -4,6 +4,7 @@ import { AudioUnlock } from '@e4k/audio';
 import { db, setSetting } from '@e4k/db';
 import { ProgressDots, VolumeSlider } from '@e4k/ui';
 import * as RadioGroup from '@radix-ui/react-radio-group';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { type ReactNode, useCallback, useMemo, useState } from 'react';
 import { getAudioClient } from '@/lib/audio-client';
@@ -24,6 +25,7 @@ async function applyVolume(
 
 type Step = 'unlock' | 'buddy' | 'age' | 'nickname' | 'audio' | 'mic' | 'done';
 type AgeBand = '6-8' | '9-12';
+type BuddyChoice = 'milo' | 'luna' | 'both';
 
 const STEP_ORDER: Step[] = ['unlock', 'buddy', 'age', 'nickname', 'audio', 'mic', 'done'];
 const VISIBLE_STEPS = STEP_ORDER.length - 1; // 'done' is a transient finish state
@@ -65,17 +67,33 @@ function generateUuid(): string {
   });
 }
 
-function speak(text: string): void {
+/** Speak a single short sample. `lang` selects Milo (en-US) vs Luna (en-GB). */
+function speak(text: string, lang: 'en-US' | 'en-GB' = 'en-US'): void {
   if (typeof window === 'undefined') return;
   if (typeof window.speechSynthesis === 'undefined') return;
   try {
     const utter = new SpeechSynthesisUtterance(text);
     utter.rate = 0.95;
+    utter.lang = lang;
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utter);
   } catch {
     // Web Speech absent or blocked — silent fallback. Captions cover the copy.
   }
+}
+
+/**
+ * Tiny hint shown beneath a selected buddy card. Extracted so we can call
+ * `useTranslations()` without forcing every BuddyCard render to invoke the
+ * provider (BuddyCard is a pure presentational component).
+ */
+function SelectedHint() {
+  const t = useTranslations();
+  return (
+    <span className="text-xs text-[var(--color-primary-dark)]">
+      {t('onboarding.tapAgainToHear')}
+    </span>
+  );
 }
 
 function StepFrame({ children }: { children: ReactNode }) {
@@ -138,13 +156,71 @@ function SecondaryButton({
   );
 }
 
+/** A single buddy radio card. Auto-plays its narration sample on focus. */
+function BuddyCard({
+  value,
+  selected,
+  title,
+  description,
+  swatchClass,
+  swatchShadow,
+  sampleText,
+  sampleLang,
+}: {
+  value: BuddyChoice;
+  selected: boolean;
+  title: string;
+  description: string;
+  swatchClass: string;
+  swatchShadow: string;
+  sampleText: string;
+  sampleLang: 'en-US' | 'en-GB';
+}) {
+  return (
+    <RadioGroup.Item
+      value={value}
+      onFocus={() => speak(sampleText, sampleLang)}
+      onClick={() => speak(sampleText, sampleLang)}
+      className="flex w-full items-center gap-[var(--space-4)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-5)] text-left shadow-[var(--shadow-card)] data-[state=checked]:ring-4 data-[state=checked]:ring-[var(--color-primary)]"
+      style={{ minHeight: 'var(--tap-primary-young)' }}
+    >
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[var(--radius-pill)] border-2 border-[var(--color-primary)]">
+        <RadioGroup.Indicator className="block h-4 w-4 rounded-[var(--radius-pill)] bg-[var(--color-primary)]" />
+      </span>
+      <span
+        aria-hidden="true"
+        className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-[var(--radius-xl)] text-[var(--color-surface-high)] ${swatchClass}`}
+        style={{
+          boxShadow: swatchShadow,
+          fontFamily: 'var(--font-display)',
+          fontSize: '1rem',
+        }}
+      >
+        {title.slice(0, 1)}
+      </span>
+      <span className="flex flex-col gap-[var(--space-1)]">
+        <span
+          className="text-xl text-[var(--color-ink)]"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          {title}
+        </span>
+        <span className="text-sm text-[var(--color-mist)]">{description}</span>
+        {selected ? <SelectedHint /> : null}
+      </span>
+    </RadioGroup.Item>
+  );
+}
+
 export default function OnboardingPage() {
   const router = useRouter();
+  const t = useTranslations();
   const [step, setStep] = useState<Step>('unlock');
   const [ageBand, setAgeBand] = useState<AgeBand>('6-8');
   const [nickname, setNickname] = useState<string>('');
   const [nicknameList, setNicknameList] = useState<readonly string[]>(PRIMARY_NICKNAMES);
   const [audioMaster, setAudioMaster] = useState<number>(80);
+  const [buddyChoice, setBuddyChoice] = useState<BuddyChoice>('milo');
 
   const visibleIndex = useMemo(() => {
     const idx = STEP_ORDER.indexOf(step);
@@ -172,11 +248,11 @@ export default function OnboardingPage() {
     goTo('buddy');
   }, [goTo]);
 
-  // Step 2: Pick Milo.
-  const handlePickMilo = useCallback(async () => {
-    await setSetting('mascot.choice', 'milo');
+  // Step 2: Pick buddy (Milo / Luna / Both).
+  const handlePickBuddy = useCallback(async () => {
+    await setSetting('mascot.choice', buddyChoice);
     goTo('age');
-  }, [goTo]);
+  }, [buddyChoice, goTo]);
 
   // Step 3: Age band.
   const handlePickAge = useCallback(async () => {
@@ -251,12 +327,12 @@ export default function OnboardingPage() {
         {step === 'unlock' ? (
           <span className="h-12 w-24" aria-hidden="true" />
         ) : (
-          <SecondaryButton onClick={goBack}>Back</SecondaryButton>
+          <SecondaryButton onClick={goBack}>{t('common.back')}</SecondaryButton>
         )}
         <ProgressDots
           total={VISIBLE_STEPS}
           current={visibleIndex}
-          label="Setup progress"
+          label={t('onboarding.setupProgressAria')}
         />
         <span className="h-12 w-24" aria-hidden="true" />
       </header>
@@ -275,10 +351,13 @@ export default function OnboardingPage() {
               className="text-center text-3xl text-[var(--color-primary-dark)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Hi! Tap to begin.
+              {t('onboarding.unlockTitle')}
             </h1>
-            <PrimaryButton onClick={() => void handleUnlock()} ariaLabel="Tap to begin">
-              Tap to begin
+            <PrimaryButton
+              onClick={() => void handleUnlock()}
+              ariaLabel={t('onboarding.unlockCta')}
+            >
+              {t('onboarding.unlockCta')}
             </PrimaryButton>
           </StepFrame>
         ) : null}
@@ -289,30 +368,48 @@ export default function OnboardingPage() {
               className="text-center text-3xl text-[var(--color-primary-dark)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Choose your buddy
+              {t('onboarding.buddyTitle')}
             </h1>
-            <button
-              type="button"
-              onClick={() => speak("Hi! I'm Milo.")}
-              className="flex flex-col items-center gap-[var(--space-3)] rounded-[var(--radius-xl)] bg-[var(--color-surface-high)] p-[var(--space-6)] shadow-[var(--shadow-pop)]"
-              aria-label="Hear Milo say hello"
+            <RadioGroup.Root
+              value={buddyChoice}
+              onValueChange={(v) => setBuddyChoice(v as BuddyChoice)}
+              className="flex w-full flex-col gap-[var(--space-3)]"
+              aria-label={t('onboarding.buddyTitle')}
             >
-              <span
-                aria-hidden="true"
-                className="flex h-32 w-32 items-center justify-center rounded-[var(--radius-xl)] bg-[var(--color-milo)] text-[var(--color-surface-high)] shadow-[var(--shadow-milo)]"
-                style={{ fontFamily: 'var(--font-display)', fontSize: '1.75rem' }}
-              >
-                Milo
-              </span>
-              <span
-                className="text-xl text-[var(--color-ink)]"
-                style={{ fontFamily: 'var(--font-display)' }}
-              >
-                Hi! I&rsquo;m Milo.
-              </span>
-              <span className="text-sm text-[var(--color-mist)]">Tap me to say hello.</span>
-            </button>
-            <PrimaryButton onClick={() => void handlePickMilo()}>Pick Milo</PrimaryButton>
+              <BuddyCard
+                value="milo"
+                selected={buddyChoice === 'milo'}
+                title={t('onboarding.buddyMiloTitle')}
+                description={t('onboarding.buddyMiloDesc')}
+                swatchClass="bg-[var(--color-milo)]"
+                swatchShadow="var(--shadow-milo)"
+                sampleText={t('onboarding.buddyMiloSample')}
+                sampleLang="en-US"
+              />
+              <BuddyCard
+                value="luna"
+                selected={buddyChoice === 'luna'}
+                title={t('onboarding.buddyLunaTitle')}
+                description={t('onboarding.buddyLunaDesc')}
+                swatchClass="bg-[var(--color-luna)]"
+                swatchShadow="var(--shadow-luna)"
+                sampleText={t('onboarding.buddyLunaSample')}
+                sampleLang="en-GB"
+              />
+              <BuddyCard
+                value="both"
+                selected={buddyChoice === 'both'}
+                title={t('onboarding.buddyBothTitle')}
+                description={t('onboarding.buddyBothDesc')}
+                swatchClass="bg-[var(--color-primary)]"
+                swatchShadow="var(--shadow-pop)"
+                sampleText={t('onboarding.buddyBothSample')}
+                sampleLang="en-US"
+              />
+            </RadioGroup.Root>
+            <PrimaryButton onClick={() => void handlePickBuddy()}>
+              {t('common.continue')}
+            </PrimaryButton>
           </StepFrame>
         ) : null}
 
@@ -322,16 +419,16 @@ export default function OnboardingPage() {
               className="text-center text-3xl text-[var(--color-primary-dark)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              How old is your learner?
+              {t('onboarding.ageTitle')}
             </h1>
             <p className="max-w-prose text-center text-[var(--color-ink)]">
-              This helps us choose the right reading level and pace.
+              {t('onboarding.ageHint')}
             </p>
             <RadioGroup.Root
               value={ageBand}
               onValueChange={(v) => setAgeBand(v as AgeBand)}
               className="flex w-full flex-col gap-[var(--space-3)]"
-              aria-label="Age band"
+              aria-label={t('onboarding.ageBandAria')}
             >
               <RadioGroup.Item
                 value="6-8"
@@ -346,10 +443,10 @@ export default function OnboardingPage() {
                     className="text-xl text-[var(--color-ink)]"
                     style={{ fontFamily: 'var(--font-display)' }}
                   >
-                    6 to 8 (Lower)
+                    {t('onboarding.ageYounger')}
                   </span>
                   <span className="text-sm text-[var(--color-mist)]">
-                    Bigger buttons, captions on, slower narration.
+                    {t('onboarding.ageYoungerDesc')}
                   </span>
                 </span>
               </RadioGroup.Item>
@@ -366,15 +463,17 @@ export default function OnboardingPage() {
                     className="text-xl text-[var(--color-ink)]"
                     style={{ fontFamily: 'var(--font-display)' }}
                   >
-                    9 to 12 (Upper)
+                    {t('onboarding.ageOlder')}
                   </span>
                   <span className="text-sm text-[var(--color-mist)]">
-                    Compact layout, richer text, normal narration.
+                    {t('onboarding.ageOlderDesc')}
                   </span>
                 </span>
               </RadioGroup.Item>
             </RadioGroup.Root>
-            <PrimaryButton onClick={() => void handlePickAge()}>Continue</PrimaryButton>
+            <PrimaryButton onClick={() => void handlePickAge()}>
+              {t('common.continue')}
+            </PrimaryButton>
           </StepFrame>
         ) : null}
 
@@ -384,16 +483,16 @@ export default function OnboardingPage() {
               className="text-center text-3xl text-[var(--color-primary-dark)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Pick a nickname
+              {t('onboarding.nicknameTitle')}
             </h1>
             <p className="max-w-prose text-center text-[var(--color-ink)]">
-              Pick a fun animal name. You can change it later.
+              {t('onboarding.nicknameHint')}
             </p>
             <RadioGroup.Root
               value={nickname}
               onValueChange={(v) => setNickname(v)}
               className="grid w-full grid-cols-2 gap-[var(--space-3)]"
-              aria-label="Nickname"
+              aria-label={t('onboarding.nicknameAria')}
             >
               {nicknameList.map((name) => (
                 <RadioGroup.Item
@@ -411,8 +510,12 @@ export default function OnboardingPage() {
                 </RadioGroup.Item>
               ))}
             </RadioGroup.Root>
-            <SecondaryButton onClick={refreshNicknames}>Refresh for more</SecondaryButton>
-            <PrimaryButton onClick={() => void handlePickNickname()}>Continue</PrimaryButton>
+            <SecondaryButton onClick={refreshNicknames}>
+              {t('onboarding.refreshNicknames')}
+            </SecondaryButton>
+            <PrimaryButton onClick={() => void handlePickNickname()}>
+              {t('common.continue')}
+            </PrimaryButton>
           </StepFrame>
         ) : null}
 
@@ -422,13 +525,13 @@ export default function OnboardingPage() {
               className="text-center text-3xl text-[var(--color-primary-dark)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Let&rsquo;s check your sound!
+              {t('onboarding.audioTitle')}
             </h1>
             <button
               type="button"
               onClick={() => speak("Let's check your sound!")}
               className="flex flex-col items-center gap-[var(--space-3)] rounded-[var(--radius-xl)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-pop)]"
-              aria-label="Hear Milo speak again"
+              aria-label={t('onboarding.hearMascotAria', { mascot: t('mascot.milo') })}
             >
               <span
                 aria-hidden="true"
@@ -437,16 +540,20 @@ export default function OnboardingPage() {
               >
                 Milo
               </span>
-              <span className="text-sm text-[var(--color-mist)]">Tap to hear again.</span>
+              <span className="text-sm text-[var(--color-mist)]">
+                {t('onboarding.audioTapToHear')}
+              </span>
             </button>
             <div className="w-full rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-card)]">
               <VolumeSlider
-                label="Master volume"
+                label={t('onboarding.masterVolumeAria')}
                 value={audioMaster}
                 onChange={handleAudioVolumeChange}
               />
             </div>
-            <PrimaryButton onClick={() => void handleAudioConfirm()}>Sounds good!</PrimaryButton>
+            <PrimaryButton onClick={() => void handleAudioConfirm()}>
+              {t('onboarding.soundsGood')}
+            </PrimaryButton>
           </StepFrame>
         ) : null}
 
@@ -456,13 +563,12 @@ export default function OnboardingPage() {
               className="text-center text-3xl text-[var(--color-primary-dark)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              About the microphone
+              {t('onboarding.micTitle')}
             </h1>
             <p className="max-w-prose text-center text-lg text-[var(--color-ink)]">
-              We&rsquo;ll ask permission to use your microphone when we get to speaking
-              practice. Your voice never leaves your device.
+              {t('onboarding.micBody')}
             </p>
-            <PrimaryButton onClick={handleMicAck}>Got it</PrimaryButton>
+            <PrimaryButton onClick={handleMicAck}>{t('onboarding.gotIt')}</PrimaryButton>
           </StepFrame>
         ) : null}
 
@@ -479,9 +585,11 @@ export default function OnboardingPage() {
               className="text-center text-3xl text-[var(--color-primary-dark)]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              All set! Let&rsquo;s go!
+              {t('onboarding.allSet')}
             </h1>
-            <PrimaryButton onClick={() => void handleFinish()}>Start playing</PrimaryButton>
+            <PrimaryButton onClick={() => void handleFinish()}>
+              {t('onboarding.startPlaying')}
+            </PrimaryButton>
           </StepFrame>
         ) : null}
       </div>

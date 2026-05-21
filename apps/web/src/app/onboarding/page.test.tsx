@@ -1,16 +1,18 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { NextIntlClientProvider } from 'next-intl';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import enMessages from '../../locales/en/common.json';
 
 // In-memory mock for setSetting + a stub children table.
 const store = new Map<string, unknown>();
 const setSettingMock = vi.fn(async (key: string, value: unknown) => {
   store.set(key, value);
 });
-const childrenPutMock = vi.fn(async () => {});
+const childrenPutMock = vi.fn(async (_row: unknown) => {});
 
 vi.mock('@e4k/db', () => ({
   setSetting: (key: string, value: unknown) => setSettingMock(key, value),
-  getSetting: async <T,>(_key: string, fallback: T): Promise<T> => fallback,
+  getSetting: async (_key: string, fallback: unknown): Promise<unknown> => fallback,
   db: { children: { put: (row: unknown) => childrenPutMock(row) } },
 }));
 
@@ -30,6 +32,14 @@ vi.mock('next/navigation', () => ({
 }));
 
 import OnboardingPage from './page';
+
+function renderWithIntl(): ReturnType<typeof render> {
+  return render(
+    <NextIntlClientProvider locale="en" messages={enMessages}>
+      <OnboardingPage />
+    </NextIntlClientProvider>,
+  );
+}
 
 describe('OnboardingPage', () => {
   beforeEach(() => {
@@ -56,15 +66,15 @@ describe('OnboardingPage', () => {
   });
 
   it('walks through the onboarding flow end-to-end and writes expected settings', async () => {
-    render(<OnboardingPage />);
+    renderWithIntl();
 
     // Step 1: Audio unlock.
     const beginBtn = await screen.findByRole('button', { name: /Tap to begin/i });
     fireEvent.click(beginBtn);
 
-    // Step 2: Pick Milo.
-    const pickMilo = await screen.findByRole('button', { name: /Pick Milo/i });
-    fireEvent.click(pickMilo);
+    // Step 2: Pick buddy — default is Milo. Continue.
+    const continueBuddy = await screen.findByRole('button', { name: /^Continue$/i });
+    fireEvent.click(continueBuddy);
     await waitFor(() => {
       expect(setSettingMock).toHaveBeenCalledWith('mascot.choice', 'milo');
     });
@@ -111,15 +121,50 @@ describe('OnboardingPage', () => {
     expect(replaceMock).toHaveBeenCalledWith('/play');
   });
 
+  it('lets the user select Luna as their buddy', async () => {
+    renderWithIntl();
+    fireEvent.click(await screen.findByRole('button', { name: /Tap to begin/i }));
+
+    // Pick Luna radio.
+    const lunaRadio = await screen.findByRole('radio', { name: /Luna/i });
+    fireEvent.click(lunaRadio);
+
+    fireEvent.click(await screen.findByRole('button', { name: /^Continue$/i }));
+    await waitFor(() => {
+      expect(setSettingMock).toHaveBeenCalledWith('mascot.choice', 'luna');
+    });
+  });
+
+  it('lets the user select Both as their buddy', async () => {
+    renderWithIntl();
+    fireEvent.click(await screen.findByRole('button', { name: /Tap to begin/i }));
+
+    const bothRadio = await screen.findByRole('radio', { name: /Both/i });
+    fireEvent.click(bothRadio);
+
+    fireEvent.click(await screen.findByRole('button', { name: /^Continue$/i }));
+    await waitFor(() => {
+      expect(setSettingMock).toHaveBeenCalledWith('mascot.choice', 'both');
+    });
+  });
+
   it('refreshes nickname list when Refresh for more is tapped', async () => {
-    render(<OnboardingPage />);
+    renderWithIntl();
 
     // Step 1
     fireEvent.click(await screen.findByRole('button', { name: /Tap to begin/i }));
-    // Step 2
-    fireEvent.click(await screen.findByRole('button', { name: /Pick Milo/i }));
-    // Step 3
+    // Step 2 — default Milo. The handler awaits setSetting before advancing
+    // to the next step, so wait for the buddy persist call to flush.
     fireEvent.click(await screen.findByRole('button', { name: /^Continue$/i }));
+    await waitFor(() => {
+      expect(setSettingMock).toHaveBeenCalledWith('mascot.choice', 'milo');
+    });
+    // Step 3 — age band. Same shape: handler awaits setSetting('age.band', ...)
+    // before goTo('nickname'), so we have to wait between clicks.
+    fireEvent.click(await screen.findByRole('button', { name: /^Continue$/i }));
+    await waitFor(() => {
+      expect(setSettingMock).toHaveBeenCalledWith('age.band', '6-8');
+    });
 
     // Now in nickname step.
     const refresh = await screen.findByRole('button', { name: /Refresh for more/i });

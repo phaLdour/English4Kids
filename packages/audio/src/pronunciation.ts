@@ -104,6 +104,57 @@ function phonemeDistance(target: ReadonlyArray<string>, recog: ReadonlyArray<str
 }
 
 /**
+ * Best-window phoneme distance — like `phonemeDistance` but tolerant of
+ * leading or trailing filler ("the cat", "say cat please"). We score against
+ * the target as a substring of the recognised stream: free insertions before
+ * column 0 and free insertions past the final target row.
+ *
+ * Pedagogy intent (Sprint 6 fix S1): a kid who says "the cat" got the target
+ * word right. The vanilla edit distance penalises the leading article as two
+ * required insertions, which collapses the score to 0 / try-again — see
+ * `pronunciation.test.ts:105`. With substring alignment the kid's score is
+ * driven by how well "cat" matches inside the stream; the article is free.
+ *
+ * Determinism: returns 0 distance for a perfect-substring match. Falls back
+ * to the standard Levenshtein when target is empty or recog is empty.
+ */
+function phonemeSubstringDistance(
+  target: ReadonlyArray<string>,
+  recog: ReadonlyArray<string>,
+): number {
+  const n = target.length;
+  const m = recog.length;
+  if (n === 0) return 0;
+  if (m === 0) return n;
+
+  // Same rolling-two-row DP as above, but: row 0 is initialised to 0 across
+  // the recog axis (free leading insertions), and the answer is the minimum
+  // of the final row (free trailing insertions).
+  let prev = new Array<number>(m + 1);
+  let curr = new Array<number>(m + 1);
+  for (let j = 0; j <= m; j++) prev[j] = 0;
+
+  for (let i = 1; i <= n; i++) {
+    curr[0] = i;
+    const ti = target[i - 1] ?? "";
+    for (let j = 1; j <= m; j++) {
+      const rj = recog[j - 1] ?? "";
+      const sub = (prev[j - 1] ?? 0) + substitutionCost(ti, rj);
+      const del = (prev[j] ?? 0) + 1.0;
+      const ins = (curr[j - 1] ?? 0) + 1.0;
+      curr[j] = Math.min(sub, del, ins);
+    }
+    [prev, curr] = [curr, prev];
+  }
+  let best = prev[0] ?? n;
+  for (let j = 1; j <= m; j++) {
+    const v = prev[j] ?? n;
+    if (v < best) best = v;
+  }
+  return best;
+}
+
+/**
  * Phonemise a free-form recognised utterance. We split on whitespace,
  * look up each word in the provided map, and for OOV (out-of-vocabulary)
  * words fall back to treating each letter as a phoneme. This is intentionally
@@ -180,7 +231,18 @@ export function scorePronunciation(
   }
 
   const recogPhonemes = phonemiseRecognized(recogText, phonemeMap);
-  const distance = phonemeDistance(targetPhonemes, recogPhonemes);
+  const recogTokenCount = recogText.split(/\s+/).filter(Boolean).length;
+
+  // Single-token recog stays on the strict end-to-end Levenshtein so we still
+  // detect "wrong word" inputs (a kid saying "dog" for target "cat" should
+  // score low). When the kid says multiple tokens — common filler such as
+  // "the cat" or "say cat" — the vanilla distance over-penalises the extra
+  // syllables; switch to substring alignment so the target embedded inside
+  // the stream is what drives the score.
+  const distance =
+    recogTokenCount > 1
+      ? phonemeSubstringDistance(targetPhonemes, recogPhonemes)
+      : phonemeDistance(targetPhonemes, recogPhonemes);
   const denom = Math.max(targetPhonemes.length, 1);
   const raw = 100 - (distance / denom) * 100;
   const score = Math.max(0, Math.min(100, Math.round(raw * 100) / 100));

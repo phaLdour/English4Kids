@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A farm sheep</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <circle cx="78" cy="130" r="18" fill="#FFFFFF"/>
+  <circle cx="100" cy="118" r="20" fill="#FFFFFF"/>
+  <circle cx="124" cy="116" r="22" fill="#FFFFFF"/>
+  <circle cx="148" cy="118" r="20" fill="#FFFFFF"/>
+  <circle cx="170" cy="130" r="18" fill="#FFFFFF"/>
+  <circle cx="120" cy="150" r="34" fill="#FFFFFF"/>
+  <circle cx="60" cy="160" r="24" fill="#1F2933"/>
+  <circle cx="52" cy="156" r="3" fill="#FFFFFF" stroke="none"/>
+  <circle cx="68" cy="156" r="3" fill="#FFFFFF" stroke="none"/>
+  <ellipse cx="60" cy="172" rx="8" ry="4" fill="#FFB5A7"/>
+  <rect x="74" y="184" width="10" height="24" fill="#1F2933"/>
+  <rect x="154" y="184" width="10" height="24" fill="#1F2933"/>
+</svg>

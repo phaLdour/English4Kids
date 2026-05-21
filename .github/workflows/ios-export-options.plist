@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  English4Kids — Xcode export options for the iOS CI build.
+
+  Replace `teamID` with the user's Apple Team ID before enabling signed
+  builds. `method` controls the destination:
+    - app-store    → upload to App Store Connect
+    - ad-hoc       → distribute via TestFlight or internal MDM
+    - development  → install on registered devices
+    - enterprise   → distribute via in-house enterprise account
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>method</key>
+  <string>app-store</string>
+
+  <key>teamID</key>
+  <string>REPLACE_WITH_APPLE_TEAM_ID</string>
+
+  <key>uploadSymbols</key>
+  <true/>
+
+  <key>compileBitcode</key>
+  <false/>
+
+  <key>signingStyle</key>
+  <string>automatic</string>
+
+  <key>stripSwiftSymbols</key>
+  <true/>
+</dict>
+</plist>

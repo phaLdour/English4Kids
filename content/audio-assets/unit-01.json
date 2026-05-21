@@ -8,10 +8,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l1.tapHello": {
+    "src": "/audio/vo/luna/u1/l1/tapHello.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Tap hello!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l1.tapHi": {
     "src": "/audio/vo/u1/l1/tapHi.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap hi!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l1.tapHi": {
+    "src": "/audio/vo/luna/u1/l1/tapHi.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.2,
     "transcript": "Tap hi!",
     "type": "narration",
@@ -26,10 +44,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l1.tapBye": {
+    "src": "/audio/vo/luna/u1/l1/tapBye.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.2,
+    "transcript": "Tap bye!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l1.tapGoodMorning": {
     "src": "/audio/vo/u1/l1/tapGoodMorning.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Tap good morning!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l1.tapGoodMorning": {
+    "src": "/audio/vo/luna/u1/l1/tapGoodMorning.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.8,
     "transcript": "Tap good morning!",
     "type": "narration",
@@ -44,6 +80,15 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l1.tapHowAreYou": {
+    "src": "/audio/vo/luna/u1/l1/tapHowAreYou.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.8,
+    "transcript": "Tap how are you?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l1.tapImFine": {
     "src": "/audio/vo/u1/l1/tapImFine.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
@@ -53,11 +98,29 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l1.tapImFine": {
+    "src": "/audio/vo/luna/u1/l1/tapImFine.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.6,
+    "transcript": "Tap I'm fine!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l1.sayHello": {
     "src": "/audio/vo/u1/l1/sayHello.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
+    "transcript": "Your turn! Say 'hello'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l1.sayHello": {
+    "src": "/audio/vo/luna/u1/l1/sayHello.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
     "transcript": "Your turn! Say 'hello'.",
     "type": "narration",
     "license": "Original-MIT"
@@ -66,7 +129,16 @@
     "src": "/audio/vo/u1/l1/sayBye.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
+    "transcript": "Your turn! Say 'bye'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l1.sayBye": {
+    "src": "/audio/vo/luna/u1/l1/sayBye.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
     "transcript": "Your turn! Say 'bye'.",
     "type": "narration",
     "license": "Original-MIT"
@@ -75,7 +147,7 @@
     "src": "/audio/vo/story/miloHello/p1.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 4.0,
+    "durationSec": 4,
     "transcript": "Good morning! Milo wakes up.",
     "type": "narration",
     "license": "Original-MIT"
@@ -111,7 +183,7 @@
     "src": "/audio/vo/story/miloHello/q1.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
     "transcript": "What did Milo say first?",
     "type": "narration",
     "license": "Original-MIT"
@@ -120,6 +192,15 @@
     "src": "/audio/vo/u1/l2/tapMommy.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.3,
+    "transcript": "Tap Mommy!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l2.tapMommy": {
+    "src": "/audio/vo/luna/u1/l2/tapMommy.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.3,
     "transcript": "Tap Mommy!",
     "type": "narration",
@@ -134,10 +215,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l2.tapDaddy": {
+    "src": "/audio/vo/luna/u1/l2/tapDaddy.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.3,
+    "transcript": "Tap Daddy!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l2.tapSister": {
     "src": "/audio/vo/u1/l2/tapSister.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Tap sister!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l2.tapSister": {
+    "src": "/audio/vo/luna/u1/l2/tapSister.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.4,
     "transcript": "Tap sister!",
     "type": "narration",
@@ -152,10 +251,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l2.tapBrother": {
+    "src": "/audio/vo/luna/u1/l2/tapBrother.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Tap brother!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l2.tapGrandma": {
     "src": "/audio/vo/u1/l2/tapGrandma.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap Grandma!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l2.tapGrandma": {
+    "src": "/audio/vo/luna/u1/l2/tapGrandma.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Tap Grandma!",
     "type": "narration",
@@ -170,10 +287,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l2.tapGrandpa": {
+    "src": "/audio/vo/luna/u1/l2/tapGrandpa.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Tap Grandpa!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l2.tapHello": {
     "src": "/audio/vo/u1/l2/tapHello.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.4,
+    "transcript": "Tap hello!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l2.tapHello": {
+    "src": "/audio/vo/luna/u1/l2/tapHello.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.4,
     "transcript": "Tap hello!",
     "type": "narration",
@@ -188,10 +323,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l2.tapBye": {
+    "src": "/audio/vo/luna/u1/l2/tapBye.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.2,
+    "transcript": "Tap bye!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l2.tapGoodMorning": {
     "src": "/audio/vo/u1/l2/tapGoodMorning.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Tap good morning!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l2.tapGoodMorning": {
+    "src": "/audio/vo/luna/u1/l2/tapGoodMorning.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.8,
     "transcript": "Tap good morning!",
     "type": "narration",
@@ -206,10 +359,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l2.tapHowAreYou": {
+    "src": "/audio/vo/luna/u1/l2/tapHowAreYou.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.8,
+    "transcript": "Tap how are you?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l2.spellMommy": {
     "src": "/audio/vo/u1/l2/spellMommy.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.6,
+    "transcript": "Spell 'mommy'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l2.spellMommy": {
+    "src": "/audio/vo/luna/u1/l2/spellMommy.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.6,
     "transcript": "Spell 'mommy'.",
     "type": "narration",
@@ -224,10 +395,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l2.spellDaddy": {
+    "src": "/audio/vo/luna/u1/l2/spellDaddy.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.6,
+    "transcript": "Spell 'daddy'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l2.spellSister": {
     "src": "/audio/vo/u1/l2/spellSister.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.7,
+    "transcript": "Spell 'sister'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l2.spellSister": {
+    "src": "/audio/vo/luna/u1/l2/spellSister.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.7,
     "transcript": "Spell 'sister'.",
     "type": "narration",
@@ -242,10 +431,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l2.spellBrother": {
+    "src": "/audio/vo/luna/u1/l2/spellBrother.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.7,
+    "transcript": "Spell 'brother'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l2.spellGrandma": {
     "src": "/audio/vo/u1/l2/spellGrandma.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Spell 'grandma'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l2.spellGrandma": {
+    "src": "/audio/vo/luna/u1/l2/spellGrandma.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.8,
     "transcript": "Spell 'grandma'.",
     "type": "narration",
@@ -260,11 +467,20 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l2.spellGrandpa": {
+    "src": "/audio/vo/luna/u1/l2/spellGrandpa.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.8,
+    "transcript": "Spell 'grandpa'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.story.familyPicnic.p1": {
     "src": "/audio/vo/story/familyPicnic/p1.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 4.0,
+    "durationSec": 4,
     "transcript": "Bea Bunny's family goes to the park.",
     "type": "narration",
     "license": "Original-MIT"
@@ -282,7 +498,7 @@
     "src": "/audio/vo/story/familyPicnic/p3.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 5.0,
+    "durationSec": 5,
     "transcript": "Grandma brings the apples. Grandpa brings the bread.",
     "type": "narration",
     "license": "Original-MIT"
@@ -300,7 +516,7 @@
     "src": "/audio/vo/story/familyPicnic/q1.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
     "transcript": "Who brought the apples?",
     "type": "narration",
     "license": "Original-MIT"
@@ -332,10 +548,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.tapRedApple": {
+    "src": "/audio/vo/luna/u1/l3/tapRedApple.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.8,
+    "transcript": "Tap the red apple!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.tapBlueSky": {
     "src": "/audio/vo/u1/l3/tapBlueSky.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Tap the blue sky!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.tapBlueSky": {
+    "src": "/audio/vo/luna/u1/l3/tapBlueSky.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.8,
     "transcript": "Tap the blue sky!",
     "type": "narration",
@@ -350,10 +584,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.tapYellowSun": {
+    "src": "/audio/vo/luna/u1/l3/tapYellowSun.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.9,
+    "transcript": "Tap the yellow sun!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.tapGreenLeaf": {
     "src": "/audio/vo/u1/l3/tapGreenLeaf.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Tap the green leaf!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.tapGreenLeaf": {
+    "src": "/audio/vo/luna/u1/l3/tapGreenLeaf.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.8,
     "transcript": "Tap the green leaf!",
     "type": "narration",
@@ -368,11 +620,29 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.tapOrangePear": {
+    "src": "/audio/vo/luna/u1/l3/tapOrangePear.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.9,
+    "transcript": "Tap the orange pear!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.tapPurpleGrape": {
     "src": "/audio/vo/u1/l3/tapPurpleGrape.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
+    "transcript": "Tap the purple grape!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.tapPurpleGrape": {
+    "src": "/audio/vo/luna/u1/l3/tapPurpleGrape.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
     "transcript": "Tap the purple grape!",
     "type": "narration",
     "license": "Original-MIT"
@@ -381,6 +651,15 @@
     "src": "/audio/vo/u1/l3/tapBlackCat.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.7,
+    "transcript": "Tap the black cat!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.tapBlackCat": {
+    "src": "/audio/vo/luna/u1/l3/tapBlackCat.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.7,
     "transcript": "Tap the black cat!",
     "type": "narration",
@@ -395,10 +674,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.tapWhiteCloud": {
+    "src": "/audio/vo/luna/u1/l3/tapWhiteCloud.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.9,
+    "transcript": "Tap the white cloud!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.spellRed": {
     "src": "/audio/vo/u1/l3/spellRed.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'red'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.spellRed": {
+    "src": "/audio/vo/luna/u1/l3/spellRed.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Spell 'red'.",
     "type": "narration",
@@ -413,10 +710,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.spellBlue": {
+    "src": "/audio/vo/luna/u1/l3/spellBlue.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Spell 'blue'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.spellYellow": {
     "src": "/audio/vo/u1/l3/spellYellow.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.7,
+    "transcript": "Spell 'yellow'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.spellYellow": {
+    "src": "/audio/vo/luna/u1/l3/spellYellow.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.7,
     "transcript": "Spell 'yellow'.",
     "type": "narration",
@@ -431,10 +746,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.spellGreen": {
+    "src": "/audio/vo/luna/u1/l3/spellGreen.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.6,
+    "transcript": "Spell 'green'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.spellOrange": {
     "src": "/audio/vo/u1/l3/spellOrange.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.7,
+    "transcript": "Spell 'orange'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.spellOrange": {
+    "src": "/audio/vo/luna/u1/l3/spellOrange.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.7,
     "transcript": "Spell 'orange'.",
     "type": "narration",
@@ -449,10 +782,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.spellPurple": {
+    "src": "/audio/vo/luna/u1/l3/spellPurple.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.7,
+    "transcript": "Spell 'purple'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.spellBlack": {
     "src": "/audio/vo/u1/l3/spellBlack.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'black'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.spellBlack": {
+    "src": "/audio/vo/luna/u1/l3/spellBlack.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Spell 'black'.",
     "type": "narration",
@@ -467,10 +818,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.spellWhite": {
+    "src": "/audio/vo/luna/u1/l3/spellWhite.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.6,
+    "transcript": "Spell 'white'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.sayRed": {
     "src": "/audio/vo/u1/l3/sayRed.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.8,
+    "transcript": "Your turn! Say 'red'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.sayRed": {
+    "src": "/audio/vo/luna/u1/l3/sayRed.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.8,
     "transcript": "Your turn! Say 'red'.",
     "type": "narration",
@@ -485,11 +854,29 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.sayBlue": {
+    "src": "/audio/vo/luna/u1/l3/sayBlue.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.8,
+    "transcript": "Your turn! Say 'blue'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.sayYellow": {
     "src": "/audio/vo/u1/l3/sayYellow.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
+    "transcript": "Your turn! Say 'yellow'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.sayYellow": {
+    "src": "/audio/vo/luna/u1/l3/sayYellow.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
     "transcript": "Your turn! Say 'yellow'.",
     "type": "narration",
     "license": "Original-MIT"
@@ -498,6 +885,15 @@
     "src": "/audio/vo/u1/l3/sayGreen.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.9,
+    "transcript": "Your turn! Say 'green'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.sayGreen": {
+    "src": "/audio/vo/luna/u1/l3/sayGreen.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.9,
     "transcript": "Your turn! Say 'green'.",
     "type": "narration",
@@ -512,10 +908,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.sayRedApple": {
+    "src": "/audio/vo/luna/u1/l3/sayRedApple.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.4,
+    "transcript": "Your turn! Say 'a red apple'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.sayBlueSky": {
     "src": "/audio/vo/u1/l3/sayBlueSky.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 2.4,
+    "transcript": "Your turn! Say 'the blue sky'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.sayBlueSky": {
+    "src": "/audio/vo/luna/u1/l3/sayBlueSky.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 2.4,
     "transcript": "Your turn! Say 'the blue sky'.",
     "type": "narration",
@@ -530,10 +944,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l3.sayYellowSun": {
+    "src": "/audio/vo/luna/u1/l3/sayYellowSun.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.4,
+    "transcript": "Your turn! Say 'yellow sun'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l3.sayGreenLeaf": {
     "src": "/audio/vo/u1/l3/sayGreenLeaf.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 2.4,
+    "transcript": "Your turn! Say 'green leaf'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l3.sayGreenLeaf": {
+    "src": "/audio/vo/luna/u1/l3/sayGreenLeaf.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 2.4,
     "transcript": "Your turn! Say 'green leaf'.",
     "type": "narration",
@@ -548,10 +980,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.tapOne": {
+    "src": "/audio/vo/luna/u1/l4/tapOne.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.2,
+    "transcript": "Tap one.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.tapTwo": {
     "src": "/audio/vo/u1/l4/tapTwo.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap two.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.tapTwo": {
+    "src": "/audio/vo/luna/u1/l4/tapTwo.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.2,
     "transcript": "Tap two.",
     "type": "narration",
@@ -566,10 +1016,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.tapThree": {
+    "src": "/audio/vo/luna/u1/l4/tapThree.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.2,
+    "transcript": "Tap three.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.tapFour": {
     "src": "/audio/vo/u1/l4/tapFour.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap four.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.tapFour": {
+    "src": "/audio/vo/luna/u1/l4/tapFour.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.2,
     "transcript": "Tap four.",
     "type": "narration",
@@ -584,10 +1052,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.tapFive": {
+    "src": "/audio/vo/luna/u1/l4/tapFive.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.2,
+    "transcript": "Tap five.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.tapSix": {
     "src": "/audio/vo/u1/l4/tapSix.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap six.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.tapSix": {
+    "src": "/audio/vo/luna/u1/l4/tapSix.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.2,
     "transcript": "Tap six.",
     "type": "narration",
@@ -602,10 +1088,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.tapSeven": {
+    "src": "/audio/vo/luna/u1/l4/tapSeven.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.3,
+    "transcript": "Tap seven.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.tapEight": {
     "src": "/audio/vo/u1/l4/tapEight.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap eight.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.tapEight": {
+    "src": "/audio/vo/luna/u1/l4/tapEight.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.2,
     "transcript": "Tap eight.",
     "type": "narration",
@@ -620,10 +1124,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.tapNine": {
+    "src": "/audio/vo/luna/u1/l4/tapNine.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.2,
+    "transcript": "Tap nine.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.tapTen": {
     "src": "/audio/vo/u1/l4/tapTen.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.2,
+    "transcript": "Tap ten.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.tapTen": {
+    "src": "/audio/vo/luna/u1/l4/tapTen.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.2,
     "transcript": "Tap ten.",
     "type": "narration",
@@ -638,10 +1160,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.countOne": {
+    "src": "/audio/vo/luna/u1/l4/countOne.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.4,
+    "transcript": "Tap one duck.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.countTwo": {
     "src": "/audio/vo/u1/l4/countTwo.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap two ducks.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.countTwo": {
+    "src": "/audio/vo/luna/u1/l4/countTwo.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Tap two ducks.",
     "type": "narration",
@@ -656,10 +1196,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.countThree": {
+    "src": "/audio/vo/luna/u1/l4/countThree.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Tap three ducks.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.countFour": {
     "src": "/audio/vo/u1/l4/countFour.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap four ducks.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.countFour": {
+    "src": "/audio/vo/luna/u1/l4/countFour.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Tap four ducks.",
     "type": "narration",
@@ -674,10 +1232,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.countFive": {
+    "src": "/audio/vo/luna/u1/l4/countFive.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Tap five ducks.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.countSix": {
     "src": "/audio/vo/u1/l4/countSix.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap six ducks.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.countSix": {
+    "src": "/audio/vo/luna/u1/l4/countSix.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Tap six ducks.",
     "type": "narration",
@@ -692,10 +1268,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.countSeven": {
+    "src": "/audio/vo/luna/u1/l4/countSeven.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.6,
+    "transcript": "Tap seven ducks.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.countEight": {
     "src": "/audio/vo/u1/l4/countEight.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap eight ducks.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.countEight": {
+    "src": "/audio/vo/luna/u1/l4/countEight.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Tap eight ducks.",
     "type": "narration",
@@ -710,10 +1304,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.countNine": {
+    "src": "/audio/vo/luna/u1/l4/countNine.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Tap nine ducks.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.countTen": {
     "src": "/audio/vo/u1/l4/countTen.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Tap ten ducks.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.countTen": {
+    "src": "/audio/vo/luna/u1/l4/countTen.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Tap ten ducks.",
     "type": "narration",
@@ -728,10 +1340,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.spellOne": {
+    "src": "/audio/vo/luna/u1/l4/spellOne.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Spell 'one'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.spellTwo": {
     "src": "/audio/vo/u1/l4/spellTwo.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'two'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.spellTwo": {
+    "src": "/audio/vo/luna/u1/l4/spellTwo.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Spell 'two'.",
     "type": "narration",
@@ -746,10 +1376,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.spellThree": {
+    "src": "/audio/vo/luna/u1/l4/spellThree.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Spell 'three'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.spellFour": {
     "src": "/audio/vo/u1/l4/spellFour.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'four'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.spellFour": {
+    "src": "/audio/vo/luna/u1/l4/spellFour.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Spell 'four'.",
     "type": "narration",
@@ -764,10 +1412,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.spellFive": {
+    "src": "/audio/vo/luna/u1/l4/spellFive.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Spell 'five'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.spellSix": {
     "src": "/audio/vo/u1/l4/spellSix.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'six'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.spellSix": {
+    "src": "/audio/vo/luna/u1/l4/spellSix.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Spell 'six'.",
     "type": "narration",
@@ -782,10 +1448,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.spellSeven": {
+    "src": "/audio/vo/luna/u1/l4/spellSeven.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.6,
+    "transcript": "Spell 'seven'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.spellEight": {
     "src": "/audio/vo/u1/l4/spellEight.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'eight'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.spellEight": {
+    "src": "/audio/vo/luna/u1/l4/spellEight.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Spell 'eight'.",
     "type": "narration",
@@ -800,10 +1484,28 @@
     "type": "narration",
     "license": "Original-MIT"
   },
+  "vo.luna.u1.l4.spellNine": {
+    "src": "/audio/vo/luna/u1/l4/spellNine.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 1.5,
+    "transcript": "Spell 'nine'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
   "vo.milo.u1.l4.spellTen": {
     "src": "/audio/vo/u1/l4/spellTen.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
+    "durationSec": 1.5,
+    "transcript": "Spell 'ten'.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.u1.l4.spellTen": {
+    "src": "/audio/vo/luna/u1/l4/spellTen.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
     "durationSec": 1.5,
     "transcript": "Spell 'ten'.",
     "type": "narration",
@@ -867,7 +1569,7 @@
     "src": "/audio/vo/story/tenLittleDucks/q1.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium)",
     "lang": "en-US",
-    "durationSec": 2.0,
+    "durationSec": 2,
     "transcript": "How many ducks?",
     "type": "narration",
     "license": "Original-MIT"
@@ -894,7 +1596,7 @@
     "src": "/audio/mus/helloFriend.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium) + original instrumental",
     "lang": "en-US",
-    "durationSec": 28.0,
+    "durationSec": 28,
     "transcript": "Hello, hello, hello, friend! Hi to you and hi again! Good morning, sunny day, Let's all learn and let's all play! Bye, bye, see you soon! Bye, bye, afternoon! Wave your hand and smile so bright, We'll be back, we're feeling right!",
     "type": "song",
     "license": "Original-MIT"
@@ -903,7 +1605,7 @@
     "src": "/audio/mus/colorsAllAround.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium) + original instrumental",
     "lang": "en-US",
-    "durationSec": 32.0,
+    "durationSec": 32,
     "transcript": "Red like an apple, blue like the sky, Yellow like the sunshine way up high. Green like a leaf, and orange like a pear, Purple like a grape — colors everywhere! Black like the nighttime, white like a cloud, Sing the colors, sing them loud! Red and blue and yellow, green, Beautiful colors to be seen!",
     "type": "song",
     "license": "Original-MIT"
@@ -912,7 +1614,7 @@
     "src": "/audio/mus/countWithMe.mp3",
     "voiceActor": "Milo (Piper en_US-amy-medium) + original instrumental",
     "lang": "en-US",
-    "durationSec": 32.0,
+    "durationSec": 32,
     "transcript": "One little duckling, two little ducklings, Three little, four little, five little ducklings, Six little, seven little, eight little ducklings, Nine, ten ducklings in the pond! Count with me, one to ten, Count with me, then again! One, two, three, four, five, Six, seven, eight, nine, ten — alive!",
     "type": "song",
     "license": "Original-MIT"
@@ -947,6 +1649,195 @@
     "durationSec": 1.2,
     "transcript": "(celebratory star jingle)",
     "type": "sfx",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.miloHello.p1": {
+    "src": "/audio/vo/luna/story/miloHello/p1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4,
+    "transcript": "Good morning! Milo wakes up.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.miloHello.p2": {
+    "src": "/audio/vo/luna/story/miloHello/p2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 3.5,
+    "transcript": "Hello, Bea! Hi!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.miloHello.p3": {
+    "src": "/audio/vo/luna/story/miloHello/p3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "How are you? I'm fine, thank you!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.miloHello.p4": {
+    "src": "/audio/vo/luna/story/miloHello/p4.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 3.5,
+    "transcript": "Bye, Bea! See you soon!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.miloHello.q1": {
+    "src": "/audio/vo/luna/story/miloHello/q1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
+    "transcript": "What did Milo say first?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.familyPicnic.p1": {
+    "src": "/audio/vo/luna/story/familyPicnic/p1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4,
+    "transcript": "Bea Bunny's family goes to the park.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.familyPicnic.p2": {
+    "src": "/audio/vo/luna/story/familyPicnic/p2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Mommy and Daddy carry the blanket.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.familyPicnic.p3": {
+    "src": "/audio/vo/luna/story/familyPicnic/p3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 5,
+    "transcript": "Grandma brings the apples. Grandpa brings the bread.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.familyPicnic.p4": {
+    "src": "/audio/vo/luna/story/familyPicnic/p4.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Sister and brother share the fruit. Yum!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.familyPicnic.q1": {
+    "src": "/audio/vo/luna/story/familyPicnic/q1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
+    "transcript": "Who brought the apples?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.familyPicnic.q2": {
+    "src": "/audio/vo/luna/story/familyPicnic/q2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.2,
+    "transcript": "What did Mommy and Daddy carry?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.familyPicnic.q3": {
+    "src": "/audio/vo/luna/story/familyPicnic/q3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.4,
+    "transcript": "Put the picnic story in order.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.tenLittleDucks.p1": {
+    "src": "/audio/vo/luna/story/tenLittleDucks/p1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Ten little ducklings live by the pond.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.tenLittleDucks.p2": {
+    "src": "/audio/vo/luna/story/tenLittleDucks/p2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "One, two, three jump in first.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.tenLittleDucks.p3": {
+    "src": "/audio/vo/luna/story/tenLittleDucks/p3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Four, five, six paddle along.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.tenLittleDucks.p4": {
+    "src": "/audio/vo/luna/story/tenLittleDucks/p4.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Seven, eight, nine glide so smooth.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.tenLittleDucks.p5": {
+    "src": "/audio/vo/luna/story/tenLittleDucks/p5.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Ten little ducklings swim together.",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.tenLittleDucks.p6": {
+    "src": "/audio/vo/luna/story/tenLittleDucks/p6.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 4.5,
+    "transcript": "Mommy duck smiles. What a happy pond!",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.tenLittleDucks.q1": {
+    "src": "/audio/vo/luna/story/tenLittleDucks/q1.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2,
+    "transcript": "How many ducks?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.tenLittleDucks.q2": {
+    "src": "/audio/vo/luna/story/tenLittleDucks/q2.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.4,
+    "transcript": "Which ducklings jumped in first?",
+    "type": "narration",
+    "license": "Original-MIT"
+  },
+  "vo.luna.story.tenLittleDucks.q3": {
+    "src": "/audio/vo/luna/story/tenLittleDucks/q3.mp3",
+    "voiceActor": "Luna (Piper en_GB-jenny_dioco-medium)",
+    "lang": "en-GB",
+    "durationSec": 2.8,
+    "transcript": "Put the ducklings in the order they joined the swim.",
+    "type": "narration",
     "license": "Original-MIT"
   }
 }

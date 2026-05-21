@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { usePrefersReducedMotion } from '@e4k/ui';
+import { useTranslations } from 'next-intl';
 
 export interface StreakWelcomeProps {
   nickname: string;
@@ -16,6 +17,7 @@ export interface StreakWelcomeProps {
  */
 export function StreakWelcome({ nickname, onDismiss }: StreakWelcomeProps) {
   const prefersReduced = usePrefersReducedMotion();
+  const t = useTranslations();
   return (
     <motion.section
       aria-live="polite"
@@ -28,13 +30,13 @@ export function StreakWelcome({ nickname, onDismiss }: StreakWelcomeProps) {
         className="text-center text-2xl text-[var(--color-primary-dark)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        Welcome back, {nickname}!
+        {t('streak.welcomeBack', { nickname })}
       </h2>
       <p
         className="text-center text-lg text-[var(--color-ink)]"
         style={{ fontFamily: 'var(--font-body)' }}
       >
-        Your plant missed you. Let&rsquo;s grow together.
+        {t('streak.plantMissedYou')}
       </p>
       {onDismiss ? (
         <button
@@ -47,7 +49,7 @@ export function StreakWelcome({ nickname, onDismiss }: StreakWelcomeProps) {
             fontSize: '1.125rem',
           }}
         >
-          Let&rsquo;s play
+          {t('streak.letsPlay')}
         </button>
       ) : null}
     </motion.section>

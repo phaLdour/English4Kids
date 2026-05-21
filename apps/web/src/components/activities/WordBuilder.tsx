@@ -3,10 +3,10 @@
 import { TapCard } from '@e4k/ui';
 import type { ActivityItem, AudioAssetMap } from '@e4k/content-schema';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { MascotReaction } from '@e4k/ui';
 import { useAudio } from '@/lib/audio-client';
-import { activityMessages } from './messages';
 
 type WordBuilderItem = Extract<ActivityItem, { type: 'word_builder' }>;
 
@@ -53,6 +53,7 @@ export function WordBuilder({
     timersRef.current.push(t);
   }, [audioMap, item, onMascotChange, playPrompt]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: itemIndex is the change-detection trigger; playPromptForCurrent + clearTimers are intentionally re-bound per render
   useEffect(() => {
     firstAttemptCorrectRef.current = null;
     playPromptForCurrent();
@@ -82,25 +83,41 @@ export function WordBuilder({
 
   if (!item) return null;
 
+  const handleWrong = () => {
+    if (firstAttemptCorrectRef.current === null) firstAttemptCorrectRef.current = false;
+    onMascotChange?.('gentle-hmm');
+    const t = setTimeout(() => {
+      onMascotChange?.('listening');
+      playPrompt(item.promptAudio, audioMap);
+    }, 700);
+    timersRef.current.push(t);
+  };
+
+  const handleCorrect = () => {
+    if (firstAttemptCorrectRef.current === null) firstAttemptCorrectRef.current = true;
+    advance();
+  };
+
   if (item.variant === 'whole_word_drag') {
     return (
       <WholeWordDrag
         item={item}
         ageBand={ageBand}
         imageResolver={imageResolver}
-        onWrong={() => {
-          if (firstAttemptCorrectRef.current === null) firstAttemptCorrectRef.current = false;
-          onMascotChange?.('gentle-hmm');
-          const t = setTimeout(() => {
-            onMascotChange?.('listening');
-            playPrompt(item.promptAudio, audioMap);
-          }, 700);
-          timersRef.current.push(t);
-        }}
-        onCorrect={() => {
-          if (firstAttemptCorrectRef.current === null) firstAttemptCorrectRef.current = true;
-          advance();
-        }}
+        onWrong={handleWrong}
+        onCorrect={handleCorrect}
+      />
+    );
+  }
+
+  if (item.variant === 'sentence_chunks') {
+    return (
+      <SentenceChunks
+        item={item}
+        ageBand={ageBand}
+        imageResolver={imageResolver}
+        onWrong={handleWrong}
+        onCorrect={handleCorrect}
       />
     );
   }
@@ -109,19 +126,8 @@ export function WordBuilder({
     <LetterSpell
       item={item}
       imageResolver={imageResolver}
-      onWrong={() => {
-        if (firstAttemptCorrectRef.current === null) firstAttemptCorrectRef.current = false;
-        onMascotChange?.('gentle-hmm');
-        const t = setTimeout(() => {
-          onMascotChange?.('listening');
-          playPrompt(item.promptAudio, audioMap);
-        }, 700);
-        timersRef.current.push(t);
-      }}
-      onCorrect={() => {
-        if (firstAttemptCorrectRef.current === null) firstAttemptCorrectRef.current = true;
-        advance();
-      }}
+      onWrong={handleWrong}
+      onCorrect={handleCorrect}
     />
   );
 }
@@ -140,6 +146,7 @@ function WholeWordDrag({
   onCorrect,
   onWrong,
 }: VariantProps & { ageBand: '6-8' | '9-12' }) {
+  const t = useTranslations();
   const options = item.options ?? [];
   const correctIndex = item.correctIndex ?? 0;
   const [selected, setSelected] = useState<number | null>(null);
@@ -148,7 +155,7 @@ function WholeWordDrag({
 
   return (
     <section
-      aria-label={activityMessages.wordBuilder.aria}
+      aria-label={t('activities.wordBuilderAria')}
       className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-6)]"
     >
       <p
@@ -156,7 +163,7 @@ function WholeWordDrag({
         className="text-center text-xl text-[var(--color-ink)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        {activityMessages.wordBuilder.wholeWord}
+        {t('activities.wordBuilderWholeWord')}
       </p>
       <div
         className="flex items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]"
@@ -167,6 +174,10 @@ function WholeWordDrag({
           <img
             src={imageSrc}
             alt={item.targetWord}
+            width={160}
+            height={160}
+            loading="lazy"
+            decoding="async"
             style={{ maxWidth: 160, maxHeight: 160, objectFit: 'contain' }}
           />
         ) : (
@@ -219,8 +230,12 @@ function WholeWordDrag({
 }
 
 function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) {
-  const pool = item.letterPool ?? Array.from(item.targetWord.toLowerCase());
-  const slots = item.targetWord.length;
+  const t = useTranslations();
+  // Spaces are visual-only — strip from slot count and target comparison so
+  // a `letter_spell` variant with single-char pool tiles never goes out of bounds.
+  const targetLetters = item.targetWord.replace(/\s/g, '');
+  const pool = item.letterPool ?? Array.from(targetLetters.toLowerCase());
+  const slots = targetLetters.length;
   const [placed, setPlaced] = useState<(number | null)[]>(() => Array.from({ length: slots }, () => null));
   const [usedTiles, setUsedTiles] = useState<Set<number>>(() => new Set());
   const [wobbleKey, setWobbleKey] = useState(0);
@@ -267,7 +282,7 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
       const built = placed
         .map((tileIdx) => (tileIdx === null ? '' : pool[tileIdx]))
         .join('');
-      if (built.toLowerCase() === item.targetWord.toLowerCase()) {
+      if (built.toLowerCase() === targetLetters.toLowerCase()) {
         onCorrect();
       } else {
         setWobbleKey((k) => k + 1);
@@ -280,11 +295,11 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
       }
     }, 200);
     return () => clearTimeout(t);
-  }, [allFilled, item.targetWord, onCorrect, onWrong, placed, pool, slots]);
+  }, [allFilled, targetLetters, onCorrect, onWrong, placed, pool, slots]);
 
   return (
     <section
-      aria-label={activityMessages.wordBuilder.aria}
+      aria-label={t('activities.wordBuilderAria')}
       className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-6)]"
     >
       <p
@@ -292,7 +307,7 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
         className="text-center text-xl text-[var(--color-ink)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        {activityMessages.wordBuilder.letterSpell}
+        {t('activities.wordBuilderLetterSpell')}
       </p>
       <div
         className="flex items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]"
@@ -303,6 +318,10 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
           <img
             src={imageSrc}
             alt={item.targetWord}
+            width={160}
+            height={160}
+            loading="lazy"
+            decoding="async"
             style={{ maxWidth: 160, maxHeight: 160, objectFit: 'contain' }}
           />
         ) : (
@@ -329,7 +348,7 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
             key={`slot-${item.id}-${slotIdx}`}
             type="button"
             onClick={() => clearSlot(slotIdx)}
-            aria-label={`Slot ${slotIdx + 1}`}
+            aria-label={t('activities.wordBuilderSlotAria', { index: slotIdx + 1 })}
             className="flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-high)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95"
             style={{
               width: 56,
@@ -356,7 +375,7 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
               type="button"
               disabled={used}
               onClick={() => tryPlace(idx)}
-              aria-label={`Letter ${letter}`}
+              aria-label={t('activities.wordBuilderLetterAria', { letter })}
               className="flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-high)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95 disabled:opacity-30"
               style={{
                 width: 56,
@@ -377,9 +396,208 @@ function LetterSpell({ item, imageResolver, onCorrect, onWrong }: VariantProps) 
         type="button"
         onClick={clearAll}
         className="rounded-[var(--radius-pill)] bg-transparent px-[var(--space-4)] py-[var(--space-2)] text-[var(--color-mist)]"
+        style={{
+          fontFamily: 'var(--font-display)',
+          minHeight: 'var(--tap-min-old)',
+          minWidth: 'var(--tap-min-old)',
+        }}
+      >
+        {t('activities.wordBuilderClear')}
+      </button>
+    </section>
+  );
+}
+
+/**
+ * Sentence-chunk variant (9-12 band, u3.l4): kid arranges multi-character word
+ * tokens (e.g. "a", "bird", "can", "fly") into sentence-order slots. On all
+ * slots filled, we join with a single space and compare case-insensitively
+ * against `targetWord.trim()`. Wrong-answer UX matches LetterSpell exactly
+ * (gentle bounce, mascot gentle-hmm via parent, no red, no shake-of-shame).
+ */
+function SentenceChunks({
+  item,
+  ageBand,
+  imageResolver,
+  onCorrect,
+  onWrong,
+}: VariantProps & { ageBand: '6-8' | '9-12' }) {
+  const t = useTranslations();
+  const targetTokens = item.targetWord.trim().split(/\s+/);
+  const pool = item.letterPool ?? targetTokens;
+  const slots = targetTokens.length;
+  const [placed, setPlaced] = useState<(number | null)[]>(() =>
+    Array.from({ length: slots }, () => null),
+  );
+  const [usedTiles, setUsedTiles] = useState<Set<number>>(() => new Set());
+  const [wobbleKey, setWobbleKey] = useState(0);
+  const imageSrc = item.targetImage ? imageResolver?.(item.targetImage) : undefined;
+  const checked = useRef(false);
+
+  // Per spec: chunk tiles min 64px height (6-8) / 48px (9-12). This variant
+  // is 9-12 in current content but the prop is honored for future flexibility.
+  const tileMinHeight = ageBand === '6-8' ? 64 : 48;
+
+  const tryPlace = (tileIdx: number) => {
+    if (usedTiles.has(tileIdx)) return;
+    const nextSlot = placed.findIndex((p) => p === null);
+    if (nextSlot === -1) return;
+    const newPlaced = [...placed];
+    newPlaced[nextSlot] = tileIdx;
+    setPlaced(newPlaced);
+    setUsedTiles((s) => new Set(s).add(tileIdx));
+  };
+
+  const clearSlot = (slotIdx: number) => {
+    const tileIdx = placed[slotIdx];
+    if (tileIdx === null || tileIdx === undefined) return;
+    const newPlaced = [...placed];
+    newPlaced[slotIdx] = null;
+    setPlaced(newPlaced);
+    setUsedTiles((s) => {
+      const next = new Set(s);
+      next.delete(tileIdx);
+      return next;
+    });
+  };
+
+  const clearAll = () => {
+    setPlaced(Array.from({ length: slots }, () => null));
+    setUsedTiles(new Set());
+    checked.current = false;
+  };
+
+  const allFilled = placed.every((p) => p !== null);
+
+  useEffect(() => {
+    if (!allFilled || checked.current) return;
+    const t = setTimeout(() => {
+      if (checked.current) return;
+      checked.current = true;
+      const builtTokens = placed.map((tileIdx) =>
+        tileIdx === null ? '' : (pool[tileIdx] ?? ''),
+      );
+      const built = builtTokens.join(' ').toLowerCase();
+      const target = item.targetWord.trim().toLowerCase();
+      if (built === target) {
+        onCorrect();
+      } else {
+        setWobbleKey((k) => k + 1);
+        onWrong();
+        setTimeout(() => {
+          checked.current = false;
+          setPlaced(Array.from({ length: slots }, () => null));
+          setUsedTiles(new Set());
+        }, 700);
+      }
+    }, 200);
+    return () => clearTimeout(t);
+  }, [allFilled, item.targetWord, onCorrect, onWrong, placed, pool, slots]);
+
+  return (
+    <section
+      aria-label={t('activities.wordBuilderAria')}
+      className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-6)]"
+    >
+      <p
+        aria-live="polite"
+        className="text-center text-xl text-[var(--color-ink)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        {activityMessages.wordBuilder.clear}
+        {t('activities.wordBuilderSentenceChunks')}
+      </p>
+      <div
+        className="flex items-center justify-center rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-4)] shadow-[var(--shadow-card)]"
+        style={{ width: 200, height: 200 }}
+      >
+        {imageSrc ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={imageSrc}
+            alt={item.targetWord}
+            width={160}
+            height={160}
+            loading="lazy"
+            decoding="async"
+            style={{ maxWidth: 160, maxHeight: 160, objectFit: 'contain' }}
+          />
+        ) : (
+          <span
+            aria-hidden="true"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '3rem',
+              color: 'var(--color-mist)',
+            }}
+          >
+            {item.targetWord.charAt(0).toUpperCase()}
+          </span>
+        )}
+      </div>
+      <motion.div
+        key={`chunk-slots-${wobbleKey}`}
+        animate={wobbleKey > 0 ? { x: [0, -8, 8, -6, 6, 0] } : { x: 0 }}
+        transition={{ duration: 0.45, ease: 'easeInOut' }}
+        className="flex flex-wrap items-center justify-center gap-[var(--space-2)]"
+      >
+        {placed.map((tileIdx, slotIdx) => (
+          <button
+            key={`chunk-slot-${item.id}-${slotIdx}`}
+            type="button"
+            onClick={() => clearSlot(slotIdx)}
+            aria-label={t('activities.wordBuilderSlotAria', { index: slotIdx + 1 })}
+            className="flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-high)] px-[var(--space-3)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95"
+            style={{
+              minWidth: 72,
+              minHeight: tileMinHeight,
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.25rem',
+              color: 'var(--color-ink)',
+              border:
+                tileIdx === null
+                  ? '2px dashed var(--color-muted)'
+                  : '2px solid var(--color-primary)',
+            }}
+          >
+            {tileIdx === null ? '' : (pool[tileIdx] ?? '')}
+          </button>
+        ))}
+      </motion.div>
+      <div className="flex flex-wrap items-center justify-center gap-[var(--space-3)]">
+        {pool.map((chunk, idx) => {
+          const used = usedTiles.has(idx);
+          return (
+            <button
+              key={`chunk-tile-${item.id}-${idx}-${chunk}`}
+              type="button"
+              disabled={used}
+              onClick={() => tryPlace(idx)}
+              aria-label={t('activities.wordBuilderWordAria', { word: chunk })}
+              className="flex items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-surface-high)] px-[var(--space-3)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95 disabled:opacity-30"
+              style={{
+                minWidth: 72,
+                minHeight: tileMinHeight,
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.25rem',
+                color: 'var(--color-ink)',
+              }}
+            >
+              {chunk}
+            </button>
+          );
+        })}
+      </div>
+      <button
+        type="button"
+        onClick={clearAll}
+        className="rounded-[var(--radius-pill)] bg-transparent px-[var(--space-4)] py-[var(--space-2)] text-[var(--color-mist)]"
+        style={{
+          fontFamily: 'var(--font-display)',
+          minHeight: 'var(--tap-min-old)',
+          minWidth: 'var(--tap-min-old)',
+        }}
+      >
+        {t('activities.wordBuilderClear')}
       </button>
     </section>
   );

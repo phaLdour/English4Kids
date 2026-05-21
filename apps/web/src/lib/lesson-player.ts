@@ -1,21 +1,18 @@
 'use client';
 
-import { type AudioAssetMap, AudioAssetMapSchema } from '@e4k/content-schema';
+import type { AudioAssetMap } from '@e4k/content-schema';
 import { db } from '@e4k/db';
 import type { Child, Progress } from '@e4k/db';
 import type { AttemptResult } from '@e4k/game-engine';
+import { getAudioMap } from './content-client';
 
+/**
+ * Thin wrapper kept for backwards-compatibility with existing call-sites.
+ * Routes the request through `content-client` so the static-export adapter
+ * (S4-10) is honoured.
+ */
 export async function loadAudioMap(unitId: string): Promise<AudioAssetMap> {
-  const res = await fetch(`/api/content/${encodeURIComponent(unitId)}/audio`, {
-    cache: 'no-store',
-  });
-  if (!res.ok) {
-    return {};
-  }
-  const json = (await res.json()) as unknown;
-  const parsed = AudioAssetMapSchema.safeParse(json);
-  if (!parsed.success) return {};
-  return parsed.data;
+  return getAudioMap(unitId);
 }
 
 function progressKey(childId: string, lessonId: string): string {

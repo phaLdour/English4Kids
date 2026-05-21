@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A farm chicken</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <ellipse cx="120" cy="160" rx="50" ry="40" fill="#FFFFFF"/>
+  <circle cx="120" cy="100" r="28" fill="#FFFFFF"/>
+  <path d="M120 76 L114 60 L120 72 L126 60 L120 76" stroke="#E04848" stroke-width="3" fill="#E04848"/>
+  <path d="M134 100 L150 96 L140 108 Z" fill="#FFC857"/>
+  <circle cx="124" cy="98" r="3" fill="#1F2933" stroke="none"/>
+  <path d="M116 110 L122 116 L116 122" stroke="#E04848" stroke-width="1.5"/>
+  <rect x="106" y="200" width="6" height="16" fill="#FFC857"/>
+  <rect x="128" y="200" width="6" height="16" fill="#FFC857"/>
+</svg>

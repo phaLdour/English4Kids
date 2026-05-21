@@ -10,6 +10,7 @@
 import type { Strictness } from '@e4k/audio';
 import { getSetting, setSetting } from '@e4k/db';
 import * as RadioGroup from '@radix-ui/react-radio-group';
+import { useTranslations } from 'next-intl';
 import { useEffect, useId, useState } from 'react';
 
 const DEFAULT_STRICTNESS: Strictness = 'normal';
@@ -20,33 +21,22 @@ interface StrictnessOption {
   description: string;
 }
 
-const OPTIONS: ReadonlyArray<StrictnessOption> = [
-  {
-    value: 'easy',
-    label: 'Easy',
-    description: 'Gentlest scoring. Best for new speakers.',
-  },
-  {
-    value: 'normal',
-    label: 'Normal',
-    description: 'Balanced. The default for most kids.',
-  },
-  {
-    value: 'strict',
-    label: 'Strict',
-    description: 'Tighter scoring. Best for confident speakers.',
-  },
-];
-
 export interface StrictnessControlProps {
   className?: string;
 }
 
 export function StrictnessControl({ className }: StrictnessControlProps) {
   const labelId = useId();
+  const t = useTranslations();
   const [value, setValue] = useState<Strictness>(DEFAULT_STRICTNESS);
   const [loaded, setLoaded] = useState<boolean>(false);
   const [announce, setAnnounce] = useState<string>('');
+
+  const options: ReadonlyArray<StrictnessOption> = [
+    { value: 'easy', label: t('parent.strictnessEasy'), description: t('parent.strictnessEasyDesc') },
+    { value: 'normal', label: t('parent.strictnessNormal'), description: t('parent.strictnessNormalDesc') },
+    { value: 'strict', label: t('parent.strictnessStrict'), description: t('parent.strictnessStrictDesc') },
+  ];
 
   useEffect(() => {
     let cancelled = false;
@@ -67,9 +57,9 @@ export function StrictnessControl({ className }: StrictnessControlProps) {
     setValue(v);
     try {
       await setSetting('pronunciation.strictness', v);
-      setAnnounce(`Strictness set to ${v}`);
+      setAnnounce(t('parent.strictnessAnnounce', { value: v }));
     } catch {
-      setAnnounce('Could not save. Please try again.');
+      setAnnounce(t('common.couldNotSave'));
     }
   };
 
@@ -88,10 +78,10 @@ export function StrictnessControl({ className }: StrictnessControlProps) {
         className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        Speech check strictness
+        {t('parent.strictnessHeading')}
       </h3>
       <p className="px-[var(--space-2)] text-sm text-[var(--color-mist)]">
-        Strict makes the speech check tighter; Easy makes it gentler. Activities always pass after 3 tries so your child keeps moving forward.
+        {t('parent.strictnessDesc')}
       </p>
       <span aria-live="polite" className="sr-only">
         {announce}
@@ -102,7 +92,7 @@ export function StrictnessControl({ className }: StrictnessControlProps) {
         onValueChange={(v) => void handleChange(v)}
         className="flex flex-col gap-[var(--space-2)]"
       >
-        {OPTIONS.map((opt) => (
+        {options.map((opt) => (
           <RadioOption key={opt.value} option={opt} />
         ))}
       </RadioGroup.Root>

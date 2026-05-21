@@ -24,6 +24,7 @@ import {
 } from '@e4k/db';
 import type { LeitnerBox } from '@e4k/game-engine';
 import { ParentGate } from '@e4k/ui';
+import { useTranslations } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { WordGarden, type WordGardenState } from '@/components/garden/WordGarden';
@@ -73,9 +74,39 @@ interface SensitiveActionAge {
 type PendingAction = SensitiveAction | SensitiveActionAge;
 
 export default function ChildDetailPage() {
+  const t = useTranslations();
   const params = useParams<{ childId: string }>();
   const router = useRouter();
-  const childId = params?.childId;
+  const rawChildId = params?.childId;
+  // The Capacitor static export only ships `/parent/child/me` (one
+  // sentinel pre-rendered path — see `./layout.tsx`). When the page
+  // resolves with `me`, look up the active child from Dexie at runtime;
+  // otherwise treat the segment as the literal child UUID.
+  const [resolvedChildId, setResolvedChildId] = useState<string | undefined>(
+    rawChildId && rawChildId !== 'me' ? rawChildId : undefined,
+  );
+  useEffect(() => {
+    if (!rawChildId) return;
+    if (rawChildId !== 'me') {
+      setResolvedChildId(rawChildId);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const rows = await db.children.toArray();
+        if (!cancelled && rows.length > 0 && rows[0]) {
+          setResolvedChildId(rows[0].id);
+        }
+      } catch {
+        // Dexie missing — leave undefined; UI will show empty state.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [rawChildId]);
+  const childId = resolvedChildId;
 
   const [child, setChild] = useState<Child | null>(null);
   const [progress, setProgress] = useState<Progress[]>([]);
@@ -187,9 +218,9 @@ export default function ChildDetailPage() {
         await setSetting('child.nickname', pending.value);
         setChild(next);
         setEditingNickname(false);
-        setAnnounce('Nickname updated');
+        setAnnounce(t('parent.childNicknameUpdated'));
       } catch {
-        setAnnounce('Could not save. Please try again.');
+        setAnnounce(t('common.couldNotSave'));
       }
     } else if (pending.kind === 'ageBand') {
       const next: Child = { ...child, age_band: pending.value, updated_at: now };
@@ -198,13 +229,13 @@ export default function ChildDetailPage() {
         await setSetting('age.band', pending.value);
         setChild(next);
         setEditingAge(false);
-        setAnnounce('Age band updated');
+        setAnnounce(t('parent.childAgeBandUpdated'));
       } catch {
-        setAnnounce('Could not save. Please try again.');
+        setAnnounce(t('common.couldNotSave'));
       }
     }
     setPending(null);
-  }, [child, pending]);
+  }, [child, pending, t]);
 
   const handleGateOpenChange = useCallback((open: boolean) => {
     setGateOpen(open);
@@ -218,14 +249,14 @@ export default function ChildDetailPage() {
   if (!childId) {
     return (
       <main className="mx-auto flex w-full max-w-2xl flex-col gap-[var(--space-4)] p-[var(--space-6)]">
-        <p className="text-[var(--color-ink)]">No child id provided.</p>
+        <p className="text-[var(--color-ink)]">{t('parent.noChildId')}</p>
         <button
           type="button"
           onClick={() => router.push('/parent')}
           className="self-start rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-surface-high)]"
-          style={{ fontFamily: 'var(--font-display)' }}
+          style={{ fontFamily: 'var(--font-display)', minHeight: '48px' }}
         >
-          Back to dashboard
+          {t('parent.backToDashboard')}
         </button>
       </main>
     );
@@ -234,7 +265,7 @@ export default function ChildDetailPage() {
   if (!child) {
     return (
       <main className="mx-auto flex w-full max-w-2xl flex-col gap-[var(--space-4)] p-[var(--space-6)]">
-        <p className="text-[var(--color-ink)]">Loading learner...</p>
+        <p className="text-[var(--color-ink)]">{t('parent.loadingLearner')}</p>
       </main>
     );
   }
@@ -249,7 +280,7 @@ export default function ChildDetailPage() {
       </span>
 
       <section
-        aria-label="Profile"
+        aria-label={t('parent.childProfileAria')}
         className="flex flex-col gap-[var(--space-3)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-card)]"
       >
         <div className="flex items-center gap-[var(--space-4)]">
@@ -268,7 +299,7 @@ export default function ChildDetailPage() {
               {child.nickname}
             </span>
             <span className="text-sm text-[var(--color-mist)]">
-              Age band {child.age_band} · Created {formatDate(child.created_at)}
+              {t('parent.childAgeBandLine', { band: child.age_band, date: formatDate(child.created_at) })}
             </span>
           </div>
         </div>
@@ -280,7 +311,7 @@ export default function ChildDetailPage() {
             className="rounded-[var(--radius-pill)] bg-[var(--color-surface)] px-[var(--space-5)] py-[var(--space-2)] text-[var(--color-ink)]"
             style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
           >
-            Change nickname
+            {t('parent.childChangeNickname')}
           </button>
           <button
             type="button"
@@ -288,25 +319,25 @@ export default function ChildDetailPage() {
             className="rounded-[var(--radius-pill)] bg-[var(--color-surface)] px-[var(--space-5)] py-[var(--space-2)] text-[var(--color-ink)]"
             style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
           >
-            Change age band
+            {t('parent.childChangeAgeBand')}
           </button>
         </div>
       </section>
 
       {editingNickname ? (
         <section
-          aria-label="Edit nickname"
+          aria-label={t('parent.childEditNicknameAria')}
           className="flex flex-col gap-[var(--space-3)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-card)]"
         >
           <h3
             className="text-lg text-[var(--color-primary-dark)]"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Pick a nickname
+            {t('parent.childPickNickname')}
           </h3>
           <div
             role="radiogroup"
-            aria-label="Nickname options"
+            aria-label={t('parent.childNicknameOptions')}
             className="grid grid-cols-2 gap-[var(--space-2)] sm:grid-cols-3"
           >
             {NICKNAME_OPTIONS.map((name) => {
@@ -337,7 +368,7 @@ export default function ChildDetailPage() {
               className="rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-surface-high)]"
               style={{ fontFamily: 'var(--font-display)', minHeight: '48px' }}
             >
-              Save
+              {t('common.save')}
             </button>
             <button
               type="button"
@@ -345,7 +376,7 @@ export default function ChildDetailPage() {
               className="rounded-[var(--radius-pill)] bg-[var(--color-surface)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-ink)]"
               style={{ fontFamily: 'var(--font-display)', minHeight: '48px' }}
             >
-              Cancel
+              {t('common.cancel')}
             </button>
           </div>
         </section>
@@ -353,16 +384,16 @@ export default function ChildDetailPage() {
 
       {editingAge ? (
         <section
-          aria-label="Edit age band"
+          aria-label={t('parent.childEditAgeAria')}
           className="flex flex-col gap-[var(--space-3)] rounded-[var(--radius-lg)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-card)]"
         >
           <h3
             className="text-lg text-[var(--color-primary-dark)]"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Age band
+            {t('parent.childAgeBand')}
           </h3>
-          <div role="radiogroup" aria-label="Age band options" className="flex flex-col gap-[var(--space-2)]">
+          <div role="radiogroup" aria-label={t('parent.childAgeBandOptions')} className="flex flex-col gap-[var(--space-2)]">
             {(['6-8', '9-12'] as AgeBand[]).map((band) => {
               const selected = ageDraft === band;
               return (
@@ -379,7 +410,7 @@ export default function ChildDetailPage() {
                     fontFamily: 'var(--font-display)',
                   }}
                 >
-                  {band === '6-8' ? '6 to 8 (Lower)' : '9 to 12 (Upper)'}
+                  {band === '6-8' ? t('parent.childAgeBandYounger') : t('parent.childAgeBandOlder')}
                 </button>
               );
             })}
@@ -391,7 +422,7 @@ export default function ChildDetailPage() {
               className="rounded-[var(--radius-pill)] bg-[var(--color-primary)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-surface-high)]"
               style={{ fontFamily: 'var(--font-display)', minHeight: '48px' }}
             >
-              Save
+              {t('common.save')}
             </button>
             <button
               type="button"
@@ -399,7 +430,7 @@ export default function ChildDetailPage() {
               className="rounded-[var(--radius-pill)] bg-[var(--color-surface)] px-[var(--space-6)] py-[var(--space-3)] text-[var(--color-ink)]"
               style={{ fontFamily: 'var(--font-display)', minHeight: '48px' }}
             >
-              Cancel
+              {t('common.cancel')}
             </button>
           </div>
         </section>
@@ -411,11 +442,11 @@ export default function ChildDetailPage() {
           className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Lesson progress
+          {t('parent.childLessonProgress')}
         </h2>
         {progress.length === 0 ? (
           <p className="rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] text-[var(--color-mist)] shadow-[var(--shadow-card)]">
-            No lessons recorded yet.
+            {t('parent.childNoLessons')}
           </p>
         ) : (
           <ul className="flex flex-col gap-[var(--space-2)]">
@@ -432,11 +463,11 @@ export default function ChildDetailPage() {
                     {p.lesson_id}
                   </span>
                   <span className="text-sm text-[var(--color-mist)]">
-                    {p.status} · last {formatDate(p.last_attempt_at)}
+                    {t('parent.childStatusLine', { status: p.status, date: formatDate(p.last_attempt_at) })}
                   </span>
                 </div>
                 <span
-                  aria-label={`${p.stars} stars`}
+                  aria-label={t('parent.starsAria', { count: p.stars })}
                   className="text-[var(--color-sunflower)]"
                   style={{ fontFamily: 'var(--font-display)' }}
                 >
@@ -457,7 +488,7 @@ export default function ChildDetailPage() {
           className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Word garden
+          {t('parent.childWordGarden')}
         </h2>
         <WordGarden states={gardenStates} view="visual" />
       </section>
@@ -468,14 +499,14 @@ export default function ChildDetailPage() {
           className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Pronunciation scores
+          {t('parent.childPronScores')}
         </h2>
         <p className="px-[var(--space-2)] text-sm text-[var(--color-mist)]">
-          Scores are shown to parents only. Your child sees encouragement bands instead.
+          {t('parent.childPronDesc')}
         </p>
         {attemptsByWord.size === 0 ? (
           <p className="rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] text-[var(--color-mist)] shadow-[var(--shadow-card)]">
-            No speaking attempts recorded yet.
+            {t('parent.childNoAttempts')}
           </p>
         ) : (
           <ul className="flex flex-col gap-[var(--space-2)]">
@@ -513,11 +544,11 @@ export default function ChildDetailPage() {
           className="px-[var(--space-2)] text-lg text-[var(--color-primary-dark)]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Activity log
+          {t('parent.childActivityLog')}
         </h2>
         {recentAudit.length === 0 ? (
           <p className="rounded-[var(--radius-md)] bg-[var(--color-surface-high)] p-[var(--space-4)] text-[var(--color-mist)] shadow-[var(--shadow-card)]">
-            No recorded events yet.
+            {t('parent.childNoEvents')}
           </p>
         ) : (
           <ul className="flex flex-col gap-[var(--space-1)]">
@@ -540,8 +571,8 @@ export default function ChildDetailPage() {
         open={gateOpen}
         onOpenChange={handleGateOpenChange}
         onPass={handleGatePass}
-        title="Grown-ups only"
-        description="Solve this to save the change."
+        title={t('gate.title')}
+        description={t('parent.childGateDescription')}
       />
     </main>
   );

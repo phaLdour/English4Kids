@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>Four, five, six ducklings paddle along</title>
+  <rect x="0" y="0" width="240" height="240" fill="#3DA9FC" stroke="none" opacity="0.25"/>
+  <rect x="0" y="120" width="240" height="120" fill="#3DA9FC"/>
+  <path d="M0 140 Q40 134 80 140 Q120 146 160 140 Q200 134 240 140" stroke-width="2" stroke="#FFFFFF" fill="none"/>
+  <path d="M0 180 Q60 174 120 180 Q180 186 240 180" stroke-width="2" stroke="#FFFFFF" fill="none"/>
+  <g>
+    <ellipse cx="40" cy="160" rx="20" ry="14" fill="#FFC857"/>
+    <circle cx="50" cy="148" r="11" fill="#FFC857"/>
+    <path d="M58 146 L66 144 L60 152 Z" fill="#F08A4B"/>
+    <circle cx="50" cy="146" r="1.8" fill="#1F2933" stroke="none"/>
+  </g>
+  <g>
+    <ellipse cx="92" cy="170" rx="20" ry="14" fill="#FFC857"/>
+    <circle cx="102" cy="158" r="11" fill="#FFC857"/>
+    <path d="M110 156 L118 154 L112 162 Z" fill="#F08A4B"/>
+    <circle cx="102" cy="156" r="1.8" fill="#1F2933" stroke="none"/>
+  </g>
+  <g>
+    <ellipse cx="148" cy="158" rx="20" ry="14" fill="#FFC857"/>
+    <circle cx="158" cy="146" r="11" fill="#FFC857"/>
+    <path d="M166 144 L174 142 L168 150 Z" fill="#F08A4B"/>
+    <circle cx="158" cy="144" r="1.8" fill="#1F2933" stroke="none"/>
+  </g>
+  <g>
+    <ellipse cx="200" cy="170" rx="20" ry="14" fill="#FFC857"/>
+    <circle cx="210" cy="158" r="11" fill="#FFC857"/>
+    <path d="M218 156 L226 154 L220 162 Z" fill="#F08A4B"/>
+    <circle cx="210" cy="156" r="1.8" fill="#1F2933" stroke="none"/>
+  </g>
+  <text x="20" y="68" font-family="'Fredoka', system-ui, sans-serif" font-size="42" font-weight="700" fill="#F08A4B" stroke="none">4</text>
+  <text x="80" y="68" font-family="'Fredoka', system-ui, sans-serif" font-size="42" font-weight="700" fill="#5FB37C" stroke="none">5</text>
+  <text x="140" y="68" font-family="'Fredoka', system-ui, sans-serif" font-size="42" font-weight="700" fill="#9D8DF1" stroke="none">6</text>
+  <text x="200" y="68" font-family="'Fredoka', system-ui, sans-serif" font-size="42" font-weight="700" fill="#3DA9FC" stroke="none">+</text>
+</svg>

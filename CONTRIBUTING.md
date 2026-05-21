@@ -16,7 +16,7 @@ Each role owns specific documentation and code areas. Decisions go through the O
 
 1. **Open-source first.** No paid TTS/STT/music services at runtime. Pre-rendered Piper TTS, free CC0/CC-BY music only.
 2. **Child safety > everything.** Microphone audio never leaves the device. No third-party trackers, no ad SDKs, no session replay on child pages.
-3. **English-only UI for MVP** but all user-facing strings must be i18n-keyed (no hardcoded copy).
+3. **All user-facing strings must be i18n-keyed.** EN and TR are shipped at parity — every key exists in both locales (`pnpm dlx tsx scripts/check-locale-coverage.ts` enforces symmetry + a zero-budget on un-keyed literals outside `/dev/*` and `/privacy/*`). New locales drop into `apps/web/src/locales/<code>/common.json` and register in `SUPPORTED_LOCALES`.
 4. **Process-praise language only** in child copy. Banned: "Wrong," "No," "Incorrect," "You failed," "Smart/Clever/Genius."
 5. **Tap targets ≥64px for 6–8 band, ≥48px for 9–12 band.**
 6. **No leaderboards, no streaks-with-shame, no variable-reward loot, no time-pressure timers.**
@@ -50,6 +50,12 @@ docs(adr): add ADR-0004 — on-device speech processing
 - [ ] Type-check passes (`pnpm typecheck`)
 - [ ] Lint passes (`pnpm lint`)
 - [ ] Content validates (`pnpm validate:content`)
+- [ ] Mascot parity holds (`pnpm check:mascot-parity`)
+- [ ] Audio manifest verifies (`pnpm --filter @e4k/web exec node --import tsx ../../scripts/verify-audio-manifest.ts`)
+- [ ] Locale coverage clean (`pnpm dlx tsx scripts/check-locale-coverage.ts` — EN/TR symmetric, 0 untranslated literals)
+- [ ] Safety lint clean (`bash .github/scripts/safety-lint.sh`)
+- [ ] Provenance up to date (`bash .github/scripts/check-provenance.sh`)
+- [ ] Both web builds succeed (`pnpm --filter @e4k/web build` AND `E4K_TARGET=mobile pnpm --filter @e4k/web build`)
 - [ ] If you added assets → `PROVENANCE.md` updated
 - [ ] If you touched child UI → passes Child UX Code (Honesty / Calm / Reversibility / Parent visibility / No financial coercion)
 - [ ] If you touched audio scoring → no audio Blob created, no upload endpoint

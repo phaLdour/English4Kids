@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 500" width="1024" height="500" role="img" aria-label="English4Kids — Learn English by playing">
+  <title>English4Kids feature graphic</title>
+  <desc>Cream background with Milo the Fox and Luna the Owl on the left, the app icon in the centre, and the wordmark with tagline on the right.</desc>
+  <defs>
+    <style>
+      .ink{fill:none;stroke:#1F1B16;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+      .ink-fill{fill:#1F1B16}
+      .fox{fill:#F4A93C}
+      .fox-belly{fill:#FFE6BD}
+      .owl{fill:#6FB2C9}
+      .owl-belly{fill:#FFE6BD}
+      .amber{fill:#F4A93C}
+      .teal{fill:#6FB2C9}
+      .cream{fill:#FFF8EE}
+      .leaf{fill:#7FB069}
+      .word{font-family:Comfortaa,"Trebuchet MS",sans-serif;font-weight:700;fill:#1F1B16}
+      .tag{font-family:Nunito,"Trebuchet MS",sans-serif;font-weight:600;fill:#1F1B16}
+    </style>
+  </defs>
+  <rect width="1024" height="500" fill="#FFF8EE"/>
+  <circle cx="120" cy="80" r="14" class="amber" opacity="0.55"/>
+  <circle cx="950" cy="60" r="10" class="teal" opacity="0.55"/>
+  <circle cx="880" cy="430" r="16" class="amber" opacity="0.45"/>
+  <circle cx="80" cy="420" r="12" class="teal" opacity="0.45"/>
+  <g transform="translate(60,140)">
+    <ellipse cx="120" cy="220" rx="90" ry="14" fill="#1F1B16" opacity="0.12"/>
+    <path d="M55 90 L25 35 L75 70 Z" class="fox"/>
+    <path d="M55 90 L25 35 L75 70 Z" class="ink"/>
+    <path d="M185 90 L215 35 L165 70 Z" class="fox"/>
+    <path d="M185 90 L215 35 L165 70 Z" class="ink"/>
+    <ellipse cx="120" cy="130" rx="80" ry="75" class="fox"/>
+    <ellipse cx="120" cy="130" rx="80" ry="75" class="ink"/>
+    <ellipse cx="120" cy="155" rx="42" ry="30" class="fox-belly"/>
+    <circle cx="92" cy="118" r="9" class="ink-fill"/>
+    <circle cx="148" cy="118" r="9" class="ink-fill"/>
+    <circle cx="94" cy="115" r="2.5" fill="#FFF8EE"/>
+    <circle cx="150" cy="115" r="2.5" fill="#FFF8EE"/>
+    <path d="M120 135 L113 145 L127 145 Z" class="ink-fill"/>
+    <path d="M113 152 Q120 160 127 152" class="ink"/>
+    <path d="M200 200 Q240 170 230 130 Q240 165 210 195" class="fox"/>
+    <path d="M200 200 Q240 170 230 130 Q240 165 210 195 Z" class="ink"/>
+    <path d="M225 145 Q235 158 226 175" fill="#FFF8EE" stroke="#1F1B16" stroke-width="2"/>
+    <path d="M70 90 Q60 60 80 50" class="ink"/>
+    <path d="M82 56 L88 50 L88 60 Z" class="ink-fill"/>
+  </g>
+  <g transform="translate(230,150)">
+    <ellipse cx="100" cy="210" rx="80" ry="12" fill="#1F1B16" opacity="0.12"/>
+    <path d="M40 65 L55 35 L70 70 Z" class="owl"/>
+    <path d="M40 65 L55 35 L70 70 Z" class="ink"/>
+    <path d="M160 65 L145 35 L130 70 Z" class="owl"/>
+    <path d="M160 65 L145 35 L130 70 Z" class="ink"/>
+    <ellipse cx="100" cy="130" rx="78" ry="78" class="owl"/>
+    <ellipse cx="100" cy="130" rx="78" ry="78" class="ink"/>
+    <ellipse cx="100" cy="155" rx="44" ry="38" class="owl-belly"/>
+    <circle cx="75" cy="115" r="18" fill="#FFF8EE"/>
+    <circle cx="125" cy="115" r="18" fill="#FFF8EE"/>
+    <circle cx="75" cy="115" r="18" class="ink"/>
+    <circle cx="125" cy="115" r="18" class="ink"/>
+    <circle cx="75" cy="118" r="7" class="ink-fill"/>
+    <circle cx="125" cy="118" r="7" class="ink-fill"/>
+    <circle cx="77" cy="115" r="2" fill="#FFF8EE"/>
+    <circle cx="127" cy="115" r="2" fill="#FFF8EE"/>
+    <path d="M100 138 L92 148 L108 148 Z" class="amber"/>
+    <path d="M100 138 L92 148 L108 148 Z" class="ink"/>
+    <path d="M30 165 Q15 175 25 200 Q45 195 55 175" class="owl"/>
+    <path d="M30 165 Q15 175 25 200 Q45 195 55 175 Z" class="ink"/>
+    <path d="M170 165 Q185 175 175 200 Q155 195 145 175" class="owl"/>
+    <path d="M170 165 Q185 175 175 200 Q155 195 145 175 Z" class="ink"/>
+    <path d="M178 175 Q200 165 200 145" class="ink"/>
+    <path d="M198 148 L204 142 L204 152 Z" class="ink-fill"/>
+  </g>
+  <g transform="translate(440,110)">
+    <rect x="0" y="0" width="180" height="180" rx="36" ry="36" fill="#F4A93C"/>
+    <rect x="0" y="0" width="180" height="180" rx="36" ry="36" class="ink"/>
+    <text x="90" y="118" text-anchor="middle" class="word" font-size="84">E4K</text>
+    <circle cx="35" cy="35" r="8" class="cream"/>
+    <circle cx="145" cy="35" r="6" class="cream"/>
+    <circle cx="145" cy="145" r="10" class="cream"/>
+    <path d="M50 155 Q90 180 130 155" class="ink"/>
+  </g>
+  <g transform="translate(440,310)">
+    <path d="M0 0 Q15 -22 30 0 L30 28 L0 28 Z" class="leaf"/>
+    <path d="M0 0 Q15 -22 30 0 L30 28 L0 28 Z" class="ink"/>
+    <circle cx="15" cy="38" r="6" class="leaf"/>
+    <circle cx="60" cy="14" r="8" class="amber"/>
+    <circle cx="60" cy="14" r="8" class="ink"/>
+    <circle cx="90" cy="20" r="6" class="teal"/>
+    <circle cx="90" cy="20" r="6" class="ink"/>
+    <path d="M120 28 L125 12 L130 28 L142 28 L132 38 L137 53 L125 44 L113 53 L118 38 L108 28 Z" class="amber"/>
+    <path d="M120 28 L125 12 L130 28 L142 28 L132 38 L137 53 L125 44 L113 53 L118 38 L108 28 Z" class="ink"/>
+  </g>
+  <g transform="translate(650,180)">
+    <text x="0" y="0" class="word" font-size="72">English4Kids</text>
+    <text x="4" y="70" class="tag" font-size="30">Learn English</text>
+    <text x="4" y="108" class="tag" font-size="30">by playing</text>
+    <path d="M0 130 L320 130" class="ink"/>
+    <circle cx="10" cy="130" r="6" class="amber"/>
+    <circle cx="10" cy="130" r="6" class="ink"/>
+    <circle cx="310" cy="130" r="6" class="teal"/>
+    <circle cx="310" cy="130" r="6" class="ink"/>
+  </g>
+</svg>

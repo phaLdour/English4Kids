@@ -1,6 +1,7 @@
 'use client';
 
 import { getSetting, setSetting } from '@e4k/db';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useState } from 'react';
 
 /**
@@ -25,6 +26,7 @@ interface InstallPromptProps {
 const SHOWN_KEY = 'pwa.installPromptShown';
 
 export function InstallPrompt({ ready }: InstallPromptProps): React.JSX.Element | null {
+  const t = useTranslations();
   const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
   const [visible, setVisible] = useState(false);
   const [persisted, setPersisted] = useState<boolean | null>(null);
@@ -101,11 +103,10 @@ export function InstallPrompt({ ready }: InstallPromptProps): React.JSX.Element 
         className="mb-[var(--space-2)] text-2xl text-[var(--color-primary-dark)]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
-        Want to keep playing offline?
+        {t('install.title')}
       </h2>
       <p className="mb-[var(--space-4)] text-base text-[var(--color-ink)]">
-        Add English4Kids to your home screen so Milo can come along even when
-        the Wi-Fi takes a nap.
+        {t('install.body')}
       </p>
       <div className="flex flex-col gap-[var(--space-2)] sm:flex-row">
         <button
@@ -118,7 +119,7 @@ export function InstallPrompt({ ready }: InstallPromptProps): React.JSX.Element 
             fontSize: '1.125rem',
           }}
         >
-          Add to my home screen
+          {t('install.install')}
         </button>
         <button
           type="button"
@@ -130,7 +131,7 @@ export function InstallPrompt({ ready }: InstallPromptProps): React.JSX.Element 
             fontSize: '1rem',
           }}
         >
-          Maybe later
+          {t('install.later')}
         </button>
       </div>
     </div>

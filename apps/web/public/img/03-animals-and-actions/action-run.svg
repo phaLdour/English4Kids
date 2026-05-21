@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A character running</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <circle cx="100" cy="100" r="30" fill="#F08A4B"/>
+  <circle cx="92" cy="96" r="4" fill="#1F2933" stroke="none"/>
+  <circle cx="108" cy="96" r="4" fill="#1F2933" stroke="none"/>
+  <path d="M92 110 Q100 116 108 110" stroke-width="1.5"/>
+  <path d="M84 134 Q80 162 70 188 L60 220" stroke-width="6" fill="none"/>
+  <path d="M116 134 Q140 152 170 144" stroke-width="6" fill="none"/>
+  <path d="M90 220 L120 200" stroke-width="6" fill="none"/>
+  <path d="M160 60 Q180 70 200 60" stroke="#3DA9FC" stroke-width="3" stroke-dasharray="2 4" fill="none"/>
+  <path d="M150 90 Q180 100 210 90" stroke="#3DA9FC" stroke-width="3" stroke-dasharray="2 4" fill="none"/>
+</svg>

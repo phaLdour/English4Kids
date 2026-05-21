@@ -27,6 +27,7 @@ import {
   type MascotReaction,
   type MicButtonState,
 } from '@e4k/ui';
+import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAudio } from '@/lib/audio-client';
 import { useMicSession } from '@/lib/use-mic-session';
@@ -108,6 +109,7 @@ export function SpeakIt({
   onActivityComplete,
   onMascotChange,
 }: SpeakItProps) {
+  const t = useTranslations();
   const items = filterItemsForBand(activity.items, ageBand);
   const { playPrompt } = useAudio();
   const mic = useMicSession();
@@ -154,6 +156,7 @@ export function SpeakIt({
   // trigger — we reset each time the player advances. The biome rule warns
   // about it being unused inside the body; that's fine, we use the change
   // detection only.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: itemIndex is the change-detection trigger
   useEffect(() => {
     setAttemptCount(0);
     setFeedback(null);
@@ -315,7 +318,7 @@ export function SpeakIt({
 
   return (
     <section
-      aria-label="Speaking practice"
+      aria-label={t('activities.speakItAria')}
       className="flex w-full max-w-3xl flex-col items-center gap-[var(--space-6)]"
     >
       <div className="flex flex-col items-center gap-[var(--space-3)]">
@@ -339,9 +342,9 @@ export function SpeakIt({
           fontFamily: 'var(--font-display)',
           fontSize: '1.125rem',
         }}
-        aria-label="Play the model again"
+        aria-label={t('activities.speakItListenAria')}
       >
-        Listen
+        {t('activities.speakItListen')}
       </button>
 
       {feedback ? (
@@ -350,18 +353,18 @@ export function SpeakIt({
 
       {shadowMode ? (
         <p className="text-center text-sm text-[var(--color-mist)]">
-          We're just listening today!
+          {t('activities.speakItShadowMode')}
         </p>
       ) : (
         <div className="flex flex-col items-center gap-[var(--space-3)]">
           <MicButton
             state={buttonState}
             size={buttonSize}
-            label={buttonState === 'listening' ? 'Listening, tap to stop' : 'Tap and say it'}
+            label={buttonState === 'listening' ? t('activities.speakItListening') : t('activities.speakItTapAndSay')}
             onPress={() => void handleMicPress()}
           />
           <p className="text-sm text-[var(--color-mist)]">
-            Try {MAX_ATTEMPTS - attemptCount} more {MAX_ATTEMPTS - attemptCount === 1 ? 'time' : 'times'}.
+            {t('activities.speakItAttemptsRemaining', { count: MAX_ATTEMPTS - attemptCount })}
           </p>
         </div>
       )}
@@ -370,10 +373,14 @@ export function SpeakIt({
         type="button"
         onClick={handleSkip}
         className="absolute bottom-[var(--space-4)] right-[var(--space-4)] rounded-[var(--radius-pill)] bg-[var(--color-surface-high)] px-[var(--space-4)] py-[var(--space-2)] text-sm text-[var(--color-ink)] shadow-[var(--shadow-card)] transition-transform duration-[var(--motion-fast)] active:scale-95"
-        style={{ minHeight: '40px', fontFamily: 'var(--font-display)' }}
-        aria-label="Skip this item"
+        style={{
+          minHeight: 'var(--tap-min-old)',
+          minWidth: 'var(--tap-min-old)',
+          fontFamily: 'var(--font-display)',
+        }}
+        aria-label={t('activities.speakItSkipAria')}
       >
-        Skip
+        {t('common.skip')}
       </button>
     </section>
   );

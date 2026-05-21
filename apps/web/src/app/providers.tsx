@@ -1,10 +1,55 @@
 'use client';
 
-import { getAllSettings } from '@e4k/db';
+import { db, getAllSettings } from '@e4k/db';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { type ReactNode, useEffect, useState } from 'react';
+import { I18nProvider } from '@/lib/i18n-provider';
 import { applySettingsToDom } from '@/lib/settings-effects';
+import { useAutoSync } from '@/lib/sync-client';
+import { installWhisperBridge } from '@/lib/whisper-loader';
 import { ServiceWorkerRegister } from './serwist-register';
+// English bundle is statically imported so server-side render + the static
+// export both ship messages on first paint. The TR bundle still lazy-loads
+// when `ui.locale === 'tr'` is read out of Dexie (client-only state).
+import enMessages from '@/locales/en/common.json';
+
+// Wire the @e4k/audio loader bridge once at module evaluation. The bridge
+// itself is lazy — it only fetches when WhisperWasmStt.load() is called.
+installWhisperBridge();
+
+/**
+ * Background cloud-sync driver.
+ *
+ * Picks the first local child (matches existing dashboard / export / lesson
+ * conventions) and hands it to `useAutoSync`. The hook itself gates on the
+ * parent profile being non-anonymous, so this component is a NO-OP for the
+ * default anonymous-first user.
+ *
+ * Renders nothing — pure side-effect wrapper.
+ */
+function CloudSyncDriver(): null {
+  const [childId, setChildId] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      try {
+        const rows = await db.children.toArray();
+        if (!cancelled && rows.length > 0 && rows[0]) {
+          setChildId(rows[0].id);
+        }
+      } catch {
+        // Dexie unavailable (private mode); skip.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useAutoSync(childId);
+  return null;
+}
 
 export function Providers({ children }: { children: ReactNode }) {
   const [client] = useState(
@@ -40,7 +85,10 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={client}>
       <ServiceWorkerRegister />
-      {children}
+      <CloudSyncDriver />
+      <I18nProvider initialMessages={enMessages} initialLocale="en">
+        {children}
+      </I18nProvider>
     </QueryClientProvider>
   );
 }

@@ -1,0 +1,3 @@
+# This folder is populated by `pnpm --filter @e4k/mobile cap:add:android`.
+# Capacitor writes the Gradle project into android/ on first run; we keep this
+# .gitkeep so the directory exists in git even before that step runs.

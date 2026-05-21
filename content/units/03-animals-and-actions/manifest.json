@@ -1,0 +1,2054 @@
+{
+  "id": "03-animals-and-actions",
+  "title": "Animals & Actions",
+  "theme": "pets, farm animals, action verbs, can/can't",
+  "cefr": "A1",
+  "orderIndex": 3,
+  "lessons": [
+    {
+      "id": "u3.l1",
+      "title": "Pets",
+      "miniTheme": "Animal friends at home",
+      "orderIndex": 1,
+      "vocabRefs": [
+        "vocab.cat",
+        "vocab.dog",
+        "vocab.fish",
+        "vocab.rabbit",
+        "vocab.bird",
+        "vocab.hamster"
+      ],
+      "songRef": "song.bigSmallTallShort",
+      "storyRef": "story.pipMeetsPets",
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 60,
+        "promptText": "Hop like a rabbit! Swim like a fish! Now fly like a bird!"
+      },
+      "activities": [
+        {
+          "id": "u3.l1.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Pets",
+          "items": [
+            {
+              "id": "u3.l1.a1.i1a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l1.tapCat",
+              "promptTranscript": "Tap the cat!",
+              "options": [
+                { "imageConcept": "img.pet.cat", "isCorrect": true },
+                { "imageConcept": "img.pet.dog", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (pets)."
+            },
+            {
+              "id": "u3.l1.a1.i1b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l1.tapCat",
+              "promptTranscript": "Tap the cat!",
+              "options": [
+                { "imageConcept": "img.pet.cat", "isCorrect": true },
+                { "imageConcept": "img.pet.dog", "isCorrect": false },
+                { "imageConcept": "img.color.blackCat", "isCorrect": false },
+                { "imageConcept": "img.minPair.cap", "isCorrect": false }
+              ],
+              "distractorRationale": "Pets plus minimal-pair (cat/cap) phonetic distractor."
+            },
+            {
+              "id": "u3.l1.a1.i2a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l1.tapDog",
+              "promptTranscript": "Tap the dog!",
+              "options": [
+                { "imageConcept": "img.pet.dog", "isCorrect": true },
+                { "imageConcept": "img.pet.cat", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (pets)."
+            },
+            {
+              "id": "u3.l1.a1.i2b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l1.tapDog",
+              "promptTranscript": "Tap the dog!",
+              "options": [
+                { "imageConcept": "img.pet.dog", "isCorrect": true },
+                { "imageConcept": "img.pet.cat", "isCorrect": false },
+                { "imageConcept": "img.pet.hamster", "isCorrect": false },
+                { "imageConcept": "img.minPair.log", "isCorrect": false }
+              ],
+              "distractorRationale": "Pets plus minimal-pair (dog/log) phonetic distractor."
+            },
+            {
+              "id": "u3.l1.a1.i3a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l1.tapFish",
+              "promptTranscript": "Tap the fish!",
+              "options": [
+                { "imageConcept": "img.pet.fish", "isCorrect": true },
+                { "imageConcept": "img.pet.bird", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (pets)."
+            },
+            {
+              "id": "u3.l1.a1.i3b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l1.tapFish",
+              "promptTranscript": "Tap the fish!",
+              "options": [
+                { "imageConcept": "img.pet.fish", "isCorrect": true },
+                { "imageConcept": "img.pet.bird", "isCorrect": false },
+                { "imageConcept": "img.pet.rabbit", "isCorrect": false },
+                { "imageConcept": "img.minPair.dish", "isCorrect": false }
+              ],
+              "distractorRationale": "Pets plus minimal-pair (fish/dish) phonetic distractor."
+            },
+            {
+              "id": "u3.l1.a1.i4a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l1.tapRabbit",
+              "promptTranscript": "Tap the rabbit!",
+              "options": [
+                { "imageConcept": "img.pet.rabbit", "isCorrect": true },
+                { "imageConcept": "img.pet.hamster", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (small fuzzy pets)."
+            },
+            {
+              "id": "u3.l1.a1.i4b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l1.tapRabbit",
+              "promptTranscript": "Tap the rabbit!",
+              "options": [
+                { "imageConcept": "img.pet.rabbit", "isCorrect": true },
+                { "imageConcept": "img.pet.hamster", "isCorrect": false },
+                { "imageConcept": "img.pet.cat", "isCorrect": false },
+                { "imageConcept": "img.pet.dog", "isCorrect": false }
+              ],
+              "distractorRationale": "All four pet distractors; harder discrimination."
+            },
+            {
+              "id": "u3.l1.a1.i5a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l1.tapBird",
+              "promptTranscript": "Tap the bird!",
+              "options": [
+                { "imageConcept": "img.pet.bird", "isCorrect": true },
+                { "imageConcept": "img.pet.fish", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (pets)."
+            },
+            {
+              "id": "u3.l1.a1.i5b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l1.tapBird",
+              "promptTranscript": "Tap the bird!",
+              "options": [
+                { "imageConcept": "img.pet.bird", "isCorrect": true },
+                { "imageConcept": "img.pet.fish", "isCorrect": false },
+                { "imageConcept": "img.pet.cat", "isCorrect": false },
+                { "imageConcept": "img.pet.rabbit", "isCorrect": false }
+              ],
+              "distractorRationale": "All four pet distractors."
+            },
+            {
+              "id": "u3.l1.a1.i6a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l1.tapHamster",
+              "promptTranscript": "Tap the hamster!",
+              "options": [
+                { "imageConcept": "img.pet.hamster", "isCorrect": true },
+                { "imageConcept": "img.pet.rabbit", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (small pets)."
+            },
+            {
+              "id": "u3.l1.a1.i6b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l1.tapHamster",
+              "promptTranscript": "Tap the hamster!",
+              "options": [
+                { "imageConcept": "img.pet.hamster", "isCorrect": true },
+                { "imageConcept": "img.pet.rabbit", "isCorrect": false },
+                { "imageConcept": "img.pet.dog", "isCorrect": false },
+                { "imageConcept": "img.pet.bird", "isCorrect": false }
+              ],
+              "distractorRationale": "All four pet distractors."
+            }
+          ]
+        },
+        {
+          "id": "u3.l1.a2",
+          "type": "word_builder",
+          "title": "Word Builder: Pets",
+          "items": [
+            {
+              "id": "u3.l1.a2.i1a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "cat",
+              "targetImage": "img.pet.cat",
+              "options": ["cat", "dog"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l1.spellCat",
+              "promptTranscript": "Spell 'cat'."
+            },
+            {
+              "id": "u3.l1.a2.i1b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "cat",
+              "targetImage": "img.pet.cat",
+              "letterPool": ["c", "a", "t", "p", "o"],
+              "promptAudio": "vo.milo.u3.l1.spellCat",
+              "promptTranscript": "Spell 'cat'."
+            },
+            {
+              "id": "u3.l1.a2.i2a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "dog",
+              "targetImage": "img.pet.dog",
+              "options": ["dog", "cat"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l1.spellDog",
+              "promptTranscript": "Spell 'dog'."
+            },
+            {
+              "id": "u3.l1.a2.i2b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "dog",
+              "targetImage": "img.pet.dog",
+              "letterPool": ["d", "o", "g", "a", "e"],
+              "promptAudio": "vo.milo.u3.l1.spellDog",
+              "promptTranscript": "Spell 'dog'."
+            },
+            {
+              "id": "u3.l1.a2.i3a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "fish",
+              "targetImage": "img.pet.fish",
+              "options": ["fish", "bird"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l1.spellFish",
+              "promptTranscript": "Spell 'fish'."
+            },
+            {
+              "id": "u3.l1.a2.i3b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "fish",
+              "targetImage": "img.pet.fish",
+              "letterPool": ["f", "i", "s", "h", "a", "o"],
+              "promptAudio": "vo.milo.u3.l1.spellFish",
+              "promptTranscript": "Spell 'fish'."
+            },
+            {
+              "id": "u3.l1.a2.i4a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "rabbit",
+              "targetImage": "img.pet.rabbit",
+              "options": ["rabbit", "hamster"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l1.spellRabbit",
+              "promptTranscript": "Spell 'rabbit'."
+            },
+            {
+              "id": "u3.l1.a2.i4b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "rabbit",
+              "targetImage": "img.pet.rabbit",
+              "letterPool": ["r", "a", "b", "b", "i", "t", "e", "o"],
+              "promptAudio": "vo.milo.u3.l1.spellRabbit",
+              "promptTranscript": "Spell 'rabbit'."
+            },
+            {
+              "id": "u3.l1.a2.i5a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "bird",
+              "targetImage": "img.pet.bird",
+              "options": ["bird", "fish"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l1.spellBird",
+              "promptTranscript": "Spell 'bird'."
+            },
+            {
+              "id": "u3.l1.a2.i5b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "bird",
+              "targetImage": "img.pet.bird",
+              "letterPool": ["b", "i", "r", "d", "a", "e"],
+              "promptAudio": "vo.milo.u3.l1.spellBird",
+              "promptTranscript": "Spell 'bird'."
+            },
+            {
+              "id": "u3.l1.a2.i6a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "hamster",
+              "targetImage": "img.pet.hamster",
+              "options": ["hamster", "rabbit"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l1.spellHamster",
+              "promptTranscript": "Spell 'hamster'."
+            },
+            {
+              "id": "u3.l1.a2.i6b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "hamster",
+              "targetImage": "img.pet.hamster",
+              "letterPool": ["h", "a", "m", "s", "t", "e", "r", "i", "o"],
+              "promptAudio": "vo.milo.u3.l1.spellHamster",
+              "promptTranscript": "Spell 'hamster'."
+            }
+          ]
+        },
+        {
+          "id": "u3.l1.a3",
+          "type": "speak_it",
+          "title": "Speak It: Pets",
+          "items": [
+            {
+              "id": "u3.l1.a3.i1",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "cat",
+              "promptAudio": "vo.milo.u3.l1.sayCat",
+              "promptTranscript": "Your turn! Say 'cat'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u3.l1.a3.i2",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "dog",
+              "promptAudio": "vo.milo.u3.l1.sayDog",
+              "promptTranscript": "Your turn! Say 'dog'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u3.l1.a3.i3",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "fish",
+              "promptAudio": "vo.milo.u3.l1.sayFish",
+              "promptTranscript": "Your turn! Say 'fish'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u3.l1.a3.i4",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "bird",
+              "promptAudio": "vo.milo.u3.l1.sayBird",
+              "promptTranscript": "Your turn! Say 'bird'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u3.l1.a3.i5",
+              "type": "speak_it",
+              "ageBand": "9-12",
+              "targetUtterance": "a small cat",
+              "promptAudio": "vo.milo.u3.l1.saySmallCat",
+              "promptTranscript": "Your turn! Say 'a small cat'.",
+              "attempts": 3,
+              "scoreThreshold": 0.70,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u3.l1.a3.i6",
+              "type": "speak_it",
+              "ageBand": "9-12",
+              "targetUtterance": "my pet dog",
+              "promptAudio": "vo.milo.u3.l1.sayMyPetDog",
+              "promptTranscript": "Your turn! Say 'my pet dog'.",
+              "attempts": 3,
+              "scoreThreshold": 0.70,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "u3.l1.a4",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Mixed Review (Pets + Colors)",
+          "items": [
+            {
+              "id": "u3.l1.a4.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l1.tapBlackCat",
+              "promptTranscript": "Tap the black cat!",
+              "options": [
+                { "imageConcept": "img.color.blackCat", "isCorrect": true },
+                { "imageConcept": "img.color.whiteCat", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review: color + pet combination."
+            },
+            {
+              "id": "u3.l1.a4.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l1.tapYellowBird",
+              "promptTranscript": "Tap the yellow bird!",
+              "options": [
+                { "imageConcept": "img.pet.yellowBird", "isCorrect": true },
+                { "imageConcept": "img.pet.blueBird", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review: color + pet combination."
+            },
+            {
+              "id": "u3.l1.a4.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l1.tapBlueFish",
+              "promptTranscript": "Tap the blue fish!",
+              "options": [
+                { "imageConcept": "img.pet.blueFish", "isCorrect": true },
+                { "imageConcept": "img.pet.redFish", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review: color + pet combination."
+            },
+            {
+              "id": "u3.l1.a4.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l1.tapWhiteRabbit",
+              "promptTranscript": "Tap the white rabbit!",
+              "options": [
+                { "imageConcept": "img.pet.whiteRabbit", "isCorrect": true },
+                { "imageConcept": "img.pet.brownRabbit", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review: color + pet combination."
+            },
+            {
+              "id": "u3.l1.a4.i5",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l1.tapBrownDog",
+              "promptTranscript": "Tap the brown dog!",
+              "options": [
+                { "imageConcept": "img.pet.brownDog", "isCorrect": true },
+                { "imageConcept": "img.pet.blackDog", "isCorrect": false },
+                { "imageConcept": "img.pet.whiteDog", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review: color + pet, three options."
+            },
+            {
+              "id": "u3.l1.a4.i6",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l1.tapOrangeHamster",
+              "promptTranscript": "Tap the orange hamster!",
+              "options": [
+                { "imageConcept": "img.pet.orangeHamster", "isCorrect": true },
+                { "imageConcept": "img.pet.whiteHamster", "isCorrect": false },
+                { "imageConcept": "img.pet.greyHamster", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review: color + pet, three options."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3.l2",
+      "title": "Farm Animals & Sounds",
+      "miniTheme": "Visit Coco's farm",
+      "orderIndex": 2,
+      "vocabRefs": [
+        "vocab.cow",
+        "vocab.sheep",
+        "vocab.pig",
+        "vocab.horse",
+        "vocab.duck",
+        "vocab.chicken",
+        "vocab.moo",
+        "vocab.baa",
+        "vocab.oink",
+        "vocab.neigh",
+        "vocab.quack",
+        "vocab.cluck"
+      ],
+      "songRef": "song.onCocosFarm",
+      "storyRef": "story.theQuietestAnimal",
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 60,
+        "promptText": "Make the cow sound! Now waddle like a duck! Now flap like a chicken!"
+      },
+      "activities": [
+        {
+          "id": "u3.l2.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Sound to Animal",
+          "items": [
+            {
+              "id": "u3.l2.a1.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapMoo",
+              "promptTranscript": "Who says moo?",
+              "options": [
+                { "imageConcept": "img.farm.cow", "isCorrect": true },
+                { "imageConcept": "img.farm.sheep", "isCorrect": false }
+              ],
+              "distractorRationale": "Match animal sound to its animal."
+            },
+            {
+              "id": "u3.l2.a1.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapBaa",
+              "promptTranscript": "Who says baa?",
+              "options": [
+                { "imageConcept": "img.farm.sheep", "isCorrect": true },
+                { "imageConcept": "img.farm.cow", "isCorrect": false }
+              ],
+              "distractorRationale": "Match animal sound to its animal."
+            },
+            {
+              "id": "u3.l2.a1.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapOink",
+              "promptTranscript": "Who says oink?",
+              "options": [
+                { "imageConcept": "img.farm.pig", "isCorrect": true },
+                { "imageConcept": "img.farm.horse", "isCorrect": false }
+              ],
+              "distractorRationale": "Match animal sound to its animal."
+            },
+            {
+              "id": "u3.l2.a1.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapNeigh",
+              "promptTranscript": "Who says neigh?",
+              "options": [
+                { "imageConcept": "img.farm.horse", "isCorrect": true },
+                { "imageConcept": "img.farm.pig", "isCorrect": false }
+              ],
+              "distractorRationale": "Match animal sound to its animal."
+            },
+            {
+              "id": "u3.l2.a1.i5",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapQuack",
+              "promptTranscript": "Who says quack?",
+              "options": [
+                { "imageConcept": "img.farm.duck", "isCorrect": true },
+                { "imageConcept": "img.farm.chicken", "isCorrect": false }
+              ],
+              "distractorRationale": "Match animal sound to its animal."
+            },
+            {
+              "id": "u3.l2.a1.i6",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapCluck",
+              "promptTranscript": "Who says cluck?",
+              "options": [
+                { "imageConcept": "img.farm.chicken", "isCorrect": true },
+                { "imageConcept": "img.farm.duck", "isCorrect": false }
+              ],
+              "distractorRationale": "Match animal sound to its animal."
+            },
+            {
+              "id": "u3.l2.a1.i7",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l2.tapMoo",
+              "promptTranscript": "Who says moo?",
+              "options": [
+                { "imageConcept": "img.farm.cow", "isCorrect": true },
+                { "imageConcept": "img.farm.sheep", "isCorrect": false },
+                { "imageConcept": "img.farm.horse", "isCorrect": false },
+                { "imageConcept": "img.farm.pig", "isCorrect": false }
+              ],
+              "distractorRationale": "Wider farm-sound discrimination set."
+            },
+            {
+              "id": "u3.l2.a1.i8",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l2.tapCluck",
+              "promptTranscript": "Who says cluck?",
+              "options": [
+                { "imageConcept": "img.farm.chicken", "isCorrect": true },
+                { "imageConcept": "img.farm.duck", "isCorrect": false },
+                { "imageConcept": "img.farm.pig", "isCorrect": false },
+                { "imageConcept": "img.farm.sheep", "isCorrect": false }
+              ],
+              "distractorRationale": "Wider farm-sound discrimination set."
+            }
+          ]
+        },
+        {
+          "id": "u3.l2.a2",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Farm Animals",
+          "items": [
+            {
+              "id": "u3.l2.a2.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapCow",
+              "promptTranscript": "Tap the cow!",
+              "options": [
+                { "imageConcept": "img.farm.cow", "isCorrect": true },
+                { "imageConcept": "img.farm.horse", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (farm animals)."
+            },
+            {
+              "id": "u3.l2.a2.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapSheep",
+              "promptTranscript": "Tap the sheep!",
+              "options": [
+                { "imageConcept": "img.farm.sheep", "isCorrect": true },
+                { "imageConcept": "img.farm.cow", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (farm animals)."
+            },
+            {
+              "id": "u3.l2.a2.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapPig",
+              "promptTranscript": "Tap the pig!",
+              "options": [
+                { "imageConcept": "img.farm.pig", "isCorrect": true },
+                { "imageConcept": "img.farm.duck", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (farm animals)."
+            },
+            {
+              "id": "u3.l2.a2.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapHorse",
+              "promptTranscript": "Tap the horse!",
+              "options": [
+                { "imageConcept": "img.farm.horse", "isCorrect": true },
+                { "imageConcept": "img.farm.cow", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (farm animals)."
+            },
+            {
+              "id": "u3.l2.a2.i5",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapDuck",
+              "promptTranscript": "Tap the duck!",
+              "options": [
+                { "imageConcept": "img.farm.duck", "isCorrect": true },
+                { "imageConcept": "img.farm.chicken", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (farm birds)."
+            },
+            {
+              "id": "u3.l2.a2.i6",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l2.tapChicken",
+              "promptTranscript": "Tap the chicken!",
+              "options": [
+                { "imageConcept": "img.farm.chicken", "isCorrect": true },
+                { "imageConcept": "img.farm.duck", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (farm birds)."
+            },
+            {
+              "id": "u3.l2.a2.i7",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l2.tapHorse",
+              "promptTranscript": "Tap the horse!",
+              "options": [
+                { "imageConcept": "img.farm.horse", "isCorrect": true },
+                { "imageConcept": "img.farm.cow", "isCorrect": false },
+                { "imageConcept": "img.farm.sheep", "isCorrect": false },
+                { "imageConcept": "img.farm.pig", "isCorrect": false }
+              ],
+              "distractorRationale": "Wider farm-animal discrimination set."
+            },
+            {
+              "id": "u3.l2.a2.i8",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l2.tapChicken",
+              "promptTranscript": "Tap the chicken!",
+              "options": [
+                { "imageConcept": "img.farm.chicken", "isCorrect": true },
+                { "imageConcept": "img.farm.duck", "isCorrect": false },
+                { "imageConcept": "img.farm.cow", "isCorrect": false },
+                { "imageConcept": "img.farm.horse", "isCorrect": false }
+              ],
+              "distractorRationale": "Wider farm-animal discrimination set."
+            }
+          ]
+        },
+        {
+          "id": "u3.l2.a3",
+          "type": "sing_along",
+          "title": "Sing Along: On Coco's Farm",
+          "items": [
+            {
+              "id": "u3.l2.a3.i1",
+              "type": "sing_along",
+              "ageBand": "6-8",
+              "songId": "song.onCocosFarm"
+            },
+            {
+              "id": "u3.l2.a3.i2",
+              "type": "sing_along",
+              "ageBand": "9-12",
+              "songId": "song.onCocosFarm"
+            }
+          ]
+        },
+        {
+          "id": "u3.l2.a4",
+          "type": "word_builder",
+          "title": "Word Builder: Farm Animals",
+          "items": [
+            {
+              "id": "u3.l2.a4.i1a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "cow",
+              "targetImage": "img.farm.cow",
+              "options": ["cow", "pig"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l2.spellCow",
+              "promptTranscript": "Spell 'cow'."
+            },
+            {
+              "id": "u3.l2.a4.i1b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "cow",
+              "targetImage": "img.farm.cow",
+              "letterPool": ["c", "o", "w", "a", "e"],
+              "promptAudio": "vo.milo.u3.l2.spellCow",
+              "promptTranscript": "Spell 'cow'."
+            },
+            {
+              "id": "u3.l2.a4.i2a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "pig",
+              "targetImage": "img.farm.pig",
+              "options": ["pig", "cow"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l2.spellPig",
+              "promptTranscript": "Spell 'pig'."
+            },
+            {
+              "id": "u3.l2.a4.i2b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "pig",
+              "targetImage": "img.farm.pig",
+              "letterPool": ["p", "i", "g", "a", "o"],
+              "promptAudio": "vo.milo.u3.l2.spellPig",
+              "promptTranscript": "Spell 'pig'."
+            },
+            {
+              "id": "u3.l2.a4.i3a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "sheep",
+              "targetImage": "img.farm.sheep",
+              "options": ["sheep", "horse"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l2.spellSheep",
+              "promptTranscript": "Spell 'sheep'."
+            },
+            {
+              "id": "u3.l2.a4.i3b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "sheep",
+              "targetImage": "img.farm.sheep",
+              "letterPool": ["s", "h", "e", "e", "p", "a", "i"],
+              "promptAudio": "vo.milo.u3.l2.spellSheep",
+              "promptTranscript": "Spell 'sheep'."
+            },
+            {
+              "id": "u3.l2.a4.i4a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "horse",
+              "targetImage": "img.farm.horse",
+              "options": ["horse", "sheep"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l2.spellHorse",
+              "promptTranscript": "Spell 'horse'."
+            },
+            {
+              "id": "u3.l2.a4.i4b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "horse",
+              "targetImage": "img.farm.horse",
+              "letterPool": ["h", "o", "r", "s", "e", "a", "i"],
+              "promptAudio": "vo.milo.u3.l2.spellHorse",
+              "promptTranscript": "Spell 'horse'."
+            },
+            {
+              "id": "u3.l2.a4.i5a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "duck",
+              "targetImage": "img.farm.duck",
+              "options": ["duck", "chicken"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l2.spellDuck",
+              "promptTranscript": "Spell 'duck'."
+            },
+            {
+              "id": "u3.l2.a4.i5b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "duck",
+              "targetImage": "img.farm.duck",
+              "letterPool": ["d", "u", "c", "k", "a", "o"],
+              "promptAudio": "vo.milo.u3.l2.spellDuck",
+              "promptTranscript": "Spell 'duck'."
+            },
+            {
+              "id": "u3.l2.a4.i6a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "chicken",
+              "targetImage": "img.farm.chicken",
+              "options": ["chicken", "duck"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l2.spellChicken",
+              "promptTranscript": "Spell 'chicken'."
+            },
+            {
+              "id": "u3.l2.a4.i6b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "chicken",
+              "targetImage": "img.farm.chicken",
+              "letterPool": ["c", "h", "i", "c", "k", "e", "n", "a", "o"],
+              "promptAudio": "vo.milo.u3.l2.spellChicken",
+              "promptTranscript": "Spell 'chicken'."
+            }
+          ]
+        },
+        {
+          "id": "u3.l2.a5",
+          "type": "story_time",
+          "title": "Story: The Quietest Animal",
+          "items": [
+            {
+              "id": "u3.l2.a5.i1",
+              "type": "story_time",
+              "ageBand": "6-8",
+              "storyId": "story.theQuietestAnimal",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.theQuietestAnimal.p1",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p1",
+                  "narrationText": "Coco the Goat walks on the farm. She wants to hear a quiet sound.",
+                  "karaokeHighlights": [],
+                  "duration": 5.0
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.theQuietestAnimal.p2",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p2",
+                  "narrationText": "The cow says moo. The sheep says baa. Not so quiet.",
+                  "karaokeHighlights": [
+                    { "wordStart": 4, "wordEnd": 7, "vocabRef": "vocab.cow" },
+                    { "wordStart": 13, "wordEnd": 16, "vocabRef": "vocab.moo" },
+                    { "wordStart": 22, "wordEnd": 27, "vocabRef": "vocab.sheep" },
+                    { "wordStart": 33, "wordEnd": 36, "vocabRef": "vocab.baa" }
+                  ],
+                  "duration": 5.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.theQuietestAnimal.p3",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p3",
+                  "narrationText": "The pig says oink. The horse says neigh. Still not so quiet.",
+                  "karaokeHighlights": [
+                    { "wordStart": 4, "wordEnd": 7, "vocabRef": "vocab.pig" },
+                    { "wordStart": 13, "wordEnd": 17, "vocabRef": "vocab.oink" },
+                    { "wordStart": 23, "wordEnd": 28, "vocabRef": "vocab.horse" },
+                    { "wordStart": 34, "wordEnd": 39, "vocabRef": "vocab.neigh" }
+                  ],
+                  "duration": 5.5
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.theQuietestAnimal.p4",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p4",
+                  "narrationText": "The duck says quack. The chicken says cluck. Loud and proud!",
+                  "karaokeHighlights": [
+                    { "wordStart": 4, "wordEnd": 8, "vocabRef": "vocab.duck" },
+                    { "wordStart": 14, "wordEnd": 19, "vocabRef": "vocab.quack" },
+                    { "wordStart": 25, "wordEnd": 32, "vocabRef": "vocab.chicken" },
+                    { "wordStart": 38, "wordEnd": 43, "vocabRef": "vocab.cluck" }
+                  ],
+                  "duration": 5.5
+                },
+                {
+                  "panelId": "p5",
+                  "imageConcept": "img.story.theQuietestAnimal.p5",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p5",
+                  "narrationText": "Coco peeks in the pond. A fish blows bubbles. Bubble, bubble. So quiet!",
+                  "karaokeHighlights": [
+                    { "wordStart": 26, "wordEnd": 30, "vocabRef": "vocab.fish" }
+                  ],
+                  "duration": 5.5
+                },
+                {
+                  "panelId": "p6",
+                  "imageConcept": "img.story.theQuietestAnimal.p6",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p6",
+                  "narrationText": "Every voice is welcome on the farm. Loud, soft, big, small — all friends.",
+                  "karaokeHighlights": [],
+                  "duration": 6.0
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.theQuietestAnimal.q1",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "6-8",
+                  "promptAudio": "vo.luna.story.theQuietestAnimal.q1",
+                  "promptTranscript": "Which animal was the quietest?",
+                  "items": ["the fish", "the cow"],
+                  "correctIndex": 0
+                }
+              ]
+            },
+            {
+              "id": "u3.l2.a5.i2",
+              "type": "story_time",
+              "ageBand": "9-12",
+              "storyId": "story.theQuietestAnimal",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.theQuietestAnimal.p1",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p1",
+                  "narrationText": "Coco the Goat walks on the farm. She wants to hear a quiet sound.",
+                  "karaokeHighlights": [],
+                  "duration": 5.0
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.theQuietestAnimal.p2",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p2",
+                  "narrationText": "The cow says moo. The sheep says baa. Not so quiet.",
+                  "karaokeHighlights": [
+                    { "wordStart": 4, "wordEnd": 7, "vocabRef": "vocab.cow" },
+                    { "wordStart": 13, "wordEnd": 16, "vocabRef": "vocab.moo" },
+                    { "wordStart": 22, "wordEnd": 27, "vocabRef": "vocab.sheep" },
+                    { "wordStart": 33, "wordEnd": 36, "vocabRef": "vocab.baa" }
+                  ],
+                  "duration": 5.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.theQuietestAnimal.p3",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p3",
+                  "narrationText": "The pig says oink. The horse says neigh. Still not so quiet.",
+                  "karaokeHighlights": [
+                    { "wordStart": 4, "wordEnd": 7, "vocabRef": "vocab.pig" },
+                    { "wordStart": 13, "wordEnd": 17, "vocabRef": "vocab.oink" },
+                    { "wordStart": 23, "wordEnd": 28, "vocabRef": "vocab.horse" },
+                    { "wordStart": 34, "wordEnd": 39, "vocabRef": "vocab.neigh" }
+                  ],
+                  "duration": 5.5
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.theQuietestAnimal.p4",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p4",
+                  "narrationText": "The duck says quack. The chicken says cluck. Loud and proud!",
+                  "karaokeHighlights": [
+                    { "wordStart": 4, "wordEnd": 8, "vocabRef": "vocab.duck" },
+                    { "wordStart": 14, "wordEnd": 19, "vocabRef": "vocab.quack" },
+                    { "wordStart": 25, "wordEnd": 32, "vocabRef": "vocab.chicken" },
+                    { "wordStart": 38, "wordEnd": 43, "vocabRef": "vocab.cluck" }
+                  ],
+                  "duration": 5.5
+                },
+                {
+                  "panelId": "p5",
+                  "imageConcept": "img.story.theQuietestAnimal.p5",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p5",
+                  "narrationText": "Coco peeks in the pond. A fish blows bubbles. Bubble, bubble. So quiet!",
+                  "karaokeHighlights": [
+                    { "wordStart": 26, "wordEnd": 30, "vocabRef": "vocab.fish" }
+                  ],
+                  "duration": 5.5
+                },
+                {
+                  "panelId": "p6",
+                  "imageConcept": "img.story.theQuietestAnimal.p6",
+                  "narrationAudio": "vo.luna.story.theQuietestAnimal.p6",
+                  "narrationText": "Every voice is welcome on the farm. Loud, soft, big, small — all friends.",
+                  "karaokeHighlights": [],
+                  "duration": 6.0
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.theQuietestAnimal.q1.912",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.luna.story.theQuietestAnimal.q1",
+                  "promptTranscript": "Which animal made the quietest sound?",
+                  "items": ["the fish", "the cow", "the duck"],
+                  "correctIndex": 0
+                },
+                {
+                  "id": "story.theQuietestAnimal.q2.912",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.luna.story.theQuietestAnimal.q2",
+                  "promptTranscript": "What sound does the horse make?",
+                  "items": ["neigh", "moo", "quack"],
+                  "correctIndex": 0
+                },
+                {
+                  "id": "story.theQuietestAnimal.q3.912",
+                  "type": "story_question",
+                  "questionType": "sequencing",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.luna.story.theQuietestAnimal.q3",
+                  "promptTranscript": "Put Coco's farm walk in order.",
+                  "items": [
+                    "Coco meets the cow and the sheep.",
+                    "Coco meets the pig and the horse.",
+                    "Coco meets the duck and the chicken.",
+                    "Coco finds the fish in the pond."
+                  ],
+                  "correctOrder": [0, 1, 2, 3]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3.l3",
+      "title": "Action Verbs",
+      "miniTheme": "Move and do",
+      "orderIndex": 3,
+      "vocabRefs": [
+        "vocab.run",
+        "vocab.jump",
+        "vocab.walk",
+        "vocab.swim",
+        "vocab.fly",
+        "vocab.sleep"
+      ],
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 90,
+        "promptText": "Run in place! Now jump! Walk slowly. Pretend to swim. Now fly with your arms. Now sleep — shhh!"
+      },
+      "activities": [
+        {
+          "id": "u3.l3.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Actions",
+          "items": [
+            {
+              "id": "u3.l3.a1.i1a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l3.tapRun",
+              "promptTranscript": "Tap: run!",
+              "options": [
+                { "imageConcept": "img.action.run", "isCorrect": true },
+                { "imageConcept": "img.action.walk", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (movement verbs)."
+            },
+            {
+              "id": "u3.l3.a1.i1b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l3.tapRun",
+              "promptTranscript": "Tap: run!",
+              "options": [
+                { "imageConcept": "img.action.run", "isCorrect": true },
+                { "imageConcept": "img.action.walk", "isCorrect": false },
+                { "imageConcept": "img.action.jump", "isCorrect": false },
+                { "imageConcept": "img.action.swim", "isCorrect": false }
+              ],
+              "distractorRationale": "All four movement verbs as distractors."
+            },
+            {
+              "id": "u3.l3.a1.i2a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l3.tapJump",
+              "promptTranscript": "Tap: jump!",
+              "options": [
+                { "imageConcept": "img.action.jump", "isCorrect": true },
+                { "imageConcept": "img.action.run", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (movement verbs)."
+            },
+            {
+              "id": "u3.l3.a1.i2b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l3.tapJump",
+              "promptTranscript": "Tap: jump!",
+              "options": [
+                { "imageConcept": "img.action.jump", "isCorrect": true },
+                { "imageConcept": "img.action.run", "isCorrect": false },
+                { "imageConcept": "img.action.walk", "isCorrect": false },
+                { "imageConcept": "img.action.fly", "isCorrect": false }
+              ],
+              "distractorRationale": "All four movement verbs as distractors."
+            },
+            {
+              "id": "u3.l3.a1.i3a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l3.tapWalk",
+              "promptTranscript": "Tap: walk!",
+              "options": [
+                { "imageConcept": "img.action.walk", "isCorrect": true },
+                { "imageConcept": "img.action.run", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (movement verbs)."
+            },
+            {
+              "id": "u3.l3.a1.i3b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l3.tapWalk",
+              "promptTranscript": "Tap: walk!",
+              "options": [
+                { "imageConcept": "img.action.walk", "isCorrect": true },
+                { "imageConcept": "img.action.run", "isCorrect": false },
+                { "imageConcept": "img.action.sleep", "isCorrect": false },
+                { "imageConcept": "img.action.jump", "isCorrect": false }
+              ],
+              "distractorRationale": "All four verbs as distractors."
+            },
+            {
+              "id": "u3.l3.a1.i4a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l3.tapSwim",
+              "promptTranscript": "Tap: swim!",
+              "options": [
+                { "imageConcept": "img.action.swim", "isCorrect": true },
+                { "imageConcept": "img.action.fly", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (animal abilities)."
+            },
+            {
+              "id": "u3.l3.a1.i4b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l3.tapSwim",
+              "promptTranscript": "Tap: swim!",
+              "options": [
+                { "imageConcept": "img.action.swim", "isCorrect": true },
+                { "imageConcept": "img.action.fly", "isCorrect": false },
+                { "imageConcept": "img.action.run", "isCorrect": false },
+                { "imageConcept": "img.action.jump", "isCorrect": false }
+              ],
+              "distractorRationale": "All four verbs as distractors."
+            },
+            {
+              "id": "u3.l3.a1.i5a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l3.tapFly",
+              "promptTranscript": "Tap: fly!",
+              "options": [
+                { "imageConcept": "img.action.fly", "isCorrect": true },
+                { "imageConcept": "img.action.swim", "isCorrect": false }
+              ],
+              "distractorRationale": "Same semantic field (animal abilities)."
+            },
+            {
+              "id": "u3.l3.a1.i5b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l3.tapFly",
+              "promptTranscript": "Tap: fly!",
+              "options": [
+                { "imageConcept": "img.action.fly", "isCorrect": true },
+                { "imageConcept": "img.action.swim", "isCorrect": false },
+                { "imageConcept": "img.action.jump", "isCorrect": false },
+                { "imageConcept": "img.action.walk", "isCorrect": false }
+              ],
+              "distractorRationale": "All four verbs as distractors."
+            },
+            {
+              "id": "u3.l3.a1.i6a",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l3.tapSleep",
+              "promptTranscript": "Tap: sleep!",
+              "options": [
+                { "imageConcept": "img.action.sleep", "isCorrect": true },
+                { "imageConcept": "img.action.walk", "isCorrect": false }
+              ],
+              "distractorRationale": "Action vs rest (movement vs stillness)."
+            },
+            {
+              "id": "u3.l3.a1.i6b",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l3.tapSleep",
+              "promptTranscript": "Tap: sleep!",
+              "options": [
+                { "imageConcept": "img.action.sleep", "isCorrect": true },
+                { "imageConcept": "img.action.walk", "isCorrect": false },
+                { "imageConcept": "img.action.run", "isCorrect": false },
+                { "imageConcept": "img.action.jump", "isCorrect": false }
+              ],
+              "distractorRationale": "Rest vs all movement verbs."
+            }
+          ]
+        },
+        {
+          "id": "u3.l3.a2",
+          "type": "word_builder",
+          "title": "Word Builder: Actions",
+          "items": [
+            {
+              "id": "u3.l3.a2.i1a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "run",
+              "targetImage": "img.action.run",
+              "options": ["run", "walk"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l3.spellRun",
+              "promptTranscript": "Spell 'run'."
+            },
+            {
+              "id": "u3.l3.a2.i1b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "run",
+              "targetImage": "img.action.run",
+              "letterPool": ["r", "u", "n", "a", "e"],
+              "promptAudio": "vo.milo.u3.l3.spellRun",
+              "promptTranscript": "Spell 'run'."
+            },
+            {
+              "id": "u3.l3.a2.i2a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "jump",
+              "targetImage": "img.action.jump",
+              "options": ["jump", "run"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l3.spellJump",
+              "promptTranscript": "Spell 'jump'."
+            },
+            {
+              "id": "u3.l3.a2.i2b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "jump",
+              "targetImage": "img.action.jump",
+              "letterPool": ["j", "u", "m", "p", "a", "o"],
+              "promptAudio": "vo.milo.u3.l3.spellJump",
+              "promptTranscript": "Spell 'jump'."
+            },
+            {
+              "id": "u3.l3.a2.i3a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "walk",
+              "targetImage": "img.action.walk",
+              "options": ["walk", "swim"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l3.spellWalk",
+              "promptTranscript": "Spell 'walk'."
+            },
+            {
+              "id": "u3.l3.a2.i3b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "walk",
+              "targetImage": "img.action.walk",
+              "letterPool": ["w", "a", "l", "k", "e", "o"],
+              "promptAudio": "vo.milo.u3.l3.spellWalk",
+              "promptTranscript": "Spell 'walk'."
+            },
+            {
+              "id": "u3.l3.a2.i4a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "swim",
+              "targetImage": "img.action.swim",
+              "options": ["swim", "fly"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l3.spellSwim",
+              "promptTranscript": "Spell 'swim'."
+            },
+            {
+              "id": "u3.l3.a2.i4b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "swim",
+              "targetImage": "img.action.swim",
+              "letterPool": ["s", "w", "i", "m", "a", "o"],
+              "promptAudio": "vo.milo.u3.l3.spellSwim",
+              "promptTranscript": "Spell 'swim'."
+            },
+            {
+              "id": "u3.l3.a2.i5a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "fly",
+              "targetImage": "img.action.fly",
+              "options": ["fly", "swim"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l3.spellFly",
+              "promptTranscript": "Spell 'fly'."
+            },
+            {
+              "id": "u3.l3.a2.i5b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "fly",
+              "targetImage": "img.action.fly",
+              "letterPool": ["f", "l", "y", "a", "e"],
+              "promptAudio": "vo.milo.u3.l3.spellFly",
+              "promptTranscript": "Spell 'fly'."
+            },
+            {
+              "id": "u3.l3.a2.i6a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "sleep",
+              "targetImage": "img.action.sleep",
+              "options": ["sleep", "jump"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l3.spellSleep",
+              "promptTranscript": "Spell 'sleep'."
+            },
+            {
+              "id": "u3.l3.a2.i6b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "letter_spell",
+              "targetWord": "sleep",
+              "targetImage": "img.action.sleep",
+              "letterPool": ["s", "l", "e", "e", "p", "a", "i"],
+              "promptAudio": "vo.milo.u3.l3.spellSleep",
+              "promptTranscript": "Spell 'sleep'."
+            }
+          ]
+        },
+        {
+          "id": "u3.l3.a3",
+          "type": "speak_it",
+          "title": "Speak It: Actions",
+          "items": [
+            {
+              "id": "u3.l3.a3.i1",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "run",
+              "promptAudio": "vo.milo.u3.l3.sayRun",
+              "promptTranscript": "Your turn! Say 'run'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u3.l3.a3.i2",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "jump",
+              "promptAudio": "vo.milo.u3.l3.sayJump",
+              "promptTranscript": "Your turn! Say 'jump'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u3.l3.a3.i3",
+              "type": "speak_it",
+              "ageBand": "6-8",
+              "targetUtterance": "fly",
+              "promptAudio": "vo.milo.u3.l3.sayFly",
+              "promptTranscript": "Your turn! Say 'fly'.",
+              "attempts": 3,
+              "scoreThreshold": 0.55,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u3.l3.a3.i4",
+              "type": "speak_it",
+              "ageBand": "9-12",
+              "targetUtterance": "I can run",
+              "promptAudio": "vo.milo.u3.l3.sayICanRun",
+              "promptTranscript": "Your turn! Say 'I can run'.",
+              "attempts": 3,
+              "scoreThreshold": 0.70,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u3.l3.a3.i5",
+              "type": "speak_it",
+              "ageBand": "9-12",
+              "targetUtterance": "I can jump",
+              "promptAudio": "vo.milo.u3.l3.sayICanJump",
+              "promptTranscript": "Your turn! Say 'I can jump'.",
+              "attempts": 3,
+              "scoreThreshold": 0.70,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            },
+            {
+              "id": "u3.l3.a3.i6",
+              "type": "speak_it",
+              "ageBand": "9-12",
+              "targetUtterance": "I can swim",
+              "promptAudio": "vo.milo.u3.l3.sayICanSwim",
+              "promptTranscript": "Your turn! Say 'I can swim'.",
+              "attempts": 3,
+              "scoreThreshold": 0.70,
+              "encouragementSet": [
+                "You got it!",
+                "Almost! Listen one more time.",
+                "Let's say it together."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "u3.l3.a4",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Mixed Review (Pets + Actions)",
+          "items": [
+            {
+              "id": "u3.l3.a4.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l3.tapCatSleeps",
+              "promptTranscript": "Tap: the cat can sleep.",
+              "options": [
+                { "imageConcept": "img.mixed.catSleep", "isCorrect": true },
+                { "imageConcept": "img.mixed.catRun", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review: pet + action chunk."
+            },
+            {
+              "id": "u3.l3.a4.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l3.tapFishSwims",
+              "promptTranscript": "Tap: the fish can swim.",
+              "options": [
+                { "imageConcept": "img.mixed.fishSwim", "isCorrect": true },
+                { "imageConcept": "img.mixed.fishFly", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review: pet + action chunk."
+            },
+            {
+              "id": "u3.l3.a4.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l3.tapBirdFlies",
+              "promptTranscript": "Tap: the bird can fly.",
+              "options": [
+                { "imageConcept": "img.mixed.birdFly", "isCorrect": true },
+                { "imageConcept": "img.mixed.birdSwim", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review: pet + action chunk."
+            },
+            {
+              "id": "u3.l3.a4.i4",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l3.tapRabbitJumps",
+              "promptTranscript": "Tap: the rabbit can jump.",
+              "options": [
+                { "imageConcept": "img.mixed.rabbitJump", "isCorrect": true },
+                { "imageConcept": "img.mixed.rabbitSwim", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review: pet + action chunk."
+            },
+            {
+              "id": "u3.l3.a4.i5",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l3.tapDogRuns",
+              "promptTranscript": "Tap: the dog can run.",
+              "options": [
+                { "imageConcept": "img.mixed.dogRun", "isCorrect": true },
+                { "imageConcept": "img.mixed.dogSleep", "isCorrect": false },
+                { "imageConcept": "img.mixed.dogSwim", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review with 3 options."
+            },
+            {
+              "id": "u3.l3.a4.i6",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l3.tapHamsterWalks",
+              "promptTranscript": "Tap: the hamster can walk.",
+              "options": [
+                { "imageConcept": "img.mixed.hamsterWalk", "isCorrect": true },
+                { "imageConcept": "img.mixed.hamsterFly", "isCorrect": false },
+                { "imageConcept": "img.mixed.hamsterSwim", "isCorrect": false }
+              ],
+              "distractorRationale": "Mixed review with 3 options."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3.l4",
+      "title": "Can & Can't",
+      "miniTheme": "What can you do?",
+      "orderIndex": 4,
+      "vocabRefs": [
+        "vocab.can",
+        "vocab.cant",
+        "vocab.a-bird-can-fly",
+        "vocab.a-fish-can-swim",
+        "vocab.a-fish-cant-walk",
+        "vocab.a-cat-cant-fly"
+      ],
+      "storyRef": "story.whatCanYouDo",
+      "tprBreak": {
+        "afterActivityIndex": 1,
+        "durationSec": 60,
+        "promptText": "Show me what you CAN do! Wiggle your fingers! Now point to something you CAN'T do yet — that's okay, you'll learn."
+      },
+      "activities": [
+        {
+          "id": "u3.l4.a1",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Can (Positive)",
+          "items": [
+            {
+              "id": "u3.l4.a1.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l4.tapBirdCanFly",
+              "promptTranscript": "Tap: a bird can fly.",
+              "options": [
+                { "imageConcept": "img.ability.birdFly", "isCorrect": true },
+                { "imageConcept": "img.ability.fishFly", "isCorrect": false }
+              ],
+              "distractorRationale": "Positive ability with sensible distractor."
+            },
+            {
+              "id": "u3.l4.a1.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l4.tapFishCanSwim",
+              "promptTranscript": "Tap: a fish can swim.",
+              "options": [
+                { "imageConcept": "img.ability.fishSwim", "isCorrect": true },
+                { "imageConcept": "img.ability.fishWalk", "isCorrect": false }
+              ],
+              "distractorRationale": "Positive ability with sensible distractor."
+            },
+            {
+              "id": "u3.l4.a1.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l4.tapRabbitCanJump",
+              "promptTranscript": "Tap: a rabbit can jump.",
+              "options": [
+                { "imageConcept": "img.ability.rabbitJump", "isCorrect": true },
+                { "imageConcept": "img.ability.rabbitFly", "isCorrect": false }
+              ],
+              "distractorRationale": "Positive ability with sensible distractor."
+            },
+            {
+              "id": "u3.l4.a1.i4",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l4.tapHorseCanRun",
+              "promptTranscript": "Tap: a horse can run.",
+              "options": [
+                { "imageConcept": "img.ability.horseRun", "isCorrect": true },
+                { "imageConcept": "img.ability.horseSwim", "isCorrect": false },
+                { "imageConcept": "img.ability.horseFly", "isCorrect": false }
+              ],
+              "distractorRationale": "Positive ability with three options."
+            },
+            {
+              "id": "u3.l4.a1.i5",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l4.tapDuckCanSwim",
+              "promptTranscript": "Tap: a duck can swim.",
+              "options": [
+                { "imageConcept": "img.ability.duckSwim", "isCorrect": true },
+                { "imageConcept": "img.ability.duckFly", "isCorrect": false },
+                { "imageConcept": "img.ability.duckClimb", "isCorrect": false }
+              ],
+              "distractorRationale": "Positive ability with three options."
+            }
+          ]
+        },
+        {
+          "id": "u3.l4.a2",
+          "type": "listen_tap",
+          "title": "Listen and Tap: Can't (Gentle)",
+          "items": [
+            {
+              "id": "u3.l4.a2.i1",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l4.tapFishCantWalk",
+              "promptTranscript": "Tap: a fish can't walk.",
+              "options": [
+                { "imageConcept": "img.ability.fishWalkX", "isCorrect": true },
+                { "imageConcept": "img.ability.fishSwim", "isCorrect": false }
+              ],
+              "distractorRationale": "Negative ability: highlight what an animal does not do."
+            },
+            {
+              "id": "u3.l4.a2.i2",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l4.tapCatCantFly",
+              "promptTranscript": "Tap: a cat can't fly.",
+              "options": [
+                { "imageConcept": "img.ability.catFlyX", "isCorrect": true },
+                { "imageConcept": "img.ability.catSleep", "isCorrect": false }
+              ],
+              "distractorRationale": "Negative ability: highlight what an animal does not do."
+            },
+            {
+              "id": "u3.l4.a2.i3",
+              "type": "listen_tap",
+              "ageBand": "6-8",
+              "promptAudio": "vo.milo.u3.l4.tapDogCantFly",
+              "promptTranscript": "Tap: a dog can't fly.",
+              "options": [
+                { "imageConcept": "img.ability.dogFlyX", "isCorrect": true },
+                { "imageConcept": "img.ability.dogRun", "isCorrect": false }
+              ],
+              "distractorRationale": "Negative ability: highlight what an animal does not do."
+            },
+            {
+              "id": "u3.l4.a2.i4",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l4.tapBirdCantSwimFar",
+              "promptTranscript": "Tap: a bird can't swim like a fish.",
+              "options": [
+                { "imageConcept": "img.ability.birdSwimX", "isCorrect": true },
+                { "imageConcept": "img.ability.birdFly", "isCorrect": false },
+                { "imageConcept": "img.ability.fishSwim", "isCorrect": false }
+              ],
+              "distractorRationale": "Negative ability with comparative chunk."
+            },
+            {
+              "id": "u3.l4.a2.i5",
+              "type": "listen_tap",
+              "ageBand": "9-12",
+              "promptAudio": "vo.milo.u3.l4.tapHamsterCantFly",
+              "promptTranscript": "Tap: a hamster can't fly.",
+              "options": [
+                { "imageConcept": "img.ability.hamsterFlyX", "isCorrect": true },
+                { "imageConcept": "img.ability.hamsterWalk", "isCorrect": false },
+                { "imageConcept": "img.ability.birdFly", "isCorrect": false }
+              ],
+              "distractorRationale": "Negative ability with sensible distractors."
+            }
+          ]
+        },
+        {
+          "id": "u3.l4.a3",
+          "type": "word_builder",
+          "title": "Word Builder: Build the Sentence",
+          "items": [
+            {
+              "id": "u3.l4.a3.i1a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "a bird can fly",
+              "targetImage": "img.ability.birdFly",
+              "options": ["a bird can fly", "a fish can fly"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l4.buildBirdCanFly",
+              "promptTranscript": "Build: a bird can fly."
+            },
+            {
+              "id": "u3.l4.a3.i1b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "sentence_chunks",
+              "targetWord": "a bird can fly",
+              "targetImage": "img.ability.birdFly",
+              "letterPool": ["a", "bird", "can", "fly", "fish", "swim", "walk"],
+              "promptAudio": "vo.milo.u3.l4.buildBirdCanFly",
+              "promptTranscript": "Put the words in order: a bird can fly."
+            },
+            {
+              "id": "u3.l4.a3.i2a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "a fish can swim",
+              "targetImage": "img.ability.fishSwim",
+              "options": ["a fish can swim", "a fish can walk"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l4.buildFishCanSwim",
+              "promptTranscript": "Build: a fish can swim."
+            },
+            {
+              "id": "u3.l4.a3.i2b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "sentence_chunks",
+              "targetWord": "a fish can swim",
+              "targetImage": "img.ability.fishSwim",
+              "letterPool": ["a", "fish", "can", "swim", "bird", "fly", "walk"],
+              "promptAudio": "vo.milo.u3.l4.buildFishCanSwim",
+              "promptTranscript": "Put the words in order: a fish can swim."
+            },
+            {
+              "id": "u3.l4.a3.i3a",
+              "type": "word_builder",
+              "ageBand": "6-8",
+              "variant": "whole_word_drag",
+              "targetWord": "a fish can't walk",
+              "targetImage": "img.ability.fishWalkX",
+              "options": ["a fish can't walk", "a fish can walk"],
+              "correctIndex": 0,
+              "promptAudio": "vo.milo.u3.l4.buildFishCantWalk",
+              "promptTranscript": "Build: a fish can't walk."
+            },
+            {
+              "id": "u3.l4.a3.i3b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "sentence_chunks",
+              "targetWord": "a fish can't walk",
+              "targetImage": "img.ability.fishWalkX",
+              "letterPool": ["a", "fish", "can't", "walk", "can", "swim", "fly"],
+              "promptAudio": "vo.milo.u3.l4.buildFishCantWalk",
+              "promptTranscript": "Put the words in order: a fish can't walk."
+            },
+            {
+              "id": "u3.l4.a3.i4b",
+              "type": "word_builder",
+              "ageBand": "9-12",
+              "variant": "sentence_chunks",
+              "targetWord": "a cat can't fly",
+              "targetImage": "img.ability.catFlyX",
+              "letterPool": ["a", "cat", "can't", "fly", "can", "swim", "walk"],
+              "promptAudio": "vo.milo.u3.l4.buildCatCantFly",
+              "promptTranscript": "Put the words in order: a cat can't fly."
+            }
+          ]
+        },
+        {
+          "id": "u3.l4.a4",
+          "type": "story_time",
+          "title": "Story: What Can You Do?",
+          "items": [
+            {
+              "id": "u3.l4.a4.i1",
+              "type": "story_time",
+              "ageBand": "6-8",
+              "storyId": "story.whatCanYouDo",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.whatCanYouDo.p1",
+                  "narrationAudio": "vo.milo.story.whatCanYouDo.p1",
+                  "narrationText": "In the forest, the friends share what they can do.",
+                  "karaokeHighlights": [],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.whatCanYouDo.p2",
+                  "narrationAudio": "vo.milo.story.whatCanYouDo.p2",
+                  "narrationText": "I can fly, says the bird. Up, up, up!",
+                  "karaokeHighlights": [
+                    { "wordStart": 2, "wordEnd": 5, "vocabRef": "vocab.can" },
+                    { "wordStart": 6, "wordEnd": 9, "vocabRef": "vocab.fly" },
+                    { "wordStart": 19, "wordEnd": 23, "vocabRef": "vocab.bird" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.whatCanYouDo.p3",
+                  "narrationAudio": "vo.milo.story.whatCanYouDo.p3",
+                  "narrationText": "I can swim, says the fish. Swish, swish, swish!",
+                  "karaokeHighlights": [
+                    { "wordStart": 2, "wordEnd": 5, "vocabRef": "vocab.can" },
+                    { "wordStart": 6, "wordEnd": 10, "vocabRef": "vocab.swim" },
+                    { "wordStart": 20, "wordEnd": 24, "vocabRef": "vocab.fish" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.whatCanYouDo.p4",
+                  "narrationAudio": "vo.milo.story.whatCanYouDo.p4",
+                  "narrationText": "Everyone can do something different. That's what makes us friends.",
+                  "karaokeHighlights": [],
+                  "duration": 5.5
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.whatCanYouDo.q1",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "6-8",
+                  "promptAudio": "vo.milo.story.whatCanYouDo.q1",
+                  "promptTranscript": "Who can fly?",
+                  "items": ["the bird", "the fish"],
+                  "correctIndex": 0
+                }
+              ]
+            },
+            {
+              "id": "u3.l4.a4.i2",
+              "type": "story_time",
+              "ageBand": "9-12",
+              "storyId": "story.whatCanYouDo",
+              "panels": [
+                {
+                  "panelId": "p1",
+                  "imageConcept": "img.story.whatCanYouDo.p1",
+                  "narrationAudio": "vo.milo.story.whatCanYouDo.p1",
+                  "narrationText": "In the forest, the friends share what they can do.",
+                  "karaokeHighlights": [],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p2",
+                  "imageConcept": "img.story.whatCanYouDo.p2",
+                  "narrationAudio": "vo.milo.story.whatCanYouDo.p2",
+                  "narrationText": "I can fly, says the bird. Up, up, up!",
+                  "karaokeHighlights": [
+                    { "wordStart": 2, "wordEnd": 5, "vocabRef": "vocab.can" },
+                    { "wordStart": 6, "wordEnd": 9, "vocabRef": "vocab.fly" },
+                    { "wordStart": 19, "wordEnd": 23, "vocabRef": "vocab.bird" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p3",
+                  "imageConcept": "img.story.whatCanYouDo.p3",
+                  "narrationAudio": "vo.milo.story.whatCanYouDo.p3",
+                  "narrationText": "I can swim, says the fish. Swish, swish, swish!",
+                  "karaokeHighlights": [
+                    { "wordStart": 2, "wordEnd": 5, "vocabRef": "vocab.can" },
+                    { "wordStart": 6, "wordEnd": 10, "vocabRef": "vocab.swim" },
+                    { "wordStart": 20, "wordEnd": 24, "vocabRef": "vocab.fish" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p4",
+                  "imageConcept": "img.story.whatCanYouDo.p4",
+                  "narrationAudio": "vo.milo.story.whatCanYouDo.p4",
+                  "narrationText": "I can climb, says the bear. Up the big tree!",
+                  "karaokeHighlights": [
+                    { "wordStart": 2, "wordEnd": 5, "vocabRef": "vocab.can" }
+                  ],
+                  "duration": 4.5
+                },
+                {
+                  "panelId": "p5",
+                  "imageConcept": "img.story.whatCanYouDo.p5",
+                  "narrationAudio": "vo.milo.story.whatCanYouDo.p5",
+                  "narrationText": "A fish can't walk. A cat can't fly. That's okay — we all do different things.",
+                  "karaokeHighlights": [
+                    { "wordStart": 0, "wordEnd": 17, "vocabRef": "vocab.a-fish-cant-walk" },
+                    { "wordStart": 19, "wordEnd": 34, "vocabRef": "vocab.a-cat-cant-fly" }
+                  ],
+                  "duration": 6.0
+                },
+                {
+                  "panelId": "p6",
+                  "imageConcept": "img.story.whatCanYouDo.p6",
+                  "narrationAudio": "vo.milo.story.whatCanYouDo.p6",
+                  "narrationText": "Everyone can do something. What can you do today?",
+                  "karaokeHighlights": [],
+                  "duration": 5.0
+                }
+              ],
+              "questions": [
+                {
+                  "id": "story.whatCanYouDo.q1.912",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.whatCanYouDo.q1",
+                  "promptTranscript": "Who said 'I can fly'?",
+                  "items": ["the bird", "the fish", "the bear"],
+                  "correctIndex": 0
+                },
+                {
+                  "id": "story.whatCanYouDo.q2.912",
+                  "type": "story_question",
+                  "questionType": "multiple_choice",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.whatCanYouDo.q2",
+                  "promptTranscript": "What can the bear do?",
+                  "items": ["climb", "swim", "fly"],
+                  "correctIndex": 0
+                },
+                {
+                  "id": "story.whatCanYouDo.q3.912",
+                  "type": "story_question",
+                  "questionType": "sequencing",
+                  "ageBand": "9-12",
+                  "promptAudio": "vo.milo.story.whatCanYouDo.q3",
+                  "promptTranscript": "Put the friends in the order they spoke.",
+                  "items": [
+                    "The bird says 'I can fly'.",
+                    "The fish says 'I can swim'.",
+                    "The bear says 'I can climb'.",
+                    "Everyone shares what they can do."
+                  ],
+                  "correctOrder": [0, 1, 2, 3]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

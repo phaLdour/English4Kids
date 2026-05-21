@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A character walking</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <circle cx="120" cy="80" r="28" fill="#5FB37C"/>
+  <circle cx="112" cy="76" r="4" fill="#1F2933" stroke="none"/>
+  <circle cx="128" cy="76" r="4" fill="#1F2933" stroke="none"/>
+  <path d="M112 90 Q120 96 128 90" stroke-width="1.5"/>
+  <path d="M120 108 L120 170" stroke-width="6"/>
+  <path d="M100 130 L80 150" stroke-width="6"/>
+  <path d="M140 130 L160 150" stroke-width="6"/>
+  <path d="M120 170 L100 220" stroke-width="6"/>
+  <path d="M120 170 L140 220" stroke-width="6"/>
+</svg>

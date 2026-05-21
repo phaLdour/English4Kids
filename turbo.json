@@ -23,6 +23,16 @@
     },
     "validate:content": {
       "inputs": ["content/**/*.json"]
+    },
+    "verify:audio": {
+      "inputs": [
+        "apps/web/public/audio/manifest.json",
+        "apps/web/public/audio/**/*.opus",
+        "apps/web/public/audio/**/*.mp3"
+      ]
+    },
+    "check:mascot-parity": {
+      "inputs": ["content/audio-assets/unit-*.json"]
     }
   }
 }

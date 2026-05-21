@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>Milo the fox wakes up in the morning sun</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <rect x="0" y="170" width="240" height="70" fill="#5FB37C" stroke="none"/>
+  <path d="M0 170 L240 170" stroke-width="2.5"/>
+  <circle cx="190" cy="60" r="26" fill="#FFC857"/>
+  <g stroke="#FFC857" stroke-width="4" stroke-linecap="round">
+    <line x1="190" y1="20" x2="190" y2="10"/>
+    <line x1="222" y1="38" x2="232" y2="32"/>
+    <line x1="222" y1="82" x2="232" y2="88"/>
+    <line x1="158" y1="38" x2="148" y2="32"/>
+  </g>
+  <circle cx="184" cy="58" r="2.5" fill="#1F2933" stroke="none"/>
+  <circle cx="196" cy="58" r="2.5" fill="#1F2933" stroke="none"/>
+  <path d="M182 66 Q190 72 198 66" stroke-width="1.5"/>
+  <ellipse cx="100" cy="160" rx="60" ry="32" fill="#F08A4B"/>
+  <circle cx="76" cy="138" r="28" fill="#F08A4B"/>
+  <path d="M52 124 L48 100 L70 118 Z" fill="#F08A4B"/>
+  <path d="M100 124 L104 100 L82 118 Z" fill="#F08A4B"/>
+  <circle cx="70" cy="138" r="3" fill="#1F2933" stroke="none"/>
+  <circle cx="84" cy="138" r="3" fill="#1F2933" stroke="none"/>
+  <path d="M70 148 Q76 156 84 148" stroke-width="1.5"/>
+  <path d="M76 132 L74 122 M82 132 L84 122" stroke="#FFFFFF" stroke-width="2"/>
+</svg>

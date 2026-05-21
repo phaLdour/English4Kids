@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  English4Kids — master app icon (1024x1024).
+
+  Style: Lingokids-flat, bold charcoal outline, palette per
+  docs/design/illustration-style-guide.md. The fox face is Milo, our
+  primary mascot. No text on the icon (Apple HIG + Play Store both
+  penalize text in app icons).
+
+  Tested for legibility at 16x16: silhouette consists of two pointed
+  ears + a wide rounded chin — recognisable as "a fox" without details.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <title>English4Kids app icon — Milo the fox</title>
+
+  <!-- Cream background — fills the full square. iOS applies a corner-radius
+       mask automatically; Android adaptive icons use the foreground/
+       background pair (see adaptive-icon-*.svg). -->
+  <rect x="0" y="0" width="1024" height="1024" fill="#FFF8EE" />
+
+  <!--
+    Milo's head, scaled to ~75% of the canvas.
+    Geometry: rounded triangle with two pointed ear triangles on top.
+    Centred at (512, 540) — slightly below middle to balance the ears.
+  -->
+
+  <!-- Left ear -->
+  <path d="M 280 320
+           L 360 180
+           L 440 360
+           Z"
+        fill="#F08A4B"
+        stroke="#1F2933"
+        stroke-width="34"
+        stroke-linejoin="round" />
+
+  <!-- Right ear -->
+  <path d="M 744 320
+           L 664 180
+           L 584 360
+           Z"
+        fill="#F08A4B"
+        stroke="#1F2933"
+        stroke-width="34"
+        stroke-linejoin="round" />
+
+  <!-- Inner-ear (lighter peach) -->
+  <path d="M 320 310
+           L 360 230
+           L 410 340
+           Z"
+        fill="#FFB5A7"
+        stroke="none" />
+  <path d="M 704 310
+           L 664 230
+           L 614 340
+           Z"
+        fill="#FFB5A7"
+        stroke="none" />
+
+  <!-- Main head: wide rounded triangle (the fox muzzle/jaw).
+       Drawn as a closed path so the outline is continuous with the ears. -->
+  <path d="M 240 460
+           Q 240 360 360 360
+           Q 460 360 512 380
+           Q 564 360 664 360
+           Q 784 360 784 460
+           Q 784 620 700 720
+           Q 600 820 512 820
+           Q 424 820 324 720
+           Q 240 620 240 460 Z"
+        fill="#F08A4B"
+        stroke="#1F2933"
+        stroke-width="34"
+        stroke-linejoin="round"
+        stroke-linecap="round" />
+
+  <!-- White muzzle patch (lower face) -->
+  <path d="M 380 600
+           Q 380 560 440 560
+           L 584 560
+           Q 644 560 644 600
+           Q 644 720 512 780
+           Q 380 720 380 600 Z"
+        fill="#FFFFFF"
+        stroke="#1F2933"
+        stroke-width="22"
+        stroke-linejoin="round" />
+
+  <!-- Left eye dot -->
+  <circle cx="408" cy="500" r="28" fill="#1F2933" />
+
+  <!-- Right eye dot -->
+  <circle cx="616" cy="500" r="28" fill="#1F2933" />
+
+  <!-- Eye highlights (white sparkle) -->
+  <circle cx="418" cy="490" r="8" fill="#FFFFFF" />
+  <circle cx="626" cy="490" r="8" fill="#FFFFFF" />
+
+  <!-- Nose: small charcoal triangle -->
+  <path d="M 488 600
+           L 536 600
+           L 512 632
+           Z"
+        fill="#1F2933"
+        stroke="#1F2933"
+        stroke-width="14"
+        stroke-linejoin="round" />
+
+  <!-- Smile: gentle arc below the nose -->
+  <path d="M 460 680
+           Q 512 720 564 680"
+        fill="none"
+        stroke="#1F2933"
+        stroke-width="22"
+        stroke-linecap="round" />
+</svg>

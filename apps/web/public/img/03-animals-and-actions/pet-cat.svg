@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A cat</title>
+  <rect x="0" y="0" width="240" height="240" fill="#FFF8EE" stroke="none"/>
+  <circle cx="120" cy="120" r="52" fill="#1F2933"/>
+  <path d="M82 96 L74 56 L106 86 Z" fill="#1F2933"/>
+  <path d="M158 96 L166 56 L134 86 Z" fill="#1F2933"/>
+  <circle cx="104" cy="118" r="5" fill="#5FB37C" stroke="none"/>
+  <circle cx="136" cy="118" r="5" fill="#5FB37C" stroke="none"/>
+  <ellipse cx="120" cy="138" rx="6" ry="3" fill="#FFB5A7" stroke="none"/>
+  <path d="M114 146 Q120 152 126 146" stroke-width="1.5"/>
+  <line x1="74" y1="128" x2="100" y2="130" stroke-width="1.2"/>
+  <line x1="74" y1="138" x2="100" y2="136" stroke-width="1.2"/>
+  <line x1="140" y1="130" x2="166" y2="128" stroke-width="1.2"/>
+  <line x1="140" y1="136" x2="166" y2="138" stroke-width="1.2"/>
+  <ellipse cx="120" cy="190" rx="44" ry="22" fill="#1F2933"/>
+</svg>

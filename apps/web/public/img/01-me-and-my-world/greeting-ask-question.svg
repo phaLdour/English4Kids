@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" stroke="#1F2933" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>A speech bubble with a question mark, asking hello</title>
+  <path d="M40 70 Q40 50 60 50 L200 50 Q220 50 220 70 L220 150 Q220 170 200 170 L120 170 L96 200 L96 170 L60 170 Q40 170 40 150 Z" fill="#3DA9FC"/>
+  <path d="M110 92 Q110 76 130 76 Q150 76 150 92 Q150 104 138 110 Q130 114 130 124" stroke-width="6" stroke="#FFFFFF" fill="none"/>
+  <circle cx="130" cy="142" r="5" fill="#FFFFFF" stroke="none"/>
+</svg>

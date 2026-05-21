@@ -8,7 +8,7 @@ Help children build real English confidence through play. Two age bands (6–8 L
 
 ## Status
 
-MVP Sprint 1 — Bootstrap & Audio Foundation. Repo skeleton, design system, Supabase migrations, audio engine, mascot scaffolding.
+Soft-launch ready (post-ADR-0009 plus the Yayınlama Sprinti release-polish wave). Three CEFR Pre-A1 units shipped (12 lessons total), full mascot voice parity (Milo + Luna), EN/TR locale symmetry, anonymous-first 3-layer cloud sync gate, offline PWA with adaptive bitrate audio, Capacitor static export for iOS / Android, end-to-end CI gates green. External blockers tracked in `docs/launch/soft-launch-checklist.md`: accounts, signing keys, DNS, store submission assets, three privacy placeholders.
 
 ## Stack
 
@@ -63,11 +63,13 @@ pnpm validate:content
 
 ## Documentation
 
-- [Multi-agent development plan](../../../root/.claude/plans/english4kids-ok-ajanl-robust-wigderson.md)
-- [Architecture Decision Records](./docs/adr/)
+- [Architecture Decision Records](./docs/adr/) — start with ADR-0009 (MVP soft-launch sign-off) and ADR-0015 (soft-launch readiness)
+- [Soft-launch checklist](./docs/launch/soft-launch-checklist.md) — exhaustive list of external blockers (accounts, secrets, store assets)
+- [QA Lead final report](./docs/launch/qa-lead-final-report.md) — Sprint 6 audit trail (25 findings closed)
 - [Audio strategy](./docs/audio/)
-- [Pedagogy](./docs/pedagogy/)
-- [Safety & Privacy](./docs/safety/)
+- [Pedagogy](./docs/pedagogy/) — process-praise tone, banned phrasings, mascot voice contract
+- [Safety & Privacy](./docs/safety/) — microphone policy, COPPA / GDPR-K alignment
+- [Sprint plans](./docs/sprints/)
 - [Contributing](./CONTRIBUTING.md)
 
 ## Safety & Privacy

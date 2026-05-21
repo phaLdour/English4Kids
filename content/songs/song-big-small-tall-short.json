@@ -1,0 +1,25 @@
+{
+  "id": "song.bigSmallTallShort",
+  "title": "Big and Small, Tall and Short",
+  "lrc": "[00:00.00]Big! (held high) and small (low and quick),\n[00:03.50]Tall (held high) and short (low and quick).\n[00:07.00]Big like a horse, small like a mouse,\n[00:10.50]Tall like a tree, short like a house.\n[00:14.00]Big and small, tall and short,\n[00:17.50]Every size is just the right sort!\n[00:21.00]Big! Small! Tall! Short!\n[00:24.00]Sing it loud — we love them all!\n",
+  "audioRef": "mus.bigSmallTallShort",
+  "targetVocabRefs": [
+    "vocab.cat",
+    "vocab.dog",
+    "vocab.hamster",
+    "vocab.cow",
+    "vocab.horse"
+  ],
+  "tprMoves": [
+    { "ageBand": "6-8", "move": "stretch_up_big", "cueTime": 0 },
+    { "ageBand": "6-8", "move": "crouch_down_small", "cueTime": 1.5 },
+    { "ageBand": "6-8", "move": "stretch_up_tall", "cueTime": 3.5 },
+    { "ageBand": "6-8", "move": "crouch_down_short", "cueTime": 5.0 },
+    { "ageBand": "6-8", "move": "stretch_up_big", "cueTime": 21.0 },
+    { "ageBand": "6-8", "move": "crouch_down_small", "cueTime": 21.8 },
+    { "ageBand": "6-8", "move": "stretch_up_tall", "cueTime": 22.4 },
+    { "ageBand": "6-8", "move": "crouch_down_short", "cueTime": 23.0 },
+    { "ageBand": "9-12", "move": "contour_arms_high_low", "cueTime": 0 },
+    { "ageBand": "9-12", "move": "contour_arms_high_low", "cueTime": 14.0 }
+  ]
+}

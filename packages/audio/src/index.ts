@@ -18,12 +18,16 @@ export {
   WebSpeechStt,
   WhisperWasmStt,
   pickStt,
+  registerWhisperModuleProvider,
 } from "./stt.js";
 export type {
   SttAdapter,
   SttPreference,
   SttRecognizeOptions,
   SttResult,
+  WhisperLoaderState,
+  WhisperModuleProvider,
+  WhisperRuntimeHandle,
 } from "./stt.js";
 
 export { scorePronunciation } from "./pronunciation.js";

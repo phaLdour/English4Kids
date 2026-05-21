@@ -1,0 +1,61 @@
+{
+  "id": "story.pipMeetsPets",
+  "title": "Pip Meets the Pets",
+  "panels": [
+    {
+      "panelId": "p1",
+      "imageConcept": "img.story.pipMeetsPets.p1",
+      "narrationAudio": "vo.milo.story.pipMeetsPets.p1",
+      "narrationText": "Pip the Parrot visits a sunny pet room.",
+      "karaokeHighlights": [],
+      "duration": 4.0
+    },
+    {
+      "panelId": "p2",
+      "imageConcept": "img.story.pipMeetsPets.p2",
+      "narrationAudio": "vo.milo.story.pipMeetsPets.p2",
+      "narrationText": "Hello, cat! A small cat purrs on a soft mat.",
+      "karaokeHighlights": [
+        { "wordStart": 7, "wordEnd": 10, "vocabRef": "vocab.cat" },
+        { "wordStart": 14, "wordEnd": 17, "vocabRef": "vocab.cat" }
+      ],
+      "duration": 4.5
+    },
+    {
+      "panelId": "p3",
+      "imageConcept": "img.story.pipMeetsPets.p3",
+      "narrationAudio": "vo.milo.story.pipMeetsPets.p3",
+      "narrationText": "Hi, dog! A happy dog wags its tail. Hello, rabbit! Hop, hop, hop.",
+      "karaokeHighlights": [
+        { "wordStart": 4, "wordEnd": 7, "vocabRef": "vocab.dog" },
+        { "wordStart": 17, "wordEnd": 20, "vocabRef": "vocab.dog" },
+        { "wordStart": 41, "wordEnd": 47, "vocabRef": "vocab.rabbit" }
+      ],
+      "duration": 5.0
+    },
+    {
+      "panelId": "p4",
+      "imageConcept": "img.story.pipMeetsPets.p4",
+      "narrationAudio": "vo.milo.story.pipMeetsPets.p4",
+      "narrationText": "A bird, a fish, and a hamster wave too. So many new friends!",
+      "karaokeHighlights": [
+        { "wordStart": 2, "wordEnd": 6, "vocabRef": "vocab.bird" },
+        { "wordStart": 10, "wordEnd": 14, "vocabRef": "vocab.fish" },
+        { "wordStart": 22, "wordEnd": 29, "vocabRef": "vocab.hamster" }
+      ],
+      "duration": 5.0
+    }
+  ],
+  "questions": [
+    {
+      "id": "story.pipMeetsPets.q1",
+      "type": "story_question",
+      "questionType": "multiple_choice",
+      "ageBand": "6-8",
+      "promptAudio": "vo.milo.story.pipMeetsPets.q1",
+      "promptTranscript": "Which pet did Pip meet first?",
+      "items": ["the cat", "the bird"],
+      "correctIndex": 0
+    }
+  ]
+}

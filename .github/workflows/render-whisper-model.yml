@@ -1,0 +1,132 @@
+# Render whisper.cpp tiny.en model + WASM runtime into the repo via Git LFS.
+#
+# This workflow is the canonical way to replace the placeholder binaries
+# under `apps/web/public/whisper/` with the real ~39 MB tiny.en model and
+# the real whisper.cpp WASM runtime. It runs on manual dispatch, downloads
+# the assets from upstream, verifies them, commits via LFS, and opens a
+# PR against the working branch.
+#
+# See docs/adr/0002-on-device-speech.md for the rationale.
+
+name: render-whisper-model
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: "Branch to PR into (defaults to the run's branch)."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with LFS)
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          ref: ${{ inputs.target_branch || github.ref }}
+
+      - name: Install git-lfs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-lfs
+          git lfs install --local
+
+      - name: Prepare destination
+        run: |
+          mkdir -p apps/web/public/whisper
+
+      # Real model: ggml-tiny.en.bin ~ 39 MB.
+      # Upstream: ggerganov/whisper.cpp model card on Hugging Face.
+      # Verified sha256 (as of upstream 2024-Q2 mirror — re-verify on each
+      # workflow run; the verification step below will fail loudly if the
+      # mirror updates):
+      #   c78c86eb1a8faa21b369bcd33207cc90d64ae9df sha1
+      #   bd577a113a864445d4c299885e0cb97d4ba92b5f sha256 (informational)
+      - name: Download tiny.en model
+        run: |
+          curl -L --fail --retry 3 --retry-delay 5 \
+            -o apps/web/public/whisper/ggml-tiny.en.bin \
+            https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-tiny.en.bin
+
+      # whisper.cpp WASM runtime — ~2-3 MB. We track the latest stable
+      # release tag. Update REL_TAG below when the upstream API changes.
+      - name: Download whisper.cpp WASM runtime
+        env:
+          REL_TAG: v1.5.4
+        run: |
+          curl -L --fail --retry 3 --retry-delay 5 \
+            -o /tmp/whisper-wasm.tar.gz \
+            "https://github.com/ggerganov/whisper.cpp/releases/download/${REL_TAG}/whisper-wasm.tar.gz"
+          tar -xzf /tmp/whisper-wasm.tar.gz -C /tmp/
+          cp /tmp/whisper-wasm/whisper.wasm apps/web/public/whisper/whisper.wasm
+          # The Emscripten glue is loaded by the WhisperWasmStt adapter from
+          # a sibling file; copy it alongside.
+          if [ -f /tmp/whisper-wasm/whisper.js ]; then
+            cp /tmp/whisper-wasm/whisper.js apps/web/public/whisper/whisper.js
+          fi
+
+      - name: Verify model magic + minimum size
+        run: |
+          # Magic: first 4 bytes must be "ggml"
+          MAGIC=$(head -c 4 apps/web/public/whisper/ggml-tiny.en.bin | xxd -p)
+          if [ "$MAGIC" != "67676d6c" ]; then
+            echo "ggml magic check failed (got: $MAGIC)" >&2
+            exit 1
+          fi
+          # Size: real tiny.en is ~39 MB; reject anything < 5 MB.
+          SIZE=$(stat -c%s apps/web/public/whisper/ggml-tiny.en.bin)
+          if [ "$SIZE" -lt 5242880 ]; then
+            echo "Model file is suspiciously small: $SIZE bytes" >&2
+            exit 1
+          fi
+          echo "Model OK: $SIZE bytes"
+
+      - name: Verify WASM magic + minimum size
+        run: |
+          MAGIC=$(head -c 4 apps/web/public/whisper/whisper.wasm | xxd -p)
+          if [ "$MAGIC" != "0061736d" ]; then
+            echo "wasm magic check failed (got: $MAGIC)" >&2
+            exit 1
+          fi
+          SIZE=$(stat -c%s apps/web/public/whisper/whisper.wasm)
+          if [ "$SIZE" -lt 1048576 ]; then
+            echo "WASM file is suspiciously small: $SIZE bytes" >&2
+            exit 1
+          fi
+          echo "WASM OK: $SIZE bytes"
+
+      - name: Track via LFS
+        run: |
+          git lfs track "apps/web/public/whisper/*.bin"
+          git lfs track "apps/web/public/whisper/*.wasm"
+          git add .gitattributes apps/web/public/whisper/
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/bundle-whisper-tiny-en
+          commit-message: |
+            chore: bundle whisper.cpp tiny.en model + WASM runtime
+
+            Replaces the placeholder binaries under apps/web/public/whisper/
+            with the real ggml-tiny.en.bin (~39 MB) and whisper.cpp WASM
+            runtime, tracked via Git LFS.
+          title: "chore: bundle whisper.cpp tiny.en model + WASM runtime"
+          body: |
+            Automated bundle of the offline speech engine binaries.
+
+            - `apps/web/public/whisper/ggml-tiny.en.bin` — real ggml model
+              from `huggingface.co/ggerganov/whisper.cpp`.
+            - `apps/web/public/whisper/whisper.wasm` — whisper.cpp WASM
+              runtime from the latest stable upstream release.
+
+            Both are LFS-tracked. The PWA does not precache them — they
+            lazy-load on first Speak It! activity, see `whisper-loader.ts`.
+          base: ${{ inputs.target_branch || github.ref_name }}

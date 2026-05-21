@@ -1,0 +1,17 @@
+# Capacitor copies the web build into these directories at sync time.
+# They are derived artifacts; never commit them.
+ios/App/App/public/
+android/app/src/main/assets/public/
+
+# Pod / Gradle local caches (in addition to anything ignored at repo root).
+ios/App/Pods/
+ios/App/build/
+android/.gradle/
+android/build/
+android/app/build/
+
+# Dependencies.
+node_modules/
+
+# Editor scratch.
+.DS_Store

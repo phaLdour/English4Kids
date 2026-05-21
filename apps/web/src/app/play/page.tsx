@@ -87,9 +87,27 @@ export default function PlayHomePage() {
         )}
 
         {unitsState.kind === 'loading' ? (
-          <p aria-live="polite" className="text-lg text-[var(--color-ink)]">
-            {t('play.loadingDots')}
-          </p>
+          <ul
+            aria-busy="true"
+            aria-label={t('play.loadingDots')}
+            className="flex w-full max-w-md flex-col gap-[var(--space-4)]"
+          >
+            {/* Three pulsing skeleton tiles matching the real unit-card
+                shape. Keeps the layout from shifting when the data lands.
+                Pure CSS animation — honors `prefers-reduced-motion` via
+                the globals.css override. */}
+            {[0, 1, 2].map((i) => (
+              <li
+                key={`tile-skel-${i}`}
+                className="flex h-44 w-full animate-pulse flex-col items-center gap-[var(--space-3)] rounded-[var(--radius-xl)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-card)]"
+                aria-hidden="true"
+              >
+                <div className="h-20 w-20 rounded-[var(--radius-xl)] bg-[var(--color-muted)] opacity-40" />
+                <div className="h-6 w-2/3 rounded-[var(--radius-pill)] bg-[var(--color-muted)] opacity-40" />
+                <div className="h-4 w-1/2 rounded-[var(--radius-pill)] bg-[var(--color-muted)] opacity-30" />
+              </li>
+            ))}
+          </ul>
         ) : null}
 
         {unitsState.kind === 'error' ? (

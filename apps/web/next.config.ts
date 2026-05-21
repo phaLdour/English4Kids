@@ -70,9 +70,10 @@ const isMobileTarget = process.env.E4K_TARGET === 'mobile';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  experimental: {
-    typedRoutes: true,
-  },
+  // Next 15 moved typedRoutes out of `experimental` to a top-level option.
+  // The old key still works but logs a deprecation warning on every dev
+  // boot; the new key avoids it. Behavior is identical.
+  typedRoutes: true,
   transpilePackages: [
     '@e4k/ui',
     '@e4k/audio',

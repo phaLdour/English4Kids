@@ -120,14 +120,16 @@ describe('MascotFrame', () => {
     });
     expect(fetchMock).not.toHaveBeenCalled();
     expect(queryByTestId('lottie-stub')).toBeNull();
-    // Static fallback: the mascot display name should be in the DOM.
-    expect(container.textContent).toContain('Milo');
+    // Sprint 7: static SVG fallback at /img/_primitives/milo-still.svg —
+    // no "mystery square" with the display name text.
+    const img = container.querySelector('img');
+    expect(img?.getAttribute('src')).toBe('/img/_primitives/milo-still.svg');
     // data attribute marker for downstream a11y assertions
     const wrapper = container.querySelector('[data-mascot="milo"]');
     expect(wrapper?.getAttribute('data-reduced-motion')).toBe('true');
   });
 
-  it('falls back to the static placeholder when fetch fails', async () => {
+  it('falls back to the static SVG when fetch fails', async () => {
     fetchMock.mockImplementationOnce(() => Promise.reject(new Error('offline')));
     const { container, queryByTestId } = render(<MascotFrame variant="luna" reaction="waving" />);
     await waitFor(() => {
@@ -138,6 +140,7 @@ describe('MascotFrame', () => {
       await Promise.resolve();
     });
     expect(queryByTestId('lottie-stub')).toBeNull();
-    expect(container.textContent).toContain('Luna');
+    const img = container.querySelector('img');
+    expect(img?.getAttribute('src')).toBe('/img/_primitives/luna-still.svg');
   });
 });

@@ -178,6 +178,18 @@ export default function PrivacyPage(): React.JSX.Element {
               </tr>
               <tr className="border-b border-[var(--color-ink)] align-top">
                 <td className="py-[var(--space-2)] pr-[var(--space-3)]">
+                  OAuth provider identifier (Apple / Google)
+                </td>
+                <td className="py-[var(--space-2)] pr-[var(--space-3)]">
+                  Cloud (Supabase Auth). When a parent or 13+ user signs in with Apple,
+                  Apple&rsquo;s &ldquo;Hide My Email&rdquo; relay is honoured and only the
+                  relay address reaches us. Google sign-in shares the user&rsquo;s email and
+                  display name only.
+                </td>
+                <td className="py-[var(--space-2)]">Account linking only. Never linked to a child profile.</td>
+              </tr>
+              <tr className="border-b border-[var(--color-ink)] align-top">
+                <td className="py-[var(--space-2)] pr-[var(--space-3)]">
                   User settings (volume, locale, mascot, font)
                 </td>
                 <td className="py-[var(--space-2)] pr-[var(--space-3)]">

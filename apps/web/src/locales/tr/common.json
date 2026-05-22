@@ -634,5 +634,75 @@
     },
     "backTo": "Uygulamaya dön",
     "privacyLink": "Gizlilik"
+  },
+  "auth": {
+    "welcome": {
+      "title": "Merhaba! Hadi başlayalım",
+      "subtitle": "Öğrenmenizi cihazlar arasında kaydetmek için giriş yapın veya hesap oluşturun.",
+      "signIn": "Giriş yap",
+      "createAccount": "Hesap oluştur",
+      "guest": "Misafir olarak devam et",
+      "guestHint": "İlerlemeniz bu cihazda kalır.",
+      "language": "Dil"
+    },
+    "ageGate": {
+      "title": "13 yaşında veya daha büyük müsünüz?",
+      "description": "Size doğru deneyimi sunabilmemiz için soruyoruz. 13 yaş altı kullanıcılar anonim kalır ve bir yetişkinle oynar.",
+      "yes": "Evet, 13 yaşında veya daha büyüğüm",
+      "no": "Hayır, 13 yaşın altındayım",
+      "guest": "Misafir olarak oyna",
+      "parentTitle": "Sadece yetişkinler",
+      "parentDescription": "Buradan devam etmek için bir ebeveyn veya veliye ihtiyacımız var."
+    },
+    "signIn": {
+      "title": "Tekrar hoş geldiniz",
+      "subtitle": "Giriş yapmanın bir yolunu seçin.",
+      "emailLabel": "E-posta",
+      "passwordLabel": "Şifre",
+      "submit": "Giriş yap",
+      "forgot": "Şifrenizi mi unuttunuz?",
+      "noAccount": "Hesabınız yok mu?",
+      "createOne": "Bir tane oluşturun",
+      "errorGeneric": "Hadi e-posta ve şifrenizi bir daha kontrol edelim."
+    },
+    "signUp": {
+      "title": "Hesabınızı oluşturun",
+      "subtitle": "İlerlemeyi kaydedin ve cihazlar arasında senkronize edin.",
+      "displayNameLabel": "Adınız",
+      "emailLabel": "E-posta",
+      "passwordLabel": "Şifre",
+      "submit": "Hesap oluştur",
+      "haveAccount": "Zaten hesabınız var mı?",
+      "signInLink": "Giriş yap",
+      "passwordHint": "En az 8 karakter kullanın.",
+      "errorGeneric": "Bilgileri kontrol edip tekrar deneyelim."
+    },
+    "forgot": {
+      "title": "Şifrenizi sıfırlayın",
+      "subtitle": "Yeni bir şifre belirlemek için size bir bağlantı e-postalayacağız.",
+      "emailLabel": "E-posta",
+      "submit": "Sıfırlama bağlantısı gönder",
+      "sent": "Sıfırlama bağlantısı için gelen kutunuzu kontrol edin.",
+      "back": "Girişe geri dön"
+    },
+    "verifyEmail": {
+      "title": "E-postanızı kontrol edin",
+      "subtitle": "Bir doğrulama bağlantısı gönderdik. Tamamlamak için bu cihazda açın.",
+      "resend": "E-postayı yeniden gönder",
+      "back": "Girişe geri dön"
+    },
+    "deleted": {
+      "title": "Hesabınız silinmek üzere planlandı",
+      "subtitle": "Verilerinizi 7 gün içinde kalıcı olarak kaldıracağız. İptal etmek için bu süre içinde tekrar giriş yapın.",
+      "home": "Ana sayfaya dön"
+    },
+    "providers": {
+      "apple": "Apple ile devam et",
+      "google": "Google ile devam et",
+      "email": "E-posta ile devam et"
+    },
+    "callback": {
+      "wait": "Giriş tamamlanıyor..."
+    }
   }
 }

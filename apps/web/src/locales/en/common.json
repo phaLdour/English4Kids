@@ -634,5 +634,75 @@
     },
     "backTo": "Back to the app",
     "privacyLink": "Privacy"
+  },
+  "auth": {
+    "welcome": {
+      "title": "Hi! Let's get started",
+      "subtitle": "Sign in or create an account to save your learning across devices.",
+      "signIn": "Sign in",
+      "createAccount": "Create account",
+      "guest": "Continue as guest",
+      "guestHint": "Your progress will stay on this device.",
+      "language": "Language"
+    },
+    "ageGate": {
+      "title": "Are you 13 or older?",
+      "description": "We ask so we can offer the right experience. Under-13 visitors stay anonymous and play with a grown-up.",
+      "yes": "Yes, I'm 13 or older",
+      "no": "No, I'm under 13",
+      "guest": "Play as guest instead",
+      "parentTitle": "Grown-ups only",
+      "parentDescription": "A parent or guardian needs to continue from here."
+    },
+    "signIn": {
+      "title": "Welcome back",
+      "subtitle": "Pick a way to sign in.",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "submit": "Sign in",
+      "forgot": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "createOne": "Create one",
+      "errorGeneric": "Let's check your email and password again."
+    },
+    "signUp": {
+      "title": "Create your account",
+      "subtitle": "Save progress and sync across devices.",
+      "displayNameLabel": "Your name",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "signInLink": "Sign in",
+      "passwordHint": "Use at least 8 characters.",
+      "errorGeneric": "Let's check the details and try again."
+    },
+    "forgot": {
+      "title": "Reset your password",
+      "subtitle": "We'll email you a link to set a new password.",
+      "emailLabel": "Email",
+      "submit": "Send reset link",
+      "sent": "Check your inbox for the reset link.",
+      "back": "Back to sign in"
+    },
+    "verifyEmail": {
+      "title": "Check your email",
+      "subtitle": "We sent a verification link. Open it on this device to finish.",
+      "resend": "Resend the email",
+      "back": "Back to sign in"
+    },
+    "deleted": {
+      "title": "Your account is scheduled for deletion",
+      "subtitle": "We'll permanently remove your data in 7 days. Sign back in within that window to cancel.",
+      "home": "Back to home"
+    },
+    "providers": {
+      "apple": "Continue with Apple",
+      "google": "Continue with Google",
+      "email": "Continue with email"
+    },
+    "callback": {
+      "wait": "Finishing sign-in..."
+    }
   }
 }

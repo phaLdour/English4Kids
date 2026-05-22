@@ -35,6 +35,40 @@ enable_signup = true
 double_confirm_changes = true
 enable_confirmations = true
 
+# Sprint 7: Apple Sign-In and Google Sign-In providers.
+#
+# Apple Sign-In is mandatory if Google Sign-In is offered (App Store rule).
+# Both providers MUST be configured together in production. Secrets are
+# injected via env vars at deploy time — never commit provider client_ids,
+# client_secrets, or service-account JSON to the repo.
+#
+# External user tasks (NOT automated):
+#   1. Apple Developer account → create Services ID, configure Sign In with
+#      Apple, generate the 6-month-rotating client_secret JWT.
+#   2. Google Cloud Console → create OAuth 2.0 Client ID, add redirect URI
+#      https://<project>.supabase.co/auth/v1/callback.
+#   3. In Supabase dashboard → Authentication → Providers, paste the Apple
+#      Services ID + Team ID + Key ID + private key, and the Google client ID
+#      + client secret.
+#   4. Set the local .env (gitignored):
+#        SUPABASE_AUTH_EXTERNAL_APPLE_CLIENT_ID
+#        SUPABASE_AUTH_EXTERNAL_APPLE_SECRET
+#        SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID
+#        SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET
+#   5. Enable Apple + Google in the project's Supabase dashboard for staging
+#      and production projects separately.
+[auth.external.apple]
+enabled = true
+client_id = "env(SUPABASE_AUTH_EXTERNAL_APPLE_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_EXTERNAL_APPLE_SECRET)"
+redirect_uri = "http://localhost:54321/auth/v1/callback"
+
+[auth.external.google]
+enabled = true
+client_id = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET)"
+redirect_uri = "http://localhost:54321/auth/v1/callback"
+
 [storage]
 enabled = true
 file_size_limit = "5MB"

@@ -36,6 +36,17 @@
   --radius-xl: 2rem;
   --radius-pill: 9999px;
 
+  /* Sprint 7 — Duolingo-soft additions */
+  --radius-soft: 1.5rem;
+  --radius-soft-lg: 2rem;
+  --radius-button: 9999px;
+
+  /* Sprint 7 — extended spacing scale (additive) */
+  --space-14: 3.5rem;
+  --space-18: 4.5rem;
+  --space-28: 7rem;
+  --space-36: 9rem;
+
   --tap-primary-young: 80px;
   --tap-primary-old: 56px;
   --tap-min-young: 64px;
@@ -45,6 +56,18 @@
   --shadow-pop: 0 8px 24px rgba(31, 41, 51, 0.12);
   --shadow-milo: 0 6px 18px rgba(240, 138, 75, 0.35);
   --shadow-luna: 0 6px 18px rgba(157, 141, 241, 0.35);
+
+  /* Sprint 7 — Duolingo-style soft elevation */
+  --shadow-soft: 0 2px 0 0 rgba(31, 41, 51, 0.08);
+  --shadow-soft-press: 0 4px 0 0 rgba(31, 41, 51, 0.12);
+  --shadow-panel: 0 10px 30px -10px rgba(31, 41, 51, 0.12);
+
+  /* Sprint 7 — provider brand colors */
+  --color-apple-ink: #000000;
+  --color-apple-surface: #ffffff;
+  --color-google-ink: #1f1f1f;
+  --color-google-surface: #ffffff;
+  --color-google-blue: #4285f4;
 
   --font-display: 'Fredoka', 'Atkinson Hyperlegible', system-ui, sans-serif;
   --font-body: 'Atkinson Hyperlegible', 'Lexend', system-ui, sans-serif;

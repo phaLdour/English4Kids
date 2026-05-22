@@ -1,17 +1,23 @@
 'use client';
 
-import { getSetting } from '@e4k/db';
+import { getSetting, getSupabase } from '@e4k/db';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 /**
- * Onboarding gate.
+ * Sprint 7 — Auth + onboarding gate.
  *
- * Reads `onboarding.complete` from Dexie. First-time visitors are routed to
- * `/onboarding`; returning learners go straight to `/play`. A short loading
- * spinner is shown while the check is in flight (typically a single Dexie
- * round-trip, well under a frame on warm storage).
+ * Routing precedence:
+ *   1. If `auth.skipped` is true in Dexie (user picked "Continue as guest"
+ *      previously), preserve the legacy anonymous-first path — go to
+ *      /onboarding or /play depending on onboarding.complete.
+ *   2. Otherwise check Supabase session:
+ *      - No session  -> /auth/welcome (first impression)
+ *      - Has session -> onboarding.complete ? /play : /onboarding
+ *
+ * The legacy behaviour (no auth at all) is preserved when Supabase is not
+ * configured or the call throws — falls through to /onboarding or /play.
  */
 export default function HomePage() {
   const router = useRouter();
@@ -20,9 +26,30 @@ export default function HomePage() {
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      const complete = await getSetting<boolean>('onboarding.complete', false);
+      const onbComplete = await getSetting<boolean>('onboarding.complete', false);
+      const guestAck = await getSetting<boolean>('auth.skipped', false);
       if (cancelled) return;
-      router.replace(complete ? '/play' : '/onboarding');
+
+      if (guestAck) {
+        router.replace(onbComplete ? '/play' : '/onboarding');
+        return;
+      }
+
+      // Probe Supabase session — if no session and Supabase is configured,
+      // start the user at the welcome screen.
+      try {
+        const supabase = getSupabase();
+        const { data } = await supabase.auth.getSession();
+        if (cancelled) return;
+        if (!data.session) {
+          router.replace('/auth/welcome');
+          return;
+        }
+        router.replace(onbComplete ? '/play' : '/onboarding');
+      } catch {
+        // Supabase env not configured — preserve legacy onboarding-first flow.
+        router.replace(onbComplete ? '/play' : '/onboarding');
+      }
     })();
     return () => {
       cancelled = true;

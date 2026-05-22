@@ -31,8 +31,21 @@ vi.mock('@e4k/db', () => ({
     auth: {
       getSession: hoisted.getSessionMock,
       updateUser: hoisted.updateUserMock,
+      // Sprint 7 — useAuth() reads these. Stubs keep the hook's initial
+      // effect quiet during the VPC tests.
+      getUser: vi.fn(async () => ({ data: { user: null }, error: null })),
+      onAuthStateChange: () => ({
+        data: { subscription: { unsubscribe: () => {} } },
+      }),
+      signOut: vi.fn(),
     },
+    functions: { invoke: vi.fn() },
   }),
+}));
+
+// Sprint 7: parent/account uses useRouter() for the post-deletion redirect.
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn(), back: vi.fn(), replace: vi.fn() }),
 }));
 
 (globalThis as { React?: typeof React }).React = React;

@@ -83,6 +83,16 @@ export function MascotFrame({
     };
   }, [variant, reaction, prefersReducedMotion]);
 
+  // Sprint 7 "order with detail" fix:
+  //   The previous static fallback rendered a 7-rem colored square anchored
+  //   to bottom-left whenever Lottie was unavailable (prefers-reduced-motion
+  //   or fetch failed). That square was the "mystery element" called out
+  //   during the Wave 0 audit. New behaviour:
+  //     - When Lottie is unavailable, fall back to the mascot's still SVG
+  //       at /img/_primitives/{variant}-still.svg. The mascot is still
+  //       visible, just static.
+  //     - If even the still SVG fails to load (e.g. offline before first
+  //       cache), render nothing at all — no unexplained square.
   return (
     <div
       role="img"
@@ -91,14 +101,17 @@ export function MascotFrame({
       data-reaction={reaction}
       data-reduced-motion={prefersReducedMotion ? 'true' : 'false'}
       className={cn(
-        'pointer-events-none fixed bottom-[var(--space-4)] left-[var(--space-4)] flex h-28 w-28 items-center justify-center overflow-hidden rounded-[var(--radius-xl)] text-[var(--color-surface-high)] sm:h-32 sm:w-32',
+        'pointer-events-none fixed bottom-[var(--space-4)] left-[var(--space-4)] flex h-28 w-28 items-center justify-center overflow-hidden rounded-[var(--radius-xl)] sm:h-32 sm:w-32',
         className,
       )}
       style={{
-        backgroundColor: VARIANT_COLOR[variant],
-        boxShadow: VARIANT_SHADOW[variant],
+        backgroundColor: animationData && !prefersReducedMotion
+          ? VARIANT_COLOR[variant]
+          : 'transparent',
+        boxShadow: animationData && !prefersReducedMotion ? VARIANT_SHADOW[variant] : 'none',
         fontFamily: 'var(--font-display)',
         fontSize: '1.25rem',
+        color: 'var(--color-surface-high)',
       }}
     >
       {animationData && !prefersReducedMotion ? (
@@ -111,11 +124,17 @@ export function MascotFrame({
           style={{ width: '100%', height: '100%' }}
         />
       ) : (
-        // Static fallback: colored pill with the mascot name. Used when
+        // Static SVG fallback — the mascot's still pose. Used when
         // (a) prefers-reduced-motion is set, or (b) the Lottie JSON failed
-        // to load (offline / not yet cached). Screen readers still get the
-        // mascot + reaction via aria-label on the wrapper.
-        <span aria-hidden="true">{displayName}</span>
+        // to load. Image element handles its own error state via the
+        // browser's broken-image affordance (no visible square).
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={`/img/_primitives/${variant}-still.svg`}
+          alt=""
+          aria-hidden="true"
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+        />
       )}
     </div>
   );

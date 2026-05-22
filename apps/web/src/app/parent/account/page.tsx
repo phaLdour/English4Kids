@@ -36,8 +36,11 @@
  */
 
 import { track } from '@/lib/plausible-events';
+import { useAuth } from '@/lib/use-auth';
 import { useVpcUpgrade } from '@/lib/use-vpc-upgrade';
+import { ProviderButton } from '@e4k/ui';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -53,12 +56,39 @@ type Step =
 export default function AccountUpgradePage() {
   const t = useTranslations();
   const vpc = useVpcUpgrade();
+  const router = useRouter();
+  const auth = useAuth();
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [step, setStep] = useState<Step>('email');
   const [secondAvailableAt, setSecondAvailableAt] = useState<string | null>(null);
   const [devToken, setDevToken] = useState<string | null>(null);
   const [linkError, setLinkError] = useState<string | null>(null);
+  const [deleteBusy, setDeleteBusy] = useState(false);
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+
+  const onDeleteAccount = async (): Promise<void> => {
+    setDeleteBusy(true);
+    try {
+      await auth.deleteAccount();
+      router.push('/auth/account-deleted');
+    } catch {
+      // Surface via auth.error already populated by the hook; user can retry.
+    } finally {
+      setDeleteBusy(false);
+      setDeleteConfirmOpen(false);
+    }
+  };
+
+  const onLinkApple = (): void => {
+    void auth.linkAnonymousToIdentified({ kind: 'apple' }).catch(() => {
+      // auth.error is already set; the UI surfaces it via auth.error.
+    });
+  };
+
+  const onLinkGoogle = (): void => {
+    void auth.linkAnonymousToIdentified({ kind: 'google' }).catch(() => {});
+  };
 
   const onRequest = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
@@ -338,6 +368,94 @@ export default function AccountUpgradePage() {
         >
           {t('parent.backToDashboard')}
         </Link>
+      </section>
+
+      {/*
+        Sprint 7 — Account management additions.
+        Two sections gated behind the existing parent math gate (this whole
+        page lives under /parent/* which the layout protects):
+          - Link Apple / Link Google: connect an OAuth identity to the
+            existing email-only account so the parent can sign in with
+            either method later.
+          - Delete account: starts the COPPA right-of-erasure 7-day grace
+            window via the account-deletion edge function. A two-step
+            confirm prevents accidental clicks.
+      */}
+      <section className="mt-[var(--space-8)] flex flex-col gap-[var(--space-4)] rounded-[var(--radius-soft-lg)] bg-[var(--color-surface-high)] p-[var(--space-6)]"
+        style={{ boxShadow: 'var(--shadow-card)' }}
+        aria-labelledby="account-link-providers"
+      >
+        <h2
+          id="account-link-providers"
+          className="text-xl text-[var(--color-primary-dark)]"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          Sign-in methods
+        </h2>
+        <p className="text-sm text-[var(--color-mist)]">
+          Connect Apple or Google so you can sign in either way next time.
+        </p>
+        <div className="flex flex-col gap-[var(--space-2)]">
+          <ProviderButton provider="apple" onClick={onLinkApple} />
+          <ProviderButton provider="google" onClick={onLinkGoogle} />
+        </div>
+      </section>
+
+      <section className="mt-[var(--space-6)] mb-[var(--space-8)] flex flex-col gap-[var(--space-4)] rounded-[var(--radius-soft-lg)] border border-[var(--color-coral)] bg-[var(--color-surface-high)] p-[var(--space-6)]"
+        aria-labelledby="account-delete"
+      >
+        <h2
+          id="account-delete"
+          className="text-xl text-[var(--color-alert)]"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          Delete account
+        </h2>
+        <p className="text-sm text-[var(--color-ink)]">
+          We&rsquo;ll permanently remove your account and your child profiles after a 7-day
+          grace window. Sign back in within that window to cancel.
+        </p>
+        {deleteConfirmOpen ? (
+          <div className="flex flex-col gap-[var(--space-2)]">
+            <p className="text-sm text-[var(--color-ink)]">
+              Tap &ldquo;Yes, delete&rdquo; to start the 7-day countdown.
+            </p>
+            <div className="flex gap-[var(--space-2)]">
+              <button
+                type="button"
+                onClick={onDeleteAccount}
+                disabled={deleteBusy}
+                className="rounded-[var(--radius-button)] bg-[var(--color-alert)] px-[var(--space-5)] py-[var(--space-3)] text-[var(--color-surface-high)] disabled:opacity-60"
+                style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
+              >
+                {deleteBusy ? 'Working…' : 'Yes, delete'}
+              </button>
+              <button
+                type="button"
+                onClick={() => setDeleteConfirmOpen(false)}
+                disabled={deleteBusy}
+                className="rounded-[var(--radius-button)] bg-[var(--color-surface)] px-[var(--space-5)] py-[var(--space-3)] text-[var(--color-ink)] disabled:opacity-60"
+                style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setDeleteConfirmOpen(true)}
+            className="self-start rounded-[var(--radius-button)] bg-[var(--color-surface)] px-[var(--space-5)] py-[var(--space-3)] text-[var(--color-alert)]"
+            style={{ minHeight: '48px', fontFamily: 'var(--font-display)' }}
+          >
+            Delete my account
+          </button>
+        )}
+        {auth.error ? (
+          <p role="alert" className="text-sm text-[var(--color-alert)]">
+            {auth.error.message}
+          </p>
+        ) : null}
       </section>
     </main>
   );

@@ -194,47 +194,47 @@ interface UnitTileProps {
 
 function UnitTile({ unit, mascot, blurb, onSelect }: UnitTileProps) {
   const t = useTranslations();
-  const mascotName = t(`mascot.${mascot}`);
-  const swatchClass = mascot === 'milo' ? 'bg-[var(--color-milo)]' : 'bg-[var(--color-luna)]';
-  const swatchShadow = mascot === 'milo' ? 'var(--shadow-milo)' : 'var(--shadow-luna)';
+  const accentClass = mascot === 'milo' ? 'bg-[var(--color-milo)]' : 'bg-[var(--color-luna)]';
 
+  // Sprint 7: Duolingo-style soft card. Mascot still SVG replaces the
+  // colored-text swatch (eliminating the "what is this block" question).
+  // Radius bumped to --radius-soft-lg, shadow softened to --shadow-soft,
+  // accent stripe on the left edge ties the card to its mascot.
   return (
     <button
       type="button"
       onClick={onSelect}
-      className="flex w-full flex-col items-center gap-[var(--space-3)] rounded-[var(--radius-xl)] bg-[var(--color-surface-high)] p-[var(--space-5)] shadow-[var(--shadow-pop)] transition-transform duration-[var(--motion-base)] active:scale-95"
-      style={{ minHeight: 'var(--tap-primary-young)' }}
+      className="relative flex w-full items-center gap-[var(--space-4)] overflow-hidden rounded-[var(--radius-soft-lg)] bg-[var(--color-surface-high)] p-[var(--space-5)] text-left transition-transform duration-[var(--motion-base)] active:translate-y-[2px]"
+      style={{ minHeight: 'var(--tap-primary-young)', boxShadow: 'var(--shadow-soft)' }}
       aria-label={t('play.unitTileAria', { title: unit.title, blurb })}
     >
+      <span aria-hidden="true" className={`absolute inset-y-0 left-0 w-2 ${accentClass}`} />
       <div
         aria-hidden="true"
-        className={`flex h-24 w-24 items-center justify-center rounded-[var(--radius-xl)] text-[var(--color-surface-high)] ${swatchClass}`}
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '1.25rem',
-          boxShadow: swatchShadow,
-        }}
+        className="flex h-20 w-20 items-center justify-center rounded-[var(--radius-soft)]"
+        style={{ background: 'var(--color-surface)' }}
       >
-        {mascotName}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`/img/_primitives/${mascot}-still.svg`}
+          alt=""
+          style={{ width: 64, height: 64 }}
+        />
       </div>
-      <h2
-        className="text-center text-2xl text-[var(--color-primary-dark)]"
-        style={{ fontFamily: 'var(--font-display)' }}
-      >
-        {unit.title}
-      </h2>
-      <p
-        className="text-center text-base text-[var(--color-ink)]"
-        style={{ fontFamily: 'var(--font-body)' }}
-      >
-        {unit.theme}
-      </p>
-      <p
-        className="text-sm text-[var(--color-mist)]"
-        style={{ fontFamily: 'var(--font-body)' }}
-      >
-        {t('play.lessonCount', { count: unit.lessonCount })}
-      </p>
+      <div className="flex flex-1 flex-col gap-[var(--space-1)]">
+        <h2
+          className="text-2xl text-[var(--color-primary-dark)]"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          {unit.title}
+        </h2>
+        <p
+          className="text-sm text-[var(--color-mist)]"
+          style={{ fontFamily: 'var(--font-body)' }}
+        >
+          {t('play.lessonCount', { count: unit.lessonCount })}
+        </p>
+      </div>
     </button>
   );
 }
